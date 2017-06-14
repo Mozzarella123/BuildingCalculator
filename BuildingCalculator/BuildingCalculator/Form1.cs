@@ -13,11 +13,11 @@ namespace BuildingCalculator
     public partial class Form1 : Form
     {
 
-        List<Room.Element> roomelems = new List<Room.Element>();
+        Room room = new Room();
         public Form1()
         {
             InitializeComponent();
-            roomelems.Add(new Room.Element());
+            room.Elements.Add(new Element());
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -62,18 +62,18 @@ namespace BuildingCalculator
                         currentindex++;
                         if (operation == "+")
                         {
-                            roomelems.Add(new Room.Element());
-                            CurrentIndex.Text = roomelems.Count.ToString();
+                            room.Elements.Add(new Element());
+                            CurrentIndex.Text = room.Elements.Count.ToString();
                             Width.Text = "0";
                             Length.Text = "0";
                         }
                         else
                         {
-                            if (currentindex<=roomelems.Count)
+                            if (currentindex<=room.Elements.Count)
                             {
                                 CurrentIndex.Text = (currentindex).ToString();
-                                Width.Text = roomelems[currentindex- 1].Width.ToString();
-                                Length.Text = roomelems[currentindex -1].Length.ToString();
+                                Width.Text = room.Elements[currentindex- 1].Params["Width"].ToString();
+                                Length.Text = room.Elements[currentindex -1].Params["Length"].ToString();
                             }
                         }                        
                         break;
@@ -85,10 +85,10 @@ namespace BuildingCalculator
                         {
                             currentindex--;
                             if (operation == "-")
-                                roomelems.RemoveAt(currentindex);
+                                room.Elements.RemoveAt(currentindex);
                             CurrentIndex.Text = (currentindex).ToString();
-                            Width.Text = roomelems[currentindex-1].Width.ToString();
-                            Length.Text = roomelems[currentindex -1].Length.ToString();
+                            Width.Text = room.Elements[currentindex-1].Params["Width"].ToString();
+                            Length.Text = room.Elements[currentindex -1].Params["Length"].ToString();
                         }
                         break;
                     }
@@ -106,10 +106,10 @@ namespace BuildingCalculator
                 switch (input.Name)
                 {
                     case "Width":
-                        roomelems[index].Width = value;
+                        room.Elements[index].Params["Width"] = value;
                         break;
                     case "Length":
-                        roomelems[index].Length = value;
+                        room.Elements[index].Params["Length"] = value;
                         break;
                 }
             }

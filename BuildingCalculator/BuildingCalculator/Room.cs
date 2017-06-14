@@ -6,21 +6,27 @@ using System.Threading.Tasks;
 
 namespace BuildingCalculator
 {
-    public class Room
+    class Params
     {
-        public class Element
+    }
+    interface IParams
+    {
+        Dictionary<string, double> Params { get; set; }
+    }
+    public class Room: IParams
+    {
+        public Dictionary<string,double> Params { get; set; }
+        public Room()
         {
-            public double Length { get; set; }
-            public double Width { get; set; }
-            public Element()
-            {
-
-            }
-            public Element(double length,double width)
-            {
-                Length = length;
-                Width = width;
-            }
         }
+        public static void AddParam(string key)
+        {
+            
+        }
+    }
+    public class Element: IParams
+    {
+        public Dictionary<string, double> Params { get; set; }
+
     }
 }
