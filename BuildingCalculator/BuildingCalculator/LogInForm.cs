@@ -16,15 +16,47 @@ namespace BuildingCalculator
     {
         public LogInForm()
         {
+            
+            
             InitializeComponent();
-        }
+            if (!ConfigurationManager.AppSettings.AllKeys.Contains("login"))
+            {
+                // открываем текущий конфиг специальным обьектом
+                System.Configuration.Configuration currentConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                // добавляем позицию в раздел AppSettings
+                currentConfig.AppSettings.Settings.Add("login", "slon");
+                if (!ConfigurationManager.AppSettings.AllKeys.Contains("password"))
+                    currentConfig.AppSettings.Settings.Add("password", "12345");
+                //сохраняем
+                currentConfig.Save(ConfigurationSaveMode.Modified);
+                //принудительно перезагружаем соотвествующую секцию
+                ConfigurationManager.RefreshSection("appSettings");
 
+            }
+
+            login = ConfigurationManager.AppSettings["login"];
+            pass = ConfigurationManager.AppSettings["password"];
+            if (_isLoged)
+                MessageBox.Show("Ты вошел, а еще ты пидор");
+        }
+        static bool _isLoged;
+        string login;
+        string pass;
         private void LogInForm_Load(object sender, EventArgs e)
         {
-            string login;
-            string pass;
-            string conf = File.ReadAllText("BuildingCalculator.exe.config");
             
+            
+            
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == login && textBox2.Text == pass)
+            {
+                MessageBox.Show("Ты вошел, а еще ты пидор");
+                _isLoged = true;
+            }
         }
     }
 }
