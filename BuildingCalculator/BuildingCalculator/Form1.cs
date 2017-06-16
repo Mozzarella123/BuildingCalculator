@@ -57,5 +57,11 @@ namespace BuildingCalculator
             room.Elements.AddRange(slider2.Slides);
 
         }
+
+        private void админкаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form lf = new LogInForm();
+            lf.Show();
+        }
     }
 }
