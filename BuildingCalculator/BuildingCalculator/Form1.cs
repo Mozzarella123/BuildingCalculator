@@ -60,7 +60,7 @@ namespace BuildingCalculator
 
         private void админкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form lf = new LogInForm();
+            Form lf = LoginClass.SignIn();
             lf.Show();
         }
     }
