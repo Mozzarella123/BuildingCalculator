@@ -158,6 +158,7 @@
             this.Length.TabIndex = 6;
             this.Length.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Length.TextChanged += new System.EventHandler(this.Params_Input);
+            this.Length.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Params_KeyDown);
             // 
             // Width
             // 
@@ -172,6 +173,7 @@
             this.Width.TabIndex = 8;
             this.Width.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Width.TextChanged += new System.EventHandler(this.Params_Input);
+            this.Width.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Params_KeyDown);
             // 
             // WidthT
             // 

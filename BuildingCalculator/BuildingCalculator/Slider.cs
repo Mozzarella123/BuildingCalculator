@@ -22,8 +22,6 @@ namespace BuildingCalculator
             InitializeComponent();
             slides.Add(new Element());
         }
-
-
         private void Slider_Controls_Click(object sender, EventArgs e)
         {
             int currentindex = Convert.ToInt32(CurrentIndex.Text);
@@ -69,28 +67,16 @@ namespace BuildingCalculator
                 default: break;
             }
         }
-
         private void Params_Input(object sender, EventArgs e)
         {
-            try
-            {
-                TextBox input = sender as TextBox;
-                double value = Convert.ToDouble(input.Text);
-                int index = Convert.ToInt16(CurrentIndex.Text) - 1;
-                switch (input.Name)
-                {
-                    case "Width":
-                        slides[index].Params["Width"] = value;
-                        break;
-                    case "Length":
-                        slides[index].Params["Length"] = value;
-                        break;
-                }
-            }
-            catch (FormatException)
-            {
-
-            }
+            TextBox input = sender as TextBox;
+            int index = Convert.ToInt16(CurrentIndex.Text) - 1;
+            Form1.Input(input, slides[index]);                
+        }
+        private void Params_KeyDown(object sender, KeyEventArgs e)
+        {
+            TextBox input = sender as TextBox;
+            if (input.Text == "0") input.Text = "";
         }
     }
 }

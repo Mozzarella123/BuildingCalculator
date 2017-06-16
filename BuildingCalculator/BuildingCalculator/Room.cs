@@ -20,6 +20,10 @@ namespace BuildingCalculator
             AddParam("Length");
             AddParam("Width");
         }
+        public virtual double Area
+        {
+            get { return Params["Length"] * Params["Width"]; }
+        }
     }
     public class Room:Entity
     {              
@@ -28,6 +32,7 @@ namespace BuildingCalculator
         {
             Elements = new List<Element>();
         }
+
     }
     public class Element:Entity
     {
