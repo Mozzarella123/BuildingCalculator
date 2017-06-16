@@ -39,18 +39,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // slider1       
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.опцииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.админкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
+            // slider1
+            // 
             this.slider1.Location = new System.Drawing.Point(18, 67);
+            this.slider1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.slider1.Name = "slider1";
             this.slider1.Size = new System.Drawing.Size(172, 308);
             this.slider1.TabIndex = 20;
@@ -58,6 +58,7 @@
             // slider2
             // 
             this.slider2.Location = new System.Drawing.Point(207, 67);
+            this.slider2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.slider2.Name = "slider2";
             this.slider2.Size = new System.Drawing.Size(172, 308);
             this.slider2.TabIndex = 21;
@@ -68,10 +69,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(62, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 29);
+            this.label1.Size = new System.Drawing.Size(57, 20);
             this.label1.TabIndex = 26;
             this.label1.Text = "Двери";
-
             // 
             // label2
             // 
@@ -79,7 +79,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(253, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 29);
+            this.label2.Size = new System.Drawing.Size(47, 20);
             this.label2.TabIndex = 27;
             this.label2.Text = "Окна";
             // 
@@ -89,7 +89,7 @@
             this.WidthT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.WidthT.Location = new System.Drawing.Point(58, 149);
             this.WidthT.Name = "WidthT";
-            this.WidthT.Size = new System.Drawing.Size(105, 29);
+            this.WidthT.Size = new System.Drawing.Size(67, 20);
             this.WidthT.TabIndex = 22;
             this.WidthT.Text = "Ширина";
             // 
@@ -99,7 +99,7 @@
             this.LengthT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LengthT.Location = new System.Drawing.Point(67, 46);
             this.LengthT.Name = "LengthT";
-            this.LengthT.Size = new System.Drawing.Size(87, 29);
+            this.LengthT.Size = new System.Drawing.Size(58, 20);
             this.LengthT.TabIndex = 23;
             this.LengthT.Text = "Длина";
             // 
@@ -135,7 +135,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(58, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 29);
+            this.label3.Size = new System.Drawing.Size(75, 20);
             this.label3.TabIndex = 28;
             this.label3.Text = "Комната";
             // 
@@ -163,7 +163,6 @@
             this.groupBox2.Size = new System.Drawing.Size(412, 421);
             this.groupBox2.TabIndex = 30;
             this.groupBox2.TabStop = false;
-
             // 
             // menuStrip1
             // 
@@ -186,7 +185,7 @@
             // админкаToolStripMenuItem
             // 
             this.админкаToolStripMenuItem.Name = "админкаToolStripMenuItem";
-            this.админкаToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.админкаToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.админкаToolStripMenuItem.Text = "Админка";
             this.админкаToolStripMenuItem.Click += new System.EventHandler(this.админкаToolStripMenuItem_Click);
             // 
@@ -197,16 +196,17 @@
             this.ClientSize = new System.Drawing.Size(750, 587);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Калькулятор";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

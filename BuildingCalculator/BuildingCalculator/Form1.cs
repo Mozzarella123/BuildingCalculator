@@ -17,6 +17,7 @@ namespace BuildingCalculator
         public Form1()
         {
             InitializeComponent();
+            JSONSerializeService.ReadInput("works.json");
         }
         public static void Input(TextBox input, Entity obj)
         {
@@ -62,6 +63,11 @@ namespace BuildingCalculator
         {
             Form lf = LoginClass.SignIn();
             lf.Show();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            JSONSerializeService.WriteOutput();
         }
     }
 }

@@ -16,6 +16,11 @@ namespace BuildingCalculator
         {
             InitializeComponent();
             this.FormClosing += new FormClosingEventHandler(_FormClosing);
+            if (JSONSerializeService.InputItems != null)
+                foreach (object ob in JSONSerializeService.InputItems)
+                {
+                    listBox1.Items.Add(ob.ToString());
+                }
         }
         private void _FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -24,6 +29,11 @@ namespace BuildingCalculator
                 e.Cancel = true;
                 this.Hide();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CreateWorkTypeForm.CreateWorkType();
         }
     }
 }
