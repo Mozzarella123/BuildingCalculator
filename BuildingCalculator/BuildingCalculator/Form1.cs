@@ -19,7 +19,8 @@ namespace BuildingCalculator
         public int PrevSlider=0;
         public Form1()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            JSONSerializeService.ReadInput("works.json");
             //Инициализируем все слайдеры при создании формы
             for(int i=0;i<ElementsNames.Items.Count;i++)
             {
@@ -77,12 +78,16 @@ namespace BuildingCalculator
         {
 
         }
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Form lf = LoginClass.SignIn();
+            lf.Show();
         }
 
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            JSONSerializeService.WriteOutput();
+        }
         private void SliderChanged(object sender, EventArgs e)
         {
 
@@ -91,7 +96,6 @@ namespace BuildingCalculator
             (Sliders.Controls[select.SelectedIndex] as Slider).Visible = true;
             PrevSlider = select.SelectedIndex;
         }
-
 
     }
 }

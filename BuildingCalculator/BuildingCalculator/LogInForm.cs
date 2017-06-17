@@ -19,27 +19,22 @@ namespace BuildingCalculator
             
             
             InitializeComponent();
-            if (!ConfigurationManager.AppSettings.AllKeys.Contains("login"))
-            {
-                // открываем текущий конфиг специальным обьектом
-                System.Configuration.Configuration currentConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                // добавляем позицию в раздел AppSettings
-                currentConfig.AppSettings.Settings.Add("login", "slon");
-                if (!ConfigurationManager.AppSettings.AllKeys.Contains("password"))
-                    currentConfig.AppSettings.Settings.Add("password", "12345");
-                //сохраняем
-                currentConfig.Save(ConfigurationSaveMode.Modified);
-                //принудительно перезагружаем соотвествующую секцию
-                ConfigurationManager.RefreshSection("appSettings");
+            login = LoginClass.login;
+            pass = LoginClass.pass;
+            this.FormClosing += new FormClosingEventHandler(_FormClosing);
 
-            }
 
-            login = ConfigurationManager.AppSettings["login"];
-            pass = ConfigurationManager.AppSettings["password"];
-            if (_isLoged)
-                MessageBox.Show("Ты вошел, а еще ты пидор");
         }
-        static bool _isLoged;
+
+        private void _FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                this.Hide();
+            }
+        }
+
         string login;
         string pass;
         private void LogInForm_Load(object sender, EventArgs e)
@@ -52,11 +47,26 @@ namespace BuildingCalculator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == login && textBox2.Text == pass)
+            string LogInp;
+            string PasInp;
+            try
             {
-                MessageBox.Show("Ты вошел, а еще ты пидор");
-                _isLoged = true;
+                LogInp = textBox1.Text.Substring(0, LoginClass.login.Length);
+                PasInp = textBox2.Text.Substring(0, LoginClass.pass.Length);
+            }
+            catch
+            {
+                return;
+            }
+
+            if (LogInp == login && PasInp == pass)
+            {
+                
+                LoginClass.IsLoged = true;
+                LoginClass.af.Show();
+                this.Hide();
             }
         }
     }
+    
 }
