@@ -71,17 +71,12 @@ namespace BuildingCalculator
         }
         private void админкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form lf = new LogInForm();
+            Form lf = LoginClass.SignIn();
             lf.Show();
         }
         private void CalculateAll(object sender, EventArgs e)
         {
 
-        }
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Form lf = LoginClass.SignIn();
-            lf.Show();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
