@@ -29,13 +29,16 @@ namespace BuildingCalculator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Add(textBox2.Text);
-            textBox2.Text = "";
+            if (textBox2.Text != ""){
+                listBox1.Items.Add(textBox2.Text);
+                textBox2.Text = "";
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+            if (listBox1.SelectedItem != null)
+                listBox1.Items.RemoveAt(listBox1.SelectedIndex);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -67,6 +70,7 @@ namespace BuildingCalculator
                 RedactedItemIndex = JSONSerializeService.OutputItems.IndexOf(obj);
                 cwf.textBox1.Text = obj.article;
                 cwf.textBox3.Text = obj.formula;
+                cwf.listBox1.Items.Clear();
                 foreach (string str in obj.parametrs)
                     cwf.listBox1.Items.Add(str);
             }

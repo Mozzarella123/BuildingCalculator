@@ -17,20 +17,26 @@ namespace BuildingCalculator
         public static bool isHaveInput;
         public static void ReadInput(string path)
         {
-            InputFilePath = path;
+            InputFilePath = OutputFilePath = path;
             if (File.Exists(InputFilePath))
             {
                 InputJsonString = File.ReadAllText(InputFilePath);
                 isHaveInput = true;
                 InputItems = OutputItems = JsonConvert.DeserializeObject<List<WorkTypeClass>>(InputJsonString);
+                if (InputItems == null && OutputItems == null)
+                {
+                    InputItems = new List<WorkTypeClass>();
+                    OutputItems = new List<WorkTypeClass>();
+                }
             }
             else
             {
                 File.Create(InputFilePath);
                 InputJsonString = "";
                 isHaveInput = true;
+                OutputItems = new List<WorkTypeClass>();
             }
-            OutputFilePath = InputFilePath;
+            
         }
         public static List<WorkTypeClass> InputItems;
         public static List<WorkTypeClass> OutputItems = new List<WorkTypeClass>();
@@ -40,7 +46,7 @@ namespace BuildingCalculator
         }
         public static void WriteOutput()
         {
-            if (OutputItems.Count != 0)
+            if (OutputItems!=null)
                 File.WriteAllText(OutputFilePath, JsonConvert.SerializeObject(OutputItems));
         }
         public static void Save()

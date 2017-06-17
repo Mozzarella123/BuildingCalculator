@@ -54,8 +54,10 @@ namespace BuildingCalculator
         private void button3_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedItem != null)
+            {
                 JSONSerializeService.OutputItems.Remove((WorkTypeClass)listBox1.SelectedItem);
-            JSONSerializeService.Save();
+                JSONSerializeService.Save();
+            }
         }
     }
 }
