@@ -28,60 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.slider1 = new BuildingCalculator.Slider();
-            this.slider2 = new BuildingCalculator.Slider();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.WidthT = new System.Windows.Forms.Label();
             this.LengthT = new System.Windows.Forms.Label();
             this.Length = new System.Windows.Forms.TextBox();
             this.Width = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // slider1       
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.опцииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.админкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Calculate = new System.Windows.Forms.Button();
+            this.ElementsNames = new System.Windows.Forms.ComboBox();
+            this.Sliders = new System.Windows.Forms.Panel();
+            this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            this.slider1.Location = new System.Drawing.Point(18, 67);
-            this.slider1.Name = "slider1";
-            this.slider1.Size = new System.Drawing.Size(172, 308);
-            this.slider1.TabIndex = 20;
-            // 
-            // slider2
-            // 
-            this.slider2.Location = new System.Drawing.Point(207, 67);
-            this.slider2.Name = "slider2";
-            this.slider2.Size = new System.Drawing.Size(172, 308);
-            this.slider2.TabIndex = 21;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(62, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 29);
-            this.label1.TabIndex = 26;
-            this.label1.Text = "Двери";
-
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(253, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 29);
-            this.label2.TabIndex = 27;
-            this.label2.Text = "Окна";
             // 
             // WidthT
             // 
@@ -133,7 +94,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(58, 0);
+            this.label3.Location = new System.Drawing.Point(49, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(114, 29);
             this.label3.TabIndex = 28;
@@ -146,32 +107,20 @@
             this.groupBox1.Controls.Add(this.Length);
             this.groupBox1.Controls.Add(this.LengthT);
             this.groupBox1.Controls.Add(this.WidthT);
-            this.groupBox1.Location = new System.Drawing.Point(21, 94);
+            this.groupBox1.Location = new System.Drawing.Point(28, 45);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(209, 276);
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.slider2);
-            this.groupBox2.Controls.Add(this.slider1);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(247, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(412, 421);
-            this.groupBox2.TabIndex = 30;
-            this.groupBox2.TabStop = false;
-
-            // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.опцииToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(391, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(693, 33);
             this.menuStrip1.TabIndex = 20;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -180,33 +129,67 @@
             this.опцииToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.админкаToolStripMenuItem});
             this.опцииToolStripMenuItem.Name = "опцииToolStripMenuItem";
-            this.опцииToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.опцииToolStripMenuItem.Size = new System.Drawing.Size(79, 29);
             this.опцииToolStripMenuItem.Text = "Опции";
             // 
             // админкаToolStripMenuItem
             // 
             this.админкаToolStripMenuItem.Name = "админкаToolStripMenuItem";
-            this.админкаToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.админкаToolStripMenuItem.Size = new System.Drawing.Size(169, 30);
             this.админкаToolStripMenuItem.Text = "Админка";
             this.админкаToolStripMenuItem.Click += new System.EventHandler(this.админкаToolStripMenuItem_Click);
             // 
+            // Calculate
+            // 
+            this.Calculate.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.Calculate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Calculate.FlatAppearance.BorderSize = 0;
+            this.Calculate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Calculate.Location = new System.Drawing.Point(28, 340);
+            this.Calculate.Name = "Calculate";
+            this.Calculate.Size = new System.Drawing.Size(209, 51);
+            this.Calculate.TabIndex = 31;
+            this.Calculate.Text = "Рассчитать";
+            this.Calculate.UseVisualStyleBackColor = false;
+            this.Calculate.Click += new System.EventHandler(this.CalculateAll);
+            // 
+            // ElementsNames
+            // 
+            this.ElementsNames.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ElementsNames.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ElementsNames.Items.AddRange(new object[] {
+            "Окна ",
+            "Двери"});
+            this.ElementsNames.Location = new System.Drawing.Point(269, 42);
+            this.ElementsNames.Name = "ElementsNames";
+            this.ElementsNames.Size = new System.Drawing.Size(216, 37);
+            this.ElementsNames.TabIndex = 32;
+            this.ElementsNames.SelectedIndexChanged += new System.EventHandler(this.SliderChanged);
+            // 
+            // Sliders
+            // 
+            this.Sliders.Location = new System.Drawing.Point(265, 91);
+            this.Sliders.Name = "Sliders";
+            this.Sliders.Size = new System.Drawing.Size(223, 303);
+            this.Sliders.TabIndex = 33;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(750, 587);
-            this.Controls.Add(this.groupBox2);
+            this.ClientSize = new System.Drawing.Size(693, 449);
+            this.Controls.Add(this.ElementsNames);
+            this.Controls.Add(this.Sliders);
+            this.Controls.Add(this.Calculate);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Калькулятор";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -215,20 +198,18 @@
         }
 
         #endregion
-        private Slider slider1;
-        private Slider slider2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label WidthT;
         private System.Windows.Forms.Label LengthT;
         private System.Windows.Forms.TextBox Length;
         private System.Windows.Forms.TextBox Width;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem опцииToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem админкаToolStripMenuItem;
+        private System.Windows.Forms.Button Calculate;
+        private System.Windows.Forms.ComboBox ElementsNames;
+        private System.Windows.Forms.Panel Sliders;
     }
 }
 
