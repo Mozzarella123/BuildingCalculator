@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BuildingCalculator
 {
-    class WorkTypeClass
+    public class WorkTypeClass
     {
         public WorkTypeClass()
         {

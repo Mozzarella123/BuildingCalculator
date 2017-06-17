@@ -22,7 +22,7 @@ namespace BuildingCalculator
             {
                 InputJsonString = File.ReadAllText(InputFilePath);
                 isHaveInput = true;
-                InputItems = JsonConvert.DeserializeObject<List<object>>(InputJsonString);
+                InputItems = OutputItems = JsonConvert.DeserializeObject<List<WorkTypeClass>>(InputJsonString);
             }
             else
             {
@@ -32,9 +32,9 @@ namespace BuildingCalculator
             }
             OutputFilePath = InputFilePath;
         }
-        public static List<object> InputItems;
-        public static List<object> OutputItems = new List<object>();
-        public static void AddToOutput(object item)
+        public static List<WorkTypeClass> InputItems;
+        public static List<WorkTypeClass> OutputItems = new List<WorkTypeClass>();
+        public static void AddToOutput(WorkTypeClass item)
         {
             OutputItems.Add(item);
         }
@@ -42,6 +42,12 @@ namespace BuildingCalculator
         {
             if (OutputItems.Count != 0)
                 File.WriteAllText(OutputFilePath, JsonConvert.SerializeObject(OutputItems));
+        }
+        public static void Save()
+        {
+            WriteOutput();
+            ReadInput(OutputFilePath);
+            LoginClass.af.RefreshList();
         }
         
     }

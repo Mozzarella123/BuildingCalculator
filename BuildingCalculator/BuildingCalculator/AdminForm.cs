@@ -19,7 +19,16 @@ namespace BuildingCalculator
             if (JSONSerializeService.InputItems != null)
                 foreach (object ob in JSONSerializeService.InputItems)
                 {
-                    listBox1.Items.Add(ob.ToString());
+                    listBox1.Items.Add(((WorkTypeClass)ob));
+                }
+        }
+        public void RefreshList()
+        {
+            listBox1.Items.Clear();
+            if (JSONSerializeService.InputItems != null)
+                foreach (object ob in JSONSerializeService.InputItems)
+                {
+                    listBox1.Items.Add(((WorkTypeClass)ob));
                 }
         }
         private void _FormClosing(object sender, FormClosingEventArgs e)
@@ -34,6 +43,19 @@ namespace BuildingCalculator
         private void button1_Click(object sender, EventArgs e)
         {
             CreateWorkTypeForm.CreateWorkType();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItem != null)
+                CreateWorkTypeForm.CreateWorkType((WorkTypeClass)listBox1.SelectedItem);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItem != null)
+                JSONSerializeService.OutputItems.Remove((WorkTypeClass)listBox1.SelectedItem);
+            JSONSerializeService.Save();
         }
     }
 }

@@ -47,13 +47,36 @@ namespace BuildingCalculator
             while (numer.MoveNext())
                 work.parametrs.Add(numer.Current.ToString());
             JSONSerializeService.AddToOutput(work);
+            if (RedactedItemIndex != null)
+            {
+                JSONSerializeService.OutputItems.RemoveAt((int)RedactedItemIndex);
+                RedactedItemIndex = null;
+                
+            }
+            JSONSerializeService.Save();
             this.Hide();
         }
         static CreateWorkTypeForm cwf = new CreateWorkTypeForm();
+        static int? RedactedItemIndex = null;
         
-        public static void CreateWorkType()
+        public static void CreateWorkType(WorkTypeClass obj=null)
         {
             cwf.Show();
+            if (obj != null)
+            {
+                RedactedItemIndex = JSONSerializeService.OutputItems.IndexOf(obj);
+                cwf.textBox1.Text = obj.article;
+                cwf.textBox3.Text = obj.formula;
+                foreach (string str in obj.parametrs)
+                    cwf.listBox1.Items.Add(str);
+            }
+            else
+            {
+                
+                cwf.textBox1.Text = "";
+                cwf.textBox3.Text = "";
+                cwf.listBox1.Items.Clear();
+            }
         } 
     }
 }
