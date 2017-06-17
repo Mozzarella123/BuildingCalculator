@@ -12,6 +12,8 @@ namespace BuildingCalculator
 {
     public partial class Slider : UserControl
     {
+        //public delegate void MethodContainer(object sender);
+        //public event MethodContainer ElementsChanged;
         private List<Element> slides = new List<Element>();
         public List<Element> Slides
         {
@@ -38,6 +40,7 @@ namespace BuildingCalculator
                             CurrentIndex.Text = slides.Count.ToString();
                             Width.Text = "0";
                             Length.Text = "0";
+                            //ElementsChanged(this);
                         }
                         else
                         {
@@ -57,7 +60,10 @@ namespace BuildingCalculator
                         {
                             currentindex--;
                             if (operation == "-")
+                            {
                                 slides.RemoveAt(currentindex);
+                                //ElementsChanged(this);
+                            }
                             CurrentIndex.Text = (currentindex).ToString();
                             Width.Text = slides[currentindex - 1].Params["Width"].ToString();
                             Length.Text = slides[currentindex - 1].Params["Length"].ToString();

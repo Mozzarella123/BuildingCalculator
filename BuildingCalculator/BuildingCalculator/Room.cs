@@ -20,19 +20,25 @@ namespace BuildingCalculator
             AddParam("Length");
             AddParam("Width");
         }
-        public virtual double Area
+        public virtual double Area()
         {
-            get { return Params["Length"] * Params["Width"]; }
+             return Params["Length"] * Params["Width"];
         }
     }
     public class Room:Entity
     {              
-        public List<Element> Elements { get; set; } 
+        public Dictionary<string, List<Element>> Elements { get; set; } 
         public Room():base()
         {
-            Elements = new List<Element>();
+            Elements = new Dictionary<string, List<Element>>();
         }
-
+        public override double Area()
+        {
+            double sum = 0;
+            //foreach (Element x in Elements)
+            //    sum += x.Area();
+            return base.Area()-sum;
+        }
     }
     public class Element:Entity
     {
