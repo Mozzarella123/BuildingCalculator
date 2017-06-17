@@ -12,13 +12,30 @@ namespace BuildingCalculator
 {
     public partial class Form1 : Form
     {
-
-        Room room = new Room();
+        //комната
+        public Room room = new Room();
+        //Элементы комнаты
+        public Dictionary<string,List<Element>> Elements = new Dictionary<string, List<Element>>();
+        public int PrevSlider=0;
         public Form1()
         {
             InitializeComponent();
             JSONSerializeService.ReadInput("works.json");
+            //Инициализируем все слайдеры при создании формы
+            for(int i=0;i<ElementsNames.Items.Count;i++)
+            {
+                Sliders.Controls.Add(new Slider());
+                (Sliders.Controls[i] as Slider).Visible = false;
+                (Sliders.Controls[i] as Slider).Dock = DockStyle.Fill;
+                Elements.Add(ElementsNames.Items[i].ToString(), (Sliders.Controls[i] as Slider).Slides);
+            }
+            //Устанавливаем элемент по умолчанию
+            ElementsNames.SelectedIndex = 0;
         }
+        //private void ElementsChanged(object sender)
+        //{
+        //    room.Elements = (sender as Slider).Slides;
+        //}
         public static void Input(TextBox input, Entity obj)
         {
             try
@@ -52,14 +69,16 @@ namespace BuildingCalculator
             TextBox input = sender as TextBox;
             if (input.Text == "0") input.Text = "";
         }
-        private void Summ()
+        private void админкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            room.Elements = slider1.Slides;
-            room.Elements.AddRange(slider2.Slides);
+            Form lf = new LogInForm();
+            lf.Show();
+        }
+        private void CalculateAll(object sender, EventArgs e)
+        {
 
         }
-
-        private void админкаToolStripMenuItem_Click(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             Form lf = LoginClass.SignIn();
             lf.Show();
@@ -69,5 +88,14 @@ namespace BuildingCalculator
         {
             JSONSerializeService.WriteOutput();
         }
+        private void SliderChanged(object sender, EventArgs e)
+        {
+
+            ComboBox select = sender as ComboBox;
+            (Sliders.Controls[PrevSlider] as Slider).Visible = false;
+            (Sliders.Controls[select.SelectedIndex] as Slider).Visible = true;
+            PrevSlider = select.SelectedIndex;
+        }
+
     }
 }
