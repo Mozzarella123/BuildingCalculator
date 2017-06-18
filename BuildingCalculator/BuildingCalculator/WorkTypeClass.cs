@@ -20,5 +20,6 @@ namespace BuildingCalculator
         {
             return article + " " + formula;
         }
+        public string delegateName;
     }
 }

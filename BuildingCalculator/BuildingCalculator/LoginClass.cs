@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Configuration;
-using System.IO;
+
 
 namespace BuildingCalculator
 {
@@ -14,24 +13,13 @@ namespace BuildingCalculator
         
         public static Form SignIn()
         {
-            
-            if (!ConfigurationManager.AppSettings.AllKeys.Contains("login"))
-            {
-                // открываем текущий конфиг специальным обьектом
-                System.Configuration.Configuration currentConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                // добавляем позицию в раздел AppSettings
-                currentConfig.AppSettings.Settings.Add("login", "slon");
-                if (!ConfigurationManager.AppSettings.AllKeys.Contains("password"))
-                    currentConfig.AppSettings.Settings.Add("password", "12345");
-                //сохраняем
-                currentConfig.Save(ConfigurationSaveMode.Modified);
-                //принудительно перезагружаем соотвествующую секцию
-                ConfigurationManager.RefreshSection("appSettings");
+            if (!ConfigWorksService.Contains("login"))
+                ConfigWorksService.Add("login", "slon");
+            if (!ConfigWorksService.Contains("password"))
+                ConfigWorksService.Add("password","12345");
 
-            }
-
-            login = ConfigurationManager.AppSettings["login"];
-            pass = ConfigurationManager.AppSettings["password"];
+            login = ConfigWorksService.getValue("login");
+            pass = ConfigWorksService.getValue("password");
 
             if (lf == null) lf = new LogInForm();
             if (af == null) af = new AdminForm();

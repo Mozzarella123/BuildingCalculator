@@ -28,6 +28,8 @@ namespace BuildingCalculator
                     InputItems = new List<WorkTypeClass>();
                     OutputItems = new List<WorkTypeClass>();
                 }
+                DelegateAssemblyService.WriteCompileStringToFile();
+                DelegateAssemblyService.AssemblyDelegate();
             }
             else
             {
