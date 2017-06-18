@@ -15,7 +15,7 @@ namespace BuildingCalculator
         private static string begin = @"using System;
 namespace MyNamespace
 {
-    public delegate double getPrice(params double parametr);
+    
     public static class LambdaCreator 
     {
         ";
@@ -35,25 +35,28 @@ namespace MyNamespace
             CSharpCodeProvider provider = new CSharpCodeProvider();
             CompilerParameters parameters = new CompilerParameters();
             parameters.GenerateInMemory = true;
+            if (File.Exists("compile.dll"))
+                File.Delete("compile.dll");
             parameters.OutputAssembly = "compile.dll";
             parameters.ReferencedAssemblies.Add("System.dll");
             CompilerResults results = provider.CompileAssemblyFromSource(parameters, CompileString);
             var cls = results.CompiledAssembly.GetType("MyNamespace.LambdaCreator");
             CompiledClass = cls;
-            //var calc = (method.Invoke(null, null) as Delegate);
-            //return calc.DynamicInvoke
+            
         }
 
         static Type CompiledClass;
-        public delegate double getPrice(params double[] parametr);
-        public static double getPriceforWorkType(WorkTypeClass work,params double[] parametr)
+        
+        public static double getPriceforWorkType(WorkTypeClass work, double[] parametr)
         {
             var method = CompiledClass.GetMethod(work.delegateName, BindingFlags.Static | BindingFlags.Public);
-            var calc = (method.Invoke(null, null) as Delegate);
-            object[] par = new object[parametr.Length];
+            
+            object[] ObjPar = new object[parametr.Length];
             for (int i = 0; i < parametr.Length; i++)
-                par[i] = parametr[i];
-            return calc.DynamicInvoke(par);
+                ObjPar[i] = parametr[i];
+            var ret = method.Invoke(null, ObjPar);
+            return (double)ret;
+            
         }
         static int fId = 0;
         static string CreateFunctions(WorkTypeClass work)
@@ -61,9 +64,12 @@ namespace MyNamespace
             string parametrs="";
             foreach (string str in work.parametrs)
                 parametrs += "double " + str + ",";
-            parametrs = parametrs.Substring(0, parametrs.Length - 1);
+            if (parametrs != "")
+            {
+                parametrs = parametrs.Substring(0, parametrs.Length - 1);
+            }
             string ret = @"
-        public static getPrice " + "f" + fId + "(" + parametrs + ")" + "{ return (" + parametrs + ")=>" + work.formula + ";}";
+        public static double " + "f" + fId + "(" + parametrs + ")" + "{ return " + work.formula + ";}";
             work.delegateName = "f" + fId.ToString();
             fId++;
             return ret;
