@@ -55,6 +55,7 @@
     <Compile Include="AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConfigWorksService.cs" />
     <Compile Include="CreateWorkTypeForm.cs">
       <SubType>Form</SubType>
     </Compile>
