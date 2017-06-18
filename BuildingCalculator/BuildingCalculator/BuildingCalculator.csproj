@@ -49,70 +49,69 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminForm.cs">
+    <Compile Include="FormComponents\AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdminForm.Designer.cs">
+    <Compile Include="FormComponents\AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConfigWorksService.cs" />
-    <Compile Include="CreateWorkTypeForm.cs">
+    <Compile Include="Classes\Static\ConfigWorksService.cs" />
+    <Compile Include="FormComponents\CreateWorkTypeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CreateWorkTypeForm.Designer.cs">
+    <Compile Include="FormComponents\CreateWorkTypeForm.Designer.cs">
       <DependentUpon>CreateWorkTypeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DelegateAssemblyService.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Classes\Static\DelegateAssemblyService.cs" />
+    <Compile Include="FormComponents\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="FormComponents\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Functions.cs" />
-    <Compile Include="JSONSerializeService.cs" />
-    <Compile Include="LoginClass.cs" />
-    <Compile Include="LogInForm.cs">
+    <Compile Include="Classes\Static\JSONSerializeService.cs" />
+    <Compile Include="Classes\Static\LoginClass.cs" />
+    <Compile Include="FormComponents\LogInForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LogInForm.Designer.cs">
+    <Compile Include="FormComponents\LogInForm.Designer.cs">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MultiSliders.cs">
+    <Compile Include="FormComponents\MultiSliders.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MultiSliders.Designer.cs">
+    <Compile Include="FormComponents\MultiSliders.Designer.cs">
       <DependentUpon>MultiSliders.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Classes\Static\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Room.cs" />
-    <Compile Include="Slider.cs">
+    <Compile Include="Classes\Room.cs" />
+    <Compile Include="FormComponents\Slider.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Slider.Designer.cs">
+    <Compile Include="FormComponents\Slider.Designer.cs">
       <DependentUpon>Slider.cs</DependentUpon>
     </Compile>
-    <Compile Include="TabContent.cs">
+    <Compile Include="FormComponents\TabContent.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TabContent.Designer.cs">
+    <Compile Include="FormComponents\TabContent.Designer.cs">
       <DependentUpon>TabContent.cs</DependentUpon>
     </Compile>
-    <Compile Include="WorkTypeClass.cs" />
-    <EmbeddedResource Include="AdminForm.resx">
+    <Compile Include="Classes\WorkTypeClass.cs" />
+    <EmbeddedResource Include="FormComponents\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CreateWorkTypeForm.resx">
+    <EmbeddedResource Include="FormComponents\CreateWorkTypeForm.resx">
       <DependentUpon>CreateWorkTypeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="FormComponents\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LogInForm.resx">
+    <EmbeddedResource Include="FormComponents\LogInForm.resx">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MultiSliders.resx">
+    <EmbeddedResource Include="FormComponents\MultiSliders.resx">
       <DependentUpon>MultiSliders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -124,10 +123,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Slider.resx">
+    <EmbeddedResource Include="FormComponents\Slider.resx">
       <DependentUpon>Slider.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabContent.resx">
+    <EmbeddedResource Include="FormComponents\TabContent.resx">
       <DependentUpon>TabContent.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
