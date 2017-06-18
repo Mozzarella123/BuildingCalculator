@@ -67,6 +67,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Functions.cs" />
     <Compile Include="JSONSerializeService.cs" />
     <Compile Include="LoginClass.cs" />
     <Compile Include="LogInForm.cs">
@@ -74,6 +75,12 @@
     </Compile>
     <Compile Include="LogInForm.Designer.cs">
       <DependentUpon>LogInForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MultiSliders.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MultiSliders.Designer.cs">
+      <DependentUpon>MultiSliders.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,6 +90,12 @@
     </Compile>
     <Compile Include="Slider.Designer.cs">
       <DependentUpon>Slider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabContent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabContent.Designer.cs">
+      <DependentUpon>TabContent.cs</DependentUpon>
     </Compile>
     <Compile Include="WorkTypeClass.cs" />
     <EmbeddedResource Include="AdminForm.resx">
@@ -97,6 +110,9 @@
     <EmbeddedResource Include="LogInForm.resx">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MultiSliders.resx">
+      <DependentUpon>MultiSliders.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -108,6 +124,9 @@
     </Compile>
     <EmbeddedResource Include="Slider.resx">
       <DependentUpon>Slider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TabContent.resx">
+      <DependentUpon>TabContent.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
