@@ -20,5 +20,8 @@ namespace BuildingCalculator
         {
             return article + " " + formula;
         }
+        //public delegate double getPrice(params double[] parametr);
+        public getPrice price;
+        public string delegateName;
     }
 }
