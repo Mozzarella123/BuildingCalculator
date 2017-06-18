@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.опцииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.админкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -36,12 +35,9 @@
             this.FirstRoom = new System.Windows.Forms.TabPage();
             this.tabContent1 = new BuildingCalculator.TabContent();
             this.AddRoom = new System.Windows.Forms.TabPage();
-            this.TabOperation = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.RoomTabs.SuspendLayout();
             this.FirstRoom.SuspendLayout();
-            this.TabOperation.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -106,25 +102,10 @@
             // 
             this.AddRoom.Location = new System.Drawing.Point(4, 29);
             this.AddRoom.Name = "AddRoom";
-            this.AddRoom.Size = new System.Drawing.Size(734, 452);
+            this.AddRoom.Size = new System.Drawing.Size(692, 421);
             this.AddRoom.TabIndex = 1;
             this.AddRoom.Text = "+";
             this.AddRoom.UseVisualStyleBackColor = true;
-            // 
-            // TabOperation
-            // 
-            this.TabOperation.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.TabOperation.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.удалитьToolStripMenuItem});
-            this.TabOperation.Name = "TabOperation";
-            this.TabOperation.Size = new System.Drawing.Size(149, 34);
-            // 
-            // удалитьToolStripMenuItem
-            // 
-            this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(198, 30);
-            this.удалитьToolStripMenuItem.Text = "Удалить";
-            this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.DeleteTab);
             // 
             // Form1
             // 
@@ -143,7 +124,6 @@
             this.menuStrip1.PerformLayout();
             this.RoomTabs.ResumeLayout(false);
             this.FirstRoom.ResumeLayout(false);
-            this.TabOperation.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,8 +137,6 @@
         private System.Windows.Forms.TabPage FirstRoom;
         private System.Windows.Forms.TabPage AddRoom;
         private TabContent tabContent1;
-        private System.Windows.Forms.ContextMenuStrip TabOperation;
-        private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem;
     }
 }
 
