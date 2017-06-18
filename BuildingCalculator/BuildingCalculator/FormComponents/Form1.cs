@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BuildingCalculator.Classes;
 
 namespace BuildingCalculator
 {
@@ -19,7 +20,15 @@ namespace BuildingCalculator
             InitializeComponent();
             JSONSerializeService.ReadInput("works.json");
             Rooms.Add((RoomTabs.TabPages[0].Controls["tabContent1"] as TabContent).Room);
-            RoomTabs.ContextMenuStrip = TabOperation;
+            List<string> names = new List<string>()
+            {
+                "Удалить"
+            };
+            List<EventHandler> functions = new List<EventHandler>()
+            {
+                DeleteTab
+            };
+            Functions.ContextMenu(RoomTabs, names, functions);
         }
         //private void ElementsChanged(object sender)
         //{

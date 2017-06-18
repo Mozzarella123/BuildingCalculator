@@ -7,20 +7,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BuildingCalculator.Classes;
 
 namespace BuildingCalculator
 {
     public partial class AdminForm : Form
-    {
+    {        
         public AdminForm()
         {
             InitializeComponent();
-            this.FormClosing += new FormClosingEventHandler(_FormClosing);
+            List<string> names = new List<string>()
+            {
+                "Добавить",
+                "Редактировать",
+                "Удалить"
+            };
+            List<EventHandler> functions = new List<EventHandler>()
+            {
+                Add,
+                Edit,
+                Remove
+            };
+            Functions.ContextMenu(listBox1, names, functions);
+            FormClosing += new FormClosingEventHandler(_FormClosing);
             if (JSONSerializeService.InputItems != null)
                 foreach (object ob in JSONSerializeService.InputItems)
                 {
                     listBox1.Items.Add(((WorkTypeClass)ob));
                 }
+            
         }
         public void RefreshList()
         {
@@ -39,25 +54,27 @@ namespace BuildingCalculator
                 this.Hide();
             }
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void Add(object sender, EventArgs e)
         {
             CreateWorkTypeForm.CreateWorkType();
         }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void Edit(object sender, EventArgs e)
         {
             if (listBox1.SelectedItem != null)
                 CreateWorkTypeForm.CreateWorkType((WorkTypeClass)listBox1.SelectedItem);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
+        } 
+        private void Remove(object sender, EventArgs e)
         {
             if (listBox1.SelectedItem != null)
             {
                 JSONSerializeService.OutputItems.Remove((WorkTypeClass)listBox1.SelectedItem);
                 JSONSerializeService.Save();
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

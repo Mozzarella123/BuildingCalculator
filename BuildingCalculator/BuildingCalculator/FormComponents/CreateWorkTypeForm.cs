@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BuildingCalculator.Classes;
+
 
 namespace BuildingCalculator
 {
@@ -15,6 +17,15 @@ namespace BuildingCalculator
         public CreateWorkTypeForm()
         {
             InitializeComponent();
+            List<string> names = new List<string>()
+            {
+                "Удалить"
+            };
+            List<EventHandler> functions = new List<EventHandler>()
+            {
+                Remove
+            };
+            Functions.ContextMenu(listBox1, names, functions);
             this.FormClosing += new FormClosingEventHandler(_FormClosing);
         }
 
@@ -35,7 +46,7 @@ namespace BuildingCalculator
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Remove(object sender, EventArgs e)
         {
             if (listBox1.SelectedItem != null)
                 listBox1.Items.RemoveAt(listBox1.SelectedIndex);
@@ -81,6 +92,11 @@ namespace BuildingCalculator
                 cwf.textBox3.Text = "";
                 cwf.listBox1.Items.Clear();
             }
-        } 
+        }
+
+        private void CreateWorkTypeForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
