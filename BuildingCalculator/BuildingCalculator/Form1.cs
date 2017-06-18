@@ -13,24 +13,13 @@ namespace BuildingCalculator
     public partial class Form1 : Form
     {
         //комната
-        public Room room = new Room();
-        //Элементы комнаты
-        public Dictionary<string,List<Element>> Elements = new Dictionary<string, List<Element>>();
-        public int PrevSlider=0;
+        public List<Room> Rooms = new List<Room>();
         public Form1()
         {
             InitializeComponent();
             JSONSerializeService.ReadInput("works.json");
-            //Инициализируем все слайдеры при создании формы
-            for(int i=0;i<ElementsNames.Items.Count;i++)
-            {
-                Sliders.Controls.Add(new Slider());
-                (Sliders.Controls[i] as Slider).Visible = false;
-                (Sliders.Controls[i] as Slider).Dock = DockStyle.Fill;
-                Elements.Add(ElementsNames.Items[i].ToString(), (Sliders.Controls[i] as Slider).Slides);
-            }
-            //Устанавливаем элемент по умолчанию
-            ElementsNames.SelectedIndex = 0;
+            RoomTabs.TabPages[0].ContextMenuStrip = TabOperation;
+            Rooms.Add((RoomTabs.TabPages[0].Controls["tabContent1"] as TabContent).Room);
         }
         //private void ElementsChanged(object sender)
         //{
@@ -60,37 +49,40 @@ namespace BuildingCalculator
         {
             
         }
-        private void Input_Room(object sender, EventArgs e)
-        {
-            Input(sender as TextBox, room);
-        }
-        private void Length_KeyDown(object sender, KeyEventArgs e)
-        {
-            TextBox input = sender as TextBox;
-            if (input.Text == "0") input.Text = "";
-        }
         private void админкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form lf = LoginClass.SignIn();
             lf.Show();
         }
-        private void CalculateAll(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             JSONSerializeService.WriteOutput();
         }
-        private void SliderChanged(object sender, EventArgs e)
+        private void RoomTabs_Selecting(object sender, TabControlCancelEventArgs e)
         {
-
-            ComboBox select = sender as ComboBox;
-            (Sliders.Controls[PrevSlider] as Slider).Visible = false;
-            (Sliders.Controls[select.SelectedIndex] as Slider).Visible = true;
-            PrevSlider = select.SelectedIndex;
+            int lastindex = RoomTabs.TabPages.Count - 1;
+            if (RoomTabs.SelectedIndex == lastindex)
+            {
+                //Добавляем новую вкладку
+                RoomTabs.TabPages.Insert(lastindex,"Комната " + (lastindex+1).ToString());
+                RoomTabs.TabPages[lastindex].BackColor = Color.White;
+                //добавляем содержимое
+                RoomTabs.TabPages[lastindex].Controls.Add(new TabContent());
+                RoomTabs.TabPages[lastindex].ContextMenuStrip = TabOperation;
+                RoomTabs.SelectedIndex = lastindex;
+                //Добавляем в список комнат
+                Rooms.Add((RoomTabs.TabPages[lastindex].Controls["TabContent"] as TabContent).Room);
+            }
         }
-
+        private void DeleteTab(object sender, EventArgs e)
+        {
+            int index = RoomTabs.SelectedIndex;
+            if (index != 0)
+            {
+                Rooms.RemoveAt(index);
+                RoomTabs.TabPages.RemoveAt(index);
+                RoomTabs.SelectedIndex = --index;
+            }
+        }
     }
 }

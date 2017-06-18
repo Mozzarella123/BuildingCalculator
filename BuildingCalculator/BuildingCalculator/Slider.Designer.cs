@@ -175,6 +175,7 @@
             this.Length.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.Length.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Markup.SetColumnSpan(this.Length, 3);
             this.Length.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Length.Location = new System.Drawing.Point(3, 100);
@@ -189,6 +190,7 @@
             // 
             // Width
             // 
+            this.Width.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Markup.SetColumnSpan(this.Width, 3);
             this.Width.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Width.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
