@@ -18,8 +18,8 @@ namespace BuildingCalculator
         {
             InitializeComponent();
             JSONSerializeService.ReadInput("works.json");
-            RoomTabs.TabPages[0].ContextMenuStrip = TabOperation;
             Rooms.Add((RoomTabs.TabPages[0].Controls["tabContent1"] as TabContent).Room);
+            RoomTabs.ContextMenuStrip = TabOperation;
         }
         //private void ElementsChanged(object sender)
         //{
@@ -68,7 +68,6 @@ namespace BuildingCalculator
                 RoomTabs.TabPages[lastindex].BackColor = Color.White;
                 //добавляем содержимое
                 RoomTabs.TabPages[lastindex].Controls.Add(new TabContent());
-                RoomTabs.TabPages[lastindex].ContextMenuStrip = TabOperation;
                 RoomTabs.SelectedIndex = lastindex;
                 //Добавляем в список комнат
                 Rooms.Add((RoomTabs.TabPages[lastindex].Controls["TabContent"] as TabContent).Room);
