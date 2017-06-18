@@ -62,6 +62,7 @@
     <Compile Include="CreateWorkTypeForm.Designer.cs">
       <DependentUpon>CreateWorkTypeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DelegateAssemblyService.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
