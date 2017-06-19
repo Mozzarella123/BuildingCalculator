@@ -60,15 +60,20 @@ namespace BuildingCalculator
             var numer = listBox1.Items.GetEnumerator();
             while (numer.MoveNext())
                 work.parametrs.Add(numer.Current.ToString());
-            JSONSerializeService.AddToOutput(work);
-            if (RedactedItemIndex != null)
+            if (DelegateAssemblyService.isCreatedCorrect(work))
             {
-                JSONSerializeService.OutputItems.RemoveAt((int)RedactedItemIndex);
-                RedactedItemIndex = null;
-                
+                JSONSerializeService.AddToOutput(work);
+                if (RedactedItemIndex != null)
+                {
+                    JSONSerializeService.OutputItems.RemoveAt((int)RedactedItemIndex);
+                    RedactedItemIndex = null;
+
+                }
+                JSONSerializeService.Save();
+                this.Hide();
             }
-            JSONSerializeService.Save();
-            this.Hide();
+            else
+                MessageBox.Show("Параметры обьекта заданны некоректно.");
         }
         static CreateWorkTypeForm cwf = new CreateWorkTypeForm();
         static int? RedactedItemIndex = null;

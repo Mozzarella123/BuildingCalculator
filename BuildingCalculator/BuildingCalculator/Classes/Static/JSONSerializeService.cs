@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
+using System.Windows.Forms;
 
 namespace BuildingCalculator
 {
@@ -15,10 +16,11 @@ namespace BuildingCalculator
         public static string InputFilePath = "";
         public static string OutputFilePath;
         public static bool isHaveInput;
+        static bool isLoadingCorrect=true;
         public static void ReadInput(string path)
         {
             InputFilePath = OutputFilePath = path;
-            if (File.Exists(InputFilePath))
+            if (File.Exists(InputFilePath)||File.Exists("lastCompleteBuild.json"))
             {
                 InputJsonString = File.ReadAllText(InputFilePath);
                 isHaveInput = true;
@@ -29,7 +31,25 @@ namespace BuildingCalculator
                     OutputItems = new List<WorkTypeClass>();
                 }
                 DelegateAssemblyService.WriteCompileStringToFile();
-                DelegateAssemblyService.AssemblyDelegate();
+                try
+                {
+                    DelegateAssemblyService.AssemblyDelegate();
+                    if (isLoadingCorrect)
+                        File.Copy("works.json", "lastCompleteBuild.json", true);
+                }
+                catch
+                {
+                    if (File.Exists("lastCompleteBuild.json"))
+                    {
+                        isLoadingCorrect = false;
+                        ReadInput("lastCompleteBuild.json");
+                        MessageBox.Show("Cборка не была загружена из-за ошибки, поэтому была загружена последняя рабочая версия.");
+                        return;
+                    }
+                    
+                }
+                
+                
             }
             else
             {

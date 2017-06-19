@@ -46,6 +46,7 @@ namespace BuildingCalculator
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             string LogInp;
             string PasInp;
             try
@@ -60,7 +61,9 @@ namespace BuildingCalculator
 
             if (LogInp == login && PasInp == pass)
             {
-                
+                if (checkBox1.Checked)
+                    ConfigWorksService.ChangeValue("Remembered", "true");
+
                 LoginClass.IsLoged = true;
                 LoginClass.af.Show();
                 this.Hide();
