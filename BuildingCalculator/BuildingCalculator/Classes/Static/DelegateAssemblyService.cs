@@ -86,6 +86,27 @@ namespace MyNamespace
 
             File.WriteAllText("ForCompile.cs", CompileString);
             
+        }
+        public static bool isCreatedCorrect(WorkTypeClass work)
+        {
+            string func = CreateFunctions(work);
+            try
+            {
+                CSharpCodeProvider provider = new CSharpCodeProvider();
+                CompilerParameters parameters = new CompilerParameters();
+                parameters.GenerateInMemory = true;
+                if (File.Exists("test.dll"))
+                    File.Delete("test.dll");
+                parameters.OutputAssembly = "test.dll";
+                parameters.ReferencedAssemblies.Add("System.dll");
+                CompilerResults results = provider.CompileAssemblyFromSource(parameters, begin + func + end);
+                var cls = results.CompiledAssembly.GetType("MyNamespace.LambdaCreator");
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         } 
     }
 }

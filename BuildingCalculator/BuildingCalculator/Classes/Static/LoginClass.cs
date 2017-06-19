@@ -17,12 +17,17 @@ namespace BuildingCalculator
                 ConfigWorksService.Add("login", "slon");
             if (!ConfigWorksService.Contains("password"))
                 ConfigWorksService.Add("password","12345");
+            if (!ConfigWorksService.Contains("Remembered"))
+                ConfigWorksService.Add("Remembered", "false");
 
             login = ConfigWorksService.getValue("login");
             pass = ConfigWorksService.getValue("password");
 
             if (lf == null) lf = new LogInForm();
             if (af == null) af = new AdminForm();
+
+            if (ConfigWorksService.getValue("Remembered") == "true")
+                return af;
 
             if (IsLoged)
             {
