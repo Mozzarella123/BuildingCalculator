@@ -44,15 +44,15 @@
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Right;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(608, 0);
+            this.listBox1.Location = new System.Drawing.Point(612, 0);
             this.listBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(270, 384);
+            this.listBox1.Size = new System.Drawing.Size(270, 340);
             this.listBox1.TabIndex = 0;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(212, 54);
+            this.textBox1.Location = new System.Drawing.Point(213, 33);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(210, 26);
@@ -60,15 +60,16 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(378, 136);
+            this.textBox2.Location = new System.Drawing.Point(382, 108);
             this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(205, 26);
+            this.textBox2.Size = new System.Drawing.Size(205, 68);
             this.textBox2.TabIndex = 2;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(378, 214);
+            this.button1.Location = new System.Drawing.Point(382, 186);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(205, 35);
@@ -79,7 +80,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(22, 136);
+            this.textBox3.Location = new System.Drawing.Point(26, 108);
             this.textBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
@@ -99,7 +100,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(148, 111);
+            this.label2.Location = new System.Drawing.Point(152, 83);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 20);
@@ -109,7 +110,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(436, 111);
+            this.label3.Location = new System.Drawing.Point(440, 83);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 20);
@@ -118,7 +119,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(168, 271);
+            this.button3.Location = new System.Drawing.Point(167, 231);
             this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(285, 89);
@@ -131,7 +132,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(878, 384);
+            this.ClientSize = new System.Drawing.Size(882, 340);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
