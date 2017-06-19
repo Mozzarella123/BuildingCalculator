@@ -69,6 +69,5 @@ namespace BuildingCalculator.Classes
             if (!Char.IsLetter(e.KeyChar) && e.KeyChar != '\b')
                 e.Handled = true;
         }
-
     }
 }
