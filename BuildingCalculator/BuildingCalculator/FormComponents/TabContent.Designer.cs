@@ -81,7 +81,6 @@
             this.Width.TabIndex = 25;
             this.Width.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Width.TextChanged += new System.EventHandler(this.Input_Room);
-            this.Width.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Input_KeyDown);
             // 
             // Length
             // 
@@ -94,7 +93,6 @@
             this.Length.TabIndex = 24;
             this.Length.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Length.TextChanged += new System.EventHandler(this.Input_Room);
-            this.Length.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Input_KeyDown);
             // 
             // LengthT
             // 
