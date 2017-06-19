@@ -18,6 +18,7 @@ namespace BuildingCalculator
         public Form1()
         {
             InitializeComponent();
+            
             JSONSerializeService.ReadInput("works.json");
             Rooms.Add((RoomTabs.TabPages[0].Controls["tabContent1"] as TabContent).Room);
             List<string> names = new List<string>()
@@ -91,6 +92,11 @@ namespace BuildingCalculator
                 RoomTabs.TabPages.RemoveAt(index);
                 RoomTabs.SelectedIndex = --index;
             }
+        }
+
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
+
         }
     }
 }
