@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BuildingCalculator.Classes;
 
 namespace BuildingCalculator
 {
@@ -15,6 +16,8 @@ namespace BuildingCalculator
         public TabContent()
         {
             InitializeComponent();
+            Functions.Validate(Functions.ValidateType.OnlyNumbers, Width);
+            Functions.Validate(Functions.ValidateType.OnlyNumbers, Length);
             Room.Elements = (Controls["multiSliders1"] as MultiSliders).Elements;
         }
         public Room Room = new Room();
@@ -41,11 +44,6 @@ namespace BuildingCalculator
         private void Input_Room(object sender, EventArgs e)
         {
             Input(sender as TextBox, Room);
-        }
-        private void Input_KeyDown(object sender, KeyEventArgs e)
-        {
-            TextBox input = sender as TextBox;
-            if (input.Text == "0") input.Text = "";
         }
         private void TabContent_Load(object sender, EventArgs e)
         {

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BuildingCalculator.Classes;
 
 namespace BuildingCalculator
 {
@@ -22,6 +23,8 @@ namespace BuildingCalculator
         public Slider()
         {
             InitializeComponent();
+            Functions.Validate(Functions.ValidateType.OnlyNumbers, Width);
+            Functions.Validate(Functions.ValidateType.OnlyNumbers, Length);
             slides.Add(new Element());
         }
         private void Slider_Controls_Click(object sender, EventArgs e)
