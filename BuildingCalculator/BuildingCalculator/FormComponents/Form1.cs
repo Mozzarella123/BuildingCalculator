@@ -30,6 +30,8 @@ namespace BuildingCalculator
                 DeleteTab
             };
             Functions.ContextMenu(RoomTabs, names, functions);
+
+            //PDFWriteService.HelloWorld();
         }
         //private void ElementsChanged(object sender)
         //{
