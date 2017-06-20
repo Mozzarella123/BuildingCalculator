@@ -80,7 +80,6 @@
             this.Width.Size = new System.Drawing.Size(172, 45);
             this.Width.TabIndex = 25;
             this.Width.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Width.TextChanged += new System.EventHandler(this.Input_Room);
             // 
             // Length
             // 
@@ -92,7 +91,6 @@
             this.Length.Size = new System.Drawing.Size(172, 45);
             this.Length.TabIndex = 24;
             this.Length.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Length.TextChanged += new System.EventHandler(this.Input_Room);
             // 
             // LengthT
             // 
@@ -150,9 +148,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox Width;
-        private System.Windows.Forms.TextBox Length;
         private System.Windows.Forms.Label LengthT;
         private System.Windows.Forms.Label WidthT;
         private System.Windows.Forms.Button Calculate;
+        private System.Windows.Forms.TextBox Length;
     }
 }

@@ -16,8 +16,8 @@ namespace BuildingCalculator
         public TabContent()
         {
             InitializeComponent();
-            Functions.Validate(Functions.ValidateType.OnlyNumbers, Width);
-            Functions.Validate(Functions.ValidateType.OnlyNumbers, Length);
+            Functions.Input(Width, Room, SetMethod,Functions.ValidateType.OnlyNumbers);
+            Functions.Input(Length, Room, SetMethod, Functions.ValidateType.OnlyNumbers);
             Room.Elements = (Controls["multiSliders1"] as MultiSliders).Elements;
         }
         public Room Room = new Room();
@@ -34,7 +34,21 @@ namespace BuildingCalculator
                     case "Length":
                         obj.Params["Length"] = value;
                         break;
+
                 }
+            }
+            catch (FormatException)
+            {
+
+            }
+        }
+        private void SetMethod(object obj,Control control)
+        {
+            try
+            {
+                Entity obj1 = obj as Entity;
+                obj1.Params[control.Name] = Convert.ToDouble(Convert.ToDouble(control.Text));
+
             }
             catch (FormatException)
             {
@@ -43,6 +57,7 @@ namespace BuildingCalculator
         }
         private void Input_Room(object sender, EventArgs e)
         {
+            Functions.Input(sender as TextBox, Room, SetMethod);
             Input(sender as TextBox, Room);
         }
         private void TabContent_Load(object sender, EventArgs e)
