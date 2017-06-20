@@ -30,7 +30,7 @@ namespace BuildingCalculator
             myPage = null;
             myDoc = null;
         }
-        public static void AddTable(string[,] content, double size, string[] headers = null, int x = 100, int y = 600)
+        public static void AddTable(string[,] content, double size, string[] headers, int x = 100, int y = 600)
         {
             if (content.GetLength(1) != headers.Length)
                 throw new ArgumentException("Количество заголовков не равно количеству столбцов");
@@ -38,11 +38,10 @@ namespace BuildingCalculator
             pdfTable table = new pdfTable();//создаем таблицу
             table.borderSize = 1;//размер рамки
             table.borderColor = new pdfColor(predefinedColor.csBlack);//цвет рамки
-            if (headers != null)//добавление заголовков
-            {
-                for (int i = 0; i < content.GetLength(1); i++)
-                    table.tableHeader.addColumn(new pdfTableColumn(headers[i], predefinedAlignment.csCenter, (int)(size / content.GetLength(1))));
-            }
+
+            for (int i = 0; i < content.GetLength(1); i++)
+                table.tableHeader.addColumn(new pdfTableColumn(headers[i], predefinedAlignment.csCenter, (int)(size / content.GetLength(1))));
+            
             for (int i = 0; i < content.GetLength(0); i++)//заполнение таблицы
             {
                 pdfTableRow row = table.createRow();

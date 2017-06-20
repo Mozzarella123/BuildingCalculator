@@ -41,7 +41,7 @@ namespace BuildingCalculator
                     content[i, j] = (i + j).ToString();
             }
             PDFWriteService.InitializeNewFile("test", "test");
-            PDFWriteService.AddTable(content, 400, headers);
+            PDFWriteService.AddTable(content, 400,headers);
             PDFWriteService.endOfFile();
 
             //PDFWriteService.HelloWorld();
