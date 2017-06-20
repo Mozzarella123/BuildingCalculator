@@ -37,26 +37,6 @@ namespace BuildingCalculator
         //{
         //    room.Elements = (sender as Slider).Slides;
         //}
-        public static void Input(TextBox input, Entity obj)
-        {
-            try
-            {
-                double value = Convert.ToDouble(input.Text);
-                switch (input.Name)
-                {
-                    case "Width":
-                        obj.Params["Width"] = value;
-                        break;
-                    case "Length":
-                        obj.Params["Length"] = value;
-                        break;
-                }
-            }
-            catch (FormatException)
-            {
-
-            }
-        }
         private void Form1_Load(object sender, EventArgs e)
         {
             
@@ -99,6 +79,12 @@ namespace BuildingCalculator
         private void toolTip1_Popup(object sender, PopupEventArgs e)
         {
 
+        }
+
+        private void Calculate(object sender, EventArgs e)
+        {
+            FormComponents.SelectWorkTypes selectworktypes = new FormComponents.SelectWorkTypes();
+            selectworktypes.ShowDialog();
         }
     }
 }

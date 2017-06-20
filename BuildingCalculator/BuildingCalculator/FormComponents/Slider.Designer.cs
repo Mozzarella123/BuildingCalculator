@@ -34,10 +34,10 @@
             this.Prev = new System.Windows.Forms.Button();
             this.Next = new System.Windows.Forms.Button();
             this.CurrentIndex = new System.Windows.Forms.Label();
-            this.LengthT = new System.Windows.Forms.Label();
-            this.Length = new System.Windows.Forms.TextBox();
-            this.Width = new System.Windows.Forms.TextBox();
             this.WidthT = new System.Windows.Forms.Label();
+            this.Width = new System.Windows.Forms.TextBox();
+            this.Height = new System.Windows.Forms.TextBox();
+            this.HeightT = new System.Windows.Forms.Label();
             this.Markup.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,10 +52,10 @@
             this.Markup.Controls.Add(this.Prev, 0, 5);
             this.Markup.Controls.Add(this.Next, 2, 5);
             this.Markup.Controls.Add(this.CurrentIndex, 1, 0);
-            this.Markup.Controls.Add(this.LengthT, 0, 1);
-            this.Markup.Controls.Add(this.Length, 0, 2);
-            this.Markup.Controls.Add(this.Width, 0, 4);
-            this.Markup.Controls.Add(this.WidthT, 0, 3);
+            this.Markup.Controls.Add(this.WidthT, 0, 1);
+            this.Markup.Controls.Add(this.Width, 0, 2);
+            this.Markup.Controls.Add(this.Height, 0, 4);
+            this.Markup.Controls.Add(this.HeightT, 0, 3);
             this.Markup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Markup.Location = new System.Drawing.Point(0, 0);
             this.Markup.Name = "Markup";
@@ -157,63 +157,63 @@
             this.CurrentIndex.Text = "1";
             this.CurrentIndex.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // LengthT
-            // 
-            this.LengthT.AutoSize = true;
-            this.Markup.SetColumnSpan(this.LengthT, 3);
-            this.LengthT.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LengthT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LengthT.Location = new System.Drawing.Point(3, 49);
-            this.LengthT.Name = "LengthT";
-            this.LengthT.Size = new System.Drawing.Size(210, 48);
-            this.LengthT.TabIndex = 5;
-            this.LengthT.Text = "Длина";
-            this.LengthT.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Length
-            // 
-            this.Length.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Length.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Markup.SetColumnSpan(this.Length, 3);
-            this.Length.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Length.Location = new System.Drawing.Point(3, 100);
-            this.Length.MaxLength = 4;
-            this.Length.Multiline = true;
-            this.Length.Name = "Length";
-            this.Length.Size = new System.Drawing.Size(210, 42);
-            this.Length.TabIndex = 6;
-            this.Length.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Length.TextChanged += new System.EventHandler(this.Params_Input);
-            // 
-            // Width
-            // 
-            this.Width.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Markup.SetColumnSpan(this.Width, 3);
-            this.Width.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Width.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Width.Location = new System.Drawing.Point(3, 196);
-            this.Width.MaxLength = 4;
-            this.Width.Multiline = true;
-            this.Width.Name = "Width";
-            this.Width.Size = new System.Drawing.Size(210, 42);
-            this.Width.TabIndex = 8;
-            this.Width.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Width.TextChanged += new System.EventHandler(this.Params_Input);
-            // 
             // WidthT
             // 
             this.WidthT.AutoSize = true;
             this.Markup.SetColumnSpan(this.WidthT, 3);
             this.WidthT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.WidthT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.WidthT.Location = new System.Drawing.Point(3, 145);
+            this.WidthT.Location = new System.Drawing.Point(3, 49);
             this.WidthT.Name = "WidthT";
             this.WidthT.Size = new System.Drawing.Size(210, 48);
-            this.WidthT.TabIndex = 7;
-            this.WidthT.Text = "Ширина";
+            this.WidthT.TabIndex = 5;
+            this.WidthT.Text = "Длина";
             this.WidthT.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Width
+            // 
+            this.Width.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Width.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Markup.SetColumnSpan(this.Width, 3);
+            this.Width.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Width.Location = new System.Drawing.Point(3, 100);
+            this.Width.MaxLength = 4;
+            this.Width.Multiline = true;
+            this.Width.Name = "Width";
+            this.Width.Size = new System.Drawing.Size(210, 42);
+            this.Width.TabIndex = 6;
+            this.Width.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Width.TextChanged += new System.EventHandler(this.Params_Input);
+            // 
+            // Height
+            // 
+            this.Height.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Markup.SetColumnSpan(this.Height, 3);
+            this.Height.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Height.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Height.Location = new System.Drawing.Point(3, 196);
+            this.Height.MaxLength = 4;
+            this.Height.Multiline = true;
+            this.Height.Name = "Height";
+            this.Height.Size = new System.Drawing.Size(210, 42);
+            this.Height.TabIndex = 8;
+            this.Height.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Height.TextChanged += new System.EventHandler(this.Params_Input);
+            // 
+            // HeightT
+            // 
+            this.HeightT.AutoSize = true;
+            this.Markup.SetColumnSpan(this.HeightT, 3);
+            this.HeightT.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HeightT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HeightT.Location = new System.Drawing.Point(3, 145);
+            this.HeightT.Name = "HeightT";
+            this.HeightT.Size = new System.Drawing.Size(210, 48);
+            this.HeightT.TabIndex = 7;
+            this.HeightT.Text = "Высота";
+            this.HeightT.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Slider
             // 
@@ -236,9 +236,9 @@
         private System.Windows.Forms.Button Prev;
         private System.Windows.Forms.Button Next;
         private System.Windows.Forms.Label CurrentIndex;
-        private System.Windows.Forms.Label LengthT;
-        private System.Windows.Forms.TextBox Length;
         private System.Windows.Forms.Label WidthT;
         private System.Windows.Forms.TextBox Width;
+        private System.Windows.Forms.Label HeightT;
+        private System.Windows.Forms.TextBox Height;
     }
 }

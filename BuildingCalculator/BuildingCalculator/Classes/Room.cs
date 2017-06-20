@@ -17,12 +17,22 @@ namespace BuildingCalculator
         public Entity()
         {
             Params = new Dictionary<string, double>();
-            AddParam("Length");
+            AddParam("Height");
             AddParam("Width");
         }
-        public virtual double Area()
+        public virtual double Area
         {
-             return Params["Length"] * Params["Width"];
+            get
+            {
+                return Params["Height"] * Params["Width"];
+            }
+        }
+        public virtual double Perimeter
+        {
+            get
+            {
+                return (Params["Height"] + Params["Width"]) * 2;
+            }
         }
     }
     public class Room:Entity
@@ -31,13 +41,35 @@ namespace BuildingCalculator
         public Room():base()
         {
             Elements = new Dictionary<string, List<Element>>();
+            AddParam("Length");
         }
-        public override double Area()
+        public double CommonArea
         {
-            double sum = 0;
-            //foreach (Element x in Elements)
-            //    sum += x.Area();
-            return base.Area()-sum;
+            get
+            {
+                double sum = 0;
+                foreach (var pair in Elements)
+                    foreach (Element elem in pair.Value)
+                        sum += elem.Area;
+                return (base.Area + Params["Height"] * Params["Height"]) * 2-sum;
+            }
+        }
+        public override double Area
+        {
+            get
+            {
+                return Params["Width"] * Params["Length"];
+            }
+        }
+        public double BottomPerimeter
+        {
+            get
+            {
+                double sum = 0;              
+                    foreach (Element elem in Elements["Двери"])
+                        sum += elem.Params["Width"];
+                return (Params["Width"] + Params["Length"]) * 2 - sum;
+            }
         }
     }
     public class Element:Entity
