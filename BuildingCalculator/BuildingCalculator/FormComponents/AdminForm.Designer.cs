@@ -28,19 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.ItemsinTree = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(13, 52);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(589, 644);
-            this.listBox1.TabIndex = 1;
             // 
             // label1
             // 
@@ -53,13 +43,22 @@
             this.label1.Text = "Список работ";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // ItemsinTree
+            // 
+            this.ItemsinTree.Location = new System.Drawing.Point(18, 54);
+            this.ItemsinTree.Name = "ItemsinTree";
+            this.ItemsinTree.Size = new System.Drawing.Size(589, 644);
+            this.ItemsinTree.TabIndex = 3;
+            this.ItemsinTree.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.ItemsinTree_BeforeSelect);
+            this.ItemsinTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.ItemsinTree_NodeMouseClick);
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(619, 710);
+            this.Controls.Add(this.ItemsinTree);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listBox1);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AdminForm";
             this.Text = "AdminForm";
@@ -69,7 +68,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TreeView ItemsinTree;
     }
 }

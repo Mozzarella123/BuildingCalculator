@@ -8,10 +8,29 @@ namespace BuildingCalculator
 {
     public class WorkTypeClass
     {
+        public static Dictionary<Category,string> CategoryNames = new Dictionary<Category, string>()
+            {
+                {Category.walls, "Площадь стен" },
+                {Category.floor, "Площадь пола" },
+                {Category.ceiling, "Площадь потолка" },
+                {Category.floorPer, "Периметр пола" },
+                {Category.ceilingPer, "Периметр потолка" },
+                {Category.other, "Другое" },
+            };
         public enum Category { none=-1,walls, floor, ceiling, floorPer, ceilingPer, other};
         public WorkTypeClass()
         {
             parametrs = new List<string>();
+            CategoryNames = new Dictionary< Category, string>()
+            {
+                {Category.walls, "Площадь стен" },
+                {Category.floor, "Площадь пола" },
+                {Category.ceiling, "Площадь потолка" },
+                {Category.floorPer, "Периметр пола" },
+                {Category.ceilingPer, "Периметр потолка" },
+                {Category.other, "Другое" },
+            }
+            ;
         }
         public string article;
         public string formula;

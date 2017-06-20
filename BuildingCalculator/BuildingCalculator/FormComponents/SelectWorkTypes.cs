@@ -17,37 +17,69 @@ namespace BuildingCalculator.FormComponents
         {
             InitializeComponent();
             //JSONSerializeService.ReadInput(Directory.GetCurrentDirectory() + "\\works.json");
-            List<WorkTypeClass> works = JSONSerializeService.OutputItems;
-            for (int i=0;i<works.Count;i++)
+            List<WorkTypeClass> workslist = JSONSerializeService.InputItems;
+            SelectWorksTree.Nodes.Add("Все категории");
+            //Добавляем категорию
+            foreach (var pair in WorkTypeClass.CategoryNames)
             {
-                WorkTypeList.Items.Add(works[i].article);
-                WorkTypeList.SetItemCheckState(i,CheckState.Checked);
-            }         
-
-
-        }
-        private void Edit_Puntcs(object sender, EventArgs e)
-        {
-            switch ((sender as Control).Name)
-            {
-                case "checkall":
-                    {
-                        for (int i = 0; i < WorkTypeList.Items.Count; i++)
-                            WorkTypeList.SetItemCheckState(i, CheckState.Checked);
-                        break;
-                    } 
-                case "uncheckall":
-                    {
-                        for (int i = 0; i < WorkTypeList.Items.Count; i++)
-                            WorkTypeList.SetItemCheckState(i, CheckState.Unchecked);
-                        break;
-                    }
+                TreeNode newnode = new TreeNode(pair.Value);
+                newnode.Name = pair.Value;
+                SelectWorksTree.Nodes[0].Nodes.Add(newnode);
             }
+            //Разбиваем по категориям
+            foreach (WorkTypeClass ob in workslist)
+            {
+                TreeNode newnode = new TreeNode(ob.article);
+                newnode.Name = WorkTypeClass.CategoryNames[ob.category];
+                newnode.Tag = ob;
+                SelectWorksTree.Nodes[0].Nodes[WorkTypeClass.CategoryNames[ob.category]].Nodes.Add(newnode);
+            }
+
+
         }
 
         private void Calculate_Click(object sender, EventArgs e)
         {
+            foreach (WorkTypeClass elem in JSONSerializeService.OutputItems)
+            {
+
+            }
+            PDFWriteService.InitializeNewFile("отчёт", Directory.GetCurrentDirectory());
             
+        }
+        private void Check(TreeNode node,bool check)
+        {
+            if (node.FirstNode != null)
+            {
+                if (check)
+                {
+                    node.ExpandAll();
+                    foreach (TreeNode nod in node.Nodes)
+                        nod.Checked = true;
+                }
+                else
+                {
+                    node.Collapse();
+                    foreach (TreeNode nod in node.Nodes)
+                        nod.Checked = false;
+                }
+                
+            }
+            else return;
+        }
+        private void SelectWorksTree_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            Check(e.Node, e.Node.Checked);
+        }
+
+        private void SelectWorksTree_DoubleClick(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void SelectWorksTree_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+        {
+            e.Cancel = true;
         }
     }
 }
