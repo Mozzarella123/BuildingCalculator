@@ -71,24 +71,39 @@ namespace BuildingCalculator.Classes
             if (!Char.IsLetter(e.KeyChar) && e.KeyChar != '\b')
                 e.Handled = true;
         }
+        /// <summary>
+        /// Функция для связи control'а и параметра, куда будет заносится значение
+        /// </summary>
+        /// <param name="control">Control для связи</param>
+        /// <param name="obj">Объект, к которому хотим привязать</param>
+        /// <param name="property">Название свойства</param>
+        /// <param name="validatetype">Тип валидации</param>
+        /// <param name="userfunc">Собственный обработчик set</param>
         public static void Input(Control control, object obj, string property, ValidateType validatetype=ValidateType.Default, KeyPressEventHandler userfunc = null)
         {
+            //Привязываем валидацию
             SetValidator(control, validatetype);
+            //Добавляем обработчик
             control.TextChanged += Input_TextChanged;
+            //Создаем параметры для передачи в обработчик
             object[] param = { obj,property };
             control.Tag = param;
         }
         public static void Input(Control control, object obj,SetMethod set, ValidateType validatetype= ValidateType.Default, KeyPressEventHandler userfunc = null)
         {
+            //Привязываем валидацию
             SetValidator(control, validatetype);
+            //Создаем параметры для передачи в обработчик с пользовательским метом
             object[] param = { obj, set };
             control.Tag = param;
             control.TextChanged += Input_TextChanged;
         }
         private static void Input_TextChanged(object sender, EventArgs e)
-        {
+        {     
             Control control = sender as Control;
+            //получаем параметры
             object[] obj = (control.Tag as object[]);
+            //если свойство простое
             if (obj[1] is string)
             {
                 string property = obj[1] as string;
@@ -99,6 +114,7 @@ namespace BuildingCalculator.Classes
             else
             {
                 SetMethod set = obj[1] as SetMethod;
+                //Вызываем пользовательский метод set
                 set.Invoke(obj[0], control);
             }
 
