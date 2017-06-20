@@ -41,8 +41,11 @@ namespace BuildingCalculator
                     content[i, j] = (i + j).ToString();
             }
             PDFWriteService.InitializeNewFile("test", "test");
-            PDFWriteService.AddTable(content, 400,headers);
-            PDFWriteService.endOfFile();
+            //PDFWriteService.AddHeader(AddType.ActivePage, "Test", 30, 100, 600);
+            //PDFWriteService.AddTable(AddType.ActivePage ,content, 400,headers);
+            //PDFWriteService.AddPage();
+            //PDFWriteService.AddText(AddType.newPage, "INPUTINPUTINPUTINPUTINPUTINPUTINPUTINPUTINPUT", 10, 100, 400);
+            //PDFWriteService.endOfFile();
 
             //PDFWriteService.HelloWorld();
         }
