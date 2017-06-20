@@ -47,6 +47,11 @@ namespace BuildingCalculator.FormComponents
 
         private void Calculate_Click(object sender, EventArgs e)
         {
+            foreach (WorkTypeClass elem in JSONSerializeService.OutputItems)
+            {
+
+            }
+            PDFWriteService.InitializeNewFile("отчёт", Directory.GetCurrentDirectory());
             
         }
     }
