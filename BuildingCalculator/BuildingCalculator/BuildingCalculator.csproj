@@ -90,6 +90,12 @@
       <DependentUpon>MultiSliders.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Static\Program.cs" />
+    <Compile Include="FormComponents\SelectWorkTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormComponents\SelectWorkTypes.Designer.cs">
+      <DependentUpon>SelectWorkTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\Room.cs" />
     <Compile Include="FormComponents\Slider.cs">
@@ -119,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\MultiSliders.resx">
       <DependentUpon>MultiSliders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormComponents\SelectWorkTypes.resx">
+      <DependentUpon>SelectWorkTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

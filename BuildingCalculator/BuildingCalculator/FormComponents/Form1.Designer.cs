@@ -35,6 +35,7 @@
             this.FirstRoom = new System.Windows.Forms.TabPage();
             this.tabContent1 = new BuildingCalculator.TabContent();
             this.AddRoom = new System.Windows.Forms.TabPage();
+            this.рассчитатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.RoomTabs.SuspendLayout();
             this.FirstRoom.SuspendLayout();
@@ -44,7 +45,8 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.опцииToolStripMenuItem});
+            this.опцииToolStripMenuItem,
+            this.рассчитатьToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(700, 33);
@@ -107,6 +109,13 @@
             this.AddRoom.Text = "+";
             this.AddRoom.UseVisualStyleBackColor = true;
             // 
+            // рассчитатьToolStripMenuItem
+            // 
+            this.рассчитатьToolStripMenuItem.Name = "рассчитатьToolStripMenuItem";
+            this.рассчитатьToolStripMenuItem.Size = new System.Drawing.Size(111, 29);
+            this.рассчитатьToolStripMenuItem.Text = "Рассчитать";
+            this.рассчитатьToolStripMenuItem.Click += new System.EventHandler(this.Calculate);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -137,6 +146,7 @@
         private System.Windows.Forms.TabPage FirstRoom;
         private System.Windows.Forms.TabPage AddRoom;
         private TabContent tabContent1;
+        private System.Windows.Forms.ToolStripMenuItem рассчитатьToolStripMenuItem;
     }
 }
 

@@ -23,8 +23,8 @@ namespace BuildingCalculator
         public Slider()
         {
             InitializeComponent();            
+            Functions.SetValidator(Height, Functions.ValidateType.OnlyNumbers);
             Functions.SetValidator(Width, Functions.ValidateType.OnlyNumbers);
-            Functions.SetValidator(Length, Functions.ValidateType.OnlyNumbers);
             slides.Add(new Element());
 
         }
@@ -42,16 +42,16 @@ namespace BuildingCalculator
                         {
                             slides.Add(new Element());
                             CurrentIndex.Text = slides.Count.ToString();
+                            Height.Text = "0";
                             Width.Text = "0";
-                            Length.Text = "0";
                         }
                         else
                         {
                             if (currentindex <= slides.Count)
                             {
                                 CurrentIndex.Text = (currentindex).ToString();
+                                Height.Text = slides[currentindex - 1].Params["Height"].ToString();
                                 Width.Text = slides[currentindex - 1].Params["Width"].ToString();
-                                Length.Text = slides[currentindex - 1].Params["Length"].ToString();
                             }
                         }
                         break;
@@ -65,11 +65,10 @@ namespace BuildingCalculator
                             if (operation == "-")
                             {
                                 slides.RemoveAt(currentindex);
-                                //ElementsChanged(this);
                             }
                             CurrentIndex.Text = (currentindex).ToString();
+                            Height.Text = slides[currentindex - 1].Params["Height"].ToString();
                             Width.Text = slides[currentindex - 1].Params["Width"].ToString();
-                            Length.Text = slides[currentindex - 1].Params["Length"].ToString();
                         }
                         break;
                     }
@@ -78,10 +77,8 @@ namespace BuildingCalculator
         }
         private void Params_Input(object sender, EventArgs e)
         {
-            TextBox input = sender as TextBox;
             int index = Convert.ToInt16(CurrentIndex.Text) - 1;
-
-            Form1.Input(input, slides[index]);                
+            Functions.SetEntityParams(slides[index], sender as TextBox);                
         }
     }
 }

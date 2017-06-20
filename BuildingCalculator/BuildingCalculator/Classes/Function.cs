@@ -89,6 +89,14 @@ namespace BuildingCalculator.Classes
             object[] param = { obj,property };
             control.Tag = param;
         }
+        /// <summary>
+        /// Функция для связи control'а и параметра, куда будет заносится значение
+        /// </summary>
+        /// <param name="control">Control для связи</param>
+        /// <param name="obj">Объект, к которому хотим привязать</param>
+        /// <param name="set">Метод задания свойству значения</param>
+        /// <param name="validatetype">Тип валидации</param>
+        /// <param name="userfunc">Собственный обработчик set</param>
         public static void Input(Control control, object obj,SetMethod set, ValidateType validatetype= ValidateType.Default, KeyPressEventHandler userfunc = null)
         {
             //Привязываем валидацию
@@ -119,6 +127,18 @@ namespace BuildingCalculator.Classes
             }
 
         }
+        public static void SetEntityParams(object obj, Control control)
+        {
+            try
+            {
+                Entity obj1 = obj as Entity;
+                obj1.Params[control.Name] = Convert.ToDouble(Convert.ToDouble(control.Text));
 
+            }
+            catch (FormatException)
+            {
+
+            }
+        }
     }
 }

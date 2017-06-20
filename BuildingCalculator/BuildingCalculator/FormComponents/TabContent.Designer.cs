@@ -35,7 +35,8 @@
             this.Length = new System.Windows.Forms.TextBox();
             this.LengthT = new System.Windows.Forms.Label();
             this.WidthT = new System.Windows.Forms.Label();
-            this.Calculate = new System.Windows.Forms.Button();
+            this.Height = new System.Windows.Forms.TextBox();
+            this.HeightT = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +49,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.Height);
+            this.groupBox1.Controls.Add(this.HeightT);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.Width);
             this.groupBox1.Controls.Add(this.Length);
@@ -55,7 +58,7 @@
             this.groupBox1.Controls.Add(this.WidthT);
             this.groupBox1.Location = new System.Drawing.Point(55, 36);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(209, 276);
+            this.groupBox1.Size = new System.Drawing.Size(210, 362);
             this.groupBox1.TabIndex = 32;
             this.groupBox1.TabStop = false;
             // 
@@ -112,18 +115,26 @@
             this.WidthT.TabIndex = 22;
             this.WidthT.Text = "Ширина";
             // 
-            // Calculate
+            // Height
             // 
-            this.Calculate.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.Calculate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Calculate.FlatAppearance.BorderSize = 0;
-            this.Calculate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Calculate.Location = new System.Drawing.Point(55, 331);
-            this.Calculate.Name = "Calculate";
-            this.Calculate.Size = new System.Drawing.Size(209, 51);
-            this.Calculate.TabIndex = 33;
-            this.Calculate.Text = "Рассчитать";
-            this.Calculate.UseVisualStyleBackColor = false;
+            this.Height.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Height.Location = new System.Drawing.Point(21, 299);
+            this.Height.MaxLength = 4;
+            this.Height.Multiline = true;
+            this.Height.Name = "Height";
+            this.Height.Size = new System.Drawing.Size(172, 45);
+            this.Height.TabIndex = 30;
+            this.Height.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // HeightT
+            // 
+            this.HeightT.AutoSize = true;
+            this.HeightT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HeightT.Location = new System.Drawing.Point(58, 254);
+            this.HeightT.Name = "HeightT";
+            this.HeightT.Size = new System.Drawing.Size(97, 29);
+            this.HeightT.TabIndex = 29;
+            this.HeightT.Text = "Высота";
             // 
             // TabContent
             // 
@@ -131,7 +142,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.Calculate);
             this.Controls.Add(this.multiSliders1);
             this.Name = "TabContent";
             this.Size = new System.Drawing.Size(643, 471);
@@ -150,7 +160,8 @@
         private System.Windows.Forms.TextBox Width;
         private System.Windows.Forms.Label LengthT;
         private System.Windows.Forms.Label WidthT;
-        private System.Windows.Forms.Button Calculate;
         private System.Windows.Forms.TextBox Length;
+        private System.Windows.Forms.TextBox Height;
+        private System.Windows.Forms.Label HeightT;
     }
 }
