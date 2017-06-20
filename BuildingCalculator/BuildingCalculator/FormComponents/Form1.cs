@@ -31,6 +31,19 @@ namespace BuildingCalculator
             };
             Functions.ContextMenu(RoomTabs, names, functions);
 
+            string[,] content = new string[3, 3];
+            string[] headers = new string[3];
+
+            for (int i = 0; i < content.GetLength(0); i++)
+            {
+                headers[i] = "header" + i;
+                for (int j = 0; j < content.GetLength(1); j++)
+                    content[i, j] = (i + j).ToString();
+            }
+            PDFWriteService.InitializeNewFile("test", "test");
+            PDFWriteService.AddTable(content, 400, headers);
+            PDFWriteService.endOfFile();
+
             //PDFWriteService.HelloWorld();
         }
         //private void ElementsChanged(object sender)
