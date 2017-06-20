@@ -98,7 +98,7 @@ namespace BuildingCalculator
 
         private void ItemsinTree_BeforeSelect(object sender, TreeViewCancelEventArgs e)
         {
-            if (WorkTypeClass.CategoryNames.ContainsValue(e.Node.Text))
+            if (e.Node.Level == 0)
                 e.Cancel = true;
         }
     }
