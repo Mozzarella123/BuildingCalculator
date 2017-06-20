@@ -137,6 +137,8 @@
             "Стены",
             "Пол",
             "Потолок",
+            "Пол периметр",
+            "Потолок периметр",
             "Разное"});
             this.comboBox1.Location = new System.Drawing.Point(254, 155);
             this.comboBox1.Name = "comboBox1";

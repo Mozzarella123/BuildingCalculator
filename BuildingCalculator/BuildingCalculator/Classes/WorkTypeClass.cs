@@ -8,7 +8,7 @@ namespace BuildingCalculator
 {
     public class WorkTypeClass
     {
-        public enum Category { none=-1,walls=0, floor, ceiling, other};
+        public enum Category { none=-1,walls, floor, ceiling, floorPer, ceilingPer, other};
         public WorkTypeClass()
         {
             parametrs = new List<string>();

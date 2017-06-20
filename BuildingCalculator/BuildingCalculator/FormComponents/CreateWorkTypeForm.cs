@@ -95,8 +95,10 @@ namespace BuildingCalculator
                     case WorkTypeClass.Category.walls:cwf.comboBox1.SelectedIndex = 0; break;
                     case WorkTypeClass.Category.floor: cwf.comboBox1.SelectedIndex = 1; break;
                     case WorkTypeClass.Category.ceiling: cwf.comboBox1.SelectedIndex = 2; break;
-                    case WorkTypeClass.Category.other: cwf.comboBox1.SelectedIndex = 3; break;
-                    default:cwf.comboBox1.SelectedIndex = 3;break;
+                    case WorkTypeClass.Category.floorPer: cwf.comboBox1.SelectedIndex = 3; break;
+                    case WorkTypeClass.Category.ceilingPer: cwf.comboBox1.SelectedIndex = 4; break;
+                    case WorkTypeClass.Category.other: cwf.comboBox1.SelectedIndex = 5; break;
+                    default:cwf.comboBox1.SelectedIndex = 5;break;
                 }
             }
             else
