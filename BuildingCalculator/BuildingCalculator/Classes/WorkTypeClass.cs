@@ -8,6 +8,7 @@ namespace BuildingCalculator
 {
     public class WorkTypeClass
     {
+        public enum Category { none=-1,walls=0, floor, ceiling, other};
         public WorkTypeClass()
         {
             parametrs = new List<string>();
@@ -21,5 +22,6 @@ namespace BuildingCalculator
             return article + " " + formula;
         }
         public string delegateName;
+        public Category category;
     }
 }
