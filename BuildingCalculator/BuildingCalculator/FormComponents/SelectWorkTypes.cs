@@ -59,20 +59,18 @@ namespace BuildingCalculator.FormComponents
         {
             GetCheckedNodes(SelectWorksTree.Nodes);
             string directory = Directory.GetCurrentDirectory();
-            PDFWriteService.InitializeNewFile("OTCHET",Directory.GetCurrentDirectory()+"\\");
             for (int i =0;i<Form1.Rooms.Count;i++)
             {
-                PDFWriteService.AddHeader("Комната" + i);
                 for (int j=0;j<checkedcats.Count;j++)
                 {
-                    PDFWriteService.AddText(checkedcats[j]);
                     for (int k=0;k<checkedworks.Count;k++)
                     {
 
                     }
                 }
             }
-            PDFWriteService.endOfFile();
+            PDFWriteService.HelloWorld();
+
 
 
         }
