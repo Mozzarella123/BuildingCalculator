@@ -13,6 +13,8 @@ namespace BuildingCalculator.FormComponents
 {
     public partial class SelectWorkTypes : Form
     {
+        public List<WorkTypeClass> checkedworks = new List<WorkTypeClass>();
+        public List<string> checkedcats = new List<string>();
         public SelectWorkTypes()
         {
             InitializeComponent();
@@ -37,15 +39,42 @@ namespace BuildingCalculator.FormComponents
 
 
         }
+        public void GetCheckedNodes(TreeNodeCollection nodes)
+        {
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                TreeNode node = nodes[i];
+                if (node.Checked && node.Level != 0)
+                    if (WorkTypeClass.CategoryNames.ContainsValue(node.Name)&&!checkedcats.Contains(node.Name))
+                        checkedcats.Add(node.Name);
+                    else
+                        checkedworks.Add(node.Tag as WorkTypeClass);
 
+                if (node.Nodes.Count > 0)
+                    GetCheckedNodes(node.Nodes);
+            }
+
+        }
         private void Calculate_Click(object sender, EventArgs e)
         {
-            foreach (WorkTypeClass elem in JSONSerializeService.OutputItems)
+            GetCheckedNodes(SelectWorksTree.Nodes);
+            string directory = Directory.GetCurrentDirectory();
+            PDFWriteService.InitializeNewFile("OTCHET",Directory.GetCurrentDirectory()+"\\");
+            for (int i =0;i<Form1.Rooms.Count;i++)
             {
+                PDFWriteService.AddHeader("Комната" + i);
+                for (int j=0;j<checkedcats.Count;j++)
+                {
+                    PDFWriteService.AddText(checkedcats[j]);
+                    for (int k=0;k<checkedworks.Count;k++)
+                    {
 
+                    }
+                }
             }
-            PDFWriteService.InitializeNewFile("отчёт", Directory.GetCurrentDirectory());
-            
+            PDFWriteService.endOfFile();
+
+
         }
         private void Check(TreeNode node,bool check)
         {

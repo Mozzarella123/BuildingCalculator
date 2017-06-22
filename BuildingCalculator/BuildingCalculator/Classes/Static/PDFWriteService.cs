@@ -25,7 +25,6 @@ namespace BuildingCalculator
             FileName = name;
             FilePath = path;
             doc = new pdfDocument(FileName, author);
-            
         }
         public static void HelloWorld()
         {
@@ -59,7 +58,7 @@ namespace BuildingCalculator
                 case AlignType.left: x = 0; break;
                 case AlignType.right: x = page.width - (int)size - 20; break;
             }
-            
+
 
             pdfTable table = new pdfTable();//создаем таблицу
             table.borderSize = 1;//размер рамки
@@ -67,7 +66,7 @@ namespace BuildingCalculator
 
             for (int i = 0; i < content.GetLength(1); i++)
                 table.tableHeader.addColumn(new pdfTableColumn(headers[i], predefinedAlignment.csCenter, (int)(size / content.GetLength(1))));
-            
+
             for (int i = 0; i < content.GetLength(0); i++)//заполнение таблицы
             {
                 pdfTableRow row = table.createRow();
@@ -81,11 +80,12 @@ namespace BuildingCalculator
             table.rowStyle = new pdfTableRowStyle(predefinedFont.csCourier, 10, new pdfColor(predefinedColor.csGray), new pdfColor(predefinedColor.csLightGray));//стиль ячеек таблицы
             table.cellpadding = 20;//отступ ячеек
             page.addTable(table, x, y);//добавлени таблицы
-            LastY = y - (int)(size/1.5);
+            LastY = y - (int)(size / 1.5);
             if (LastY < 0)
                 AddPage();
             table = null;
             
+
 
         }
         /// <summary>
@@ -101,7 +101,7 @@ namespace BuildingCalculator
         /// </summary>
         /// <param name="addType"></param>
         /// <returns></returns>
-        static pdfPage getPage(AddType addType=AddType.ActivePage)
+        static pdfPage getPage(AddType addType = AddType.ActivePage)
         {
             pdfPage page;
             if (addType == AddType.newPage || activePage == null)
@@ -124,22 +124,21 @@ namespace BuildingCalculator
         /// <param name="headers">Заголовки столбцов</param>
         /// <param name="x">Координата Х на странице</param>
         /// <param name="y">Координата У на странице</param>
-        public static void AddHeader(string text, int size=20,AddType addType = AddType.ActivePage,AlignType align=AlignType.left)
+        public static void AddHeader(string text, int size = 20, AddType addType = AddType.ActivePage, AlignType align = AlignType.left)
         {
             pdfPage page = getPage(addType);
             int x = 100;
             int y = LastY;
             switch (align)
             {
-                case AlignType.center: x = page.width / 2;break;
-                case AlignType.left:x = 0; break;
-                case AlignType.right:x = page.width - (text.Length * size); break;
+                case AlignType.center: x = page.width / 2; break;
+                case AlignType.left: x = 0; break;
+                case AlignType.right: x = page.width - (text.Length * size); break;
             }
             LastY = y - 50;
             if (LastY < 0)
                 AddPage();
             page.addText(text, x, y, predefinedFont.csHelvetivaBoldOblique, size);
-            
         }
         /// <summary>
         /// Добавление текста на страницу
@@ -178,13 +177,12 @@ namespace BuildingCalculator
         /// <param name="x">Координата Х на странице</param>
         /// <param name="y">Координата У на странице</param>
         /// <param name="width">Ширина параграфа</param>
-        
+
         /// <summary>
         /// Завершает документ и записывает его в файл
         /// </summary>
-        public static void endOfFile(bool rewrite=true)
+        public static void endOfFile(bool rewrite = true)
         {
-            
             try
             {
                 if (rewrite && File.Exists(FilePath + ".pdf"))
