@@ -14,7 +14,7 @@ namespace BuildingCalculator
     public partial class Form1 : Form
     {
         //комната
-        public List<Room> Rooms = new List<Room>();
+        public static List<Room> Rooms = new List<Room>();
         public Form1()
         {
             InitializeComponent();
@@ -40,7 +40,7 @@ namespace BuildingCalculator
                 for (int j = 0; j < content.GetLength(1); j++)
                     content[i, j] = (i + j).ToString();
             }
-            PDFWriteService.InitializeNewFile("test", "test");
+            //PDFWriteService.InitializeNewFile("test", "test");
             //PDFWriteService.AddHeader(AddType.ActivePage, "Test", 30, 100, 600);
             //PDFWriteService.AddTable(AddType.ActivePage ,content, 400,headers);
             //PDFWriteService.AddPage();
@@ -101,6 +101,22 @@ namespace BuildingCalculator
         {
             FormComponents.SelectWorkTypes selectworktypes = new FormComponents.SelectWorkTypes();
             selectworktypes.ShowDialog();
+        }
+
+        private void RoomTabs_DoubleClick(object sender, EventArgs e)
+        {
+            Form a = new Form();
+            TabControl control = sender as TabControl;
+            control.TabPages[control.SelectedIndex].Controls.Add(new TextBox());
+            a.FormBorderStyle = FormBorderStyle.None;
+            TextBox changename = new TextBox();
+            a.Controls.Add(new TextBox());
+            a.BackColor = Color.Transparent;
+            a.Width = changename.Width;
+            a.Height = changename.Height;
+            //a.Text = control.TabPages[control.SelectedIndex].Text;
+            a.Show();
+            //new Form().Te((sender as TabControl).Name.ToString());
         }
     }
 }
