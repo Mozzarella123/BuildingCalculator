@@ -45,7 +45,7 @@ namespace BuildingCalculator.FormComponents
             {
                 TreeNode node = nodes[i];
                 if (node.Checked && node.Level != 0)
-                    if (WorkTypeClass.CategoryNames.ContainsValue(node.Name))
+                    if (WorkTypeClass.CategoryNames.ContainsValue(node.Name)&&!checkedcats.Contains(node.Name))
                         checkedcats.Add(node.Name);
                     else
                         checkedworks.Add(node.Tag as WorkTypeClass);
@@ -62,10 +62,10 @@ namespace BuildingCalculator.FormComponents
             PDFWriteService.InitializeNewFile("OTCHET",Directory.GetCurrentDirectory()+"\\");
             for (int i =0;i<Form1.Rooms.Count;i++)
             {
-                PDFWriteService.AddHeader(AddType.ActivePage, "Комната " + i, 12, 200,200);  
+                PDFWriteService.AddHeader("Комната" + i);
                 for (int j=0;j<checkedcats.Count;j++)
                 {
-                    PDFWriteService.AddText(AddType.ActivePage, checkedcats[0], 10, 10,10);
+                    PDFWriteService.AddText(checkedcats[j]);
                     for (int k=0;k<checkedworks.Count;k++)
                     {
 
