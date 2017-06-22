@@ -31,11 +31,11 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.опцииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.админкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.рассчитатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RoomTabs = new System.Windows.Forms.TabControl();
             this.FirstRoom = new System.Windows.Forms.TabPage();
             this.tabContent1 = new BuildingCalculator.TabContent();
             this.AddRoom = new System.Windows.Forms.TabPage();
-            this.рассчитатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.RoomTabs.SuspendLayout();
             this.FirstRoom.SuspendLayout();
@@ -68,6 +68,13 @@
             this.админкаToolStripMenuItem.Text = "Админка";
             this.админкаToolStripMenuItem.Click += new System.EventHandler(this.админкаToolStripMenuItem_Click);
             // 
+            // рассчитатьToolStripMenuItem
+            // 
+            this.рассчитатьToolStripMenuItem.Name = "рассчитатьToolStripMenuItem";
+            this.рассчитатьToolStripMenuItem.Size = new System.Drawing.Size(111, 29);
+            this.рассчитатьToolStripMenuItem.Text = "Рассчитать";
+            this.рассчитатьToolStripMenuItem.Click += new System.EventHandler(this.Calculate);
+            // 
             // RoomTabs
             // 
             this.RoomTabs.Controls.Add(this.FirstRoom);
@@ -80,6 +87,7 @@
             this.RoomTabs.TabIndex = 34;
             this.RoomTabs.TabStop = false;
             this.RoomTabs.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.RoomTabs_Selecting);
+            this.RoomTabs.DoubleClick += new System.EventHandler(this.RoomTabs_DoubleClick);
             // 
             // FirstRoom
             // 
@@ -108,13 +116,6 @@
             this.AddRoom.TabIndex = 1;
             this.AddRoom.Text = "+";
             this.AddRoom.UseVisualStyleBackColor = true;
-            // 
-            // рассчитатьToolStripMenuItem
-            // 
-            this.рассчитатьToolStripMenuItem.Name = "рассчитатьToolStripMenuItem";
-            this.рассчитатьToolStripMenuItem.Size = new System.Drawing.Size(111, 29);
-            this.рассчитатьToolStripMenuItem.Text = "Рассчитать";
-            this.рассчитатьToolStripMenuItem.Click += new System.EventHandler(this.Calculate);
             // 
             // Form1
             // 
