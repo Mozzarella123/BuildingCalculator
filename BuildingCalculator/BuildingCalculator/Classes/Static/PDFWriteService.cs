@@ -9,8 +9,8 @@ using System.IO;
 
 namespace BuildingCalculator
 {
-    public enum AddType { newPage, ActivePage };//необходимо для добавления на новую страницу или старую
-    public enum AlignType { center, left, right, none };
+    public enum AddType{ newPage,ActivePage};//необходимо для добавления на новую страницу или старую
+    public enum AlignType { center, left, right,none};
     public static class PDFWriteService
     {
         static string FileName;//Имя документа
@@ -18,14 +18,13 @@ namespace BuildingCalculator
         static pdfDocument doc;//документ
         static pdfPage activePage;//текущая страница
         static int LastY;
-        public static void InitializeNewFile(string name, string path, string author = "BuildingCalckulator")//инициализирует создание документа
+        public static void InitializeNewFile(string name,string path,string author = "BuildingCalckulator")//инициализирует создание документа
         {
             if (doc != null)
                 endOfFile();
             FileName = name;
             FilePath = path;
             doc = new pdfDocument(FileName, author);
-
         }
         public static void HelloWorld()
         {
@@ -85,6 +84,7 @@ namespace BuildingCalculator
             if (LastY < 0)
                 AddPage();
             table = null;
+            
 
 
         }
@@ -139,7 +139,6 @@ namespace BuildingCalculator
             if (LastY < 0)
                 AddPage();
             page.addText(text, x, y, predefinedFont.csHelvetivaBoldOblique, size);
-
         }
         /// <summary>
         /// Добавление текста на страницу
@@ -184,7 +183,6 @@ namespace BuildingCalculator
         /// </summary>
         public static void endOfFile(bool rewrite = true)
         {
-
             try
             {
                 if (rewrite && File.Exists(FilePath + ".pdf"))

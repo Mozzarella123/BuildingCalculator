@@ -23,7 +23,8 @@ namespace BuildingCalculator
             Rooms.Add((RoomTabs.TabPages[0].Controls["tabContent1"] as TabContent).Room);
             List<string> names = new List<string>()
             {
-                "Удалить"
+                "Удалить"//,
+                //"Переименовать"
             };
             List<EventHandler> functions = new List<EventHandler>()
             {
@@ -40,12 +41,14 @@ namespace BuildingCalculator
                 for (int j = 0; j < content.GetLength(1); j++)
                     content[i, j] = (i + j).ToString();
             }
+
             //PDFWriteService.InitializeNewFile("test", "test");
             //PDFWriteService.AddHeader(AddType.ActivePage, "Test", 30, 100, 600);
             //PDFWriteService.AddTable(AddType.ActivePage ,content, 400,headers);
+
             //PDFWriteService.AddPage();
-            //PDFWriteService.AddText(AddType.newPage, "INPUTINPUTINPUTINPUTINPUTINPUTINPUTINPUTINPUT", 10, 100, 400);
-            //PDFWriteService.endOfFile();
+            PDFWriteService.AddText("INPUTINPUTINPUTINPUTINPUTINPUTINPUTINPUTINPUT");
+            PDFWriteService.endOfFile();
 
             //PDFWriteService.HelloWorld();
         }
