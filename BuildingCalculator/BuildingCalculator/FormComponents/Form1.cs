@@ -31,7 +31,7 @@ namespace BuildingCalculator
             };
             Functions.ContextMenu(RoomTabs, names, functions);
 
-
+            PDFWriteService.HelloWorld();
         }
         private void Form1_Load(object sender, EventArgs e)
         {

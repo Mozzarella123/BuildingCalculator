@@ -72,20 +72,40 @@ namespace BuildingCalculator
         }
         public static void HelloWorld()
         {
+            CreateNewDocument("HelloWorld");
+            Section sect=documents["HelloWorld"].getSection(AddType.ActivePage);
 
-            PdfDocument document = new PdfDocument("HelloWorld");
-            document.Info.Title = "HelloWorld";
-            PdfPage page = document.AddPage();
-            XGraphics gfx = XGraphics.FromPdfPage(page);
-            XFont font = new XFont("Verdana", 20, XFontStyle.BoldItalic,options);
-            gfx.DrawString("*!", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormats.Center);
+            Paragraph par = sect.AddParagraph();
+            par.AddFormattedText("Hello world!", TextFormat.Underline);
+
+            RenderDoc("HelloWorld");
             
-            const string filename = "HelloWorld.pdf";
-            document.Save(filename);
+            //PdfDocument document = new PdfDocument("HelloWorld");
+            //document.Info.Title = "HelloWorld";
+            //PdfPage page = document.AddPage();
+            //XGraphics gfx = XGraphics.FromPdfPage(page);
+            //XFont font = new XFont("Verdana", 20, XFontStyle.BoldItalic,options);
+            //gfx.DrawString("*!", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormats.Center);
+            
+            //const string filename = "HelloWorld.pdf";
+            //document.Save(filename);
             
             //Process.Start(filename);
 
         }
+        public static void CreateNewDocument(string DocName)
+        {
+            PDFDocument doc = new PDFDocument();
+            documents.Add(DocName, doc);
+        }
+        public static void RenderDoc(string ident)
+        {
+            PdfDocumentRenderer render = new PdfDocumentRenderer(true, PdfFontEmbedding.Always);
+            render.Document = documents[ident].doc;
+            render.RenderDocument();
+            render.Save(ident + ".pdf");
+        }
+        static Dictionary<string, PDFDocument> documents = new Dictionary<string, PDFDocument>();
         /// <summary>
         /// Добавление таблицы в документ
         /// </summary>
@@ -146,6 +166,8 @@ namespace BuildingCalculator
             string filename = FileName+".pdf";
             renderer.PdfDocument.Save(filename);
         }
+
+
         ///// <summary>
         ///// Добавление разрыва страниц
         ///// </summary>
