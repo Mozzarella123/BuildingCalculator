@@ -33,8 +33,8 @@ namespace BuildingCalculator
 
             //PDFWriteService.HelloWorld();
             PDFWriteService.CreateNewDocument("test");
-            PDFWriteService.AddHeader("test", "Header", HeaderType.first);
-            PDFWriteService.AddHeader("test", "Header2", HeaderType.first);
+            PDFWriteService.AddHeader("test", "Заголовок", HeaderType.first);
+            PDFWriteService.AddHeader("test", "Заголовок2", HeaderType.first);
             PDFWriteService.RenderDocToPdf("test");
         }
         private void Form1_Load(object sender, EventArgs e)

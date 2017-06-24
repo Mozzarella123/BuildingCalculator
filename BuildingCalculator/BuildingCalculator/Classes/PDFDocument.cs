@@ -44,6 +44,7 @@ namespace BuildingCalculator
             style.Font.Color = Colors.DarkBlue;
             style.ParagraphFormat.PageBreakBefore = true;
             style.ParagraphFormat.SpaceAfter = 6;
+            
 
             style = doc.Styles["Heading2"];
             style.Font.Size = 12;
