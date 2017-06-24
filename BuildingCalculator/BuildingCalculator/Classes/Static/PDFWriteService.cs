@@ -37,8 +37,15 @@ namespace BuildingCalculator
             RenderDocToPdf("HelloWorld");           
 
         }
-        public static void CreateNewDocument(string DocName)
+        public static void CreateNewDocument(string DocName,bool rewrite=false)
         {
+            if (documents.ContainsKey(DocName))
+            {
+                if (rewrite)
+                    documents.Remove(DocName);
+                else
+                    throw new ArgumentException("Такой документ уже существует.");
+            }
             PDFDocument doc = new PDFDocument();
             documents.Add(DocName, doc);
         }
@@ -47,7 +54,16 @@ namespace BuildingCalculator
             PdfDocumentRenderer render = new PdfDocumentRenderer(true);
             render.Document = documents[ident].doc;
             render.RenderDocument();
-            render.Save(ident + ".pdf");
+            try
+            {
+                render.Save(ident + ".pdf");
+            }
+            catch
+            {
+                int i ;
+                for (i = 1; File.Exists(ident + "(" + i + ").pdf"); i++) ;
+                render.Save(ident + "(" + i + ").pdf");
+            }
         }
         static Dictionary<string, PDFDocument> documents = new Dictionary<string, PDFDocument>();
         /// <summary>
@@ -120,6 +136,7 @@ namespace BuildingCalculator
                 case HeaderType.third: style = "Heading3"; break;
             }
             Paragraph par = sect.AddParagraph(text,style);
+            
             
             
         }
