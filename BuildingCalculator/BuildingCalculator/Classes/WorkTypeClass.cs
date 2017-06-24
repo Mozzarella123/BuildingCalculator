@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BuildingCalculator.Classes;
 
 namespace BuildingCalculator
 {
     public class WorkTypeClass
     {
-        public static Dictionary<Category,string> CategoryNames = new Dictionary<Category, string>()
+        public static Dictionary<Category, string> CategoryNames = new Dictionary<Category, string>()
             {
                 {Category.walls, "Площадь стен" },
                 {Category.floor, "Площадь пола" },
@@ -31,6 +32,10 @@ namespace BuildingCalculator
                 {Category.other, "Другое" },
             }
             ;
+        }
+        public double GetPrice(double[] parameters)
+        {
+            return DelegateAssemblyService.getPriceforWorkType(this, parameters);
         }
         public string article;
         public string formula;

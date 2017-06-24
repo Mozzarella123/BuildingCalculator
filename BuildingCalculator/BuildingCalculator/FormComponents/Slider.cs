@@ -13,9 +13,8 @@ namespace BuildingCalculator
 {
     public partial class Slider : UserControl
     {
-        //public delegate void MethodContainer(object sender);
-        //public event MethodContainer ElementsChanged;
         private List<Element> slides = new List<Element>();
+        public List<WorkTypeClass.Category> Categories = new List<WorkTypeClass.Category>();
         public List<Element> Slides
         {
             get { return slides; }
@@ -50,8 +49,8 @@ namespace BuildingCalculator
                             if (currentindex <= slides.Count)
                             {
                                 CurrentIndex.Text = (currentindex).ToString();
-                                Height.Text = slides[currentindex - 1].Params["Height"].ToString();
-                                Width.Text = slides[currentindex - 1].Params["Width"].ToString();
+                                Height.Text = slides[currentindex - 1].Params[Entity.ParamName.Height].ToString();
+                                Width.Text = slides[currentindex - 1].Params[Entity.ParamName.Width].ToString();
                             }
                         }
                         break;
@@ -67,8 +66,8 @@ namespace BuildingCalculator
                                 slides.RemoveAt(currentindex);
                             }
                             CurrentIndex.Text = (currentindex).ToString();
-                            Height.Text = slides[currentindex - 1].Params["Height"].ToString();
-                            Width.Text = slides[currentindex - 1].Params["Width"].ToString();
+                            Height.Text = slides[currentindex - 1].Params[Entity.ParamName.Height].ToString();
+                            Width.Text = slides[currentindex - 1].Params[Entity.ParamName.Width].ToString();
                         }
                         break;
                     }
