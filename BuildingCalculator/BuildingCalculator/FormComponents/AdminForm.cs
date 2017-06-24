@@ -72,11 +72,15 @@ namespace BuildingCalculator
         private void Add(object sender, EventArgs e)
         {
             CreateWorkTypeForm.CreateWorkType();
+            CreateWorkTypeForm.Button.Text = "Добавить тип работ";
+
         }
         private void Edit(object sender, EventArgs e)
         {
+            
             if (ItemsinTree.SelectedNode!=null)
                 CreateWorkTypeForm.CreateWorkType((WorkTypeClass)ItemsinTree.SelectedNode.Tag);
+            CreateWorkTypeForm.Button.Text = "Отредактировать тип работ";
         }
         private void Remove(object sender, EventArgs e)
         {

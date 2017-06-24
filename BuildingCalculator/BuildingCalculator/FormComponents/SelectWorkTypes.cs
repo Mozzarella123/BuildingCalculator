@@ -78,43 +78,40 @@ namespace BuildingCalculator.FormComponents
         }
         private void Calculate_Click(object sender, EventArgs e)
         {
-            //GetCheckedNodes(SelectWorksTree.Nodes);
-            //Document otchet = new Document();
-            //PDFWriteService.InitializeNewFile(otchet, "Отчёт");
-            //otchet.Info.Title = "Otchet";
-            //otchet.Info.Subject = "Отчёт";
-            //for (int i = 0; i < Form1.Rooms.Count; i++)
-            //{
-            //    otchet.AddSection();
-            //    otchet.LastSection.AddParagraph(Form1.Rooms[i].Name, "Heading1");
-            //    foreach (var pair in WorkTypeClass.CategoryNames)
-            //    {
-            //        //Идем по выбранным категориям
-            //        if (checkedcats.Contains(pair.Key))
-            //        {
-            //            otchet.LastSection.AddParagraph(WorkTypeClass.CategoryNames[pair.Key], "Heading2");
-            //            string[] headers = { "Название работы", "Площадь", "Цена" };
-            //            List<WorkTypeClass> cont = new List<WorkTypeClass>();
-            //            //Идем по всем выбранным работам 
-            //            foreach (WorkTypeClass ob in checkedworks)
-            //            {
-            //                //Проверяем на принадлежность работы к категории
-            //                if (ob.category == pair.Key)
-            //                    cont.Add(ob);
-            //            }
-            //            string[,] content = new string[cont.Count, 3];
-            //            //Формируем массив для таблицы
-            //            for (int j = 0; j < cont.Count; j++)
-            //            {
-            //                content[j, 0] = cont[j].article;
-            //                content[j, 1] = Form1.Rooms[i].GetAreaFromCat(cont[j].category).ToString();
-            //                content[j, 2] = (cont[j].GetPrice(new double[] { Form1.Rooms[i].GetAreaFromCat(cont[j].category) }) ).ToString() + '\u2714';
-            //            }
-            //            PDFWriteService.AddTable(otchet, content, headers);
-            //        }
-            //    }
-            //}
-            //PDFWriteService.SaveDocument(otchet);
+            GetCheckedNodes(SelectWorksTree.Nodes);
+            string filename = "Отчёт";
+            PDFWriteService.CreateNewDocument(filename);
+            for (int i = 0; i < Form1.Rooms.Count; i++)
+            {
+                PDFWriteService.AddHeader(filename, Form1.Rooms[i].Name, HeaderType.first);
+                foreach (var pair in WorkTypeClass.CategoryNames)
+                {
+                    //Идем по выбранным категориям
+                    if (checkedcats.Contains(pair.Key))
+                    {
+                        PDFWriteService.AddHeader(filename, WorkTypeClass.CategoryNames[pair.Key], HeaderType.second);
+                        string[] headers = { "Название работы", "Площадь", "Цена" };
+                        List<WorkTypeClass> cont = new List<WorkTypeClass>();
+                        //Идем по всем выбранным работам 
+                        foreach (WorkTypeClass ob in checkedworks)
+                        {
+                            //Проверяем на принадлежность работы к категории
+                            if (ob.category == pair.Key)
+                                cont.Add(ob);
+                        }
+                        string[,] content = new string[cont.Count, 3];
+                        //Формируем массив для таблицы
+                        for (int j = 0; j < cont.Count; j++)
+                        {
+                            content[j, 0] = cont[j].article;
+                            content[j, 1] = Form1.Rooms[i].GetAreaFromCat(cont[j].category).ToString();
+                            content[j, 2] = (cont[j].GetPrice(new double[] { Form1.Rooms[i].GetAreaFromCat(cont[j].category) }) ).ToString() + '\u2714';
+                        }
+                        PDFWriteService.AddTable(filename, content, headers);
+                    }
+                }
+            }
+            PDFWriteService.RenderDocToPdf(filename);
         }
         private void Check(TreeNode node, bool check)
         {
