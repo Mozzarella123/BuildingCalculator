@@ -14,6 +14,7 @@ namespace BuildingCalculator
 {
     public partial class CreateWorkTypeForm : Form
     {
+        public static Button Button;
         public CreateWorkTypeForm()
         {
             InitializeComponent();
@@ -26,9 +27,9 @@ namespace BuildingCalculator
                 Remove
             };
             Functions.ContextMenu(listBox1, names, functions);
-            this.FormClosing += new FormClosingEventHandler(_FormClosing);
+            FormClosing += new FormClosingEventHandler(_FormClosing);
+            Button = button3;
         }
-
         private void _FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
@@ -37,7 +38,6 @@ namespace BuildingCalculator
                 this.Hide();
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox2.Text != ""){
@@ -45,13 +45,11 @@ namespace BuildingCalculator
                 textBox2.Text = "";
             }
         }
-
         private void Remove(object sender, EventArgs e)
         {
             if (listBox1.SelectedItem != null)
                 listBox1.Items.RemoveAt(listBox1.SelectedIndex);
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
             WorkTypeClass work = new WorkTypeClass();
@@ -77,8 +75,7 @@ namespace BuildingCalculator
                 MessageBox.Show("Параметры обьекта заданны некоректно.");
         }
         static CreateWorkTypeForm cwf = new CreateWorkTypeForm();
-        static int? RedactedItemIndex = null;
-        
+        static int? RedactedItemIndex = null;      
         public static void CreateWorkType(WorkTypeClass obj=null)
         {
             cwf.Show();
@@ -108,11 +105,39 @@ namespace BuildingCalculator
                 cwf.textBox3.Text = "";
                 cwf.listBox1.Items.Clear();
             }
+            
         }
-
         private void CreateWorkTypeForm_Load(object sender, EventArgs e)
         {
 
+        }
+        private void listBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            ListBox x = sender as ListBox;
+            if (e.KeyCode == Keys.C && e.Modifiers == Keys.Control)
+            {
+                Clipboard.SetData(DataFormats.StringFormat, x.SelectedItem.ToString());
+            }
+            
+        }
+        private void listBox1_MouseDown(object sender, MouseEventArgs e)
+        {     
+            if (e.Button != MouseButtons.Right)
+            if(listBox1.SelectedItem != null && listBox1.SelectedItem.ToString() != "Журнал пуст")
+                listBox1.DoDragDrop(listBox1.SelectedItem, DragDropEffects.Copy);
+            
+        }
+        private void textBox3_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Effect == DragDropEffects.Copy ||
+            e.Effect == DragDropEffects.Move)
+            {
+                textBox3.Text += e.Data.GetData(DataFormats.Text);
+            }
+        }
+        private void textBox3_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Copy;
         }
     }
 }
