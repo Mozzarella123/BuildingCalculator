@@ -12,23 +12,52 @@ namespace BuildingCalculator
 {
     public partial class MultiSliders : UserControl
     {
+        //Нужен для того, чтобы скрыть предыдущий слайдер
         public int PrevSlider = 0;
-        public Dictionary<string, List<Element>> Elements = new Dictionary<string, List<Element>>();
-        public List<object> ElementsNamesCollection = new List<object>();
+        /// <summary>
+        /// Списки элементов комнаты разбитые по категориям
+        /// </summary>
+        public Dictionary<WorkTypeClass.Category, List<List<Element>>> Elements = new Dictionary<WorkTypeClass.Category, List<List<Element>>>();
+        /// <summary>
+        /// Название категорий
+        /// </summary>
+        public Dictionary<WorkTypeClass.Category,List<string>> Categories = new Dictionary<WorkTypeClass.Category, List<string>>();
         public MultiSliders()
         {
-            InitializeComponent();
-            ElementsNamesCollection.Add("Окна");
-            ElementsNamesCollection.Add("Двери");
-            foreach (object name in ElementsNamesCollection)
-                ElementsNames.Items.Add(name);
-            //Инициализируем все слайдеры при создании формы
-            for (int i = 0; i < ElementsNames.Items.Count; i++)
+            InitializeComponent();       
+            Sliders.Controls.Clear();
+            Categories.Add(WorkTypeClass.Category.walls,new List<string>() { "Окна", "Двери" });
+            Categories.Add(WorkTypeClass.Category.floorPer, new List<string>() { "Двери" });
+
+            foreach (var pair in Categories)
             {
-                Sliders.Controls.Add(new Slider());
-                (Sliders.Controls[i] as Slider).Visible = false;
-                (Sliders.Controls[i] as Slider).Dock = DockStyle.Fill;
-                Elements.Add(ElementsNames.Items[i].ToString(), (Sliders.Controls[i] as Slider).Slides);
+                foreach (string name in pair.Value)
+                {
+                    //Формируем выпадающее меню
+                    if (!ElementsNames.Items.Contains(name))
+                    {
+                        ElementsNames.Items.Add(name);
+                        Slider curslider = new Slider();
+                        //Добавляем категорию к которой принадлижит слайдер
+                        curslider.Categories.Add(pair.Key);
+                        curslider.Visible = false;
+                        curslider.Dock = DockStyle.Fill;
+                        //Имя категории в Name
+                        curslider.Name = name;
+                        Sliders.Controls.Add(curslider);
+                    }
+                    else
+
+                        (Sliders.Controls[name] as Slider).Categories.Add(pair.Key);
+                }
+            }
+            //Формируем список элементов по категориям
+            foreach (Slider slider in Sliders.Controls)
+            {
+                foreach (WorkTypeClass.Category cat in slider.Categories)
+                    if (Elements.ContainsKey(cat))
+                        Elements[cat].Add(slider.Slides);
+                    else Elements.Add(cat, new List<List<Element>>() { slider.Slides });
             }
             //Устанавливаем элемент по умолчанию
             ElementsNames.SelectedIndex = 0;

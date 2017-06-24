@@ -98,7 +98,7 @@ namespace BuildingCalculator
         public static void AddTable(Document document,string[,] content, string[] headers=null)
         {
             
-            if (headers != null&&content.GetLength(0) != headers.Length)
+            if (headers != null&&content.GetLength(1) != headers.Length)
                 throw new IndexOutOfRangeException("Количество заголовков не совпадает с количеством столбцов в таблице контента");
             int columncounts = 0;
             Table table = new Table();
@@ -113,16 +113,21 @@ namespace BuildingCalculator
             {
                 if (headers != null)
                 {
-                    Column column = table.AddColumn(Unit.FromPoint(headers[i].Length+10));
-                    column.Format.Alignment = ParagraphAlignment.Center;
-                    Row row = table.AddRow();
-                    row.VerticalAlignment = VerticalAlignment.Center;
+                    Column column = table.AddColumn(Unit.FromPoint(headers[i].Length*10));
+                    column.Format.Alignment = ParagraphAlignment.Center;                    
+                }
+                else table.AddColumn(ColumnWidth);
+            }
+            if (headers!=null)
+            {
+                Row row = table.AddRow();
+                row.VerticalAlignment = VerticalAlignment.Center;                
+                for (int i = 0; i < columncounts; i++)
+                {
                     Cell cell = row.Cells[i];
                     Paragraph paragraph = cell.AddParagraph(headers[i]);
                     paragraph.Format.Font.Bold = true;
                 }
-                else table.AddColumn(ColumnWidth);
-
             }
             for (int i=0;i<content.GetLength(0);i++)
             {
