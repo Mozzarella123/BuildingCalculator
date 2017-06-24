@@ -24,51 +24,9 @@ namespace BuildingCalculator
         static Unit ColumnWidth = new Unit(200, UnitType.Point);
         static string FilePath = Directory.GetCurrentDirectory();
         static string FileName = "Отчёт";//Имя документа
-        static XPdfFontOptions options = new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.Always);
+        static XPdfFontOptions options = new XPdfFontOptions(PdfFontEncoding.Unicode);
 
-        //public static void InitializeNewFile(Document document, string filename)//инициализирует создание документа
-        //{
-
-        //    // Get the predefined style Normal.
-        //    Style style = document.Styles["Normal"];
-        //    // Because all styles are derived from Normal, the next line changes the 
-        //    // font of the whole document. Or, more exactly, it changes the font of
-        //    // all styles and paragraphs that do not redefine the font.
-        //    style.Font.Name = "Times New Roman";
-        //    // Heading1 to Heading9 are predefined styles with an outline level. An outline level
-        //    // other than OutlineLevel.BodyText automatically creates the outline (or bookmarks) 
-        //    // in PDF.
-
-        //    style = document.Styles["Heading1"];
-        //    style.Font.Name = "Tahoma";
-        //    style.Font.Size = 14;
-        //    style.Font.Bold = true;
-        //    style.Font.Color = Colors.DarkBlue;
-        //    style.ParagraphFormat.PageBreakBefore = true;
-        //    style.ParagraphFormat.SpaceAfter = 6;
-
-        //    style = document.Styles["Heading2"];
-        //    style.Font.Size = 12;
-        //    style.Font.Bold = true;
-        //    style.ParagraphFormat.PageBreakBefore = false;
-        //    style.ParagraphFormat.SpaceBefore = 6;
-        //    style.ParagraphFormat.SpaceAfter = 6;
-
-        //    style = document.Styles["Heading3"];
-        //    style.Font.Size = 10;
-        //    style.Font.Bold = true;
-        //    style.Font.Italic = true;
-        //    style.ParagraphFormat.SpaceBefore = 6;
-        //    style.ParagraphFormat.SpaceAfter = 3;
-
-        //    style = document.Styles[StyleNames.Header];
-        //    style.ParagraphFormat.AddTabStop("16cm", TabAlignment.Right);
-
-        //    style = document.Styles[StyleNames.Footer];
-        //    style.ParagraphFormat.AddTabStop("8cm", TabAlignment.Center);
-
-
-        //}
+        
         public static void HelloWorld()
         {
             CreateNewDocument("HelloWorld");
@@ -76,20 +34,7 @@ namespace BuildingCalculator
 
             Paragraph par = sect.AddParagraph();
             par.AddFormattedText("Привет Мир!", TextFormat.Underline);
-
-            RenderDocToPdf("HelloWorld");
-            
-            //PdfDocument document = new PdfDocument("HelloWorld");
-            //document.Info.Title = "HelloWorld";
-            //PdfPage page = document.AddPage();
-            //XGraphics gfx = XGraphics.FromPdfPage(page);
-            //XFont font = new XFont("Verdana", 20, XFontStyle.BoldItalic,options);
-            //gfx.DrawString("*!", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormats.Center);
-            
-            //const string filename = "HelloWorld.pdf";
-            //document.Save(filename);
-            
-            //Process.Start(filename);
+            RenderDocToPdf("HelloWorld");           
 
         }
         public static void CreateNewDocument(string DocName)
@@ -99,7 +44,7 @@ namespace BuildingCalculator
         }
         public static void RenderDocToPdf(string ident)
         {
-            PdfDocumentRenderer render = new PdfDocumentRenderer(true, PdfFontEmbedding.Always);
+            PdfDocumentRenderer render = new PdfDocumentRenderer(true);
             render.Document = documents[ident].doc;
             render.RenderDocument();
             render.Save(ident + ".pdf");
