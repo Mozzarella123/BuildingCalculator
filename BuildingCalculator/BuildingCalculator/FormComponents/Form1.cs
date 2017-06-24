@@ -18,9 +18,9 @@ namespace BuildingCalculator
         public Form1()
         {
             InitializeComponent();
-            
             JSONSerializeService.ReadInput("works.json");
             Rooms.Add((RoomTabs.TabPages[0].Controls["tabContent1"] as TabContent).Room);
+            Rooms[0].Name = RoomTabs.TabPages[0].Text;
             List<string> names = new List<string>()
             {
                 "Удалить"
@@ -39,7 +39,7 @@ namespace BuildingCalculator
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
         private void админкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -56,13 +56,15 @@ namespace BuildingCalculator
             if (RoomTabs.SelectedIndex == lastindex)
             {
                 //Добавляем новую вкладку
-                RoomTabs.TabPages.Insert(lastindex,"Комната " + (lastindex+1).ToString());
+                RoomTabs.TabPages.Insert(lastindex, "Комната " + (lastindex + 1).ToString());
                 RoomTabs.TabPages[lastindex].BackColor = Color.White;
                 //добавляем содержимое
                 RoomTabs.TabPages[lastindex].Controls.Add(new TabContent());
                 RoomTabs.SelectedIndex = lastindex;
                 //Добавляем в список комнат
                 Rooms.Add((RoomTabs.TabPages[lastindex].Controls["TabContent"] as TabContent).Room);
+                Rooms[lastindex].Name = RoomTabs.TabPages[lastindex].Text;
+
             }
         }
         private void DeleteTab(object sender, EventArgs e)

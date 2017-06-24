@@ -58,8 +58,7 @@ namespace MyNamespace
         /// <returns></returns>
         public static double getPriceforWorkType(WorkTypeClass work, double[] parametr)
         {
-            var method = CompiledClass.GetMethod(work.delegateName, BindingFlags.Static | BindingFlags.Public);//получение метода соответствующего объекту
-            
+            var method = CompiledClass.GetMethod(work.delegateName, BindingFlags.Static | BindingFlags.Public);//получение метода соответствующего объекту            
             object[] ObjPar = new object[parametr.Length];
             for (int i = 0; i < parametr.Length; i++)
                 ObjPar[i] = parametr[i];//конвертация double в object КОСТЫЛЬ

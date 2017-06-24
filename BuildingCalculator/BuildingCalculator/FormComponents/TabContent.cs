@@ -27,7 +27,15 @@ namespace BuildingCalculator
             try
             {
                 Entity obj1 = obj as Entity;
-                obj1.Params[control.Name] = Convert.ToDouble(Convert.ToDouble(control.Text));
+                Entity.ParamName param = Entity.ParamName.Width;//костыль
+                switch (control.Name)
+                {
+                    case "Width":param = Entity.ParamName.Width;break;
+                    case "Length": param = Entity.ParamName.Length; break;
+                    case "Height": param = Entity.ParamName.Height; break;
+
+                }
+                obj1.Params[param] = Convert.ToDouble(Convert.ToDouble(control.Text));
 
             }
             catch (FormatException)
@@ -35,7 +43,6 @@ namespace BuildingCalculator
 
             }
         }
-
         private void TabContent_Load(object sender, EventArgs e)
         {
 

@@ -22,12 +22,17 @@ namespace BuildingCalculator.FormComponents
 {
     public partial class SelectWorkTypes : Form
     {
+        /// <summary>
+        /// Список выбранных работ
+        /// </summary>
         public List<WorkTypeClass> checkedworks = new List<WorkTypeClass>();
-        public List<string> checkedcats = new List<string>();
+        /// <summary>
+        /// Список выбранных категорий
+        /// </summary>
+        public List<WorkTypeClass.Category> checkedcats = new List<WorkTypeClass.Category>();
         public SelectWorkTypes()
         {
             InitializeComponent();
-            //JSONSerializeService.ReadInput(Directory.GetCurrentDirectory() + "\\works.json");
             List<WorkTypeClass> workslist = JSONSerializeService.InputItems;
             SelectWorksTree.Nodes.Add("Все категории");
             //Добавляем категорию
@@ -35,6 +40,8 @@ namespace BuildingCalculator.FormComponents
             {
                 TreeNode newnode = new TreeNode(pair.Value);
                 newnode.Name = pair.Value;
+                //Задаем категорию
+                newnode.Tag = pair.Key;
                 SelectWorksTree.Nodes[0].Nodes.Add(newnode);
             }
             //Разбиваем по категориям
@@ -42,73 +49,74 @@ namespace BuildingCalculator.FormComponents
             {
                 TreeNode newnode = new TreeNode(ob.article);
                 newnode.Name = WorkTypeClass.CategoryNames[ob.category];
+                //Задаем тип работ
                 newnode.Tag = ob;
                 SelectWorksTree.Nodes[0].Nodes[WorkTypeClass.CategoryNames[ob.category]].Nodes.Add(newnode);
             }
-
-
         }
         public void GetCheckedNodes(TreeNodeCollection nodes)
         {
 
             for (int i = 0; i < nodes.Count; i++)
             {
-                TreeNode node = nodes[i];
+                TreeNode node = nodes[i];                
                 if (node.Checked && node.Level != 0)
-                    if (WorkTypeClass.CategoryNames.ContainsValue(node.Name)&&!checkedcats.Contains(node.Name))
-                        checkedcats.Add(node.Name);
+                    //Распределяем узлы по категориям и работам
+                    if (node.Tag is WorkTypeClass.Category)
+                    {
+                        if (node.Nodes.Count != 0)
+                            checkedcats.Add((WorkTypeClass.Category)Convert.ToInt32(node.Tag));
+                    }
                     else
                         checkedworks.Add(node.Tag as WorkTypeClass);
 
                 if (node.Nodes.Count > 0)
                     GetCheckedNodes(node.Nodes);
             }
-            
+
 
         }
         private void Calculate_Click(object sender, EventArgs e)
         {
-            //GetCheckedNodes(SelectWorksTree.Nodes);
-            //Document otchet = new Document();
-            //PDFWriteService.InitializeNewFile(otchet,"Отчёт");
-            //otchet.Info.Title = "Otchet";
-            //otchet.Info.Subject = "Отчёт";
-            //string directory = Directory.GetCurrentDirectory();
-
-            //for (int i =0;i<Form1.Rooms.Count;i++)
-            //{
-            //    otchet.AddSection();
-            //    otchet.LastSection.AddParagraph("Комната" + i, "Heading1");
-            //    for (int j=0;j<checkedcats.Count;j++)
-            //    {
-            //        otchet.LastSection.AddParagraph(checkedcats[j],"Heading2");
-            //        Dictionary<string, string> cont = new Dictionary<string, string>();
-            //        for (int k=0;k<checkedworks.Count;k++)
-            //        {
-            //            if (checkedcats[j] == WorkTypeClass.CategoryNames[checkedworks[k].category])
-            //            {
-            //                cont.Add(checkedworks[k].article, (DelegateAssemblyService.getPriceforWorkType(checkedworks[k], new double[0]) * Form1.Rooms[i].Area).ToString());
-            //            }
-            //        }
-            //        string[,] content = new string[cont.Count, 2];
-            //        int k1 = 0;
-            //        foreach (var pair in cont)
-            //        {
-            //            content[k1, 0] = pair.Key;
-            //            content[k1, 1] = pair.Value;
-            //            k1++;
-            //        }
-            //        PDFWriteService.AddTable(otchet, content);
-            //    }
-            //    PDFWriteService.SaveDocument(otchet);
-                
-            //}
-           
-
-
-
+            GetCheckedNodes(SelectWorksTree.Nodes);
+            Document otchet = new Document();
+            PDFWriteService.InitializeNewFile(otchet, "Отчёт");
+            otchet.Info.Title = "Otchet";
+            otchet.Info.Subject = "Отчёт";
+            for (int i = 0; i < Form1.Rooms.Count; i++)
+            {
+                otchet.AddSection();
+                otchet.LastSection.AddParagraph(Form1.Rooms[i].Name, "Heading1");
+                foreach (var pair in WorkTypeClass.CategoryNames)
+                {
+                    //Идем по выбранным категориям
+                    if (checkedcats.Contains(pair.Key))
+                    {
+                        otchet.LastSection.AddParagraph(WorkTypeClass.CategoryNames[pair.Key], "Heading2");
+                        string[] headers = { "Название работы", "Площадь", "Цена" };
+                        List<WorkTypeClass> cont = new List<WorkTypeClass>();
+                        //Идем по всем выбранным работам 
+                        foreach (WorkTypeClass ob in checkedworks)
+                        {
+                            //Проверяем на принадлежность работы к категории
+                            if (ob.category == pair.Key)
+                                cont.Add(ob);
+                        }
+                        string[,] content = new string[cont.Count, 3];
+                        //Формируем массив для таблицы
+                        for (int j = 0; j < cont.Count; j++)
+                        {
+                            content[j, 0] = cont[j].article;
+                            content[j, 1] = Form1.Rooms[i].GetAreaFromCat(cont[j].category).ToString();
+                            content[j, 2] = (cont[j].GetPrice(new double[] { Form1.Rooms[i].GetAreaFromCat(cont[j].category) }) ).ToString() + '\u2714';
+                        }
+                        PDFWriteService.AddTable(otchet, content, headers);
+                    }
+                }
+            }
+            PDFWriteService.SaveDocument(otchet);
         }
-        private void Check(TreeNode node,bool check)
+        private void Check(TreeNode node, bool check)
         {
             if (node.FirstNode != null)
             {
@@ -124,7 +132,7 @@ namespace BuildingCalculator.FormComponents
                     foreach (TreeNode nod in node.Nodes)
                         nod.Checked = false;
                 }
-                
+
             }
             else return;
         }
@@ -135,7 +143,7 @@ namespace BuildingCalculator.FormComponents
 
         private void SelectWorksTree_DoubleClick(object sender, EventArgs e)
         {
-            
+
         }
 
         private void SelectWorksTree_BeforeSelect(object sender, TreeViewCancelEventArgs e)
