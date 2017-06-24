@@ -19,10 +19,10 @@ namespace BuildingCalculator
     {
         public Document doc;
         public int columnWidth;
-        public int LastY;
-        Section activeSection;
         
-        //private PDFDocument() { }
+        
+        
+        //private PDFDocument() { } 
         public PDFDocument()
         {
 
@@ -69,8 +69,8 @@ namespace BuildingCalculator
         {
             switch (type)
             {
-                case AddType.ActivePage: if (activeSection == null) activeSection = doc.AddSection(); return activeSection; break;
-                case AddType.newPage: activeSection = doc.AddSection(); return activeSection; break;
+                case AddType.ActivePage: if (doc.LastSection == null) return doc.AddSection();else return doc.LastSection; break;
+                case AddType.newPage: doc.AddSection(); return doc.LastSection; break;
             }
             return null;
         }

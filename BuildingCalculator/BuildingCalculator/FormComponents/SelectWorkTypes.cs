@@ -68,41 +68,41 @@ namespace BuildingCalculator.FormComponents
         }
         private void Calculate_Click(object sender, EventArgs e)
         {
-            GetCheckedNodes(SelectWorksTree.Nodes);
-            Document otchet = new Document();
-            PDFWriteService.InitializeNewFile(otchet,"Отчёт");
-            otchet.Info.Title = "Otchet";
-            otchet.Info.Subject = "Отчёт";
-            string directory = Directory.GetCurrentDirectory();
+            //GetCheckedNodes(SelectWorksTree.Nodes);
+            //Document otchet = new Document();
+            //PDFWriteService.InitializeNewFile(otchet,"Отчёт");
+            //otchet.Info.Title = "Otchet";
+            //otchet.Info.Subject = "Отчёт";
+            //string directory = Directory.GetCurrentDirectory();
 
-            for (int i =0;i<Form1.Rooms.Count;i++)
-            {
-                otchet.AddSection();
-                otchet.LastSection.AddParagraph("Комната" + i, "Heading1");
-                for (int j=0;j<checkedcats.Count;j++)
-                {
-                    otchet.LastSection.AddParagraph(checkedcats[j],"Heading2");
-                    Dictionary<string, string> cont = new Dictionary<string, string>();
-                    for (int k=0;k<checkedworks.Count;k++)
-                    {
-                        if (checkedcats[j] == WorkTypeClass.CategoryNames[checkedworks[k].category])
-                        {
-                            cont.Add(checkedworks[k].article, (DelegateAssemblyService.getPriceforWorkType(checkedworks[k], new double[0]) * Form1.Rooms[i].Area).ToString());
-                        }
-                    }
-                    string[,] content = new string[cont.Count, 2];
-                    int k1 = 0;
-                    foreach (var pair in cont)
-                    {
-                        content[k1, 0] = pair.Key;
-                        content[k1, 1] = pair.Value;
-                        k1++;
-                    }
-                    PDFWriteService.AddTable(otchet, content);
-                }
-                PDFWriteService.SaveDocument(otchet);
+            //for (int i =0;i<Form1.Rooms.Count;i++)
+            //{
+            //    otchet.AddSection();
+            //    otchet.LastSection.AddParagraph("Комната" + i, "Heading1");
+            //    for (int j=0;j<checkedcats.Count;j++)
+            //    {
+            //        otchet.LastSection.AddParagraph(checkedcats[j],"Heading2");
+            //        Dictionary<string, string> cont = new Dictionary<string, string>();
+            //        for (int k=0;k<checkedworks.Count;k++)
+            //        {
+            //            if (checkedcats[j] == WorkTypeClass.CategoryNames[checkedworks[k].category])
+            //            {
+            //                cont.Add(checkedworks[k].article, (DelegateAssemblyService.getPriceforWorkType(checkedworks[k], new double[0]) * Form1.Rooms[i].Area).ToString());
+            //            }
+            //        }
+            //        string[,] content = new string[cont.Count, 2];
+            //        int k1 = 0;
+            //        foreach (var pair in cont)
+            //        {
+            //            content[k1, 0] = pair.Key;
+            //            content[k1, 1] = pair.Value;
+            //            k1++;
+            //        }
+            //        PDFWriteService.AddTable(otchet, content);
+            //    }
+            //    PDFWriteService.SaveDocument(otchet);
                 
-            }
+            //}
            
 
 
