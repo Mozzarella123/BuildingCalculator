@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Function.cs" />
+    <Compile Include="Classes\PDFDocument.cs" />
     <Compile Include="Classes\Static\PDFWriteService.cs" />
     <Compile Include="FormComponents\AdminForm.cs">
       <SubType>Form</SubType>

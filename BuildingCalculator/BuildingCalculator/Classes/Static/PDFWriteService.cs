@@ -18,74 +18,93 @@ namespace BuildingCalculator
 {
     public enum AddType{ newPage,ActivePage};//необходимо для добавления на новую страницу или старую
     public enum AlignType { center, left, right,none};
+    public enum HeaderType { first,second,third};
     public static class PDFWriteService
     {
         static Unit ColumnWidth = new Unit(200, UnitType.Point);
         static string FilePath = Directory.GetCurrentDirectory();
         static string FileName = "Отчёт";//Имя документа
         static XPdfFontOptions options = new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.Always);
-        static PdfDocument doc;//документ
-        static PdfPage activePage;//текущая страница
-        static int LastY;
-        public static void InitializeNewFile(Document document,string filename)//инициализирует создание документа
-        { 
 
-                // Get the predefined style Normal.
-                Style style = document.Styles["Normal"];
-                // Because all styles are derived from Normal, the next line changes the 
-                // font of the whole document. Or, more exactly, it changes the font of
-                // all styles and paragraphs that do not redefine the font.
-                style.Font.Name = "Times New Roman";
-                // Heading1 to Heading9 are predefined styles with an outline level. An outline level
-                // other than OutlineLevel.BodyText automatically creates the outline (or bookmarks) 
-                // in PDF.
+        //public static void InitializeNewFile(Document document, string filename)//инициализирует создание документа
+        //{
 
-                style = document.Styles["Heading1"];
-                style.Font.Name = "Tahoma";
-                style.Font.Size = 14;
-                style.Font.Bold = true;
-                style.Font.Color = Colors.DarkBlue;
-                style.ParagraphFormat.PageBreakBefore = true;
-                style.ParagraphFormat.SpaceAfter = 6;
+        //    // Get the predefined style Normal.
+        //    Style style = document.Styles["Normal"];
+        //    // Because all styles are derived from Normal, the next line changes the 
+        //    // font of the whole document. Or, more exactly, it changes the font of
+        //    // all styles and paragraphs that do not redefine the font.
+        //    style.Font.Name = "Times New Roman";
+        //    // Heading1 to Heading9 are predefined styles with an outline level. An outline level
+        //    // other than OutlineLevel.BodyText automatically creates the outline (or bookmarks) 
+        //    // in PDF.
 
-                style = document.Styles["Heading2"];
-                style.Font.Size = 12;
-                style.Font.Bold = true;
-                style.ParagraphFormat.PageBreakBefore = false;
-                style.ParagraphFormat.SpaceBefore = 6;
-                style.ParagraphFormat.SpaceAfter = 6;
+        //    style = document.Styles["Heading1"];
+        //    style.Font.Name = "Tahoma";
+        //    style.Font.Size = 14;
+        //    style.Font.Bold = true;
+        //    style.Font.Color = Colors.DarkBlue;
+        //    style.ParagraphFormat.PageBreakBefore = true;
+        //    style.ParagraphFormat.SpaceAfter = 6;
 
-                style = document.Styles["Heading3"];
-                style.Font.Size = 10;
-                style.Font.Bold = true;
-                style.Font.Italic = true;
-                style.ParagraphFormat.SpaceBefore = 6;
-                style.ParagraphFormat.SpaceAfter = 3;
+        //    style = document.Styles["Heading2"];
+        //    style.Font.Size = 12;
+        //    style.Font.Bold = true;
+        //    style.ParagraphFormat.PageBreakBefore = false;
+        //    style.ParagraphFormat.SpaceBefore = 6;
+        //    style.ParagraphFormat.SpaceAfter = 6;
 
-                style = document.Styles[StyleNames.Header];
-                style.ParagraphFormat.AddTabStop("16cm", TabAlignment.Right);
+        //    style = document.Styles["Heading3"];
+        //    style.Font.Size = 10;
+        //    style.Font.Bold = true;
+        //    style.Font.Italic = true;
+        //    style.ParagraphFormat.SpaceBefore = 6;
+        //    style.ParagraphFormat.SpaceAfter = 3;
 
-                style = document.Styles[StyleNames.Footer];
-                style.ParagraphFormat.AddTabStop("8cm", TabAlignment.Center);
+        //    style = document.Styles[StyleNames.Header];
+        //    style.ParagraphFormat.AddTabStop("16cm", TabAlignment.Right);
 
-            
-        }
+        //    style = document.Styles[StyleNames.Footer];
+        //    style.ParagraphFormat.AddTabStop("8cm", TabAlignment.Center);
+
+
+        //}
         public static void HelloWorld()
         {
+            CreateNewDocument("HelloWorld");
+            Section sect=documents["HelloWorld"].getSection(AddType.ActivePage);
 
-            PdfDocument document = new PdfDocument("HelloWorld");
-            document.Info.Title = "HelloWorld";
-            PdfPage page = document.AddPage();
-            XGraphics gfx = XGraphics.FromPdfPage(page);
-            XFont font = new XFont("Verdana", 20, XFontStyle.BoldItalic,options);
-            gfx.DrawString("*!", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormats.Center);
+            Paragraph par = sect.AddParagraph();
+            par.AddFormattedText("Привет Мир!", TextFormat.Underline);
+
+            RenderDocToPdf("HelloWorld");
             
-            const string filename = "HelloWorld.pdf";
-            document.Save(filename);
+            //PdfDocument document = new PdfDocument("HelloWorld");
+            //document.Info.Title = "HelloWorld";
+            //PdfPage page = document.AddPage();
+            //XGraphics gfx = XGraphics.FromPdfPage(page);
+            //XFont font = new XFont("Verdana", 20, XFontStyle.BoldItalic,options);
+            //gfx.DrawString("*!", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormats.Center);
+            
+            //const string filename = "HelloWorld.pdf";
+            //document.Save(filename);
             
             //Process.Start(filename);
 
         }
+        public static void CreateNewDocument(string DocName)
+        {
+            PDFDocument doc = new PDFDocument();
+            documents.Add(DocName, doc);
+        }
+        public static void RenderDocToPdf(string ident)
+        {
+            PdfDocumentRenderer render = new PdfDocumentRenderer(true, PdfFontEmbedding.Always);
+            render.Document = documents[ident].doc;
+            render.RenderDocument();
+            render.Save(ident + ".pdf");
+        }
+        static Dictionary<string, PDFDocument> documents = new Dictionary<string, PDFDocument>();
         /// <summary>
         /// Добавление таблицы в документ
         /// </summary>
@@ -95,11 +114,13 @@ namespace BuildingCalculator
         /// <param name="headers">Заголовки столбцов</param>
         /// <param name="x">Координата Х на странице</param>
         /// <param name="y">Координата У на странице</param>
-        public static void AddTable(Document document,string[,] content, string[] headers=null)
+        public static void AddTable(string ident,string[,] content, string[] headers=null,AddType type=AddType.ActivePage)
         {
             
             if (headers != null&&content.GetLength(1) != headers.Length)
                 throw new IndexOutOfRangeException("Количество заголовков не совпадает с количеством столбцов в таблице контента");
+            PDFDocument doc = documents[ident];
+            Document document = doc.doc;
             int columncounts = 0;
             Table table = new Table();
             table.Borders.Width = 0.75;
@@ -138,19 +159,37 @@ namespace BuildingCalculator
                     cell.AddParagraph(content[i, j]);
                 }
             }
-            document.LastSection.Add(table);
+            doc.getSection(type).Add(table);
+            
             
         }
-        public static void SaveDocument(Document document)
+        public static void AddHeader(string ident,string text,HeaderType htype,AddType type = AddType.ActivePage)
         {
-            MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToFile(document, "MigraDoc.mdddl");
-            PdfDocumentRenderer renderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always);
-            renderer.Document = document;
-            renderer.RenderDocument();
-            // Save the document...
-            string filename = FileName+".pdf";
-            renderer.PdfDocument.Save(filename);
+            PDFDocument document = documents[ident];
+            Section sect = document.getSection(type);
+            string style = "";
+            switch (htype)
+            {
+                case HeaderType.first:style = "Heading1";break;
+                case HeaderType.second: style = "Heading2"; break;
+                case HeaderType.third: style = "Heading3"; break;
+            }
+            Paragraph par = sect.AddParagraph(text,style);
+            
+            
         }
+        //public static void SaveDocument(Document document)
+        //{
+        //    MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToFile(document, "MigraDoc.mdddl");
+        //    PdfDocumentRenderer renderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always);
+        //    renderer.Document = document;
+        //    renderer.RenderDocument();
+        //    // Save the document...
+        //    string filename = FileName+".pdf";
+        //    renderer.PdfDocument.Save(filename);
+        //}
+
+
         ///// <summary>
         ///// Добавление разрыва страниц
         ///// </summary>
