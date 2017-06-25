@@ -28,178 +28,216 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.Listofparams = new System.Windows.Forms.ListBox();
+            this.WorkTypeNameInp = new System.Windows.Forms.TextBox();
+            this.formula = new System.Windows.Forms.TextBox();
+            this.WorkTypeName = new System.Windows.Forms.Label();
+            this.formulat = new System.Windows.Forms.Label();
+            this.ParamsT = new System.Windows.Forms.Label();
+            this.AddType = new System.Windows.Forms.Button();
+            this.Category = new System.Windows.Forms.ComboBox();
+            this.CategoryT = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.parameters = new BuildingCalculator.FormComponents.TextwithBut();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // listBox1
+            // Listofparams
             // 
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(920, 0);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(403, 523);
-            this.listBox1.TabIndex = 0;
-            this.listBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox1_KeyDown);
-            this.listBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDown);
+            this.Listofparams.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Listofparams.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Listofparams.FormattingEnabled = true;
+            this.Listofparams.ItemHeight = 29;
+            this.Listofparams.Location = new System.Drawing.Point(593, 8);
+            this.Listofparams.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.Listofparams.Name = "Listofparams";
+            this.tableLayoutPanel1.SetRowSpan(this.Listofparams, 5);
+            this.Listofparams.Size = new System.Drawing.Size(382, 684);
+            this.Listofparams.TabIndex = 0;
+            this.Listofparams.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox1_KeyDown);
+            this.Listofparams.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDown);
             // 
-            // textBox1
+            // WorkTypeNameInp
             // 
-            this.textBox1.Location = new System.Drawing.Point(320, 51);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(210, 26);
-            this.textBox1.TabIndex = 1;
+            this.WorkTypeNameInp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.WorkTypeNameInp.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.WorkTypeNameInp.Location = new System.Drawing.Point(39, 59);
+            this.WorkTypeNameInp.Margin = new System.Windows.Forms.Padding(5, 10, 5, 10);
+            this.WorkTypeNameInp.Multiline = true;
+            this.WorkTypeNameInp.Name = "WorkTypeNameInp";
+            this.WorkTypeNameInp.Size = new System.Drawing.Size(181, 37);
+            this.WorkTypeNameInp.TabIndex = 1;
             // 
-            // textBox2
+            // formula
             // 
-            this.textBox2.Location = new System.Drawing.Point(573, 166);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(306, 102);
-            this.textBox2.TabIndex = 2;
+            this.formula.AllowDrop = true;
+            this.formula.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.formula.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.formula.Location = new System.Drawing.Point(34, 145);
+            this.formula.Margin = new System.Windows.Forms.Padding(5, 10, 5, 10);
+            this.formula.Multiline = true;
+            this.formula.Name = "formula";
+            this.formula.Size = new System.Drawing.Size(191, 102);
+            this.formula.TabIndex = 4;
+            this.formula.Text = "0";
+            this.formula.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.formula.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBox3_DragDrop);
+            this.formula.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBox3_DragEnter);
             // 
-            // button1
+            // WorkTypeName
             // 
-            this.button1.Location = new System.Drawing.Point(573, 286);
-            this.button1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(206, 35);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Добавить параметр";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.WorkTypeName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.WorkTypeName.AutoSize = true;
+            this.WorkTypeName.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.WorkTypeName.Location = new System.Drawing.Point(41, 10);
+            this.WorkTypeName.Margin = new System.Windows.Forms.Padding(5, 10, 5, 10);
+            this.WorkTypeName.Name = "WorkTypeName";
+            this.WorkTypeName.Size = new System.Drawing.Size(176, 29);
+            this.WorkTypeName.TabIndex = 5;
+            this.WorkTypeName.Text = "Наименование";
             // 
-            // textBox3
+            // formulat
             // 
-            this.textBox3.AllowDrop = true;
-            this.textBox3.Location = new System.Drawing.Point(39, 166);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(330, 102);
-            this.textBox3.TabIndex = 4;
-            this.textBox3.Text = "0";
-            this.textBox3.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBox3_DragDrop);
-            this.textBox3.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBox3_DragEnter);
+            this.formulat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.formulat.AutoSize = true;
+            this.formulat.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.formulat.Location = new System.Drawing.Point(73, 106);
+            this.formulat.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.formulat.Name = "formulat";
+            this.formulat.Size = new System.Drawing.Size(113, 29);
+            this.formulat.TabIndex = 6;
+            this.formulat.Text = "Формула";
+            this.formulat.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label1
+            // ParamsT
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(254, 8);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 20);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Наименование";
+            this.ParamsT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.ParamsT.AutoSize = true;
+            this.ParamsT.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ParamsT.Location = new System.Drawing.Point(352, 106);
+            this.ParamsT.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.ParamsT.Name = "ParamsT";
+            this.ParamsT.Size = new System.Drawing.Size(141, 29);
+            this.ParamsT.TabIndex = 7;
+            this.ParamsT.Text = "Параметры";
+            this.ParamsT.Click += new System.EventHandler(this.label3_Click);
             // 
-            // label2
+            // AddType
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(228, 128);
-            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 20);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Формула";
+            this.AddType.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tableLayoutPanel1.SetColumnSpan(this.AddType, 2);
+            this.AddType.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AddType.Location = new System.Drawing.Point(147, 267);
+            this.AddType.Margin = new System.Windows.Forms.Padding(5, 10, 5, 10);
+            this.AddType.Name = "AddType";
+            this.AddType.Size = new System.Drawing.Size(293, 42);
+            this.AddType.TabIndex = 9;
+            this.AddType.Text = "Добавить тип работ";
+            this.AddType.UseVisualStyleBackColor = true;
+            this.AddType.Click += new System.EventHandler(this.AddWorkType);
             // 
-            // label3
+            // Category
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(660, 128);
-            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 20);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Параметры";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(250, 355);
-            this.button3.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(285, 89);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Добавить тип работ";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.Category.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.Category.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Category.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Category.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.Category.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Category.FormattingEnabled = true;
+            this.Category.Items.AddRange(new object[] {
             "Стены",
             "Пол",
             "Потолок",
             "Пол периметр",
             "Потолок периметр",
             "Разное"});
-            this.comboBox1.Location = new System.Drawing.Point(381, 238);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(180, 28);
-            this.comboBox1.TabIndex = 10;
+            this.Category.Location = new System.Drawing.Point(323, 59);
+            this.Category.Margin = new System.Windows.Forms.Padding(5, 10, 5, 10);
+            this.Category.Name = "Category";
+            this.Category.Size = new System.Drawing.Size(200, 37);
+            this.Category.TabIndex = 10;
             // 
-            // label4
+            // CategoryT
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(381, 214);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 20);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Категория";
+            this.CategoryT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.CategoryT.AutoSize = true;
+            this.CategoryT.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CategoryT.Location = new System.Drawing.Point(360, 10);
+            this.CategoryT.Margin = new System.Windows.Forms.Padding(5, 10, 5, 10);
+            this.CategoryT.Name = "CategoryT";
+            this.CategoryT.Size = new System.Drawing.Size(125, 29);
+            this.CategoryT.TabIndex = 11;
+            this.CategoryT.Text = "Категория";
+            this.CategoryT.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.4637F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.48946F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.04684F));
+            this.tableLayoutPanel1.Controls.Add(this.WorkTypeName, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.Category, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.WorkTypeNameInp, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.Listofparams, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.CategoryT, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.formulat, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.ParamsT, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.parameters, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.formula, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.AddType, 0, 4);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(981, 335);
+            this.tableLayoutPanel1.TabIndex = 12;
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            // 
+            // parameters
+            // 
+            this.parameters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.parameters.Location = new System.Drawing.Point(310, 145);
+            this.parameters.Margin = new System.Windows.Forms.Padding(10);
+            this.parameters.Name = "parameters";
+            this.parameters.Size = new System.Drawing.Size(226, 102);
+            this.parameters.TabIndex = 12;
             // 
             // CreateWorkTypeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1323, 523);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.listBox1);
+            this.ClientSize = new System.Drawing.Size(981, 335);
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "CreateWorkTypeForm";
-            this.Text = "CreateWorkTypeForm";
+            this.Text = "Создать тип работ";
             this.Load += new System.EventHandler(this.CreateWorkTypeForm_Load);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label4;
-        internal System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ListBox Listofparams;
+        private System.Windows.Forms.TextBox WorkTypeNameInp;
+        private System.Windows.Forms.TextBox formula;
+        private System.Windows.Forms.Label WorkTypeName;
+        private System.Windows.Forms.Label formulat;
+        private System.Windows.Forms.Label ParamsT;
+        private System.Windows.Forms.ComboBox Category;
+        private System.Windows.Forms.Label CategoryT;
+        internal System.Windows.Forms.Button AddType;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private FormComponents.TextwithBut parameters;
     }
 }

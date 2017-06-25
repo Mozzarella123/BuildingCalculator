@@ -17,12 +17,7 @@ namespace BuildingCalculator
 {
     class PDFDocument
     {
-        public Document doc;
-        public int columnWidth;
-        
-        
-        
-        //private PDFDocument() { } 
+        public Document doc; 
         public PDFDocument()
         {
 
@@ -70,8 +65,8 @@ namespace BuildingCalculator
         {
             switch (type)
             {
-                case AddType.ActivePage: if (doc.LastSection == null) return doc.AddSection();else return doc.LastSection; break;
-                case AddType.newPage: doc.AddSection(); return doc.LastSection; break;
+                case AddType.ActivePage: if (doc.LastSection == null) return doc.AddSection();else return doc.LastSection; 
+                case AddType.newPage: doc.AddSection(); return doc.LastSection;
             }
             return null;
         }

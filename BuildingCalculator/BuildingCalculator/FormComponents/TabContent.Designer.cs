@@ -30,13 +30,13 @@
         {
             this.multiSliders1 = new BuildingCalculator.MultiSliders();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Height = new System.Windows.Forms.TextBox();
+            this.HeightT = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.Width = new System.Windows.Forms.TextBox();
             this.Length = new System.Windows.Forms.TextBox();
             this.LengthT = new System.Windows.Forms.Label();
             this.WidthT = new System.Windows.Forms.Label();
-            this.Height = new System.Windows.Forms.TextBox();
-            this.HeightT = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,68 +56,16 @@
             this.groupBox1.Controls.Add(this.Length);
             this.groupBox1.Controls.Add(this.LengthT);
             this.groupBox1.Controls.Add(this.WidthT);
+            this.groupBox1.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(55, 36);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(210, 362);
             this.groupBox1.TabIndex = 32;
             this.groupBox1.TabStop = false;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.SystemColors.Window;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(49, -3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 29);
-            this.label3.TabIndex = 28;
-            this.label3.Text = "Комната";
-            // 
-            // Width
-            // 
-            this.Width.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Width.Location = new System.Drawing.Point(21, 194);
-            this.Width.MaxLength = 4;
-            this.Width.Multiline = true;
-            this.Width.Name = "Width";
-            this.Width.Size = new System.Drawing.Size(172, 45);
-            this.Width.TabIndex = 25;
-            this.Width.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // Length
-            // 
-            this.Length.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Length.Location = new System.Drawing.Point(21, 90);
-            this.Length.MaxLength = 4;
-            this.Length.Multiline = true;
-            this.Length.Name = "Length";
-            this.Length.Size = new System.Drawing.Size(172, 45);
-            this.Length.TabIndex = 24;
-            this.Length.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // LengthT
-            // 
-            this.LengthT.AutoSize = true;
-            this.LengthT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LengthT.Location = new System.Drawing.Point(67, 46);
-            this.LengthT.Name = "LengthT";
-            this.LengthT.Size = new System.Drawing.Size(87, 29);
-            this.LengthT.TabIndex = 23;
-            this.LengthT.Text = "Длина";
-            // 
-            // WidthT
-            // 
-            this.WidthT.AutoSize = true;
-            this.WidthT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.WidthT.Location = new System.Drawing.Point(58, 149);
-            this.WidthT.Name = "WidthT";
-            this.WidthT.Size = new System.Drawing.Size(105, 29);
-            this.WidthT.TabIndex = 22;
-            this.WidthT.Text = "Ширина";
-            // 
             // Height
             // 
-            this.Height.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Height.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Height.Location = new System.Drawing.Point(21, 299);
             this.Height.MaxLength = 4;
             this.Height.Multiline = true;
@@ -129,12 +77,65 @@
             // HeightT
             // 
             this.HeightT.AutoSize = true;
-            this.HeightT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HeightT.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.HeightT.Location = new System.Drawing.Point(58, 254);
             this.HeightT.Name = "HeightT";
-            this.HeightT.Size = new System.Drawing.Size(97, 29);
+            this.HeightT.Size = new System.Drawing.Size(95, 29);
             this.HeightT.TabIndex = 29;
             this.HeightT.Text = "Высота";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.Window;
+            this.label3.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(49, -3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(109, 29);
+            this.label3.TabIndex = 28;
+            this.label3.Text = "Комната";
+            // 
+            // Width
+            // 
+            this.Width.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Width.Location = new System.Drawing.Point(21, 194);
+            this.Width.MaxLength = 4;
+            this.Width.Multiline = true;
+            this.Width.Name = "Width";
+            this.Width.Size = new System.Drawing.Size(172, 45);
+            this.Width.TabIndex = 25;
+            this.Width.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // Length
+            // 
+            this.Length.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Length.Location = new System.Drawing.Point(21, 90);
+            this.Length.MaxLength = 4;
+            this.Length.Multiline = true;
+            this.Length.Name = "Length";
+            this.Length.Size = new System.Drawing.Size(172, 45);
+            this.Length.TabIndex = 24;
+            this.Length.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // LengthT
+            // 
+            this.LengthT.AutoSize = true;
+            this.LengthT.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LengthT.Location = new System.Drawing.Point(67, 46);
+            this.LengthT.Name = "LengthT";
+            this.LengthT.Size = new System.Drawing.Size(83, 29);
+            this.LengthT.TabIndex = 23;
+            this.LengthT.Text = "Длина";
+            // 
+            // WidthT
+            // 
+            this.WidthT.AutoSize = true;
+            this.WidthT.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.WidthT.Location = new System.Drawing.Point(58, 149);
+            this.WidthT.Name = "WidthT";
+            this.WidthT.Size = new System.Drawing.Size(100, 29);
+            this.WidthT.TabIndex = 22;
+            this.WidthT.Text = "Ширина";
             // 
             // TabContent
             // 

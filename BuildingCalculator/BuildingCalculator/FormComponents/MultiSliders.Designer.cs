@@ -45,7 +45,7 @@
             // ElementsNames
             // 
             this.ElementsNames.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ElementsNames.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ElementsNames.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ElementsNames.FormattingEnabled = true;
             this.ElementsNames.Location = new System.Drawing.Point(6, 3);
             this.ElementsNames.Name = "ElementsNames";

@@ -108,6 +108,12 @@
     <Compile Include="FormComponents\SelectWorkTypes.Designer.cs">
       <DependentUpon>SelectWorkTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormComponents\TextwithBut.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormComponents\TextwithBut.Designer.cs">
+      <DependentUpon>TextwithBut.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\Room.cs" />
     <Compile Include="FormComponents\Slider.cs">
@@ -140,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\SelectWorkTypes.resx">
       <DependentUpon>SelectWorkTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormComponents\TextwithBut.resx">
+      <DependentUpon>TextwithBut.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
