@@ -30,13 +30,17 @@
         {
             this.Calculate = new System.Windows.Forms.Button();
             this.SelectWorksTree = new System.Windows.Forms.TreeView();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Calculate
             // 
-            this.Calculate.Location = new System.Drawing.Point(216, 304);
+            this.Calculate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.Calculate.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Calculate.Location = new System.Drawing.Point(205, 319);
             this.Calculate.Name = "Calculate";
-            this.Calculate.Size = new System.Drawing.Size(134, 34);
+            this.Calculate.Size = new System.Drawing.Size(162, 44);
             this.Calculate.TabIndex = 3;
             this.Calculate.Text = "Рассчитать";
             this.Calculate.UseVisualStyleBackColor = true;
@@ -45,24 +49,40 @@
             // SelectWorksTree
             // 
             this.SelectWorksTree.CheckBoxes = true;
-            this.SelectWorksTree.Dock = System.Windows.Forms.DockStyle.Top;
-            this.SelectWorksTree.Location = new System.Drawing.Point(0, 0);
+            this.SelectWorksTree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SelectWorksTree.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SelectWorksTree.Location = new System.Drawing.Point(3, 3);
             this.SelectWorksTree.Name = "SelectWorksTree";
-            this.SelectWorksTree.Size = new System.Drawing.Size(573, 286);
+            this.SelectWorksTree.Size = new System.Drawing.Size(567, 310);
             this.SelectWorksTree.TabIndex = 4;
             this.SelectWorksTree.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.SelectWorksTree_AfterCheck);
             this.SelectWorksTree.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.SelectWorksTree_BeforeSelect);
             this.SelectWorksTree.DoubleClick += new System.EventHandler(this.SelectWorksTree_DoubleClick);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.Calculate, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.SelectWorksTree, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.3388F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.6612F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(573, 366);
+            this.tableLayoutPanel1.TabIndex = 5;
             // 
             // SelectWorkTypes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(573, 366);
-            this.Controls.Add(this.SelectWorksTree);
-            this.Controls.Add(this.Calculate);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "SelectWorkTypes";
             this.Text = "SelectWorkTypes";
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -70,5 +90,6 @@
         #endregion
         private System.Windows.Forms.Button Calculate;
         private System.Windows.Forms.TreeView SelectWorksTree;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }
