@@ -78,7 +78,7 @@
             this.Remove.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Remove.FlatAppearance.BorderSize = 0;
             this.Remove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Remove.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Remove.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Remove.Location = new System.Drawing.Point(3, 3);
             this.Remove.Name = "Remove";
             this.Remove.Padding = new System.Windows.Forms.Padding(2);
@@ -97,7 +97,7 @@
             this.Add.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Add.FlatAppearance.BorderSize = 0;
             this.Add.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Add.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Add.Location = new System.Drawing.Point(146, 3);
             this.Add.Name = "Add";
             this.Add.Padding = new System.Windows.Forms.Padding(2);
@@ -116,7 +116,7 @@
             this.Prev.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Prev.FlatAppearance.BorderSize = 0;
             this.Prev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Prev.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Prev.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Prev.Location = new System.Drawing.Point(3, 244);
             this.Prev.Name = "Prev";
             this.Prev.Padding = new System.Windows.Forms.Padding(2);
@@ -135,7 +135,7 @@
             this.Next.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Next.FlatAppearance.BorderSize = 0;
             this.Next.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Next.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Next.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Next.Location = new System.Drawing.Point(146, 244);
             this.Next.Name = "Next";
             this.Next.Padding = new System.Windows.Forms.Padding(2);
@@ -149,7 +149,7 @@
             // 
             this.CurrentIndex.AutoSize = true;
             this.CurrentIndex.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CurrentIndex.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CurrentIndex.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CurrentIndex.Location = new System.Drawing.Point(74, 0);
             this.CurrentIndex.Name = "CurrentIndex";
             this.CurrentIndex.Size = new System.Drawing.Size(66, 49);
@@ -162,7 +162,7 @@
             this.WidthT.AutoSize = true;
             this.Markup.SetColumnSpan(this.WidthT, 3);
             this.WidthT.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.WidthT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.WidthT.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.WidthT.Location = new System.Drawing.Point(3, 49);
             this.WidthT.Name = "WidthT";
             this.WidthT.Size = new System.Drawing.Size(210, 48);
@@ -175,9 +175,8 @@
             this.Width.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Width.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Markup.SetColumnSpan(this.Width, 3);
-            this.Width.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Width.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Width.Location = new System.Drawing.Point(3, 100);
             this.Width.MaxLength = 4;
             this.Width.Multiline = true;
@@ -189,10 +188,9 @@
             // 
             // Height
             // 
-            this.Height.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Markup.SetColumnSpan(this.Height, 3);
             this.Height.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Height.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Height.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Height.Location = new System.Drawing.Point(3, 196);
             this.Height.MaxLength = 4;
             this.Height.Multiline = true;
@@ -207,7 +205,7 @@
             this.HeightT.AutoSize = true;
             this.Markup.SetColumnSpan(this.HeightT, 3);
             this.HeightT.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.HeightT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HeightT.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.HeightT.Location = new System.Drawing.Point(3, 145);
             this.HeightT.Name = "HeightT";
             this.HeightT.Size = new System.Drawing.Size(210, 48);

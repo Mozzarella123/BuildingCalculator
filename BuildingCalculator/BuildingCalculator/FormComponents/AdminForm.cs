@@ -73,14 +73,21 @@ namespace BuildingCalculator
         {
             CreateWorkTypeForm.CreateWorkType();
             CreateWorkTypeForm.Button.Text = "Добавить тип работ";
+            CreateWorkTypeForm.ActiveForm.Text = "Добавить тип работ";
 
         }
         private void Edit(object sender, EventArgs e)
         {
-            
-            if (ItemsinTree.SelectedNode!=null)
+
+            if (ItemsinTree.SelectedNode != null)
+            {
+                
                 CreateWorkTypeForm.CreateWorkType((WorkTypeClass)ItemsinTree.SelectedNode.Tag);
-            CreateWorkTypeForm.Button.Text = "Отредактировать тип работ";
+                
+                CreateWorkTypeForm.Button.Text = "Редактировать тип работ";
+                CreateWorkTypeForm.ActiveForm.Text = "Редактировать тип работ";
+            }
+
         }
         private void Remove(object sender, EventArgs e)
         {
@@ -103,7 +110,11 @@ namespace BuildingCalculator
         private void ItemsinTree_BeforeSelect(object sender, TreeViewCancelEventArgs e)
         {
             if (e.Node.Level == 0)
+            {               
                 e.Cancel = true;
+                if (e.Node.Nodes.Count!=0)
+                e.Node.TreeView.SelectedNode = e.Node.Nodes[0];
+            }                     
         }
     }
 }

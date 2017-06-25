@@ -44,6 +44,9 @@ namespace BuildingCalculator
         private void админкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form lf = LoginClass.SignIn();
+            lf.Top = (this.Top + (this.Height / 2)) - lf.Height / 2;
+            lf.Left = (this.Left + (this.Width / 2)) - lf.Width / 2;
+            lf.StartPosition = FormStartPosition.Manual;
             lf.Show();
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

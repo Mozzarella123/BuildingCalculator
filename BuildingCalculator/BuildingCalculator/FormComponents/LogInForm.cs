@@ -18,9 +18,11 @@ namespace BuildingCalculator
             
             
             InitializeComponent();
+            MaximizeBox = false;
+            MinimizeBox = false;
             login = LoginClass.login;
             pass = LoginClass.pass;
-            this.FormClosing += new FormClosingEventHandler(_FormClosing);
+            FormClosing += new FormClosingEventHandler(_FormClosing);
 
 
         }
@@ -41,7 +43,6 @@ namespace BuildingCalculator
             
             
             
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -51,8 +52,8 @@ namespace BuildingCalculator
             string PasInp;
             try
             {
-                LogInp = textBox1.Text.Substring(0, LoginClass.login.Length);
-                PasInp = textBox2.Text.Substring(0, LoginClass.pass.Length);
+                LogInp = LoginInp.Text.Substring(0, LoginClass.login.Length);
+                PasInp = PassInp.Text.Substring(0, LoginClass.pass.Length);
             }
             catch
             {
@@ -61,13 +62,21 @@ namespace BuildingCalculator
 
             if (LogInp == login && PasInp == pass)
             {
-                if (checkBox1.Checked)
+                if (Rememberme.Checked)
                     ConfigWorksService.ChangeValue("Remembered", "true");
 
                 LoginClass.IsLoged = true;
+                LoginClass.af.Top = (this.Top + (this.Height / 2)) - LoginClass.af.Height / 2;
+                LoginClass.af.Left = (this.Top + (this.Height / 2)) - LoginClass.af.Height / 2;
+                LoginClass.af.StartPosition = FormStartPosition.Manual;
                 LoginClass.af.Show();
                 this.Hide();
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
     

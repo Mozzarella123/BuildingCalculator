@@ -23,9 +23,7 @@ namespace BuildingCalculator
     {
         static Unit ColumnWidth = new Unit(200, UnitType.Point);
         static string FilePath = Directory.GetCurrentDirectory();
-        static string FileName = "Отчёт";//Имя документа
         static XPdfFontOptions options = new XPdfFontOptions(PdfFontEncoding.Unicode);
-
         
         public static void HelloWorld()
         {
