@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BuildingCalculator.Classes;
+using BuildingCalculator.Classes.Static;
 
 namespace BuildingCalculator
 {
@@ -32,10 +33,13 @@ namespace BuildingCalculator
             Functions.ContextMenu(RoomTabs, names, functions);
 
             //PDFWriteService.HelloWorld();
-            PDFWriteService.CreateNewDocument("test");
-            PDFWriteService.AddHeader("test", "Заголовок", HeaderType.first);
-            PDFWriteService.AddHeader("test", "Заголовок2", HeaderType.first);
-            PDFWriteService.RenderDocToPdf("test");
+            //PDFWriteService.CreateNewDocument("test");
+            //PDFWriteService.AddHeader("test", "Заголовок", HeaderType.first);
+            //PDFWriteService.AddHeader("test", "Заголовок2", HeaderType.first);
+            //PDFWriteService.RenderDocToPdf("test");
+
+            ExcelWorkServicecs.OpenXlsFile("test.xlsx");
+            string[,] ar = ExcelWorkServicecs.ReadWorkTypes();
         }
         private void Form1_Load(object sender, EventArgs e)
         {
