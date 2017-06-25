@@ -132,7 +132,7 @@ namespace BuildingCalculator
         {
             WorkTypeClass work = new WorkTypeClass();
             work.article = WorkTypeName.Text;
-            work.formula = formulat.Text;
+            work.formula = formula.Text;
             var numer = Listofparams.Items.GetEnumerator();
             while (numer.MoveNext())
                 work.parametrs.Add(numer.Current.ToString());
