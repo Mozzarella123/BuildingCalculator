@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BuildingCalculator.Classes;
 
 namespace BuildingCalculator
 {
@@ -28,7 +29,7 @@ namespace BuildingCalculator
             Sliders.Controls.Clear();
             Categories.Add(WorkTypeClass.Category.walls,new List<string>() { "Окна", "Двери" });
             Categories.Add(WorkTypeClass.Category.floorPer, new List<string>() { "Двери" });
-
+            Functions.SetToolTip("Выберите элементы", ElementsNames);
             foreach (var pair in Categories)
             {
                 foreach (string name in pair.Value)

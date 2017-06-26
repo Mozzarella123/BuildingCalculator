@@ -29,8 +29,23 @@ namespace BuildingCalculator
             };
             Functions.ContextMenu(Listofparams, names, functions);
             FormClosing += new FormClosingEventHandler(_FormClosing);
+            Functions.SetToolTip("Введите название работы", WorkTypeNameInp);
+            Functions.SetToolTip("Выберите категорию,\n к которой относится работа", Category);
+            Functions.SetToolTip("Чтобы добавить параметр для формулы расчёта,\n нажмите +",parameters.TextBox);
+            Functions.SetToolTip("Формула для расчёта, например: 20*Площадь\n перенести параметры на это поле, \n ПКМ, чтобы очистить", formula.TextBox);
+            Functions.SetToolTip("Добавить в формулу с помощью Enter или переноса \n Удалить правой кнопкой мыши ", Listofparams);
             Button = AddType;
             parameters.Button.Click += Add_Param;
+            formula.TextBox.AllowDrop = true;
+            formula.TextBox.ReadOnly = true;
+            formula.TextBox.Cursor = Cursors.Default;
+            formula.TextBox.DragDrop += formula_DragDrop;
+            formula.TextBox.DragEnter += formula_DragEnter;
+            Functions.ContextMenu(formula.TextBox, new List<string>() { "Очистить" }, new List<EventHandler>() { ClearFormula});
+        }
+        private void ClearFormula(object sender, EventArgs e)
+        {
+            formula.TextBox.Clear();
         }
         private void _FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -96,10 +111,9 @@ namespace BuildingCalculator
         {
             ListBox x = sender as ListBox;
             if (e.KeyCode == Keys.C && e.Modifiers == Keys.Control)
-            {
                 Clipboard.SetData(DataFormats.StringFormat, x.SelectedItem.ToString());
-            }
-            
+            if (e.KeyCode==Keys.Enter&& (formula.TextBox.Text == "" || !(Char.IsDigit(formula.TextBox.Text[formula.TextBox.Text.Length - 1]) || Char.IsLetter(formula.TextBox.Text[formula.TextBox.Text.Length - 1]))))
+                formula.TextBox.Text += x.SelectedItem.ToString();
         }
         private void listBox1_MouseDown(object sender, MouseEventArgs e)
         {     
@@ -108,15 +122,16 @@ namespace BuildingCalculator
                 Listofparams.DoDragDrop(Listofparams.SelectedItem, DragDropEffects.Copy);
             
         }
-        private void textBox3_DragDrop(object sender, DragEventArgs e)
+        private void formula_DragDrop(object sender, DragEventArgs e)
         {
             if (e.Effect == DragDropEffects.Copy ||
             e.Effect == DragDropEffects.Move)
             {
-                formula.Text += e.Data.GetData(DataFormats.Text);
+                if (formula.TextBox.Text==""||!(Char.IsDigit(formula.TextBox.Text[formula.TextBox.Text.Length-1])|| Char.IsLetter(formula.TextBox.Text[formula.TextBox.Text.Length - 1])))
+                formula.TextBox.Text += e.Data.GetData(DataFormats.Text);
             }
         }
-        private void textBox3_DragEnter(object sender, DragEventArgs e)
+        private void formula_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = DragDropEffects.Copy;
         }

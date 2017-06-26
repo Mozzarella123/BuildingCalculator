@@ -33,6 +33,7 @@ namespace BuildingCalculator
             Functions.ContextMenu(ItemsinTree, names, functions);
             FormClosing += new FormClosingEventHandler(_FormClosing);
             BuildList();
+            Functions.SetToolTip("Нажмите правую кнопку мыши.\n Для редактирования выберите работу", ItemsinTree);
         }
         private void BuildList()
         {
@@ -104,7 +105,8 @@ namespace BuildingCalculator
 
         private void ItemsinTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            
+            if (e.Button == MouseButtons.Right)
+                ItemsinTree.SelectedNode = e.Node;
         }
 
         private void ItemsinTree_BeforeSelect(object sender, TreeViewCancelEventArgs e)

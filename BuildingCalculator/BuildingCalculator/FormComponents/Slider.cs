@@ -25,6 +25,12 @@ namespace BuildingCalculator
             Functions.SetValidator(Height, Functions.ValidateType.OnlyNumbers);
             Functions.SetValidator(Width, Functions.ValidateType.OnlyNumbers);
             slides.Add(new Element());
+            Functions.SetToolTip("Введите значение параметра", Width);
+            Functions.SetToolTip("Введите значение параметра", Height);
+            Functions.SetToolTip("Добавить элемент", Add);
+            Functions.SetToolTip("Удалить элемент", Remove);
+            Functions.SetToolTip("Следующий элемент", Next);
+            Functions.SetToolTip("Предыдущий элемент", Prev);
 
         }
         private void Slider_Controls_Click(object sender, EventArgs e)
