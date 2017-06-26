@@ -30,12 +30,8 @@ namespace BuildingCalculator
                 DeleteTab
             };
             Functions.ContextMenu(RoomTabs, names, functions);
+            Functions.SetToolTip("Введите величину", AddRoom);
 
-            //PDFWriteService.HelloWorld();
-            PDFWriteService.CreateNewDocument("test");
-            PDFWriteService.AddHeader("test", "Заголовок", HeaderType.first);
-            PDFWriteService.AddHeader("test", "Заголовок2", HeaderType.first);
-            PDFWriteService.RenderDocToPdf("test");
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -63,6 +59,7 @@ namespace BuildingCalculator
                 RoomTabs.TabPages[lastindex].BackColor = Color.White;
                 //добавляем содержимое
                 RoomTabs.TabPages[lastindex].Controls.Add(new TabContent());
+                RoomTabs.TabPages[lastindex].Controls["TabContent"].Dock = DockStyle.Fill;
                 RoomTabs.SelectedIndex = lastindex;
                 //Добавляем в список комнат
                 Rooms.Add((RoomTabs.TabPages[lastindex].Controls["TabContent"] as TabContent).Room);
@@ -81,10 +78,7 @@ namespace BuildingCalculator
             }
         }
 
-        private void toolTip1_Popup(object sender, PopupEventArgs e)
-        {
 
-        }
 
         private void Calculate(object sender, EventArgs e)
         {
@@ -106,6 +100,11 @@ namespace BuildingCalculator
             //a.Text = control.TabPages[control.SelectedIndex].Text;
             a.Show();
             //new Form().Te((sender as TabControl).Name.ToString());
+        }
+
+        private void Form1_MouseEnter(object sender, EventArgs e)
+        {
+           
         }
     }
 }

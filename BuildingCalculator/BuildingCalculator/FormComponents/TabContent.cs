@@ -47,5 +47,10 @@ namespace BuildingCalculator
         {
 
         }
+
+        private void Length_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
