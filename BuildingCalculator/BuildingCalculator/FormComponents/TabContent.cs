@@ -20,6 +20,10 @@ namespace BuildingCalculator
             Functions.Input(Length, Room, SetMethod, Functions.ValidateType.OnlyNumbers);
             Functions.Input(Height, Room, SetMethod, Functions.ValidateType.OnlyNumbers);
             Room.Elements = (Controls["multiSliders1"] as MultiSliders).Elements;
+            Functions.SetToolTip("Введите значение параметра", Width);
+            Functions.SetToolTip("Введите значение параметра", Length);
+            Functions.SetToolTip("Введите значение параметра", Height);
+
         }
         public Room Room = new Room();
         private void SetMethod(object obj,Control control)
@@ -44,6 +48,11 @@ namespace BuildingCalculator
             }
         }
         private void TabContent_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Length_TextChanged(object sender, EventArgs e)
         {
 
         }

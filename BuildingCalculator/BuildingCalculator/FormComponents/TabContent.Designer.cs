@@ -56,7 +56,6 @@
             this.groupBox1.Controls.Add(this.Length);
             this.groupBox1.Controls.Add(this.LengthT);
             this.groupBox1.Controls.Add(this.WidthT);
-            this.groupBox1.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(55, 36);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(210, 362);

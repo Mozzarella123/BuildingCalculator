@@ -10,6 +10,7 @@ namespace BuildingCalculator.Classes
 {
     public static class Functions
     {
+        
         public delegate void SetMethod(object obj,Control control);
         public enum ValidateType { Default,OnlyText,OnlyNumbers, UserValidate }
         /// <summary>
@@ -62,11 +63,15 @@ namespace BuildingCalculator.Classes
         }
         private static void ValidNumbers (object sender, KeyPressEventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != '\b')
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != ',')
                 e.Handled = true;
             else
+            {
                 if ((sender as Control).Text == "0")
-                (sender as Control).Text = "";
+                    (sender as Control).Text = "";
+                if (e.KeyChar == ',' && (sender as Control).Text.Contains(','))
+                    e.Handled = true;
+            }
         }
         private static void ValidText(object sender, KeyPressEventArgs e)
         {
@@ -149,5 +154,15 @@ namespace BuildingCalculator.Classes
 
             }
         }
+        public static void SetToolTip(string text,Control control)
+        {
+            ToolTip hint = new ToolTip();
+            //hint.AutoPopDelay = 3000;
+            hint.InitialDelay = 10;
+            hint.ShowAlways = true;
+            hint.SetToolTip(control,text);
+        }
+        
+
     }
 }
