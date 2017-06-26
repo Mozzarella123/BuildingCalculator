@@ -38,8 +38,10 @@ namespace BuildingCalculator
             //PDFWriteService.AddHeader("test", "Заголовок2", HeaderType.first);
             //PDFWriteService.RenderDocToPdf("test");
 
-            ExcelWorkServicecs.OpenXlsFile("test.xlsx");
-            string[,] ar = ExcelWorkServicecs.ReadWorkTypes();
+            ExcelWorkServicecs.OpenFile("Book.xlsx");
+
+            //string[,] ar = ExcelWorkServicecs.ReadWorkTypes();
+            
         }
         private void Form1_Load(object sender, EventArgs e)
         {
