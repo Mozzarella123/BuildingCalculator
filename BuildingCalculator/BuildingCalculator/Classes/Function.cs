@@ -157,7 +157,9 @@ namespace BuildingCalculator.Classes
         public static void SetToolTip(string text,Control control)
         {
             ToolTip hint = new ToolTip();
-            hint.AutoPopDelay = 3000;
+            //hint.AutoPopDelay = 3000;
+            hint.InitialDelay = 10;
+            hint.ShowAlways = true;
             hint.SetToolTip(control,text);
         }
         

@@ -51,9 +51,10 @@
             this.SelectWorksTree.CheckBoxes = true;
             this.SelectWorksTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SelectWorksTree.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SelectWorksTree.Location = new System.Drawing.Point(3, 3);
+            this.SelectWorksTree.Location = new System.Drawing.Point(10, 10);
+            this.SelectWorksTree.Margin = new System.Windows.Forms.Padding(10);
             this.SelectWorksTree.Name = "SelectWorksTree";
-            this.SelectWorksTree.Size = new System.Drawing.Size(567, 310);
+            this.SelectWorksTree.Size = new System.Drawing.Size(553, 296);
             this.SelectWorksTree.TabIndex = 4;
             this.SelectWorksTree.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.SelectWorksTree_AfterCheck);
             this.SelectWorksTree.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.SelectWorksTree_BeforeSelect);
@@ -81,7 +82,7 @@
             this.ClientSize = new System.Drawing.Size(573, 366);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "SelectWorkTypes";
-            this.Text = "SelectWorkTypes";
+            this.Text = "Выбрать работы для отчёта";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

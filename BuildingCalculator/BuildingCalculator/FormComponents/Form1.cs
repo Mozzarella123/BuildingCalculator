@@ -31,7 +31,6 @@ namespace BuildingCalculator
             };
             Functions.ContextMenu(RoomTabs, names, functions);
             Functions.SetToolTip("Введите величину", AddRoom);
-
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -88,17 +87,24 @@ namespace BuildingCalculator
 
         private void RoomTabs_DoubleClick(object sender, EventArgs e)
         {
-            Form a = new Form();
-            TabControl control = sender as TabControl;
-            control.TabPages[control.SelectedIndex].Controls.Add(new TextBox());
-            a.FormBorderStyle = FormBorderStyle.None;
-            TextBox changename = new TextBox();
-            a.Controls.Add(new TextBox());
-            a.BackColor = Color.Transparent;
-            a.Width = changename.Width;
-            a.Height = changename.Height;
-            //a.Text = control.TabPages[control.SelectedIndex].Text;
-            a.Show();
+            //Form a = new Form();
+            //TabControl control = sender as TabControl;
+            //a.FormBorderStyle = FormBorderStyle.None;
+            //a.Top = control.Parent.Top+control.Top+35;
+            //int padding = 0;
+            //for (int i = 0; i < control.SelectedIndex; i++)
+            //    padding += control.TabPages[i].Text.Length;
+            //a.Left = control.Parent.Left+20+padding*7;
+            //a.StartPosition = FormStartPosition.Manual;
+            //TextBox changename = new TextBox();        
+            //changename.Width = control.SelectedTab.Text.Length*7;
+            //a.MinimizeBox = false;
+            //a.MaximizeBox = false;
+            //a.Controls.Add(changename);
+            ////a.Text = control.TabPages[control.SelectedIndex].Text;
+            //a.ShowDialog();
+            //a.Width = changename.Width;
+            //a.Height = changename.Height;
             //new Form().Te((sender as TabControl).Name.ToString());
         }
 
