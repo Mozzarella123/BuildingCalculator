@@ -31,8 +31,9 @@ namespace BuildingCalculator.FormComponents
             if (currentroom + 1 == Form1.Rooms.Count)
                 CalculateBut.Text = "Рассчитать";
             else
-                CalculateBut.Text = "Следующая комната";
+                CalculateBut.Text = "Следующая комната";            
             RoomTitle.Text = Form1.Rooms[currentroom].Title;
+            
         }
         public void GetCheckedNodes(TreeNodeCollection nodes)
         {
@@ -90,32 +91,44 @@ namespace BuildingCalculator.FormComponents
         }
         private void Calculate(object sender, EventArgs e)
         {
+            //получаем выбранные категории и работы
             GetCheckedNodes(SelectWorksTree.Nodes);
             Form1.Rooms[currentroom].CheckedCats = checkedcats;
             Form1.Rooms[currentroom].CheckedWorks = checkedworks;
+            //работа с параметрами
             foreach (WorkTypeClass work in checkedworks)
             {
-                if (Form1.Rooms[currentroom].GetAreaFromCat(work.category) == -1)
+                //если параметры не входят в список стандартных
+                if (work.parametrs.Count>1|| Form1.Rooms[currentroom].GetAreaFromCat(work.category) == -1)
                 {
                     inputparams param = new inputparams();
                     double[] parameters = new double[0];
-                    foreach (string name in work.parametrs)
+                    int i1 = 0;
+                    //если есть один стандартный 
+                    if (Form1.Rooms[currentroom].GetAreaFromCat(work.category) != -1)
                     {
-                        param.Label.Text = "Введите "+name+" в "+work.article;
+                        i1++;
+                        Array.Resize(ref parameters, parameters.Length + 1);
+                        parameters[0] = Form1.Rooms[currentroom].GetAreaFromCat(work.category);
+                    }
+                    //заполняем параметры 
+                    for (int i =i1; i < work.parametrs.Count; i++)
+                    {
+                        param.Label.Text = "Введите " + work.parametrs[i] + " в " + work.article;
                         param.Width = param.Label.Text.Length * 10;
-                        param.Top = (this.Top + (this.Height / 2)) - param.Height / 2;
-                        param.Left = (this.Left + (this.Width / 2)) - param.Width / 2;
-                        param.StartPosition = FormStartPosition.Manual;
+                        Functions.CenterForm(param, this);
                         param.ShowDialog();
                         Array.Resize(ref parameters, parameters.Length + 1);
                         parameters[parameters.Length - 1] = double.Parse(param.TextBox.Text);
-                    }
+                        param.Label.Text = "";
+                    }           
                     work.Parameters = parameters;
                 }
                 else
                     work.Parameters = new double[] { Form1.Rooms[currentroom].GetAreaFromCat(work.category) };
                 
             }
+            //работа с другими комнатами
             if (currentroom < Form1.Rooms.Count - 1)
             {
                 Functions.RefreshList(SelectWorksTree);
@@ -124,6 +137,7 @@ namespace BuildingCalculator.FormComponents
             }
             else
             {
+                //формируем отчёт
                 string filename = "Отчёт";
                 PDFWriteService.CreateNewDocument(filename);
                 for (int i = 0; i < Form1.Rooms.Count; i++)
@@ -135,7 +149,7 @@ namespace BuildingCalculator.FormComponents
                         if (Form1.Rooms[i].CheckedCats.Contains(pair.Key))
                         {
                             PDFWriteService.AddHeader(filename, WorkTypeClass.CategoryNames[pair.Key], HeaderType.second);
-                            string[] headers = { "Название работы", "Цена", "Параметры","Значение параметров" };
+                            string[] headers = { "Название работы", "Цена", "Единицы измерения","Количество" };
                             List<WorkTypeClass> cont = new List<WorkTypeClass>();
                             //Идем по всем выбранным работам 
                             foreach (WorkTypeClass ob in Form1.Rooms[i].CheckedWorks)
@@ -149,14 +163,19 @@ namespace BuildingCalculator.FormComponents
                             for (int j = 0; j < cont.Count; j++)
                             {
                                 content[j, 0] = cont[j].article;
-                                content[j, 1] = (cont[j].GetPrice().ToString() + '\u2714');
+                                content[j, 1] = (cont[j].GetPrice().ToString() + "руб");
+                                //названия параметров
                                 string param = "";
-                                foreach (string name in cont[j].parametrs)
+                                //значения параметров
+                                string valueparam = "";
+                                for (int k=0;k<cont[j].parametrs.Count;k++)
                                 {
-                                    param += name + " ";
+                                    param += cont[j].parametrs[k]+"\n";
+                                    valueparam += cont[j].Parameters[k]+ "\n";
                                 }
-                                content[j, 2] = param;
-                                content[j, 3] = cont[j].Parameters[0].ToString();
+                                
+                                content[j, 2] = valueparam;
+                                content[j, 3] = param;
 
                             }
                             PDFWriteService.AddTable(filename, content, headers);

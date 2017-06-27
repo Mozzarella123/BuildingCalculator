@@ -164,12 +164,12 @@ namespace BuildingCalculator.Classes
         public static void SetToolTip(string text,Control control)
         {
             ToolTip hint = new ToolTip();
-            //hint.AutoPopDelay = 3000;
+            hint.AutoPopDelay = 5000;
             hint.InitialDelay = 10;
             hint.ShowAlways = true;
             hint.SetToolTip(control,text);
         }
-        public static void BuildList(TreeView Tree,bool allcats = false)
+        public static void BuildList(TreeView Tree,bool allcats = false,bool sorted=true)
         {
             if (JSONSerializeService.InputItems != null)
             {
@@ -195,6 +195,8 @@ namespace BuildingCalculator.Classes
                     newnode.Tag = ob;
                     tree[WorkTypeClass.CategoryNames[ob.category]].Nodes.Add(newnode);
                 }
+                if (sorted)
+                    Tree.Sort();
             }
         }
         public static void RefreshList(TreeView tree)
@@ -202,6 +204,11 @@ namespace BuildingCalculator.Classes
             tree.Nodes.Clear();
             BuildList(tree);
         }
-
+        public static void CenterForm(Form form, Form parentform)
+        {
+            form.Top = (parentform.Top + (parentform.Height / 2)) - form.Height / 2;
+            form.Left = (parentform.Left + (parentform.Width / 2)) - form.Width / 2;
+            form.StartPosition = FormStartPosition.Manual;
+        }
     }
 }
