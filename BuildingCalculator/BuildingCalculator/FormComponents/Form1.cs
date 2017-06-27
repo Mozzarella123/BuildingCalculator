@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BuildingCalculator.Classes;
+using BuildingCalculator.FormComponents;
 using BuildingCalculator.Classes.Static;
 
 namespace BuildingCalculator
@@ -31,6 +32,7 @@ namespace BuildingCalculator
                 DeleteTab
             };
             Functions.ContextMenu(RoomTabs, names, functions);
+            Functions.SetToolTip("Чтобы изменить имя комнаты, щелкните два раза\nЧтобы добавить, нажмите +", RoomTabs);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -87,27 +89,19 @@ namespace BuildingCalculator
 
         private void RoomTabs_DoubleClick(object sender, EventArgs e)
         {
-            //Form a = new Form();
-            //TabControl control = sender as TabControl;
-            //a.FormBorderStyle = FormBorderStyle.None;
-            //a.Top = control.Parent.Top+control.Top+35;
-            //int padding = 0;
-            //for (int i = 0; i < control.SelectedIndex; i++)
-            //    padding += control.TabPages[i].Text.Length;
-            //a.Left = control.Parent.Left+20+padding*7;
-            //a.StartPosition = FormStartPosition.Manual;
-            //TextBox changename = new TextBox();        
-            //changename.Width = control.SelectedTab.Text.Length*7;
-            //a.MinimizeBox = false;
-            //a.MaximizeBox = false;
-            //a.Controls.Add(changename);
-            ////a.Text = control.TabPages[control.SelectedIndex].Text;
-            //a.ShowDialog();
-            //a.Width = changename.Width;
-            //a.Height = changename.Height;
-            //new Form().Te((sender as TabControl).Name.ToString());
+            Form a = new ChangeName();
+            TabControl control = sender as TabControl;
+            a.Top = (this.Top + (this.Height / 2)) - a.Height / 2;
+            a.Left = (this.Left + (this.Width / 2)) - a.Width / 2;            
+            a.StartPosition = FormStartPosition.Manual;            
+            a.Controls["textbox1"].TextChanged += changeName;
+            Functions.SetToolTip("Escape или enter, чтобы применить", a.Controls["textbox1"]);
+            a.ShowDialog();
         }
-
+        private void changeName(object sender, EventArgs e)
+        {
+            RoomTabs.SelectedTab.Text = (sender as TextBox).Text;
+        }
         private void Form1_MouseEnter(object sender, EventArgs e)
         {
            

@@ -118,5 +118,10 @@ namespace BuildingCalculator
                 e.Node.TreeView.SelectedNode = e.Node.Nodes[0];
             }                     
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+        }
     }
 }
