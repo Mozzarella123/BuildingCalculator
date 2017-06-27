@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BuildingCalculator.Classes;
+using BuildingCalculator.Classes.Static;
 
 namespace BuildingCalculator
 {
@@ -30,7 +31,6 @@ namespace BuildingCalculator
                 DeleteTab
             };
             Functions.ContextMenu(RoomTabs, names, functions);
-            Functions.SetToolTip("Введите величину", AddRoom);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
