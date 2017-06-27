@@ -111,6 +111,7 @@
             this.tabContent1.Name = "tabContent1";
             this.tabContent1.Size = new System.Drawing.Size(686, 421);
             this.tabContent1.TabIndex = 0;
+            this.tabContent1.Load += new System.EventHandler(this.tabContent1_Load);
             // 
             // AddRoom
             // 

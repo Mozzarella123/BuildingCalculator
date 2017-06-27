@@ -162,7 +162,38 @@ namespace BuildingCalculator.Classes
             hint.ShowAlways = true;
             hint.SetToolTip(control,text);
         }
-        
+        public static void BuildList(TreeView Tree,bool allcats = false)
+        {
+            if (JSONSerializeService.InputItems != null)
+            {
+                TreeNodeCollection tree;
+                if (!allcats)
+                    tree = Tree.Nodes;
+                else
+                    tree = Tree.Nodes[0].Nodes;
+                List<WorkTypeClass> workslist = JSONSerializeService.InputItems;
+                //Добавляем категорию
+                foreach (var pair in WorkTypeClass.CategoryNames)
+                {
+                    TreeNode newnode = new TreeNode(pair.Value);
+                    newnode.Name = pair.Value;  
+                    tree.Add(newnode);
+                }
+                //Разбиваем по категориям
+                foreach (WorkTypeClass ob in workslist)
+                {
+                    TreeNode newnode = new TreeNode(ob.article);
+                    newnode.Name = WorkTypeClass.CategoryNames[ob.category];
+                    newnode.Tag = ob;
+                    tree[WorkTypeClass.CategoryNames[ob.category]].Nodes.Add(newnode);
+                }
+            }
+        }
+        public static void RefreshList(TreeView tree)
+        {
+            tree.Nodes.Clear();
+            BuildList(tree);
+        }
 
     }
 }

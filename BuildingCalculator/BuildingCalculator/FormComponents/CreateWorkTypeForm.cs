@@ -37,7 +37,7 @@ namespace BuildingCalculator
             Button = AddType;
             parameters.Button.Click += Add_Param;
             formula.TextBox.AllowDrop = true;
-            formula.TextBox.ReadOnly = true;
+            //formula.TextBox.ReadOnly = true;
             formula.TextBox.Cursor = Cursors.Default;
             formula.TextBox.DragDrop += formula_DragDrop;
             formula.TextBox.DragEnter += formula_DragEnter;
@@ -146,8 +146,8 @@ namespace BuildingCalculator
         private void AddWorkType(object sender, EventArgs e)
         {
             WorkTypeClass work = new WorkTypeClass();
-            work.article = WorkTypeName.Text;
-            work.formula = formula.Text;
+            work.article = WorkTypeNameInp.Text;
+            work.formula = formula.TextBox.Text;
             var numer = Listofparams.Items.GetEnumerator();
             while (numer.MoveNext())
                 work.parametrs.Add(numer.Current.ToString());

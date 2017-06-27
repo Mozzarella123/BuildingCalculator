@@ -16,13 +16,13 @@ namespace BuildingCalculator
     public partial class Form1 : Form
     {
         //комната
-        public static List<Room> Rooms = new List<Room>();
+        internal static List<Room> Rooms = new List<Room>();
         public Form1()
         {
             InitializeComponent();
             JSONSerializeService.ReadInput("works.json");
             Rooms.Add((RoomTabs.TabPages[0].Controls["tabContent1"] as TabContent).Room);
-            Rooms[0].Name = RoomTabs.TabPages[0].Text;
+            Rooms[0].Title = RoomTabs.TabPages[0].Text;
             List<string> names = new List<string>()
             {
                 "Удалить"
@@ -64,7 +64,7 @@ namespace BuildingCalculator
                 RoomTabs.SelectedIndex = lastindex;
                 //Добавляем в список комнат
                 Rooms.Add((RoomTabs.TabPages[lastindex].Controls["TabContent"] as TabContent).Room);
-                Rooms[lastindex].Name = RoomTabs.TabPages[lastindex].Text;
+                Rooms[lastindex].Title = RoomTabs.TabPages[lastindex].Text;
 
             }
         }
@@ -83,7 +83,7 @@ namespace BuildingCalculator
 
         private void Calculate(object sender, EventArgs e)
         {
-            FormComponents.SelectWorkTypes selectworktypes = new FormComponents.SelectWorkTypes();
+            SelectWorkTypes selectworktypes = new SelectWorkTypes();
             selectworktypes.ShowDialog();
         }
 
@@ -105,6 +105,11 @@ namespace BuildingCalculator
         private void Form1_MouseEnter(object sender, EventArgs e)
         {
            
+        }
+
+        private void tabContent1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
