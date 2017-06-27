@@ -21,14 +21,26 @@ namespace BuildingCalculator
                 {Category.other, "Другое" },
             };
         public enum Category { none=-1,walls, floor, ceiling, floorPer, ceilingPer,elworks,santechworks, other};
+        double[] parametres = new double[0];
+        public double[] Parameters
+        {
+            get
+            {
+                return parametres;            
+            }
+            set
+            {
+                parametres = value;
+            }
+        }
         public WorkTypeClass()
         {
             parametrs = new List<string>();
             
         }
-        public double GetPrice(double[] parameters)
+        public double GetPrice()
         {
-            return DelegateAssemblyService.getPriceforWorkType(this, parameters);
+            return DelegateAssemblyService.getPriceforWorkType(this, parametres);
         }
         public string article;
         public string formula;

@@ -63,14 +63,21 @@ namespace BuildingCalculator.Classes
         }
         private static void ValidNumbers (object sender, KeyPressEventArgs e)
         {
+            TextBox input = sender as TextBox;
             if (!Char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != ',')
                 e.Handled = true;
             else
             {
-                if ((sender as Control).Text == "0")
-                    (sender as Control).Text = "";
-                if (e.KeyChar == ',' && (sender as Control).Text.Contains(','))
-                    e.Handled = true;
+                if (input.Text == "0")
+                        (sender as Control).Text = "";
+                if (e.KeyChar == ',')
+                {
+                    if (input.Text == "")
+                        input.Text += "0";
+                    input.SelectionStart = input.Text.Length;
+                    if (input.Text.Contains(e.KeyChar))
+                        e.Handled = true;
+                }
             }
         }
         private static void ValidText(object sender, KeyPressEventArgs e)
@@ -176,7 +183,8 @@ namespace BuildingCalculator.Classes
                 foreach (var pair in WorkTypeClass.CategoryNames)
                 {
                     TreeNode newnode = new TreeNode(pair.Value);
-                    newnode.Name = pair.Value;  
+                    newnode.Name = pair.Value;
+                    newnode.Tag = pair.Key;
                     tree.Add(newnode);
                 }
                 //Разбиваем по категориям

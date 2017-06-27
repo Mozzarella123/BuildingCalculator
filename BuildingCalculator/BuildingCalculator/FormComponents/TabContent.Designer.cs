@@ -153,15 +153,14 @@
         }
 
         #endregion
-
-        private MultiSliders multiSliders1;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox Width;
         private System.Windows.Forms.Label LengthT;
         private System.Windows.Forms.Label WidthT;
-        private System.Windows.Forms.TextBox Length;
-        private System.Windows.Forms.TextBox Height;
         private System.Windows.Forms.Label HeightT;
+        public MultiSliders multiSliders1;
+        public System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.TextBox Width;
+        public System.Windows.Forms.TextBox Length;
+        public System.Windows.Forms.TextBox Height;
     }
 }

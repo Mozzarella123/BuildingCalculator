@@ -63,7 +63,6 @@ namespace BuildingCalculator
             //Устанавливаем элемент по умолчанию
             ElementsNames.SelectedIndex = 0;
         }
-
         private void SliderChanged(object sender, EventArgs e)
         {
             ComboBox select = sender as ComboBox;
