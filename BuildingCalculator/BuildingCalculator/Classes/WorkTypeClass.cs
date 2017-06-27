@@ -51,8 +51,6 @@ namespace BuildingCalculator
         public bool Equals(WorkTypeClass work)
         {
             bool ret = article.Equals(work.article);
-            ret &= Equals(parametrs,work.parametrs);
-            ret &= formula.Equals(work.formula);
             ret &= category.Equals(work.category);
             return ret;
         }
