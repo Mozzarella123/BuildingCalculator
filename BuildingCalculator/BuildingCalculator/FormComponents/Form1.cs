@@ -80,9 +80,6 @@ namespace BuildingCalculator
                 RoomTabs.SelectedIndex = --index;
             }
         }
-
-
-
         private void Calculate(object sender, EventArgs e)
         {
             SelectWorkTypes selectworktypes = new SelectWorkTypes();
@@ -103,6 +100,7 @@ namespace BuildingCalculator
         private void changeName(object sender, EventArgs e)
         {
             RoomTabs.SelectedTab.Text = (sender as TextBox).Text;
+            Rooms[RoomTabs.SelectedIndex].Title = (sender as TextBox).Text;
         }
         private void Form1_MouseEnter(object sender, EventArgs e)
         {
