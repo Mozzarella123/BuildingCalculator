@@ -7,6 +7,7 @@ using Microsoft.CSharp;
 using System.CodeDom.Compiler;
 using System.Reflection;
 using System.IO;
+using System.Windows.Forms;
 
 namespace BuildingCalculator
 {
@@ -130,8 +131,14 @@ namespace MyNamespace
                 parameters.OutputAssembly = "test.dll";
                 parameters.ReferencedAssemblies.Add("System.dll");
                 CompilerResults results = provider.CompileAssemblyFromSource(parameters, begin + func + end);//компиляция кода
-                
-                return true;
+
+                if (results.Errors.Count == 0)
+                    return true;
+                else
+                {
+                    
+                    return false;
+                }
             }
             catch
             {
