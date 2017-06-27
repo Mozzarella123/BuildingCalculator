@@ -39,7 +39,7 @@ namespace BuildingCalculator.FormComponents
 
             for (int i = 0; i < nodes.Count; i++)
             {
-                TreeNode node = nodes[i];                
+                TreeNode node = nodes[i];
                 if (node.Checked && node.Level != 0)
                     //Распределяем узлы по категориям и работам
                     if (node.Tag is WorkTypeClass.Category)
@@ -93,7 +93,30 @@ namespace BuildingCalculator.FormComponents
             GetCheckedNodes(SelectWorksTree.Nodes);
             Form1.Rooms[currentroom].CheckedCats = checkedcats;
             Form1.Rooms[currentroom].CheckedWorks = checkedworks;
-            if (currentroom<Form1.Rooms.Count-1)
+            foreach (WorkTypeClass work in checkedworks)
+            {
+                if (Form1.Rooms[currentroom].GetAreaFromCat(work.category) == -1)
+                {
+                    inputparams param = new inputparams();
+                    double[] parameters = new double[0];
+                    foreach (string name in work.parametrs)
+                    {
+                        param.Label.Text = "Введите "+name+" в "+work.article;
+                        param.Width = param.Label.Text.Length * 10;
+                        param.Top = (this.Top + (this.Height / 2)) - param.Height / 2;
+                        param.Left = (this.Left + (this.Width / 2)) - param.Width / 2;
+                        param.StartPosition = FormStartPosition.Manual;
+                        param.ShowDialog();
+                        Array.Resize(ref parameters, parameters.Length + 1);
+                        parameters[parameters.Length - 1] = double.Parse(param.TextBox.Text);
+                    }
+                    work.Parameters = parameters;
+                }
+                else
+                    work.Parameters = new double[] { Form1.Rooms[currentroom].GetAreaFromCat(work.category) };
+                
+            }
+            if (currentroom < Form1.Rooms.Count - 1)
             {
                 Functions.RefreshList(SelectWorksTree);
                 currentroom++;
@@ -112,7 +135,7 @@ namespace BuildingCalculator.FormComponents
                         if (Form1.Rooms[i].CheckedCats.Contains(pair.Key))
                         {
                             PDFWriteService.AddHeader(filename, WorkTypeClass.CategoryNames[pair.Key], HeaderType.second);
-                            string[] headers = { "Название работы", "Площадь", "Цена" };
+                            string[] headers = { "Название работы", "Цена", "Параметры","Значение параметров" };
                             List<WorkTypeClass> cont = new List<WorkTypeClass>();
                             //Идем по всем выбранным работам 
                             foreach (WorkTypeClass ob in Form1.Rooms[i].CheckedWorks)
@@ -121,20 +144,19 @@ namespace BuildingCalculator.FormComponents
                                 if (ob.category == pair.Key)
                                     cont.Add(ob);
                             }
-                            string[,] content = new string[cont.Count, 3];
+                            string[,] content = new string[cont.Count, 4];
                             //Формируем массив для таблицы
                             for (int j = 0; j < cont.Count; j++)
                             {
                                 content[j, 0] = cont[j].article;
-                                content[j, 1] = Form1.Rooms[i].GetAreaFromCat(cont[j].category).ToString();
-                                //формирование массива параметров
-                                double[] parametrs = new double[0];
-                                if (Form1.Rooms[i].GetAreaFromCat(cont[j].category)==-1)
+                                content[j, 1] = (cont[j].GetPrice().ToString() + '\u2714');
+                                string param = "";
+                                foreach (string name in cont[j].parametrs)
                                 {
-                                    Array.Resize(ref parametrs, parametrs.Length + 1);
-
+                                    param += name + " ";
                                 }
-                                content[j, 2] = (cont[j].GetPrice(new double[] { Form1.Rooms[i].GetAreaFromCat(cont[j].category) })).ToString() + '\u2714';
+                                content[j, 2] = param;
+                                content[j, 3] = cont[j].Parameters[0].ToString();
 
                             }
                             PDFWriteService.AddTable(filename, content, headers);
@@ -147,7 +169,7 @@ namespace BuildingCalculator.FormComponents
             if (currentroom + 1 == Form1.Rooms.Count)
                 CalculateBut.Text = "Рассчитать";
             else
-                CalculateBut.Text = "Следующая комната";                
+                CalculateBut.Text = "Следующая комната";
         }
     }
 }

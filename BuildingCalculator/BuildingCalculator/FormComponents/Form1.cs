@@ -59,8 +59,10 @@ namespace BuildingCalculator
                 RoomTabs.TabPages.Insert(lastindex, "Комната " + (lastindex + 1).ToString());
                 RoomTabs.TabPages[lastindex].BackColor = Color.White;
                 //добавляем содержимое
-                RoomTabs.TabPages[lastindex].Controls.Add(new TabContent());
-                RoomTabs.TabPages[lastindex].Controls["TabContent"].Dock = DockStyle.Fill;
+                TabContent content = new TabContent();
+                content.Dock = DockStyle.Fill;
+                content.Height.Text = tabContent1.Height.Text;                
+                RoomTabs.TabPages[lastindex].Controls.Add(content);
                 RoomTabs.SelectedIndex = lastindex;
                 //Добавляем в список комнат
                 Rooms.Add((RoomTabs.TabPages[lastindex].Controls["TabContent"] as TabContent).Room);

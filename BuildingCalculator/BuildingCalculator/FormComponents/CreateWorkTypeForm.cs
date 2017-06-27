@@ -42,6 +42,8 @@ namespace BuildingCalculator
             formula.TextBox.Cursor = Cursors.Default;
             formula.TextBox.DragDrop += formula_DragDrop;
             formula.TextBox.DragEnter += formula_DragEnter;
+            foreach (var pair in WorkTypeClass.CategoryNames)
+                Category.Items.Add(pair.Value);
             Functions.ContextMenu(formula.TextBox, new List<string>() { "Очистить" }, new List<EventHandler>() { ClearFormula});
         }
         private void ClearFormula(object sender, EventArgs e)
@@ -80,7 +82,7 @@ namespace BuildingCalculator
             {
                 RedactedItemIndex = JSONSerializeService.OutputItems.IndexOf(obj);
                 cwf.WorkTypeNameInp.Text = obj.article;
-                cwf.formula.Text = obj.formula;
+                cwf.formula.TextBox.Text = obj.formula;
                 cwf.Listofparams.Items.Clear();
                 foreach (string str in obj.parametrs)
                     cwf.Listofparams.Items.Add(str);
