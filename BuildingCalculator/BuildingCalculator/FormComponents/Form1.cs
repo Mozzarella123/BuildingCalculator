@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BuildingCalculator.Classes;
 using BuildingCalculator.FormComponents;
+using BuildingCalculator.Classes.Static;
 
 namespace BuildingCalculator
 {

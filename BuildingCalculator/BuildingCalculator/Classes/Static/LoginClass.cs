@@ -26,8 +26,8 @@ namespace BuildingCalculator
             login = ConfigWorksService.getValue("login");//считываем логин, пароль
             pass = ConfigWorksService.getValue("password");
 
-            if (lf == null) lf = new LogInForm();//инициализируем формы
-            if (af == null) af = new AdminForm();
+            //if (lf == null) lf = new LogInForm();//инициализируем формы
+            //if (af == null) af = new AdminForm();
 
             if (ConfigWorksService.getValue("Remembered") == "true")//проверяем, нужно ли логинится
                 return af;
@@ -44,8 +44,8 @@ namespace BuildingCalculator
             }
             
         }
-        public static LogInForm lf;
-        public static AdminForm af;
+        public static LogInForm lf=new LogInForm();
+        public static AdminForm af=new AdminForm();
         public static bool IsLoged;
         public static string login;
         public static string pass;

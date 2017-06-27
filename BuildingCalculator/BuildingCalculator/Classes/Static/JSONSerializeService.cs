@@ -24,8 +24,10 @@ namespace BuildingCalculator
         public static void ReadInput(string path)
         {
             InputFilePath = OutputFilePath = path;
-            if (File.Exists(InputFilePath)||File.Exists("lastCompleteBuild.json"))//если данные есть
+            if (File.Exists(InputFilePath))//если данные есть
             {
+                try
+                {
                 InputJsonString = File.ReadAllText(InputFilePath);//чтение файла
                 isHaveInput = true;
                 InputItems = OutputItems = JsonConvert.DeserializeObject<List<WorkTypeClass>>(InputJsonString);//чтение входных данных
@@ -35,8 +37,7 @@ namespace BuildingCalculator
                     OutputItems = new List<WorkTypeClass>();
                 }
                 DelegateAssemblyService.WriteCompileStringToFile();
-                try
-                {
+                
                     DelegateAssemblyService.AssemblyDelegate();//сборка делегатов(проверка корректности входных данных)
                     if (isLoadingCorrect)
                         File.Copy("works.json", "lastCompleteBuild.json", true);//если начальные данные не поврежденны, то сохраняем их как последний рабочий билд
@@ -57,6 +58,7 @@ namespace BuildingCalculator
             }
             else//если их нет
             {
+                
                 File.Create(InputFilePath);//создаем пустой входной файл
                 InputJsonString = "";
                 isHaveInput = true;
@@ -90,6 +92,16 @@ namespace BuildingCalculator
             WriteOutput();
             ReadInput(OutputFilePath);
             LoginClass.af.RefreshList();
+        }
+        public static bool Contains(WorkTypeClass work)
+        {
+            
+            for(int i = 0; i < OutputItems.Count; i++)
+            {
+                if (OutputItems[i].Equals(work))
+                    return true;
+            }
+            return false;
         }
         
     }

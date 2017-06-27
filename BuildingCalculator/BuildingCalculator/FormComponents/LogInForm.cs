@@ -20,8 +20,7 @@ namespace BuildingCalculator
             InitializeComponent();
             MaximizeBox = false;
             MinimizeBox = false;
-            login = LoginClass.login;
-            pass = LoginClass.pass;
+            
             FormClosing += new FormClosingEventHandler(_FormClosing);
 
 
@@ -40,9 +39,10 @@ namespace BuildingCalculator
         string pass;
         private void LogInForm_Load(object sender, EventArgs e)
         {
-            
-            
-            
+
+            login = LoginClass.login;
+            pass = LoginClass.pass;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
