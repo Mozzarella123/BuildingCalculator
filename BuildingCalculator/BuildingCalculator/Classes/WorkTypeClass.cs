@@ -16,9 +16,11 @@ namespace BuildingCalculator
                 {Category.ceiling, "Площадь потолка" },
                 {Category.floorPer, "Периметр пола" },
                 {Category.ceilingPer, "Периметр потолка" },
+                {Category.elworks, "Электромонтажные работы" },
+                {Category.santechworks, "Сантехнические работы" },
                 {Category.other, "Другое" },
             };
-        public enum Category { none=-1,walls, floor, ceiling, floorPer, ceilingPer, other};
+        public enum Category { none=-1,walls, floor, ceiling, floorPer, ceilingPer,elworks,santechworks, other};
         public WorkTypeClass()
         {
             parametrs = new List<string>();

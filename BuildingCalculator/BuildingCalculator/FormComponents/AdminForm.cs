@@ -32,35 +32,13 @@ namespace BuildingCalculator
             };
             Functions.ContextMenu(ItemsinTree, names, functions);
             FormClosing += new FormClosingEventHandler(_FormClosing);
-            BuildList();
+            Functions.BuildList(ItemsinTree);
             Functions.SetToolTip("Нажмите правую кнопку мыши.\n Для редактирования выберите работу", ItemsinTree);
-        }
-        private void BuildList()
-        {
-            if (JSONSerializeService.InputItems != null)
-            {
-                List<WorkTypeClass> workslist = JSONSerializeService.InputItems;
-                //Добавляем категорию
-                foreach (var pair in WorkTypeClass.CategoryNames)
-                {
-                    TreeNode newnode = new TreeNode(pair.Value);
-                    newnode.Name = pair.Value;
-                    ItemsinTree.Nodes.Add(newnode);
-                }
-                //Разбиваем по категориям
-                foreach (WorkTypeClass ob in workslist)
-                {
-                    TreeNode newnode = new TreeNode(ob.article);
-                    newnode.Name = WorkTypeClass.CategoryNames[ob.category];
-                    newnode.Tag = ob;               
-                    ItemsinTree.Nodes[WorkTypeClass.CategoryNames[ob.category]].Nodes.Add(newnode);
-                }
-            }
         }
         public void RefreshList()
         {
-            ItemsinTree.Nodes.Clear();
-            BuildList();
+            Functions.RefreshList(ItemsinTree);
+            
         }
         private void _FormClosing(object sender, FormClosingEventArgs e)
         {

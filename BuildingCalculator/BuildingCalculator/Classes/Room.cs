@@ -18,7 +18,7 @@ namespace BuildingCalculator
             Width,
             Height
         }
-        public Dictionary<ParamName, double> Params { get; set; }
+        public Dictionary<ParamName, double> Params { get; private set; }
         public Entity()
         {
             Params = new Dictionary<ParamName, double>()
@@ -56,14 +56,18 @@ namespace BuildingCalculator
         /// Списки элементов разбитые по категориям
         /// </summary>
         public Dictionary<WorkTypeClass.Category, List<List<Element>>> Elements { get; set; }
+        public List<WorkTypeClass.Category> CheckedCats { get; set; }
+        public List<WorkTypeClass> CheckedWorks { get; set; }
         public Room() : base()
         {
             Elements = new Dictionary<WorkTypeClass.Category, List<List<Element>>>();
+            CheckedCats = new List<WorkTypeClass.Category>();
+            CheckedWorks = new List<WorkTypeClass>();
         }
         /// <summary>
-        /// Имя комнаты
+        /// Название
         /// </summary>
-        public string Name;
+        public string Title { get; set; }
         /// <summary>
         /// Получить площадь по указанной части комнаты
         /// </summary>
@@ -83,7 +87,7 @@ namespace BuildingCalculator
                 case WorkTypeClass.Category.ceilingPer:
                     return Perimeter;
             }
-            return 0;
+            return -1;
         }
         /// <summary>
         /// Общая площадь стен
