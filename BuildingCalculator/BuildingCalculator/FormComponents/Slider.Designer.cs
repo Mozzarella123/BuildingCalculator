@@ -235,8 +235,8 @@
         private System.Windows.Forms.Button Next;
         private System.Windows.Forms.Label CurrentIndex;
         private System.Windows.Forms.Label WidthT;
-        private System.Windows.Forms.TextBox Width;
         private System.Windows.Forms.Label HeightT;
-        private System.Windows.Forms.TextBox Height;
+        public System.Windows.Forms.TextBox Width;
+        public System.Windows.Forms.TextBox Height;
     }
 }

@@ -38,10 +38,12 @@ namespace BuildingCalculator
             Button = AddType;
             parameters.Button.Click += Add_Param;
             formula.TextBox.AllowDrop = true;
-            formula.TextBox.ReadOnly = true;
+            //formula.TextBox.ReadOnly = true;
             formula.TextBox.Cursor = Cursors.Default;
             formula.TextBox.DragDrop += formula_DragDrop;
             formula.TextBox.DragEnter += formula_DragEnter;
+            foreach (var pair in WorkTypeClass.CategoryNames)
+                Category.Items.Add(pair.Value);
             Functions.ContextMenu(formula.TextBox, new List<string>() { "Очистить" }, new List<EventHandler>() { ClearFormula});
         }
         private void ClearFormula(object sender, EventArgs e)
@@ -80,7 +82,7 @@ namespace BuildingCalculator
             {
                 RedactedItemIndex = JSONSerializeService.OutputItems.IndexOf(obj);
                 cwf.WorkTypeNameInp.Text = obj.article;
-                cwf.formula.Text = obj.formula;
+                cwf.formula.TextBox.Text = obj.formula;
                 cwf.Listofparams.Items.Clear();
                 foreach (string str in obj.parametrs)
                     cwf.Listofparams.Items.Add(str);
@@ -155,8 +157,8 @@ namespace BuildingCalculator
             //FCreate.setParam(par);
             //FCreate.Show();
             WorkTypeClass work = new WorkTypeClass();
-            work.article = WorkTypeName.Text;
-            work.formula = formula.Text;
+            work.article = WorkTypeNameInp.Text;
+            work.formula = formula.TextBox.Text;
             var numer = Listofparams.Items.GetEnumerator();
             while (numer.MoveNext())
                 work.parametrs.Add(numer.Current.ToString());

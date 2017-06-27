@@ -75,9 +75,8 @@
         }
 
         #endregion
-
-        private Slider slider;
-        private System.Windows.Forms.ComboBox ElementsNames;
         private System.Windows.Forms.Panel Sliders;
+        public Slider slider;
+        public System.Windows.Forms.ComboBox ElementsNames;
     }
 }

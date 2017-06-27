@@ -131,11 +131,12 @@ namespace MyNamespace
                 parameters.OutputAssembly = "test.dll";
                 parameters.ReferencedAssemblies.Add("System.dll");
                 CompilerResults results = provider.CompileAssemblyFromSource(parameters, begin + func + end);//компиляция кода
+
                 if (results.Errors.Count == 0)
                     return true;
                 else
                 {
-                    //MessageBox.Show("Error");
+                    
                     return false;
                 }
             }
