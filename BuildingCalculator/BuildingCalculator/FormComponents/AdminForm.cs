@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BuildingCalculator.Classes;
+using BuildingCalculator.Classes.Static;
 
 namespace BuildingCalculator
 {
@@ -100,6 +101,11 @@ namespace BuildingCalculator
         private void button1_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            ExcelWorkServicecs.OpenFile(openFileDialog1.FileName);
         }
     }
 }

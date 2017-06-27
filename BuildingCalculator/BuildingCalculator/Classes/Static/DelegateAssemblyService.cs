@@ -17,13 +17,22 @@ namespace BuildingCalculator
 namespace MyNamespace
 {
     
-    public static class LambdaCreator 
+    public static class PriceFunctions 
     {
+        public static double Pow(double val,int count)
+        {
+            return Math.Pow(val, count);
+        }
+        public static double Sqrt(double val)
+        {
+            return Math.Sqrt(val);
+        }
         ";
         private static string end = @"
         
     }
 }";
+        
         /// <summary>
         /// функция компиляции файла(запускается при загрузке входных данных)
         /// </summary>
@@ -44,7 +53,7 @@ namespace MyNamespace
             parameters.OutputAssembly = "compile.dll";
             parameters.ReferencedAssemblies.Add("System.dll");
             CompilerResults results = provider.CompileAssemblyFromSource(parameters, CompileString);//компиляция
-            var cls = results.CompiledAssembly.GetType("MyNamespace.LambdaCreator");//извлечение скомпилированного класса
+            var cls = results.CompiledAssembly.GetType("MyNamespace.PriceFunctions");//извлечение скомпилированного класса
             CompiledClass = cls;
             
         }

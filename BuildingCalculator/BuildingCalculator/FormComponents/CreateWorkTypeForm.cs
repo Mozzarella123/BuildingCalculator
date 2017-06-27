@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BuildingCalculator.Classes;
+using BuildingCalculator.FormComponents;
 
 
 namespace BuildingCalculator
@@ -143,8 +144,16 @@ namespace BuildingCalculator
         {
 
         }
+        static FormulaCreater FCreate;
         private void AddWorkType(object sender, EventArgs e)
         {
+            //if (FCreate == null)
+            //    FCreate = new FormulaCreater();
+            //List<string> par = new List<string>();
+            //for (int i = 0; i < Listofparams.Items.Count; i++)
+            //    par.Add(Listofparams.Items[i].ToString());
+            //FCreate.setParam(par);
+            //FCreate.Show();
             WorkTypeClass work = new WorkTypeClass();
             work.article = WorkTypeNameInp.Text;
             work.formula = formula.TextBox.Text;
@@ -166,6 +175,11 @@ namespace BuildingCalculator
             }
             else
                 MessageBox.Show("Параметры обьекта заданны некоректно.");
+        }
+
+        private void formula_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
