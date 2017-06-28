@@ -15,7 +15,7 @@ namespace BuildingCalculator.FormComponents
         public ChangeName()
         {
             InitializeComponent();
-            textBox1.KeyDown += ChangeName_KeyDown;
+            RoomTitle.KeyDown += ChangeName_KeyDown;
             
         }
 
