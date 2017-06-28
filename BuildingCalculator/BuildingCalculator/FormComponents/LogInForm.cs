@@ -63,7 +63,7 @@ namespace BuildingCalculator
             if (LogInp == login && PasInp == pass)
             {
                 if (Rememberme.Checked)
-                    ConfigWorksService.ChangeValue("Remembered", "true");
+                    ConfigWorksService.ChangeValue("Remembered", "True");
 
                 LoginClass.IsLoged = true;
                 LoginClass.af.Top = (this.Top + (this.Height / 2)) - LoginClass.af.Height / 2;
