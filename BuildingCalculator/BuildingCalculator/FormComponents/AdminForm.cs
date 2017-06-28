@@ -107,5 +107,16 @@ namespace BuildingCalculator
         {
             ExcelWorkServicecs.OpenFile(openFileDialog1.FileName);
         }
+
+        private void Clear_Click(object sender, EventArgs e)
+        {
+            ItemsinTree.Nodes.Clear();
+            JSONSerializeService.OutputItems.Clear();
+            JSONSerializeService.Save();
+        }
+        private void search_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

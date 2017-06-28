@@ -210,5 +210,9 @@ namespace BuildingCalculator.Classes
             form.Left = (parentform.Left + (parentform.Width / 2)) - form.Width / 2;
             form.StartPosition = FormStartPosition.Manual;
         }
+        public static void CreateReport(List<Room> rooms)
+        {
+
+        }
     }
 }

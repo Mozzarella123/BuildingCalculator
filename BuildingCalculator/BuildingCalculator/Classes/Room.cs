@@ -58,16 +58,16 @@ namespace BuildingCalculator
         public Dictionary<WorkTypeClass.Category, List<List<Element>>> Elements { get; set; }
         public List<WorkTypeClass.Category> CheckedCats { get; set; }
         public List<WorkTypeClass> CheckedWorks { get; set; }
+        /// <summary>
+        /// Название
+        /// </summary>
+        public string Title { get; set; }
         public Room() : base()
         {
             Elements = new Dictionary<WorkTypeClass.Category, List<List<Element>>>();
             CheckedCats = new List<WorkTypeClass.Category>();
             CheckedWorks = new List<WorkTypeClass>();
         }
-        /// <summary>
-        /// Название
-        /// </summary>
-        public string Title { get; set; }
         /// <summary>
         /// Получить площадь по указанной части комнаты
         /// </summary>
@@ -88,6 +88,24 @@ namespace BuildingCalculator
                     return Perimeter;
             }
             return -1;
+        }
+        public string GetUnits(WorkTypeClass.Category cat)
+        {
+            switch (cat)
+            {
+                case WorkTypeClass.Category.walls:
+                case WorkTypeClass.Category.floor:
+                case WorkTypeClass.Category.ceiling:
+                    return "м2";
+                case WorkTypeClass.Category.floorPer:
+                case WorkTypeClass.Category.ceilingPer:
+                    return "м";
+            }
+            return "";
+        }
+        public void GetSumFromCat()
+        {
+            
         }
         /// <summary>
         /// Общая площадь стен
