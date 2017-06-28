@@ -111,5 +111,10 @@ namespace BuildingCalculator
         {
 
         }
+        static SettingForm sf = new SettingForm();
+        private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sf.Show();
+        }
     }
 }
