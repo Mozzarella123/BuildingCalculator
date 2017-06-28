@@ -12,6 +12,16 @@ namespace BuildingCalculator
     public static class ConfigWorksService
     {
         public static System.Configuration.Configuration currentConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+        public enum Options { Login,Password,Remebered,Hints,Units,ReportDirectory }
+        static Dictionary<Options, string> OptionKeys = new Dictionary<Options, string>()
+        {
+            {Options.Login, "login" },
+            {Options.Password, "password" },
+            {Options.Remebered, "Remembered" },
+            {Options.Hints, "tutorial" },
+            {Options.Units, "units" },
+            {Options.ReportDirectory, "endDir" }
+        };
         /// <summary>
         /// проверка наличия поля в конфигах
         /// </summary>
@@ -41,9 +51,9 @@ namespace BuildingCalculator
         /// </summary>
         /// <param name="key">имя поля</param>
         /// <returns></returns>
-        public static string getValue(string key)
+        public static string getValue(Options key)
         {
-            return ConfigurationManager.AppSettings[key];
+            return ConfigurationManager.AppSettings[OptionKeys[key]];
         }
         /// <summary>
         /// Изменение значения в указанном поле

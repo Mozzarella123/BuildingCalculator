@@ -114,9 +114,68 @@ namespace BuildingCalculator
             JSONSerializeService.OutputItems.Clear();
             JSONSerializeService.Save();
         }
-        private void search_TextChanged(object sender, EventArgs e)
-        {
+        private List<TreeNode> CurrentNodeMatches = new List<TreeNode>();
 
+        private int LastNodeIndex = 0;
+
+        private string LastSearchText;
+
+
+        private void Search()
+        {
+            string searchText = this.SearchInp.Text;
+            if (String.IsNullOrEmpty(searchText))
+            {
+                return;
+            };
+            if (LastSearchText != searchText)
+            {
+                //It's a new Search
+                CurrentNodeMatches.Clear();
+                LastSearchText = searchText;
+                LastNodeIndex = 0;
+                SearchNodes(searchText, ItemsinTree.Nodes[0]);
+            }
+
+            if (LastNodeIndex >= 0 && CurrentNodeMatches.Count > 0 )
+            {
+                TreeNode selectedNode = CurrentNodeMatches[LastNodeIndex];
+                LastNodeIndex++;
+                this.ItemsinTree.SelectedNode = selectedNode;
+                this.ItemsinTree.SelectedNode.Expand();
+                this.ItemsinTree.Select();
+                if (LastNodeIndex == CurrentNodeMatches.Count)
+                    LastNodeIndex = 0;
+            }
+        }
+
+        private void SearchNodes(string SearchText, TreeNode StartNode)
+        {
+            TreeNode node = null;
+            while (StartNode != null)
+            {
+                if (StartNode.Text.ToLower().Contains(SearchText.ToLower()))
+                {
+                    CurrentNodeMatches.Add(StartNode);
+                };
+                if (StartNode.Nodes.Count != 0)
+                {
+                    SearchNodes(SearchText, StartNode.Nodes[0]);//Recursive Search 
+                };
+                StartNode = StartNode.NextNode;
+            };
+
+        }
+        private void Search(object sender, EventArgs e)
+        {
+            Functions.Search((sender as TextBox).Text, ItemsinTree);
+        }
+
+        private void SearchInp_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)Keys.Return)
+            e.Handled = true;
+            Functions.Search((sender as TextBox).Text, ItemsinTree);
         }
     }
 }
