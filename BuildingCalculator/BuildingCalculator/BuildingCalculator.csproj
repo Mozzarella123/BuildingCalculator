@@ -11,6 +11,7 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,7 +24,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -46,6 +46,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="Excel, Version=2.1.2.3, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelDataReader.2.1.2.3\lib\net45\Excel.dll</HintPath>
@@ -145,6 +146,12 @@
       <DependentUpon>MultiSliders.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Static\Program.cs" />
+    <Compile Include="FormComponents\NewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormComponents\NewForm.Designer.cs">
+      <DependentUpon>NewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormComponents\SelectWorkTypes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\MultiSliders.resx">
       <DependentUpon>MultiSliders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormComponents\NewForm.resx">
+      <DependentUpon>NewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\SelectWorkTypes.resx">
       <DependentUpon>SelectWorkTypes.cs</DependentUpon>

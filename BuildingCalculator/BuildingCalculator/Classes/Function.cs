@@ -64,14 +64,15 @@ namespace BuildingCalculator.Classes
         private static void ValidNumbers (object sender, KeyPressEventArgs e)
         {
             TextBox input = sender as TextBox;
-            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != ',')
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && !(e.KeyChar == ',' || e.KeyChar == '.'))
                 e.Handled = true;
             else
             {
                 if (input.Text == "0")
                         (sender as Control).Text = "";
-                if (e.KeyChar == ',')
+                if (e.KeyChar == ','||e.KeyChar=='.')
                 {
+                    if (e.KeyChar == '.') e.KeyChar = ',';
                     if (input.Text == "")
                         input.Text += "0";
                     input.SelectionStart = input.Text.Length;
@@ -163,11 +164,14 @@ namespace BuildingCalculator.Classes
         }
         public static void SetToolTip(string text,Control control)
         {
-            ToolTip hint = new ToolTip();
-            hint.AutoPopDelay = 5000;
-            hint.InitialDelay = 10;
-            hint.ShowAlways = true;
-            hint.SetToolTip(control,text);
+            if (Convert.ToBoolean(ConfigWorksService.getValue(ConfigWorksService.Options.Hints)))
+            { 
+                ToolTip hint = new ToolTip();
+                hint.AutoPopDelay = 5000;
+                hint.InitialDelay = 10;
+                hint.ShowAlways = true;
+                hint.SetToolTip(control, text);
+            }
         }
         public static void BuildList(TreeView Tree,bool allcats = false,bool sorted=true)
         {
@@ -210,9 +214,56 @@ namespace BuildingCalculator.Classes
             form.Left = (parentform.Left + (parentform.Width / 2)) - form.Width / 2;
             form.StartPosition = FormStartPosition.Manual;
         }
-        public static void CreateReport(List<Room> rooms)
+        private static List<TreeNode> CurrentNodeMatches = new List<TreeNode>();
+        private static int LastNodeIndex = 0;
+        private static string LastSearchText;
+        public static void Search(string pattern,TreeView tree)
         {
+            
+            string searchText = pattern;
+            if (String.IsNullOrEmpty(searchText))
+            {
+                return;
+            };
+            if (LastSearchText != searchText)
+            {
+                //It's a new Search
+                CurrentNodeMatches.Clear();
+                LastSearchText = searchText;
+                LastNodeIndex = 0;
+                SearchNodes(searchText, tree.Nodes[0]);
+            }
+
+            if (LastNodeIndex >= 0 && CurrentNodeMatches.Count > 0)
+            {
+                TreeNode selectedNode = CurrentNodeMatches[LastNodeIndex];
+                LastNodeIndex++;
+                if (tree.SelectedNode!= null&&tree.SelectedNode.Parent!=null&& tree.SelectedNode.Parent != selectedNode.Parent)
+                    tree.SelectedNode.Parent.Collapse();
+                tree.SelectedNode = selectedNode;
+                tree.SelectedNode.Expand();
+                //tree.Select();
+                if (LastNodeIndex == CurrentNodeMatches.Count)
+                    LastNodeIndex = 0;
+            }
+        }
+        private static void SearchNodes(string SearchText, TreeNode StartNode)
+        {
+            TreeNode node = null;
+            while (StartNode != null)
+            {
+                if (StartNode.Text.ToLower().Contains(SearchText.ToLower()))
+                {
+                    CurrentNodeMatches.Add(StartNode);
+                };
+                if (StartNode.Nodes.Count != 0)
+                {
+                    SearchNodes(SearchText, StartNode.Nodes[0]);//Recursive Search 
+                };
+                StartNode = StartNode.NextNode;
+            };
 
         }
+
     }
 }

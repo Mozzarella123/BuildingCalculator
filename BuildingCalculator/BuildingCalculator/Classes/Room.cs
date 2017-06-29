@@ -75,17 +75,18 @@ namespace BuildingCalculator
         /// <returns>Площадь в double</returns>
         public double GetAreaFromCat(WorkTypeClass.Category cat)
         {
+            double unit = 1;
             switch (cat)
             {
                 case WorkTypeClass.Category.walls:
-                    return CommonArea;
+                    return CommonArea*unit;
                 case WorkTypeClass.Category.floorPer:
-                    return BottomPerimeter;
+                    return BottomPerimeter * unit;
                 case WorkTypeClass.Category.ceiling:
                 case WorkTypeClass.Category.floor:
-                    return Area;
+                    return Area * unit;
                 case WorkTypeClass.Category.ceilingPer:
-                    return Perimeter;
+                    return Perimeter * unit;
             }
             return -1;
         }
