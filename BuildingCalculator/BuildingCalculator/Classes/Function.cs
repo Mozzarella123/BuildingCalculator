@@ -164,11 +164,14 @@ namespace BuildingCalculator.Classes
         }
         public static void SetToolTip(string text,Control control)
         {
-            ToolTip hint = new ToolTip();
-            hint.AutoPopDelay = 5000;
-            hint.InitialDelay = 10;
-            hint.ShowAlways = true;
-            hint.SetToolTip(control,text);
+            if (Convert.ToBoolean(ConfigWorksService.getValue(ConfigWorksService.Options.Hints)))
+            { 
+                ToolTip hint = new ToolTip();
+                hint.AutoPopDelay = 5000;
+                hint.InitialDelay = 10;
+                hint.ShowAlways = true;
+                hint.SetToolTip(control, text);
+            }
         }
         public static void BuildList(TreeView Tree,bool allcats = false,bool sorted=true)
         {
@@ -261,5 +264,6 @@ namespace BuildingCalculator.Classes
             };
 
         }
+
     }
 }

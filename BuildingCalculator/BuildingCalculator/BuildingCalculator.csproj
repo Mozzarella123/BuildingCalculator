@@ -146,6 +146,12 @@
       <DependentUpon>MultiSliders.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Static\Program.cs" />
+    <Compile Include="FormComponents\NewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormComponents\NewForm.Designer.cs">
+      <DependentUpon>NewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormComponents\SelectWorkTypes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\MultiSliders.resx">
       <DependentUpon>MultiSliders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormComponents\NewForm.resx">
+      <DependentUpon>NewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\SelectWorkTypes.resx">
       <DependentUpon>SelectWorkTypes.cs</DependentUpon>

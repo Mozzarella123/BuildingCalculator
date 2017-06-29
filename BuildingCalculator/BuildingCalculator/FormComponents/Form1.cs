@@ -115,5 +115,11 @@ namespace BuildingCalculator
         {
             sf.Show();
         }
+
+        private void новаяФормаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewForm a = new NewForm();
+            a.Show();
+        }
     }
 }

@@ -174,6 +174,7 @@ namespace BuildingCalculator.FormComponents
                         PDFWriteService.AddTable(filename, content, headers);
                         resultsum += sum;
                     }
+
                     PDFWriteService.AddParagraph(filename, "Общая сумма по всем комнатам: " + resultsum + "р.");
                     PDFWriteService.RenderDocToPdf(filename);
                     CalculateBut.Enabled = false;
@@ -206,12 +207,10 @@ namespace BuildingCalculator.FormComponents
         {
 
         }
-
         private void searchInp_TextChanged(object sender, EventArgs e)
         {
             Functions.Search((sender as TextBox).Text, SelectWorksTree);
         }
-
         private void searchInp_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Return)
