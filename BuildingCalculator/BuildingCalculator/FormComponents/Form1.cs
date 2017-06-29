@@ -116,5 +116,18 @@ namespace BuildingCalculator
         {
             sf.Show();
         }
+
+        private void сохранитьПроектToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            JSONSerializeService.SaveProject(Project.getProjectForSave(),"save.json");
+        }
+
+        private void загрузитьПроектToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Project load = JSONSerializeService.LoadProject("save.json");
+            if (!load.compatibility)
+                MessageBox.Show("");
+            Rooms = load.Rooms;
+        }
     }
 }

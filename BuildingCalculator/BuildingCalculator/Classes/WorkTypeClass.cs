@@ -20,6 +20,7 @@ namespace BuildingCalculator
                 {Category.santechworks, "Сантехнические работы" },
                 {Category.other, "Другое" },
             };
+        
         public enum Category { none=-1,walls, floor, ceiling, floorPer, ceilingPer,elworks,santechworks, other};
         double[] parametres = new double[0];
         public double[] Parameters
@@ -68,6 +69,15 @@ namespace BuildingCalculator
             ret &= category.Equals(work.category);
             return ret;
         }
+        public bool FullEquals(WorkTypeClass work)
+        {
+            bool ret = article.Equals(work.article);
+            ret &= WorkTypeClass.Equals(parametres, work.parametres);
+            ret &= formula.Equals(work.formula);
+            ret &= category.Equals(work.category);
+            return ret;
+        }
+        
         static bool Equals(List<string> s1,List<string> s2)
         {
             if (s1 == null && s2 == null)

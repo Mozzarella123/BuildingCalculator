@@ -31,12 +31,14 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.опцииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.админкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.рассчитатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RoomTabs = new System.Windows.Forms.TabControl();
             this.FirstRoom = new System.Windows.Forms.TabPage();
             this.AddRoom = new System.Windows.Forms.TabPage();
-            this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabContent1 = new BuildingCalculator.TabContent();
+            this.сохранитьПроектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.загрузитьПроектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.RoomTabs.SuspendLayout();
             this.FirstRoom.SuspendLayout();
@@ -60,7 +62,9 @@
             // 
             this.опцииToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.админкаToolStripMenuItem,
-            this.настройкиToolStripMenuItem});
+            this.настройкиToolStripMenuItem,
+            this.сохранитьПроектToolStripMenuItem,
+            this.загрузитьПроектToolStripMenuItem});
             this.опцииToolStripMenuItem.Name = "опцииToolStripMenuItem";
             this.опцииToolStripMenuItem.Size = new System.Drawing.Size(63, 22);
             this.опцииToolStripMenuItem.Text = "Опции";
@@ -68,9 +72,16 @@
             // админкаToolStripMenuItem
             // 
             this.админкаToolStripMenuItem.Name = "админкаToolStripMenuItem";
-            this.админкаToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.админкаToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.админкаToolStripMenuItem.Text = "Админка";
             this.админкаToolStripMenuItem.Click += new System.EventHandler(this.админкаToolStripMenuItem_Click);
+            // 
+            // настройкиToolStripMenuItem
+            // 
+            this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
+            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.настройкиToolStripMenuItem.Text = "Настройки";
+            this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.настройкиToolStripMenuItem_Click);
             // 
             // рассчитатьToolStripMenuItem
             // 
@@ -86,7 +97,7 @@
             this.RoomTabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RoomTabs.ItemSize = new System.Drawing.Size(100, 20);
             this.RoomTabs.Location = new System.Drawing.Point(0, 24);
-            this.RoomTabs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RoomTabs.Margin = new System.Windows.Forms.Padding(2);
             this.RoomTabs.Name = "RoomTabs";
             this.RoomTabs.SelectedIndex = 0;
             this.RoomTabs.Size = new System.Drawing.Size(467, 293);
@@ -100,9 +111,9 @@
             // 
             this.FirstRoom.Controls.Add(this.tabContent1);
             this.FirstRoom.Location = new System.Drawing.Point(4, 24);
-            this.FirstRoom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FirstRoom.Margin = new System.Windows.Forms.Padding(2);
             this.FirstRoom.Name = "FirstRoom";
-            this.FirstRoom.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FirstRoom.Padding = new System.Windows.Forms.Padding(2);
             this.FirstRoom.Size = new System.Drawing.Size(459, 265);
             this.FirstRoom.TabIndex = 0;
             this.FirstRoom.Text = "Комната";
@@ -111,19 +122,12 @@
             // AddRoom
             // 
             this.AddRoom.Location = new System.Drawing.Point(4, 24);
-            this.AddRoom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddRoom.Margin = new System.Windows.Forms.Padding(2);
             this.AddRoom.Name = "AddRoom";
             this.AddRoom.Size = new System.Drawing.Size(459, 265);
             this.AddRoom.TabIndex = 1;
             this.AddRoom.Text = "+";
             this.AddRoom.UseVisualStyleBackColor = true;
-            // 
-            // настройкиToolStripMenuItem
-            // 
-            this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
-            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.настройкиToolStripMenuItem.Text = "Настройки";
-            this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.настройкиToolStripMenuItem_Click);
             // 
             // tabContent1
             // 
@@ -136,6 +140,20 @@
             this.tabContent1.TabIndex = 0;
             this.tabContent1.Load += new System.EventHandler(this.tabContent1_Load);
             // 
+            // сохранитьПроектToolStripMenuItem
+            // 
+            this.сохранитьПроектToolStripMenuItem.Name = "сохранитьПроектToolStripMenuItem";
+            this.сохранитьПроектToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.сохранитьПроектToolStripMenuItem.Text = "Сохранить проект";
+            this.сохранитьПроектToolStripMenuItem.Click += new System.EventHandler(this.сохранитьПроектToolStripMenuItem_Click);
+            // 
+            // загрузитьПроектToolStripMenuItem
+            // 
+            this.загрузитьПроектToolStripMenuItem.Name = "загрузитьПроектToolStripMenuItem";
+            this.загрузитьПроектToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.загрузитьПроектToolStripMenuItem.Text = "Загрузить проект";
+            this.загрузитьПроектToolStripMenuItem.Click += new System.EventHandler(this.загрузитьПроектToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -145,7 +163,7 @@
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.Margin = new System.Windows.Forms.Padding(1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
@@ -172,6 +190,8 @@
         private TabContent tabContent1;
         private System.Windows.Forms.ToolStripMenuItem рассчитатьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьПроектToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem загрузитьПроектToolStripMenuItem;
     }
 }
 
