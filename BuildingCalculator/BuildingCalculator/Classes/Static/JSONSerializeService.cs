@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
 using System.Windows.Forms;
+using BuildingCalculator;
 
 namespace BuildingCalculator
 {
@@ -103,6 +104,47 @@ namespace BuildingCalculator
             }
             return false;
         }
-        
+
+        public static bool getAlternate(WorkTypeClass work)
+        {
+            WorkTypeClass ret = work;
+            foreach (WorkTypeClass w in JSONSerializeService.OutputItems)
+            {
+                if (work.Equals(w))
+                {
+                    ret = w;
+                    return true;
+                }
+
+            }
+            return false;
+        }
+
+        public static void SaveProject(Project pr,string Path)
+        {
+            File.WriteAllText(Path, JsonConvert.SerializeObject(pr));
+        }
+        public static Project LoadProject(string Path)
+        {
+            string text = File.ReadAllText(Path);
+            Project ret = JsonConvert.DeserializeObject<Project>(text);
+            foreach(Room r in ret.Rooms)
+            {
+                WorkTypeClass[] ar = r.CheckedWorks.ToArray();
+                for(int i = 0; i < ar.Length; i++)
+                {
+                    if (!JSONSerializeService.getAlternate(ar[i]))
+                    {
+                        r.CheckedWorks.Remove(ar[i]);
+                        ret.compatibility = false;
+                    }
+
+                }
+                
+            }
+            ret.compatibility = true;
+            return ret;
+        }
+
     }
 }

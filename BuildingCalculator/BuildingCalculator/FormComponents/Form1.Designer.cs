@@ -34,7 +34,9 @@
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.рассчитатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RoomTabs = new System.Windows.Forms.TabControl();
-            this.FirstRoom = new System.Windows.Forms.TabPage();
+            this.FirstRoom = new System.Windows.Forms.TabPage();;
+            this.сохранитьПроектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.загрузитьПроектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabContent1 = new BuildingCalculator.TabContent();
             this.AddRoom = new System.Windows.Forms.TabPage();
             this.новаяФормаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,7 +63,9 @@
             // 
             this.опцииToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.админкаToolStripMenuItem,
-            this.настройкиToolStripMenuItem});
+            this.настройкиToolStripMenuItem,
+            this.сохранитьПроектToolStripMenuItem,
+            this.загрузитьПроектToolStripMenuItem});
             this.опцииToolStripMenuItem.Name = "опцииToolStripMenuItem";
             this.опцииToolStripMenuItem.Size = new System.Drawing.Size(84, 29);
             this.опцииToolStripMenuItem.Text = "Опции";
@@ -69,14 +73,14 @@
             // админкаToolStripMenuItem
             // 
             this.админкаToolStripMenuItem.Name = "админкаToolStripMenuItem";
-            this.админкаToolStripMenuItem.Size = new System.Drawing.Size(195, 30);
+            this.админкаToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.админкаToolStripMenuItem.Text = "Админка";
             this.админкаToolStripMenuItem.Click += new System.EventHandler(this.админкаToolStripMenuItem_Click);
             // 
             // настройкиToolStripMenuItem
             // 
             this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
-            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(195, 30);
+            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.настройкиToolStripMenuItem.Text = "Настройки";
             this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.настройкиToolStripMenuItem_Click);
             // 
@@ -141,6 +145,20 @@
             this.новаяФормаToolStripMenuItem.Text = "Новая форма";
             this.новаяФормаToolStripMenuItem.Click += new System.EventHandler(this.новаяФормаToolStripMenuItem_Click);
             // 
+            // сохранитьПроектToolStripMenuItem
+            // 
+            this.сохранитьПроектToolStripMenuItem.Name = "сохранитьПроектToolStripMenuItem";
+            this.сохранитьПроектToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.сохранитьПроектToolStripMenuItem.Text = "Сохранить проект";
+            this.сохранитьПроектToolStripMenuItem.Click += new System.EventHandler(this.сохранитьПроектToolStripMenuItem_Click);
+            // 
+            // загрузитьПроектToolStripMenuItem
+            // 
+            this.загрузитьПроектToolStripMenuItem.Name = "загрузитьПроектToolStripMenuItem";
+            this.загрузитьПроектToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.загрузитьПроектToolStripMenuItem.Text = "Загрузить проект";
+            this.загрузитьПроектToolStripMenuItem.Click += new System.EventHandler(this.загрузитьПроектToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -177,6 +195,8 @@
         private TabContent tabContent1;
         private System.Windows.Forms.ToolStripMenuItem рассчитатьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьПроектToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem загрузитьПроектToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem новаяФормаToolStripMenuItem;
     }
 }
