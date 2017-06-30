@@ -23,13 +23,13 @@ namespace BuildingCalculator
             if (!ConfigWorksService.Contains("Remembered"))
                 ConfigWorksService.Add("Remembered", "False");
 
-            login = ConfigWorksService.getValue("login");//считываем логин, пароль
-            pass = ConfigWorksService.getValue("password");
+            login = ConfigWorksService.getValue(ConfigWorksService.Options.Login);//считываем логин, пароль
+            pass = ConfigWorksService.getValue(ConfigWorksService.Options.Password);
 
             //if (lf == null) lf = new LogInForm();//инициализируем формы
             //if (af == null) af = new AdminForm();
 
-            if (ConfigWorksService.getValue("Remembered") == "True")//проверяем, нужно ли логинится
+            if (ConfigWorksService.getValue(ConfigWorksService.Options.Remebered) == "True")//проверяем, нужно ли логинится
                 return af;
 
             if (IsLoged)

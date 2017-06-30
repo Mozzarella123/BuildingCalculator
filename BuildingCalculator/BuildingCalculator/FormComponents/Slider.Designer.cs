@@ -84,6 +84,7 @@
             this.Remove.Padding = new System.Windows.Forms.Padding(2);
             this.Remove.Size = new System.Drawing.Size(65, 43);
             this.Remove.TabIndex = 0;
+            this.Remove.TabStop = false;
             this.Remove.Text = "-";
             this.Remove.UseVisualStyleBackColor = false;
             this.Remove.Click += new System.EventHandler(this.Slider_Controls_Click);
@@ -103,6 +104,7 @@
             this.Add.Padding = new System.Windows.Forms.Padding(2);
             this.Add.Size = new System.Drawing.Size(67, 43);
             this.Add.TabIndex = 1;
+            this.Add.TabStop = false;
             this.Add.Text = "+";
             this.Add.UseVisualStyleBackColor = false;
             this.Add.Click += new System.EventHandler(this.Slider_Controls_Click);
@@ -122,6 +124,7 @@
             this.Prev.Padding = new System.Windows.Forms.Padding(2);
             this.Prev.Size = new System.Drawing.Size(65, 44);
             this.Prev.TabIndex = 2;
+            this.Prev.TabStop = false;
             this.Prev.Text = "<";
             this.Prev.UseVisualStyleBackColor = false;
             this.Prev.Click += new System.EventHandler(this.Slider_Controls_Click);
@@ -141,6 +144,7 @@
             this.Next.Padding = new System.Windows.Forms.Padding(2);
             this.Next.Size = new System.Drawing.Size(67, 44);
             this.Next.TabIndex = 3;
+            this.Next.TabStop = false;
             this.Next.Text = ">";
             this.Next.UseVisualStyleBackColor = false;
             this.Next.Click += new System.EventHandler(this.Slider_Controls_Click);

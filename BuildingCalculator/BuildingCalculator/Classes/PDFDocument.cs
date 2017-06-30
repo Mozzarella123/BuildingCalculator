@@ -24,6 +24,7 @@ namespace BuildingCalculator
             doc = new Document();
             // Get the predefined style Normal.
             Style style = doc.Styles["Normal"];
+            style.Font.Size = 12;
             // Because all styles are derived from Normal, the next line changes the 
             // font of the whole document. Or, more exactly, it changes the font of
             // all styles and paragraphs that do not redefine the font.
@@ -34,7 +35,7 @@ namespace BuildingCalculator
 
             style = doc.Styles["Heading1"];
             style.Font.Name = "Tahoma";
-            style.Font.Size = 14;
+            style.Font.Size = 20;
             style.Font.Bold = true;
             style.Font.Color = Colors.DarkBlue;
             style.ParagraphFormat.PageBreakBefore = true;
@@ -42,18 +43,19 @@ namespace BuildingCalculator
             
 
             style = doc.Styles["Heading2"];
-            style.Font.Size = 12;
+            style.Font.Size = 16;
             style.Font.Bold = true;
             style.ParagraphFormat.PageBreakBefore = false;
             style.ParagraphFormat.SpaceBefore = 6;
             style.ParagraphFormat.SpaceAfter = 6;
 
             style = doc.Styles["Heading3"];
-            style.Font.Size = 10;
+            style.Font.Size = 14;
             style.Font.Bold = true;
             style.Font.Italic = true;
             style.ParagraphFormat.SpaceBefore = 6;
             style.ParagraphFormat.SpaceAfter = 3;
+
 
             style = doc.Styles[StyleNames.Header];
             style.ParagraphFormat.AddTabStop("16cm", TabAlignment.Right);

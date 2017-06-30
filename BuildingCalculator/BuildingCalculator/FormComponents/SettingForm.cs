@@ -21,7 +21,11 @@ namespace BuildingCalculator.FormComponents
                 ConfigWorksService.Add("units", "m");
             if(!ConfigWorksService.Contains("endDir"))
                 ConfigWorksService.Add("endDir", "");
-            label1.Text = ConfigWorksService.getValue("endDir");
+            label1.Text = ConfigWorksService.getValue(ConfigWorksService.Options.ReportDirectory);
+            if (ConfigWorksService.getValue(ConfigWorksService.Options.Units) == "sm")
+                radioButton1.Checked = true;
+            else
+                radioButton2.Checked = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -42,7 +46,12 @@ namespace BuildingCalculator.FormComponents
                 ConfigWorksService.Add("units", "m");
             if (!ConfigWorksService.Contains("endDir"))
                 ConfigWorksService.Add("endDir", "");
-            label1.Text = ConfigWorksService.getValue("endDir");
+            label1.Text = ConfigWorksService.getValue(ConfigWorksService.Options.ReportDirectory);
+            if (ConfigWorksService.getValue(ConfigWorksService.Options.Units) == "sm")
+                radioButton1.Checked = true;
+            else
+                radioButton2.Checked = true;
+            
         }
 
         private void SettingForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -70,6 +79,11 @@ namespace BuildingCalculator.FormComponents
                 ConfigWorksService.ChangeValue("units", "m");
             ConfigWorksService.ChangeValue("endDir", folderBrowserDialog1.SelectedPath);
             this.Hide();
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

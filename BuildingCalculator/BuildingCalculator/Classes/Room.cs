@@ -58,6 +58,10 @@ namespace BuildingCalculator
         public Dictionary<WorkTypeClass.Category, List<List<Element>>> Elements { get; set; }
         public List<WorkTypeClass.Category> CheckedCats { get; set; }
         public List<WorkTypeClass> CheckedWorks { get; set; }
+        /// <summary>
+        /// Название
+        /// </summary>
+        public string Title { get; set; }
         public Room() : base()
         {
             Elements = new Dictionary<WorkTypeClass.Category, List<List<Element>>>();
@@ -65,29 +69,44 @@ namespace BuildingCalculator
             CheckedWorks = new List<WorkTypeClass>();
         }
         /// <summary>
-        /// Название
-        /// </summary>
-        public string Title { get; set; }
-        /// <summary>
         /// Получить площадь по указанной части комнаты
         /// </summary>
         /// <param name="cat">Категория</param>
         /// <returns>Площадь в double</returns>
         public double GetAreaFromCat(WorkTypeClass.Category cat)
         {
+            double unit = 1;
             switch (cat)
             {
                 case WorkTypeClass.Category.walls:
-                    return CommonArea;
+                    return CommonArea*unit;
                 case WorkTypeClass.Category.floorPer:
-                    return BottomPerimeter;
+                    return BottomPerimeter * unit;
                 case WorkTypeClass.Category.ceiling:
                 case WorkTypeClass.Category.floor:
-                    return Area;
+                    return Area * unit;
                 case WorkTypeClass.Category.ceilingPer:
-                    return Perimeter;
+                    return Perimeter * unit;
             }
             return -1;
+        }
+        public string GetUnits(WorkTypeClass.Category cat)
+        {
+            switch (cat)
+            {
+                case WorkTypeClass.Category.walls:
+                case WorkTypeClass.Category.floor:
+                case WorkTypeClass.Category.ceiling:
+                    return "м2";
+                case WorkTypeClass.Category.floorPer:
+                case WorkTypeClass.Category.ceilingPer:
+                    return "м";
+            }
+            return "";
+        }
+        public void GetSumFromCat()
+        {
+            
         }
         /// <summary>
         /// Общая площадь стен

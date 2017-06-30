@@ -41,7 +41,8 @@ namespace BuildingCalculator
         }
         public double GetPrice()
         {
-            return DelegateAssemblyService.getPriceforWorkType(this, parametres);
+            double result = DelegateAssemblyService.getPriceforWorkType(this, parametres);
+            return result;
         }
         public string article;
         public string formula;

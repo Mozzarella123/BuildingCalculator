@@ -64,7 +64,7 @@
             // 
             this.WorkTypeNameInp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.WorkTypeNameInp.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.WorkTypeNameInp.Location = new System.Drawing.Point(94, 71);
+            this.WorkTypeNameInp.Location = new System.Drawing.Point(80, 71);
             this.WorkTypeNameInp.Margin = new System.Windows.Forms.Padding(4, 9, 4, 9);
             this.WorkTypeNameInp.Multiline = true;
             this.WorkTypeNameInp.Name = "WorkTypeNameInp";
@@ -76,7 +76,7 @@
             this.WorkTypeName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.WorkTypeName.AutoSize = true;
             this.WorkTypeName.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.WorkTypeName.Location = new System.Drawing.Point(97, 9);
+            this.WorkTypeName.Location = new System.Drawing.Point(82, 9);
             this.WorkTypeName.Margin = new System.Windows.Forms.Padding(4, 9, 4, 9);
             this.WorkTypeName.Name = "WorkTypeName";
             this.WorkTypeName.Size = new System.Drawing.Size(176, 44);
@@ -89,7 +89,7 @@
             this.formulat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.formulat.AutoSize = true;
             this.formulat.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.formulat.Location = new System.Drawing.Point(50, 126);
+            this.formulat.Location = new System.Drawing.Point(36, 126);
             this.formulat.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.formulat.Name = "formulat";
             this.formulat.Size = new System.Drawing.Size(269, 33);
@@ -102,7 +102,7 @@
             this.ParamsT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.ParamsT.AutoSize = true;
             this.ParamsT.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ParamsT.Location = new System.Drawing.Point(409, 126);
+            this.ParamsT.Location = new System.Drawing.Point(394, 126);
             this.ParamsT.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.ParamsT.Name = "ParamsT";
             this.ParamsT.Size = new System.Drawing.Size(141, 33);
@@ -133,7 +133,7 @@
             this.Category.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.Category.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Category.FormattingEnabled = true;
-            this.Category.Location = new System.Drawing.Point(379, 71);
+            this.Category.Location = new System.Drawing.Point(365, 71);
             this.Category.Margin = new System.Windows.Forms.Padding(4, 9, 4, 9);
             this.Category.Name = "Category";
             this.Category.Size = new System.Drawing.Size(200, 37);
@@ -144,7 +144,7 @@
             this.CategoryT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.CategoryT.AutoSize = true;
             this.CategoryT.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CategoryT.Location = new System.Drawing.Point(417, 9);
+            this.CategoryT.Location = new System.Drawing.Point(402, 9);
             this.CategoryT.Margin = new System.Windows.Forms.Padding(4, 9, 4, 9);
             this.CategoryT.Name = "CategoryT";
             this.CategoryT.Size = new System.Drawing.Size(125, 44);
@@ -155,8 +155,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.60163F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.2561F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.65447F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.20325F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.04684F));
             this.tableLayoutPanel1.Controls.Add(this.formula, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.WorkTypeName, 0, 0);
@@ -189,7 +189,7 @@
             this.formula.Location = new System.Drawing.Point(2, 170);
             this.formula.Margin = new System.Windows.Forms.Padding(2);
             this.formula.Name = "formula";
-            this.formula.Size = new System.Drawing.Size(366, 198);
+            this.formula.Size = new System.Drawing.Size(337, 198);
             this.formula.TabIndex = 14;
             this.formula.Load += new System.EventHandler(this.formula_Load);
             // 
@@ -197,10 +197,10 @@
             // 
             this.parameters.Dock = System.Windows.Forms.DockStyle.Fill;
             this.parameters.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.parameters.Location = new System.Drawing.Point(380, 177);
+            this.parameters.Location = new System.Drawing.Point(351, 177);
             this.parameters.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.parameters.Name = "parameters";
-            this.parameters.Size = new System.Drawing.Size(199, 184);
+            this.parameters.Size = new System.Drawing.Size(228, 184);
             this.parameters.TabIndex = 12;
             // 
             // label1

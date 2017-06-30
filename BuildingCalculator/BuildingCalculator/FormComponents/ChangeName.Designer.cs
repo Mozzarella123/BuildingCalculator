@@ -28,25 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.RoomTitle = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // textBox1
+            // RoomTitle
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(285, 61);
-            this.textBox1.TabIndex = 0;
+            this.RoomTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RoomTitle.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RoomTitle.Location = new System.Drawing.Point(0, 0);
+            this.RoomTitle.Multiline = true;
+            this.RoomTitle.Name = "RoomTitle";
+            this.RoomTitle.Size = new System.Drawing.Size(285, 61);
+            this.RoomTitle.TabIndex = 0;
+            this.RoomTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ChangeName
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(285, 61);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.RoomTitle);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ChangeName";
@@ -59,6 +61,6 @@
 
         #endregion
 
-        internal System.Windows.Forms.TextBox textBox1;
+        internal System.Windows.Forms.TextBox RoomTitle;
     }
 }

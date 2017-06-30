@@ -41,9 +41,7 @@ namespace BuildingCalculator
         private void админкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form lf = LoginClass.SignIn();
-            lf.Top = (this.Top + (this.Height / 2)) - lf.Height / 2;
-            lf.Left = (this.Left + (this.Width / 2)) - lf.Width / 2;
-            lf.StartPosition = FormStartPosition.Manual;
+            Functions.CenterForm(lf, this);
             lf.Show();
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -78,23 +76,24 @@ namespace BuildingCalculator
                 Rooms.RemoveAt(index);
                 RoomTabs.TabPages.RemoveAt(index);
                 RoomTabs.SelectedIndex = --index;
+                
             }
         }
         private void Calculate(object sender, EventArgs e)
         {
             SelectWorkTypes selectworktypes = new SelectWorkTypes();
+            Functions.CenterForm(selectworktypes, this);
             selectworktypes.ShowDialog();
         }
 
         private void RoomTabs_DoubleClick(object sender, EventArgs e)
         {
-            Form a = new ChangeName();
+            ChangeName a = new ChangeName();
             TabControl control = sender as TabControl;
-            a.Top = (this.Top + (this.Height / 2)) - a.Height / 2;
-            a.Left = (this.Left + (this.Width / 2)) - a.Width / 2;            
-            a.StartPosition = FormStartPosition.Manual;            
-            a.Controls["textbox1"].TextChanged += changeName;
-            Functions.SetToolTip("Escape или enter, чтобы применить", a.Controls["textbox1"]);
+            Functions.CenterForm(a, this);
+            a.RoomTitle.TextChanged += changeName;
+            a.RoomTitle.Text = RoomTabs.SelectedTab.Text;
+            Functions.SetToolTip("Escape или enter, чтобы применить", a.RoomTitle);
             a.ShowDialog();
         }
         private void changeName(object sender, EventArgs e)
@@ -128,6 +127,11 @@ namespace BuildingCalculator
             if (!load.compatibility)
                 MessageBox.Show("");
             Rooms = load.Rooms;
+        }
+        private void новаяФормаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewForm a = new NewForm();
+            a.Show();
         }
     }
 }
