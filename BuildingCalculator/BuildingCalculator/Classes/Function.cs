@@ -195,7 +195,9 @@ namespace BuildingCalculator.Classes
                 foreach (WorkTypeClass ob in workslist)
                 {
                     TreeNode newnode = new TreeNode(ob.article);
-                    newnode.Name = WorkTypeClass.CategoryNames[ob.category];
+                    //newnode.Name = WorkTypeClass.CategoryNames[ob.category];
+                    newnode.Text = ob.article + " " + ob.formula;
+                    newnode.Name = ob.article;
                     newnode.Tag = ob;
                     tree[WorkTypeClass.CategoryNames[ob.category]].Nodes.Add(newnode);
                 }
