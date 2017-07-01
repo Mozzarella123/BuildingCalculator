@@ -89,6 +89,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormComponents\Element.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormComponents\Element.Designer.cs">
+      <DependentUpon>Element.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Function.cs" />
     <Compile Include="Classes\PDFDocument.cs" />
     <Compile Include="Classes\Static\ExcelWorkServicecs.cs" />
@@ -152,6 +158,12 @@
     <Compile Include="FormComponents\NewForm.Designer.cs">
       <DependentUpon>NewForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormComponents\RoomTabContent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormComponents\RoomTabContent.Designer.cs">
+      <DependentUpon>RoomTabContent.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormComponents\SelectWorkTypes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,6 +188,12 @@
     <Compile Include="FormComponents\TextWithOperations.Designer.cs">
       <DependentUpon>TextWithOperations.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormComponents\WorksTypeTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormComponents\WorksTypeTree.Designer.cs">
+      <DependentUpon>WorksTypeTree.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\Room.cs" />
     <Compile Include="FormComponents\Slider.cs">
@@ -191,6 +209,9 @@
       <DependentUpon>TabContent.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\WorkTypeClass.cs" />
+    <EmbeddedResource Include="FormComponents\Element.resx">
+      <DependentUpon>Element.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -218,6 +239,9 @@
     <EmbeddedResource Include="FormComponents\NewForm.resx">
       <DependentUpon>NewForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormComponents\RoomTabContent.resx">
+      <DependentUpon>RoomTabContent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\SelectWorkTypes.resx">
       <DependentUpon>SelectWorkTypes.cs</DependentUpon>
     </EmbeddedResource>
@@ -229,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\TextWithOperations.resx">
       <DependentUpon>TextWithOperations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormComponents\WorksTypeTree.resx">
+      <DependentUpon>WorksTypeTree.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

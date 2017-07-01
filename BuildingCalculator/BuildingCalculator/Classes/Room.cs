@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace BuildingCalculator
 {
-
+    public class IInterface
+    {
+        //То что считается у комнаты
+        //приравнять в WorkTypeClass
+        enum RoomPart
+        {
+            WallsArea = WorkTypeClass.Category.walls,
+            CeilingArea = WorkTypeClass.Category.ceiling,
+            FloorArea = WorkTypeClass.Category.floor,
+            CeilingPerimeter = WorkTypeClass.Category.ceilingPer,
+            FloorPerimeter = WorkTypeClass.Category.floorPer
+        } 
+    }
     public class Entity
     {
         /// <summary>
@@ -56,6 +68,7 @@ namespace BuildingCalculator
         /// Списки элементов разбитые по категориям
         /// </summary>
         public Dictionary<WorkTypeClass.Category, List<List<Element>>> Elements { get; set; }
+
         public List<WorkTypeClass.Category> CheckedCats { get; set; }
         public List<WorkTypeClass> CheckedWorks { get; set; }
         /// <summary>
@@ -157,6 +170,7 @@ namespace BuildingCalculator
         /// Части комнаты к которым принадлежит элемент
         /// </summary>
         public List<WorkTypeClass.Category> Categories { get; set; }
+        
         public Element() : base()
         {
         }
