@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using BuildingCalculator.Classes;
 using BuildingCalculator.Classes.Static;
 
+
 namespace BuildingCalculator
 {
     public partial class AdminForm : Form
@@ -33,12 +34,13 @@ namespace BuildingCalculator
             };
             Functions.ContextMenu(ItemsinTree, names, functions);
             FormClosing += new FormClosingEventHandler(_FormClosing);
-            Functions.BuildList(ItemsinTree);
+            Functions.BuildList(ItemsinTree,false,true,true);
             Functions.SetToolTip("Нажмите правую кнопку мыши.\n Для редактирования выберите работу", ItemsinTree);
         }
         public void RefreshList()
         {
-            Functions.RefreshList(ItemsinTree);
+            ItemsinTree.Nodes.Clear();
+            Functions.BuildList(ItemsinTree,false,true,true);
             
         }
         private void _FormClosing(object sender, FormClosingEventArgs e)

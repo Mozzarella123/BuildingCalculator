@@ -46,6 +46,11 @@ namespace BuildingCalculator
             //принудительно перезагружаем соотвествующую секцию
             ConfigurationManager.RefreshSection("appSettings");
         }
+        public static string getValue(string key)
+        {
+            return ConfigurationManager.AppSettings[key];
+        }
+
         /// <summary>
         /// получение значения из указанного поля
         /// </summary>
@@ -55,6 +60,7 @@ namespace BuildingCalculator
         {
             return ConfigurationManager.AppSettings[OptionKeys[key]];
         }
+
         /// <summary>
         /// Изменение значения в указанном поле
         /// </summary>
