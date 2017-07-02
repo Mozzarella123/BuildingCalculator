@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using BuildingCalculator.Classes;
 using BuildingCalculator.FormComponents;
 using BuildingCalculator.Classes.Static;
+using System.IO;
 
 namespace BuildingCalculator
 {
@@ -33,6 +34,11 @@ namespace BuildingCalculator
             };
             Functions.ContextMenu(RoomTabs, names, functions);
             Functions.SetToolTip("Чтобы изменить имя комнаты, щелкните два раза\nЧтобы добавить, нажмите +", RoomTabs);
+            if (!ConfigWorksService.Contains("Images"))
+                ConfigWorksService.Add("Images", "Data");
+            if (!Directory.Exists(ConfigWorksService.getValue("Images")))
+                Directory.CreateDirectory(ConfigWorksService.getValue("Images"));
+            s = new SelectDoorsWindows(WorkTypeClass.Category.door);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -132,6 +138,11 @@ namespace BuildingCalculator
         {
             NewForm a = new NewForm();
             a.Show();
+        }
+        SelectDoorsWindows s;
+        private void button1_Click(object sender, EventArgs e)
+        {
+            s.Show();
         }
     }
 }

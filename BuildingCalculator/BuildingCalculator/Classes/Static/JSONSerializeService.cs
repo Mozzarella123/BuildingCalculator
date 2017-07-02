@@ -7,6 +7,8 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Windows.Forms;
 using BuildingCalculator;
+using BuildingCalculator.Classes.Static;
+using BuildingCalculator.Classes;
 
 namespace BuildingCalculator
 {
