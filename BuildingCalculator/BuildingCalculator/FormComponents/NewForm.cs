@@ -19,6 +19,7 @@ namespace BuildingCalculator.FormComponents
             InitializeComponent();
             MainTabs.ItemSize = new Size(0, 1);
             roomTabContent1.worksTypeTree1.WorksList.CheckBoxes = true;
+            Rooms.Add(roomTabContent1.Room);
         }
         private void MenuClick(object sender, EventArgs e)
         {
@@ -35,7 +36,7 @@ namespace BuildingCalculator.FormComponents
             Functions.CenterForm(a, this);
             a.RoomTitle.TextChanged += ChangeRoomName;
             a.RoomTitle.Text = RoomTabs.SelectedTab.Text;
-            //Functions.SetToolTip("Escape или enter, чтобы применить", a.RoomTitle);           
+            Functions.SetToolTip("Escape или enter, чтобы применить", a.RoomTitle);           
             a.ShowDialog();
         }
         private void ChangeRoomName(object sender, EventArgs e)
@@ -47,6 +48,27 @@ namespace BuildingCalculator.FormComponents
         private void treeView1_DrawNode(object sender, DrawTreeNodeEventArgs e)
         {
 
+        }
+
+        private void RoomTabs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int lastindex = RoomTabs.TabPages.Count - 1;
+            if (RoomTabs.SelectedIndex == lastindex)
+            {
+                //Добавляем новую вкладку
+                RoomTabs.TabPages.Insert(lastindex, "Комната " + (lastindex + 1).ToString());
+                RoomTabs.TabPages[lastindex].BackColor = Color.White;
+                //добавляем содержимое
+                RoomTabContent content = new RoomTabContent();
+                content.Dock = DockStyle.Fill;
+                content.Height.Text = roomTabContent1.Height.Text;
+                RoomTabs.TabPages[lastindex].Controls.Add(content);
+                RoomTabs.SelectedIndex = lastindex;
+                //Добавляем в список комнат
+                Rooms.Add(content.Room);
+                Rooms[lastindex].Title = RoomTabs.TabPages[lastindex].Text;
+
+            }
         }
     }
 }

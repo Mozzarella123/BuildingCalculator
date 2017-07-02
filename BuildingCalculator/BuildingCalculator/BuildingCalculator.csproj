@@ -89,11 +89,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormComponents\Element.cs">
+    <Compile Include="FormComponents\ElementForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormComponents\Element.Designer.cs">
-      <DependentUpon>Element.cs</DependentUpon>
+    <Compile Include="FormComponents\ElementForm.Designer.cs">
+      <DependentUpon>ElementForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Function.cs" />
     <Compile Include="Classes\PDFDocument.cs" />
@@ -210,8 +210,8 @@
       <DependentUpon>TabContent.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\WorkTypeClass.cs" />
-    <EmbeddedResource Include="FormComponents\Element.resx">
-      <DependentUpon>Element.cs</DependentUpon>
+    <EmbeddedResource Include="FormComponents\ElementForm.resx">
+      <DependentUpon>ElementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>

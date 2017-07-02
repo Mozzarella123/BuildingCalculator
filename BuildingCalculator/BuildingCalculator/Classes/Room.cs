@@ -67,8 +67,7 @@ namespace BuildingCalculator
         /// <summary>
         /// Списки элементов разбитые по категориям
         /// </summary>
-        public Dictionary<WorkTypeClass.Category, List<List<Element>>> Elements { get; set; }
-
+        public List<Element> Elements { get; set; }
         public List<WorkTypeClass.Category> CheckedCats { get; set; }
         public List<WorkTypeClass> CheckedWorks { get; set; }
         /// <summary>
@@ -77,7 +76,7 @@ namespace BuildingCalculator
         public string Title { get; set; }
         public Room() : base()
         {
-            Elements = new Dictionary<WorkTypeClass.Category, List<List<Element>>>();
+            Elements = new List<Element>();
             CheckedCats = new List<WorkTypeClass.Category>();
             CheckedWorks = new List<WorkTypeClass>();
         }
@@ -129,10 +128,8 @@ namespace BuildingCalculator
             get
             {
                 double sum = 0;
-                foreach (var pair in Elements)
-                    if (pair.Key == WorkTypeClass.Category.walls)
-                        foreach (var listofelements in pair.Value)
-                            foreach (Element elem in listofelements)
+                foreach (var elem in Elements)
+                    if (elem.Categories.Find(x => x == WorkTypeClass.Category.walls)==WorkTypeClass.Category.walls)
                                 sum += elem.Area;
                 return (base.Area + Params[ParamName.Height] * Params[ParamName.Length]) * 2 - sum;
             }
@@ -155,10 +152,8 @@ namespace BuildingCalculator
             get
             {
                 double sum = 0;
-                foreach (var pair in Elements)
-                    if (pair.Key == WorkTypeClass.Category.floorPer)
-                        foreach (var listofelements in pair.Value)
-                            foreach (Element elem in listofelements)
+                foreach (var elem in Elements)
+                    if (elem.Categories.Find(x => x == WorkTypeClass.Category.floorPer) == WorkTypeClass.Category.floorPer)
                                 sum += elem.Params[ParamName.Width];
                 return (Params[ParamName.Width] + Params[ParamName.Length]) * 2 - sum;
             }

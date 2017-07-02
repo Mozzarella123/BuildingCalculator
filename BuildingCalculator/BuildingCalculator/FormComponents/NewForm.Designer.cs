@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.MainTabs = new System.Windows.Forms.TabControl();
             this.InputParamsTab = new System.Windows.Forms.TabPage();
@@ -70,8 +71,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.MenuMarkup);
-            this.splitContainer1.Size = new System.Drawing.Size(962, 583);
-            this.splitContainer1.SplitterDistance = 817;
+            this.splitContainer1.Size = new System.Drawing.Size(1077, 583);
+            this.splitContainer1.SplitterDistance = 914;
             this.splitContainer1.TabIndex = 0;
             // 
             // MainTabs
@@ -85,7 +86,7 @@
             this.MainTabs.Margin = new System.Windows.Forms.Padding(0);
             this.MainTabs.Name = "MainTabs";
             this.MainTabs.SelectedIndex = 0;
-            this.MainTabs.Size = new System.Drawing.Size(817, 583);
+            this.MainTabs.Size = new System.Drawing.Size(914, 583);
             this.MainTabs.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.MainTabs.TabIndex = 0;
             this.MainTabs.TabStop = false;
@@ -97,7 +98,7 @@
             this.InputParamsTab.Location = new System.Drawing.Point(4, 32);
             this.InputParamsTab.Name = "InputParamsTab";
             this.InputParamsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.InputParamsTab.Size = new System.Drawing.Size(809, 547);
+            this.InputParamsTab.Size = new System.Drawing.Size(906, 547);
             this.InputParamsTab.TabIndex = 0;
             this.InputParamsTab.Text = "Ввод данных";
             this.InputParamsTab.UseVisualStyleBackColor = true;
@@ -111,8 +112,9 @@
             this.RoomTabs.Margin = new System.Windows.Forms.Padding(0);
             this.RoomTabs.Name = "RoomTabs";
             this.RoomTabs.SelectedIndex = 0;
-            this.RoomTabs.Size = new System.Drawing.Size(803, 541);
+            this.RoomTabs.Size = new System.Drawing.Size(900, 541);
             this.RoomTabs.TabIndex = 0;
+            this.RoomTabs.SelectedIndexChanged += new System.EventHandler(this.RoomTabs_SelectedIndexChanged);
             this.RoomTabs.DoubleClick += new System.EventHandler(this.RoomTabs_DoubleClick);
             // 
             // FirstRoom
@@ -121,17 +123,19 @@
             this.FirstRoom.Location = new System.Drawing.Point(4, 29);
             this.FirstRoom.Name = "FirstRoom";
             this.FirstRoom.Padding = new System.Windows.Forms.Padding(3);
-            this.FirstRoom.Size = new System.Drawing.Size(795, 508);
+            this.FirstRoom.Size = new System.Drawing.Size(892, 508);
             this.FirstRoom.TabIndex = 0;
             this.FirstRoom.Text = "Комната";
             this.FirstRoom.UseVisualStyleBackColor = true;
             // 
             // roomTabContent1
             // 
+            this.roomTabContent1.AutoScroll = true;
+            this.roomTabContent1.BackColor = System.Drawing.SystemColors.Window;
             this.roomTabContent1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.roomTabContent1.Location = new System.Drawing.Point(3, 3);
             this.roomTabContent1.Name = "roomTabContent1";
-            this.roomTabContent1.Size = new System.Drawing.Size(789, 502);
+            this.roomTabContent1.Size = new System.Drawing.Size(886, 502);
             this.roomTabContent1.TabIndex = 0;
             // 
             // AddRoomTab
@@ -139,7 +143,7 @@
             this.AddRoomTab.Location = new System.Drawing.Point(4, 29);
             this.AddRoomTab.Name = "AddRoomTab";
             this.AddRoomTab.Padding = new System.Windows.Forms.Padding(3);
-            this.AddRoomTab.Size = new System.Drawing.Size(795, 508);
+            this.AddRoomTab.Size = new System.Drawing.Size(892, 508);
             this.AddRoomTab.TabIndex = 1;
             this.AddRoomTab.Text = "+";
             this.AddRoomTab.UseVisualStyleBackColor = true;
@@ -150,7 +154,7 @@
             this.ViewTab.Controls.Add(this.label3);
             this.ViewTab.Location = new System.Drawing.Point(4, 32);
             this.ViewTab.Name = "ViewTab";
-            this.ViewTab.Size = new System.Drawing.Size(809, 547);
+            this.ViewTab.Size = new System.Drawing.Size(906, 547);
             this.ViewTab.TabIndex = 2;
             this.ViewTab.Text = "Просмотр";
             this.ViewTab.UseVisualStyleBackColor = true;
@@ -171,7 +175,7 @@
             this.SettingTab.Controls.Add(this.label4);
             this.SettingTab.Location = new System.Drawing.Point(4, 32);
             this.SettingTab.Name = "SettingTab";
-            this.SettingTab.Size = new System.Drawing.Size(809, 547);
+            this.SettingTab.Size = new System.Drawing.Size(906, 547);
             this.SettingTab.TabIndex = 3;
             this.SettingTab.Text = "Настройки";
             this.SettingTab.UseVisualStyleBackColor = true;
@@ -209,7 +213,7 @@
             this.MenuMarkup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.MenuMarkup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.MenuMarkup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 220F));
-            this.MenuMarkup.Size = new System.Drawing.Size(141, 583);
+            this.MenuMarkup.Size = new System.Drawing.Size(159, 583);
             this.MenuMarkup.TabIndex = 0;
             // 
             // InputParamsBut
@@ -221,7 +225,7 @@
             this.InputParamsBut.Location = new System.Drawing.Point(0, 0);
             this.InputParamsBut.Margin = new System.Windows.Forms.Padding(0);
             this.InputParamsBut.Name = "InputParamsBut";
-            this.InputParamsBut.Size = new System.Drawing.Size(141, 50);
+            this.InputParamsBut.Size = new System.Drawing.Size(159, 50);
             this.InputParamsBut.TabIndex = 0;
             this.InputParamsBut.Text = "Ввод данных";
             this.InputParamsBut.UseVisualStyleBackColor = false;
@@ -235,7 +239,7 @@
             this.ViewBut.Location = new System.Drawing.Point(0, 50);
             this.ViewBut.Margin = new System.Windows.Forms.Padding(0);
             this.ViewBut.Name = "ViewBut";
-            this.ViewBut.Size = new System.Drawing.Size(141, 50);
+            this.ViewBut.Size = new System.Drawing.Size(159, 50);
             this.ViewBut.TabIndex = 1;
             this.ViewBut.Text = "Просмотр";
             this.ViewBut.UseVisualStyleBackColor = true;
@@ -249,7 +253,7 @@
             this.SettingsBut.Location = new System.Drawing.Point(0, 100);
             this.SettingsBut.Margin = new System.Windows.Forms.Padding(0);
             this.SettingsBut.Name = "SettingsBut";
-            this.SettingsBut.Size = new System.Drawing.Size(141, 50);
+            this.SettingsBut.Size = new System.Drawing.Size(159, 50);
             this.SettingsBut.TabIndex = 2;
             this.SettingsBut.Text = "Настройки";
             this.SettingsBut.UseVisualStyleBackColor = true;
@@ -259,7 +263,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(962, 583);
+            this.ClientSize = new System.Drawing.Size(1077, 583);
             this.Controls.Add(this.splitContainer1);
             this.Name = "NewForm";
             this.Text = "NewForm";

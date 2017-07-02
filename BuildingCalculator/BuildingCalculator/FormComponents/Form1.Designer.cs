@@ -34,7 +34,7 @@
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.рассчитатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RoomTabs = new System.Windows.Forms.TabControl();
-            this.FirstRoom = new System.Windows.Forms.TabPage();;
+            this.FirstRoom = new System.Windows.Forms.TabPage();
             this.сохранитьПроектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.загрузитьПроектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabContent1 = new BuildingCalculator.TabContent();
