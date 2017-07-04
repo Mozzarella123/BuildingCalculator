@@ -23,7 +23,7 @@ namespace BuildingCalculator
                 {Category.window, "Окна" }
             };
         
-        public enum Category { none=-1,walls, floor, ceiling, floorPer, ceilingPer,elworks,santechworks,door,window, other};
+        public enum Category { none=-1,walls, floor, ceiling, floorPer, ceilingPer,elworks,santechworks, other,door,window};
         public double[] ParametersValue { get; set; }
         public WorkTypeClass()
         {
