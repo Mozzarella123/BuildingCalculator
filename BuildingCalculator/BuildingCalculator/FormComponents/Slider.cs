@@ -83,7 +83,7 @@ namespace BuildingCalculator
         private void Params_Input(object sender, EventArgs e)
         {
             int index = Convert.ToInt16(CurrentIndex.Text) - 1;
-            Functions.SetEntityParams(slides[index], sender as TextBox);                
+            //1Functions.SetEntityParams(slides[index], sender as TextBox);                
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -36,13 +36,11 @@ namespace BuildingCalculator.FormComponents
                     p.Dock = DockStyle.Fill;
                     p.Image = getImage(work);
                     p.Tag = work;
-
                     p.Click += new EventHandler(ImageClick);
                     tableLayoutPanel1.Controls.Add(p, 1, tableLayoutPanel1.RowCount - 1);
 
                 }
             }
-
         }
         static Image getImage(WorkTypeClass work)
         {
