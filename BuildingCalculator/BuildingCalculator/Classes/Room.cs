@@ -58,7 +58,7 @@ namespace BuildingCalculator
         {
             get
             {
-                return (Params[ParamName.Height] + Params[ParamName.Width]) * 2;
+                return (Params[ParamName.Length] + Params[ParamName.Width]) * 2;
             }
         }
     }
@@ -168,6 +168,7 @@ namespace BuildingCalculator
         
         public Element() : base()
         {
+            Categories = new List<WorkTypeClass.Category>();
         }
     }
 }

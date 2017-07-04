@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.worksTypeTree1 = new BuildingCalculator.FormComponents.WorksTypeTree();
             this.MarkUp = new System.Windows.Forms.TableLayoutPanel();
@@ -37,15 +37,20 @@
             this.RoomTypeT = new System.Windows.Forms.Label();
             this.TypeTabs = new System.Windows.Forms.TabControl();
             this.StandardRoom = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.RoomMarkup = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.Width = new System.Windows.Forms.TextBox();
+            this.WidthInp = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.Height = new System.Windows.Forms.TextBox();
-            this.Length = new System.Windows.Forms.TextBox();
+            this.HeightInp = new System.Windows.Forms.TextBox();
+            this.LengthInp = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Summ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.None_StandardRoom = new System.Windows.Forms.TabPage();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,11 +66,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.AddElement = new System.Windows.Forms.Button();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Summ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -73,15 +73,15 @@
             this.MarkUp.SuspendLayout();
             this.TypeTabs.SuspendLayout();
             this.StandardRoom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.RoomMarkup.SuspendLayout();
-            this.None_StandardRoom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.RoomMarkUp2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.RoomMarkup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.None_StandardRoom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.RoomMarkUp2.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -98,8 +98,8 @@
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.MarkUp);
-            this.splitContainer1.Size = new System.Drawing.Size(1069, 566);
-            this.splitContainer1.SplitterDistance = 278;
+            this.splitContainer1.Size = new System.Drawing.Size(1148, 566);
+            this.splitContainer1.SplitterDistance = 298;
             this.splitContainer1.TabIndex = 0;
             // 
             // worksTypeTree1
@@ -109,7 +109,7 @@
             this.worksTypeTree1.Location = new System.Drawing.Point(0, 0);
             this.worksTypeTree1.Name = "worksTypeTree1";
             this.worksTypeTree1.Padding = new System.Windows.Forms.Padding(3);
-            this.worksTypeTree1.Size = new System.Drawing.Size(278, 566);
+            this.worksTypeTree1.Size = new System.Drawing.Size(298, 566);
             this.worksTypeTree1.TabIndex = 0;
             // 
             // MarkUp
@@ -130,7 +130,7 @@
             this.MarkUp.RowCount = 2;
             this.MarkUp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.MarkUp.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.MarkUp.Size = new System.Drawing.Size(787, 566);
+            this.MarkUp.Size = new System.Drawing.Size(846, 566);
             this.MarkUp.TabIndex = 0;
             this.MarkUp.Paint += new System.Windows.Forms.PaintEventHandler(this.MarkUp_Paint);
             // 
@@ -142,7 +142,7 @@
             this.RoomTypeSelect.Items.AddRange(new object[] {
             "Стандартный",
             "Нестандартный"});
-            this.RoomTypeSelect.Location = new System.Drawing.Point(174, 6);
+            this.RoomTypeSelect.Location = new System.Drawing.Point(233, 6);
             this.RoomTypeSelect.Name = "RoomTypeSelect";
             this.RoomTypeSelect.Size = new System.Drawing.Size(278, 37);
             this.RoomTypeSelect.TabIndex = 0;
@@ -153,7 +153,7 @@
             this.RoomTypeT.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.RoomTypeT.AutoSize = true;
             this.RoomTypeT.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RoomTypeT.Location = new System.Drawing.Point(12, 10);
+            this.RoomTypeT.Location = new System.Drawing.Point(71, 10);
             this.RoomTypeT.Margin = new System.Windows.Forms.Padding(3);
             this.RoomTypeT.Name = "RoomTypeT";
             this.RoomTypeT.Size = new System.Drawing.Size(156, 29);
@@ -171,7 +171,7 @@
             this.TypeTabs.Location = new System.Drawing.Point(3, 53);
             this.TypeTabs.Name = "TypeTabs";
             this.TypeTabs.SelectedIndex = 0;
-            this.TypeTabs.Size = new System.Drawing.Size(781, 510);
+            this.TypeTabs.Size = new System.Drawing.Size(840, 510);
             this.TypeTabs.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.TypeTabs.TabIndex = 2;
             this.TypeTabs.TabStop = false;
@@ -184,36 +184,28 @@
             this.StandardRoom.Location = new System.Drawing.Point(4, 32);
             this.StandardRoom.Name = "StandardRoom";
             this.StandardRoom.Padding = new System.Windows.Forms.Padding(3);
-            this.StandardRoom.Size = new System.Drawing.Size(773, 474);
+            this.StandardRoom.Size = new System.Drawing.Size(832, 474);
             this.StandardRoom.TabIndex = 0;
             this.StandardRoom.Text = "tabPage1";
             // 
-            // dataGridView1
+            // splitContainer2
             // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Title,
-            this.Count,
-            this.Price,
-            this.Summ});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(767, 394);
-            this.dataGridView1.TabIndex = 1;
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.AutoScroll = true;
+            this.splitContainer2.Panel1.Controls.Add(this.RoomMarkup);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.dataGridView1);
+            this.splitContainer2.Size = new System.Drawing.Size(826, 468);
+            this.splitContainer2.SplitterDistance = 70;
+            this.splitContainer2.TabIndex = 2;
             // 
             // RoomMarkup
             // 
@@ -229,16 +221,16 @@
             this.RoomMarkup.Controls.Add(this.label2, 0, 0);
             this.RoomMarkup.Controls.Add(this.label3, 1, 0);
             this.RoomMarkup.Controls.Add(this.label4, 3, 0);
-            this.RoomMarkup.Controls.Add(this.Width, 4, 0);
+            this.RoomMarkup.Controls.Add(this.WidthInp, 4, 0);
             this.RoomMarkup.Controls.Add(this.label5, 5, 0);
-            this.RoomMarkup.Controls.Add(this.Height, 6, 0);
-            this.RoomMarkup.Controls.Add(this.Length, 2, 0);
+            this.RoomMarkup.Controls.Add(this.HeightInp, 6, 0);
+            this.RoomMarkup.Controls.Add(this.LengthInp, 2, 0);
             this.RoomMarkup.Dock = System.Windows.Forms.DockStyle.Top;
             this.RoomMarkup.Location = new System.Drawing.Point(0, 0);
             this.RoomMarkup.Name = "RoomMarkup";
             this.RoomMarkup.RowCount = 1;
             this.RoomMarkup.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.RoomMarkup.Size = new System.Drawing.Size(741, 103);
+            this.RoomMarkup.Size = new System.Drawing.Size(800, 90);
             this.RoomMarkup.TabIndex = 0;
             this.RoomMarkup.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.RoomMarkup_ControlRemoved);
             // 
@@ -247,7 +239,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(3, 9);
+            this.label2.Location = new System.Drawing.Point(3, 16);
             this.label2.Margin = new System.Windows.Forms.Padding(3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(144, 58);
@@ -260,7 +252,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(153, 24);
+            this.label3.Location = new System.Drawing.Point(153, 30);
             this.label3.Margin = new System.Windows.Forms.Padding(3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(83, 29);
@@ -273,7 +265,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(348, 24);
+            this.label4.Location = new System.Drawing.Point(348, 30);
             this.label4.Margin = new System.Windows.Forms.Padding(3);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 29);
@@ -281,21 +273,22 @@
             this.label4.Text = "Ширина";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Width
+            // WidthInp
             // 
-            this.Width.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Width.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Width.Location = new System.Drawing.Point(454, 20);
-            this.Width.Name = "Width";
-            this.Width.Size = new System.Drawing.Size(100, 36);
-            this.Width.TabIndex = 4;
+            this.WidthInp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.WidthInp.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.WidthInp.Location = new System.Drawing.Point(454, 27);
+            this.WidthInp.Name = "WidthInp";
+            this.WidthInp.Size = new System.Drawing.Size(100, 36);
+            this.WidthInp.TabIndex = 4;
+            this.WidthInp.TextChanged += new System.EventHandler(this.LengthInp_TextChanged);
             // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(560, 24);
+            this.label5.Location = new System.Drawing.Point(560, 30);
             this.label5.Margin = new System.Windows.Forms.Padding(3);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(95, 29);
@@ -303,23 +296,74 @@
             this.label5.Text = "Высота";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Height
+            // HeightInp
             // 
-            this.Height.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Height.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Height.Location = new System.Drawing.Point(661, 20);
-            this.Height.Name = "Height";
-            this.Height.Size = new System.Drawing.Size(107, 36);
-            this.Height.TabIndex = 6;
+            this.HeightInp.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.HeightInp.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HeightInp.Location = new System.Drawing.Point(661, 27);
+            this.HeightInp.Name = "HeightInp";
+            this.HeightInp.Size = new System.Drawing.Size(110, 36);
+            this.HeightInp.TabIndex = 6;
+            this.HeightInp.TextChanged += new System.EventHandler(this.LengthInp_TextChanged);
             // 
-            // Length
+            // LengthInp
             // 
-            this.Length.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Length.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Length.Location = new System.Drawing.Point(242, 20);
-            this.Length.Name = "Length";
-            this.Length.Size = new System.Drawing.Size(100, 36);
-            this.Length.TabIndex = 1;
+            this.LengthInp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.LengthInp.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LengthInp.Location = new System.Drawing.Point(242, 27);
+            this.LengthInp.Name = "LengthInp";
+            this.LengthInp.Size = new System.Drawing.Size(100, 36);
+            this.LengthInp.TabIndex = 1;
+            this.LengthInp.TextChanged += new System.EventHandler(this.LengthInp_TextChanged);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Title,
+            this.Count,
+            this.Price,
+            this.Summ});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 28;
+            this.dataGridView1.Size = new System.Drawing.Size(826, 394);
+            this.dataGridView1.TabIndex = 1;
+            // 
+            // Title
+            // 
+            this.Title.HeaderText = "Наименование работ";
+            this.Title.Name = "Title";
+            this.Title.ReadOnly = true;
+            // 
+            // Count
+            // 
+            this.Count.HeaderText = "Кол-во";
+            this.Count.Name = "Count";
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Цена";
+            this.Price.Name = "Price";
+            // 
+            // Summ
+            // 
+            this.Summ.HeaderText = "Сумма";
+            this.Summ.Name = "Summ";
+            this.Summ.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // None_StandardRoom
             // 
@@ -329,7 +373,7 @@
             this.None_StandardRoom.Location = new System.Drawing.Point(4, 32);
             this.None_StandardRoom.Name = "None_StandardRoom";
             this.None_StandardRoom.Padding = new System.Windows.Forms.Padding(3);
-            this.None_StandardRoom.Size = new System.Drawing.Size(773, 474);
+            this.None_StandardRoom.Size = new System.Drawing.Size(832, 474);
             this.None_StandardRoom.TabIndex = 1;
             this.None_StandardRoom.Text = "tabPage2";
             // 
@@ -344,20 +388,20 @@
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridView2.Location = new System.Drawing.Point(3, 101);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 28;
-            this.dataGridView2.Size = new System.Drawing.Size(767, 150);
+            this.dataGridView2.Size = new System.Drawing.Size(826, 150);
             this.dataGridView2.TabIndex = 2;
             // 
             // dataGridViewTextBoxColumn1
@@ -412,7 +456,7 @@
             this.RoomMarkUp2.Name = "RoomMarkUp2";
             this.RoomMarkUp2.RowCount = 1;
             this.RoomMarkUp2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.RoomMarkUp2.Size = new System.Drawing.Size(767, 98);
+            this.RoomMarkUp2.Size = new System.Drawing.Size(826, 98);
             this.RoomMarkUp2.TabIndex = 1;
             // 
             // label1
@@ -499,54 +543,13 @@
             this.AddElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AddElement.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AddElement.Location = new System.Drawing.Point(500, 3);
+            this.AddElement.Location = new System.Drawing.Point(559, 3);
             this.AddElement.Name = "AddElement";
             this.AddElement.Size = new System.Drawing.Size(284, 44);
             this.AddElement.TabIndex = 3;
             this.AddElement.Text = "Добавить элемент";
             this.AddElement.UseVisualStyleBackColor = true;
             this.AddElement.Click += new System.EventHandler(this.AddElement_Click);
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.AutoScroll = true;
-            this.splitContainer2.Panel1.Controls.Add(this.RoomMarkup);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer2.Size = new System.Drawing.Size(767, 468);
-            this.splitContainer2.SplitterDistance = 70;
-            this.splitContainer2.TabIndex = 2;
-            // 
-            // Title
-            // 
-            this.Title.HeaderText = "Наименование работ";
-            this.Title.Name = "Title";
-            this.Title.ReadOnly = true;
-            // 
-            // Count
-            // 
-            this.Count.HeaderText = "Кол-во";
-            this.Count.Name = "Count";
-            // 
-            // Price
-            // 
-            this.Price.HeaderText = "Цена";
-            this.Price.Name = "Price";
-            // 
-            // Summ
-            // 
-            this.Summ.HeaderText = "Сумма";
-            this.Summ.Name = "Summ";
-            this.Summ.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // RoomTabContent
             // 
@@ -555,7 +558,7 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.Controls.Add(this.splitContainer1);
             this.Name = "RoomTabContent";
-            this.Size = new System.Drawing.Size(1069, 566);
+            this.Size = new System.Drawing.Size(1148, 566);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -564,17 +567,17 @@
             this.MarkUp.PerformLayout();
             this.TypeTabs.ResumeLayout(false);
             this.StandardRoom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.RoomMarkup.ResumeLayout(false);
-            this.RoomMarkup.PerformLayout();
-            this.None_StandardRoom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.RoomMarkUp2.ResumeLayout(false);
-            this.RoomMarkUp2.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.RoomMarkup.ResumeLayout(false);
+            this.RoomMarkup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.None_StandardRoom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.RoomMarkUp2.ResumeLayout(false);
+            this.RoomMarkUp2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -609,9 +612,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        public System.Windows.Forms.TextBox Length;
-        public System.Windows.Forms.TextBox Width;
-        public System.Windows.Forms.TextBox Height;
+        public System.Windows.Forms.TextBox LengthInp;
+        public System.Windows.Forms.TextBox WidthInp;
+        public System.Windows.Forms.TextBox HeightInp;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Title;
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;

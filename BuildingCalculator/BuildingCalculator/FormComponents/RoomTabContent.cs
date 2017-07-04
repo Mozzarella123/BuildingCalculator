@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BuildingCalculator.Classes;
 
 namespace BuildingCalculator.FormComponents
 {
@@ -19,7 +20,7 @@ namespace BuildingCalculator.FormComponents
             InitializeComponent();
             TypeTabs.ItemSize = new Size(0,1);
             RoomTypeSelect.SelectedIndex = 0;
-            Classes.Functions.ContextMenu(this, new List<string>()
+            Functions.ContextMenu(this, new List<string>()
                 {
                     "Скрыть работы",
                     "Скрыть элементы"
@@ -29,7 +30,7 @@ namespace BuildingCalculator.FormComponents
                     Hide_Elems
                 }
             );
-            Classes.Functions.ContextMenu(dataGridView1, new List<string>()
+            Functions.ContextMenu(dataGridView1, new List<string>()
                 {
                     "Обновить",
                 }, new List<EventHandler>()
@@ -37,11 +38,15 @@ namespace BuildingCalculator.FormComponents
                     RefrehTable
                 }
             );
-            
+            worksTypeTree1.WorksList.CheckBoxes = true;
+            Functions.SetValidator(WidthInp, Functions.ValidateType.OnlyNumbers);
+            Functions.SetValidator(LengthInp, Functions.ValidateType.OnlyNumbers);
+            Functions.SetValidator(HeightInp, Functions.ValidateType.OnlyNumbers);
         }
         private void RefrehTable(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
+            double sum = 0;
             foreach (WorkTypeClass work in worksTypeTree1.CheckedWorks)
             {
                 //если параметры не входят в список стандартных
@@ -62,7 +67,7 @@ namespace BuildingCalculator.FormComponents
                     {
                         param.Label.Text = "Введите " + work.parametrs[i] + " в " + work.article;
                         param.Width = param.Label.Text.Length * 10;
-                        Classes.Functions.CenterForm(param, this.ParentForm);
+                        Classes.Functions.CenterForm(param, ParentForm);
                         param.ShowDialog();
                         Array.Resize(ref parameters, parameters.Length + 1);
                         if (param.TextBox.Text == "")
@@ -70,17 +75,18 @@ namespace BuildingCalculator.FormComponents
                         parameters[parameters.Length - 1] = double.Parse(param.TextBox.Text);
                         param.Label.Text = "";
                     }
-                    work.Parameters = parameters;
+                    work.ParametersValue = parameters;
                 }
                 else
-                    work.Parameters = new double[] { Room.GetAreaFromCat(work.category) };
+                    work.ParametersValue = new double[] { Room.GetAreaFromCat(work.category) };
                 string quantity = "";
                 //значения параметров
                 for (int k = 0; k < work.parametrs.Count; k++)
-                    quantity += work.Parameters[k] + " " + work.parametrs[k] + "\n";
+                    quantity += work.ParametersValue[k] + " " + work.parametrs[k] + "\n";
                 dataGridView1.Rows.Add(new string[] { work.article, quantity, work.formula, work.GetPrice().ToString() });
+                sum += work.GetPrice();
             }
-
+            dataGridView1.Rows.Add(new string[] { "","", "Сумма", sum.ToString() });            
         }
         private void Hide_Works(object sender, EventArgs e)
         {
@@ -120,8 +126,9 @@ namespace BuildingCalculator.FormComponents
         {
             RoomMarkup.RowCount++;
             ElementForm element = new ElementForm();
-            element.ContInp.TextChanged += Count_TextChanged;
             element.Anchor = (AnchorStyles.Top|AnchorStyles.Bottom);
+            element.Element.Categories.Add(WorkTypeClass.Category.walls);
+            Room.Elements.AddRange(element.ElementLists);
             RoomMarkup.Height += element.Height;
             RoomMarkup.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             RoomMarkup.Controls.Add(element,0, RoomMarkup.RowCount - 1);                   
@@ -143,12 +150,27 @@ namespace BuildingCalculator.FormComponents
             ElementForm element = new ElementForm();
             RoomMarkup.Height -= element.Height;
             RoomMarkup.RowCount--;
-
+            Room.Elements.RemoveAll(item => item == null);
         }
 
         private void RoomTypeSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             TypeTabs.SelectedIndex = RoomTypeSelect.SelectedIndex;
+        }
+
+        private void LengthInp_TextChanged(object sender, EventArgs e)
+        {
+            TextBox text = sender as TextBox;
+            string Text = "";
+            if (text.Text == "")
+                Text = "0";
+            else Text = text.Text;
+            switch (text.Name)
+            {
+                case "WidthInp": Room.Params[Entity.ParamName.Width] = Convert.ToDouble(Text); break;
+                case "HeightInp": Room.Params[Entity.ParamName.Height] = Convert.ToDouble(Text); break;
+                case "LengthInp": Room.Params[Entity.ParamName.Length] = Convert.ToDouble(Text); break;
+            }
         }
     }
 }
