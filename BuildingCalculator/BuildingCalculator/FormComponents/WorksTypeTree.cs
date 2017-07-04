@@ -19,8 +19,7 @@ namespace BuildingCalculator.FormComponents
         {
             InitializeComponent();
             WorksList.Nodes.Add("Все категории");
-            Functions.BuildList(WorksList, true, true);
-            
+            Functions.BuildList(WorksList, true, true);            
         }
         private void Search_TextChanged(object sender, EventArgs e)
         {
@@ -74,7 +73,7 @@ namespace BuildingCalculator.FormComponents
                 if (check)
                 {
                     if (!CheckedWorks.Contains(work))
-                        CheckedWorks.Add(work);
+                        CheckedWorks.Add((WorkTypeClass)work.Clone());
                 }
                 else
                     CheckedWorks.Remove(work);

@@ -125,7 +125,7 @@ namespace BuildingCalculator
 
         private void Search()
         {
-            string searchText = this.SearchInp.Text;
+            string searchText = SearchInp.Text;
             if (String.IsNullOrEmpty(searchText))
             {
                 return;

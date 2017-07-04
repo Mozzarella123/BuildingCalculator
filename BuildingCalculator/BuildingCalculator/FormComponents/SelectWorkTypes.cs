@@ -127,10 +127,10 @@ namespace BuildingCalculator.FormComponents
                             parameters[parameters.Length - 1] = double.Parse(param.TextBox.Text);
                             param.Label.Text = "";
                         }
-                        work.Parameters = parameters;
+                        work.ParametersValue = parameters;
                     }
                     else
-                        work.Parameters = new double[] { rooms[currentroom].GetAreaFromCat(work.category) };
+                        work.ParametersValue = new double[] { rooms[currentroom].GetAreaFromCat(work.category) };
 
                 }
                 //работа с другими комнатами
@@ -160,7 +160,7 @@ namespace BuildingCalculator.FormComponents
                             string quantity = "";
                             //значения параметров
                             for (int k = 0; k < rooms[i].CheckedWorks[j].parametrs.Count; k++)
-                                quantity += rooms[i].CheckedWorks[j].Parameters[k] + " " + rooms[i].CheckedWorks[j].parametrs[k] + "\n";
+                                quantity += rooms[i].CheckedWorks[j].ParametersValue[k] + " " + rooms[i].CheckedWorks[j].parametrs[k] + "\n";
                             //Количество
                             content[j, 1] = quantity;
                             //Расценка

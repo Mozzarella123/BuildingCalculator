@@ -7,7 +7,7 @@ using BuildingCalculator.Classes;
 
 namespace BuildingCalculator
 {
-    public class WorkTypeClass
+    public class WorkTypeClass:ICloneable
     {
         public static Dictionary<Category, string> CategoryNames = new Dictionary<Category, string>()
             {
@@ -23,22 +23,12 @@ namespace BuildingCalculator
                 {Category.window, "Окна" }
             };
         
-        public enum Category { none=-1,walls, floor, ceiling, floorPer, ceilingPer,elworks,santechworks, other, door, window};
-        double[] parametres = new double[0];
-        public double[] Parameters
-        {
-            get
-            {
-                return parametres;            
-            }
-            set
-            {
-                parametres = value;
-            }
-        }
+        public enum Category { none=-1,walls, floor, ceiling, floorPer, ceilingPer,elworks,santechworks, other};
+        public double[] ParametersValue { get; set; }
         public WorkTypeClass()
         {
             parametrs = new List<string>();
+            ParametersValue = new double[0];
             isFixedPrice = false;
             
         }
@@ -86,12 +76,11 @@ namespace BuildingCalculator
         public bool FullEquals(WorkTypeClass work)
         {
             bool ret = article.Equals(work.article);
-            ret &= WorkTypeClass.Equals(parametres, work.parametres);
+            ret &= Equals(ParametersValue, work.ParametersValue);
             ret &= formula.Equals(work.formula);
             ret &= category.Equals(work.category);
             return ret;
-        }
-        
+        }       
         static bool Equals(List<string> s1,List<string> s2)
         {
             if (s1 == null && s2 == null)
@@ -105,6 +94,22 @@ namespace BuildingCalculator
                         return false;
                 return true;
             }
+        }
+        public object Clone()
+        {
+            WorkTypeClass copywork = new WorkTypeClass();
+            copywork.article = article;
+            copywork.category = category;
+            copywork.delegateName = delegateName;
+            copywork.formula = formula;
+            double[] copyparams = new double[ParametersValue.Length];
+            ParametersValue.CopyTo(copyparams, 0);
+            copywork.ParametersValue = copyparams;
+            List<string> copyparamss = new List<string>();
+            foreach (string s in parametrs)
+                copyparamss.Add(s);
+            copywork.parametrs = copyparamss;
+            return copywork;
         }
     }
 }

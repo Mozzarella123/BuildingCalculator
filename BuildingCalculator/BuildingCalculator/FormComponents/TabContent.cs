@@ -19,7 +19,7 @@ namespace BuildingCalculator
             Functions.Input(Width, Room, SetMethod,Functions.ValidateType.OnlyNumbers);
             Functions.Input(Length, Room, SetMethod, Functions.ValidateType.OnlyNumbers);
             Functions.Input(Height, Room, SetMethod, Functions.ValidateType.OnlyNumbers);
-            Room.Elements = (Controls["multiSliders1"] as MultiSliders).Elements;
+            //Room.Elements = (Controls["multiSliders1"] as MultiSliders).Elements;
             Functions.SetToolTip("Введите значение параметра", Width);
             Functions.SetToolTip("Введите значение параметра", Length);
             Functions.SetToolTip("Введите значение параметра", Height);
