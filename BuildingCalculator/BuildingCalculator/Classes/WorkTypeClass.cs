@@ -19,6 +19,8 @@ namespace BuildingCalculator
                 {Category.elworks, "Электромонтажные работы" },
                 {Category.santechworks, "Сантехнические работы" },
                 {Category.other, "Другое" },
+                {Category.door, "Двери" },
+                {Category.window, "Окна" }
             };
         
         public enum Category { none=-1,walls, floor, ceiling, floorPer, ceilingPer,elworks,santechworks, other};
@@ -27,13 +29,24 @@ namespace BuildingCalculator
         {
             parametrs = new List<string>();
             ParametersValue = new double[0];
+            isFixedPrice = false;
             
+        }
+        public WorkTypeClass(double price)
+        {
+            parametrs = new List<string>();
+            isFixedPrice = true;
+            fixedPrice = price;
         }
         public double GetPrice()
         {
-            double result = DelegateAssemblyService.getPriceforWorkType(this, ParametersValue);
+            if (isFixedPrice)
+                return fixedPrice;
+            double result = DelegateAssemblyService.getPriceforWorkType(this, parametres);
             return result;
         }
+        bool isFixedPrice;
+        public double fixedPrice;
         public string article;
         public string formula;
         public List<string> parametrs;

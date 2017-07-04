@@ -165,6 +165,12 @@
     <Compile Include="FormComponents\RoomTabContent.Designer.cs">
       <DependentUpon>RoomTabContent.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormComponents\SelectDoorsWindows.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormComponents\SelectDoorsWindows.Designer.cs">
+      <DependentUpon>SelectDoorsWindows.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormComponents\SelectWorkTypes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\RoomTabContent.resx">
       <DependentUpon>RoomTabContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormComponents\SelectDoorsWindows.resx">
+      <DependentUpon>SelectDoorsWindows.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\SelectWorkTypes.resx">
       <DependentUpon>SelectWorkTypes.cs</DependentUpon>
