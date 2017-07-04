@@ -23,7 +23,7 @@ namespace BuildingCalculator
                 {Category.window, "Окна" }
             };
         
-        public enum Category { none=-1,walls, floor, ceiling, floorPer, ceilingPer,elworks,santechworks, other};
+        public enum Category { none=-1,walls, floor, ceiling, floorPer, ceilingPer,elworks,santechworks,door,window, other};
         public double[] ParametersValue { get; set; }
         public WorkTypeClass()
         {
@@ -42,7 +42,7 @@ namespace BuildingCalculator
         {
             if (isFixedPrice)
                 return fixedPrice;
-            double result = DelegateAssemblyService.getPriceforWorkType(this, parametres);
+            double result = DelegateAssemblyService.getPriceforWorkType(this, ParametersValue);
             return result;
         }
         bool isFixedPrice;
