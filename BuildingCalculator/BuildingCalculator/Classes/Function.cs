@@ -46,6 +46,7 @@ namespace BuildingCalculator.Classes
                 case ValidateType.OnlyNumbers:
                     {
                         control.KeyPress += ValidNumbers;
+                        control.Text = "0";
                         break;
                     }
                 case ValidateType.OnlyText:
@@ -68,17 +69,24 @@ namespace BuildingCalculator.Classes
                 e.Handled = true;
             else
             {
+
                 if (input.Text == "0")
                         (sender as Control).Text = "";
+                if (e.KeyChar == '\b' && input.Text.Length == 1)
+                {
+                    e.Handled = true;
+                    input.Text = "0";
+                }
                 if (e.KeyChar == ','||e.KeyChar=='.')
                 {
                     if (e.KeyChar == '.') e.KeyChar = ',';
                     if (input.Text == "")
-                        input.Text += "0";
-                    input.SelectionStart = input.Text.Length;
+                        input.Text += "0";                    
                     if (input.Text.Contains(e.KeyChar))
                         e.Handled = true;
                 }
+                input.SelectionStart = input.Text.Length;
+
             }
         }
         private static void ValidText(object sender, KeyPressEventArgs e)

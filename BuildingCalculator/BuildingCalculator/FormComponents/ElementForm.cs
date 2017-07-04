@@ -19,11 +19,12 @@ namespace BuildingCalculator.FormComponents
         public ElementForm()
         {
             InitializeComponent();
+            Element = new Element();
             foreach (Control control in MarkUp.Controls)
                 if (control is TextBox)
                 Functions.SetValidator(control, Functions.ValidateType.OnlyNumbers);
             comboBox1.SelectedIndex = 0;
-            Element = new Element();
+
             ContInp.Text = "1";
         }
         private void label3_Click(object sender, EventArgs e)
