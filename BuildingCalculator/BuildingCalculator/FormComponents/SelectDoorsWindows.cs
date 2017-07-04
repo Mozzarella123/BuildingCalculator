@@ -22,10 +22,10 @@ namespace BuildingCalculator.FormComponents
         public WorkTypeClass.Category Cat;
         public void Refresh(WorkTypeClass.Category cat)
         {
-            tableLayoutPanel1.RowCount = 1;
+            //tableLayoutPanel1.RowCount = 1;
             foreach (WorkTypeClass work in JSONSerializeService.OutputItems)
             {
-                if (work.category == cat)
+                if (work.category == cat&&!ContainWork(work))
                 {
                     tableLayoutPanel1.RowCount++;
                     Label l = new Label();
@@ -39,10 +39,21 @@ namespace BuildingCalculator.FormComponents
 
                     p.Click += new EventHandler(ImageClick);
                     tableLayoutPanel1.Controls.Add(p, 1, tableLayoutPanel1.RowCount - 1);
-
+                    
                 }
             }
 
+        }
+        bool ContainWork(WorkTypeClass work)
+        {
+            foreach (ToolStripPanelRow r in tableLayoutPanel1.RowStyles)
+                foreach (Control p in Controls) 
+            {
+                    if (p is PictureBox)
+                        if (work.Equals(p.Tag))
+                            return true;
+            }
+            return false;
         }
         static Image getImage(WorkTypeClass work)
         {
