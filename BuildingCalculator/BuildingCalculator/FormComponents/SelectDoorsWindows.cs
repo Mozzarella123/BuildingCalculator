@@ -27,31 +27,31 @@ namespace BuildingCalculator.FormComponents
             {
                 if (work.category == cat&&!ContainWork(work))
                 {
-                    tableLayoutPanel1.RowCount++;
+                    //tableLayoutPanel1.RowCount++;
                     Label l = new Label();
                     l.Dock = DockStyle.Fill;
                     l.Text = work.article;
-                    tableLayoutPanel1.Controls.Add(l, 0, tableLayoutPanel1.RowCount - 1);
+                    //tableLayoutPanel1.Controls.Add(l, 0, tableLayoutPanel1.RowCount - 1);
                     PictureBox p = new PictureBox();
                     p.Dock = DockStyle.Fill;
                     p.Image = getImage(work);
                     p.Tag = work;
                     p.Click += new EventHandler(ImageClick);
-                    tableLayoutPanel1.Controls.Add(p, 1, tableLayoutPanel1.RowCount - 1);
+                    //tableLayoutPanel1.Controls.Add(p, 1, tableLayoutPanel1.RowCount - 1);
                     
                 }
             }
         }
         bool ContainWork(WorkTypeClass work)
         {
-            foreach (ToolStripPanelRow r in tableLayoutPanel1.RowStyles)
-                foreach (Control p in Controls) 
-            {
-                    if (p is PictureBox)
-                        if (work.Equals(p.Tag))
-                            return true;
-            }
-            return false;
+            //foreach (ToolStripPanelRow r in tableLayoutPanel1.RowStyles)
+            //    foreach (Control p in Controls) 
+            //    {
+            //            if (p is PictureBox)
+            //                if (work.Equals(p.Tag))
+            //                    return true;
+            //    }
+            //return false;
         }
         static Image getImage(WorkTypeClass work)
         {
@@ -81,6 +81,11 @@ namespace BuildingCalculator.FormComponents
                 e.Cancel = true;
                 this.Hide();
             }
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

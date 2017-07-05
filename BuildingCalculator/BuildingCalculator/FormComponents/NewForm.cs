@@ -52,17 +52,18 @@ namespace BuildingCalculator.FormComponents
                 for  (int j=0;j<Rooms[i].CheckedWorks.Count;j++)
                 {
                     WorkTypeClass work = Rooms[i].CheckedWorks[j];
-
-                        //проверяем содержит 
-                        if (everyworksumm.FirstOrDefault(x => x.Key.article == work.article && x.Key.category == work.category).Key == null)
+                    if (work.ParametersValue.Length == 0)
+                        work.ParametersValue = new double[work.parametrs.Count];
+                    //проверяем содержит 
+                    if (everyworksumm.FirstOrDefault(x => x.Key.article == work.article && x.Key.category == work.category).Key == null)
                         {
                             everyworksumm.Add(work, 0);
                             paramssumm.Add(work, new double[work.ParametersValue.Length]);
                         }
+                    if (work.ParametersValue.Length == 0)
+                        work.ParametersValue = new double[work.parametrs.Count];
                     for (int k = 0; k < Rooms[i].CheckedWorks[j].parametrs.Count; k++)
                         paramssumm.First(x => x.Key.article == work.article && x.Key.category == work.category).Value[k] += work.ParametersValue[k];
-                    
-
                     everyworksumm[everyworksumm.First(x => x.Key.article == work.article && x.Key.category == work.category).Key] += work.GetPrice();
                     commonsum += work.GetPrice();
                 }
