@@ -13,34 +13,57 @@ namespace BuildingCalculator.FormComponents
 {
     public partial class SelectDoorsWindows : Form
     {
+        List<Element> doors = new List<Element>()
+        {
+            Element.CreateElement
+            (
+                Entity.ParamName.Height,80,
+                Entity.ParamName.Width,200,
+                "Дверь",
+                new List<WorkTypeClass.Category>()
+                { WorkTypeClass.Category.floorPer,WorkTypeClass.Category.walls }
+            ),
+            Element.CreateElement
+            (
+                Entity.ParamName.Height,70,
+                Entity.ParamName.Width,200,
+                "Дверь",
+                new List<WorkTypeClass.Category>()
+                { WorkTypeClass.Category.floorPer,WorkTypeClass.Category.walls }
+            ),
+            Element.CreateElement
+            (
+                Entity.ParamName.Height,90,
+                Entity.ParamName.Width,200,
+                "Дверь",
+                new List<WorkTypeClass.Category>()
+                { WorkTypeClass.Category.floorPer,WorkTypeClass.Category.walls }
+            ),
+
+        }
+        ;
         public SelectDoorsWindows(WorkTypeClass.Category cat)
         {
             InitializeComponent();
             Cat = cat;
-            Refresh(Cat);
+            tableLayoutPanel1.RowStyles.Clear();
+            tableLayoutPanel1.RowCount = (int)Math.Ceiling(5 / 4.0);
+            tableLayoutPanel1.Height = tableLayoutPanel1.RowCount * 100;
+            for (int i = 0; i < tableLayoutPanel1.RowCount; i++)
+                tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 100));
+            for (int i = 0; i < 5; i++)
+            {
+                RadioButton radio = new RadioButton();
+                radio.Name = "radio" + i;
+                radio.Text = "Шаблон:" + " Имя" + " Размер";
+                radio.Anchor = (AnchorStyles.Top | AnchorStyles.Bottom);
+                tableLayoutPanel1.Controls.Add(radio, i, i / 5);
+            }
         }
         public WorkTypeClass.Category Cat;
         public void Refresh(WorkTypeClass.Category cat)
         {
-            //tableLayoutPanel1.RowCount = 1;
-            foreach (WorkTypeClass work in JSONSerializeService.OutputItems)
-            {
-                if (work.category == cat&&!ContainWork(work))
-                {
-                    //tableLayoutPanel1.RowCount++;
-                    Label l = new Label();
-                    l.Dock = DockStyle.Fill;
-                    l.Text = work.article;
-                    //tableLayoutPanel1.Controls.Add(l, 0, tableLayoutPanel1.RowCount - 1);
-                    PictureBox p = new PictureBox();
-                    p.Dock = DockStyle.Fill;
-                    p.Image = getImage(work);
-                    p.Tag = work;
-                    p.Click += new EventHandler(ImageClick);
-                    //tableLayoutPanel1.Controls.Add(p, 1, tableLayoutPanel1.RowCount - 1);
-                    
-                }
-            }
+            
         }
         bool ContainWork(WorkTypeClass work)
         {
@@ -51,7 +74,7 @@ namespace BuildingCalculator.FormComponents
             //                if (work.Equals(p.Tag))
             //                    return true;
             //    }
-            //return false;
+            return false;
         }
         static Image getImage(WorkTypeClass work)
         {
