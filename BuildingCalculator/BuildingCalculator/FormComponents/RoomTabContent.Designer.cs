@@ -210,7 +210,6 @@
             // 
             // RoomMarkup
             // 
-            this.RoomMarkup.AutoScroll = true;
             this.RoomMarkup.ColumnCount = 7;
             this.RoomMarkup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.RoomMarkup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());

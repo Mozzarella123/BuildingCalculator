@@ -47,7 +47,7 @@
             this.Title.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Title.AutoSize = true;
             this.Title.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Title.Location = new System.Drawing.Point(3, 33);
+            this.Title.Location = new System.Drawing.Point(3, 36);
             this.Title.Margin = new System.Windows.Forms.Padding(3);
             this.Title.Name = "Title";
             this.MarkUp.SetRowSpan(this.Title, 2);
@@ -60,7 +60,7 @@
             // 
             this.ContInp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ContInp.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ContInp.Location = new System.Drawing.Point(234, 3);
+            this.ContInp.Location = new System.Drawing.Point(234, 5);
             this.ContInp.MaxLength = 5;
             this.ContInp.Multiline = true;
             this.ContInp.Name = "ContInp";
@@ -72,7 +72,7 @@
             // 
             this.WidthInp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.WidthInp.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WidthInp.Location = new System.Drawing.Point(234, 50);
+            this.WidthInp.Location = new System.Drawing.Point(234, 56);
             this.WidthInp.MaxLength = 5;
             this.WidthInp.Multiline = true;
             this.WidthInp.Name = "WidthInp";
@@ -85,7 +85,7 @@
             this.Count.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Count.AutoSize = true;
             this.Count.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Count.Location = new System.Drawing.Point(128, 9);
+            this.Count.Location = new System.Drawing.Point(128, 11);
             this.Count.Margin = new System.Windows.Forms.Padding(3);
             this.Count.Name = "Count";
             this.Count.Size = new System.Drawing.Size(100, 29);
@@ -98,7 +98,7 @@
             this.Param1T.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.Param1T.AutoSize = true;
             this.Param1T.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Param1T.Location = new System.Drawing.Point(128, 56);
+            this.Param1T.Location = new System.Drawing.Point(128, 62);
             this.Param1T.Margin = new System.Windows.Forms.Padding(3);
             this.Param1T.Name = "Param1T";
             this.Param1T.Size = new System.Drawing.Size(100, 29);
@@ -111,7 +111,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(321, 9);
+            this.label3.Location = new System.Drawing.Point(321, 11);
             this.label3.Margin = new System.Windows.Forms.Padding(3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(101, 29);
@@ -145,12 +145,13 @@
             this.MarkUp.Controls.Add(this.button1, 5, 0);
             this.MarkUp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MarkUp.Location = new System.Drawing.Point(10, 10);
+            this.MarkUp.Margin = new System.Windows.Forms.Padding(3, 3, 1, 3);
             this.MarkUp.Name = "MarkUp";
             this.MarkUp.RowCount = 2;
             this.MarkUp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.MarkUp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.MarkUp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.MarkUp.Size = new System.Drawing.Size(775, 95);
+            this.MarkUp.Size = new System.Drawing.Size(785, 102);
             this.MarkUp.TabIndex = 9;
             // 
             // comboBox1
@@ -161,7 +162,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Сменить тип ",
             "Нестандартный"});
-            this.comboBox1.Location = new System.Drawing.Point(428, 5);
+            this.comboBox1.Location = new System.Drawing.Point(428, 7);
             this.comboBox1.MaxLength = 5;
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(201, 37);
@@ -173,7 +174,7 @@
             this.Param2T.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Param2T.AutoSize = true;
             this.Param2T.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Param2T.Location = new System.Drawing.Point(321, 56);
+            this.Param2T.Location = new System.Drawing.Point(321, 62);
             this.Param2T.Margin = new System.Windows.Forms.Padding(3);
             this.Param2T.Name = "Param2T";
             this.Param2T.Size = new System.Drawing.Size(101, 29);
@@ -185,7 +186,7 @@
             // 
             this.HeightInp.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.HeightInp.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HeightInp.Location = new System.Drawing.Point(428, 50);
+            this.HeightInp.Location = new System.Drawing.Point(428, 56);
             this.HeightInp.MaxLength = 5;
             this.HeightInp.Multiline = true;
             this.HeightInp.Name = "HeightInp";
@@ -197,11 +198,11 @@
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.button1.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(637, 21);
-            this.button1.Margin = new System.Windows.Forms.Padding(5, 5, 8, 5);
+            this.button1.Location = new System.Drawing.Point(637, 25);
+            this.button1.Margin = new System.Windows.Forms.Padding(5, 5, 10, 5);
             this.button1.Name = "button1";
             this.MarkUp.SetRowSpan(this.button1, 2);
-            this.button1.Size = new System.Drawing.Size(136, 52);
+            this.button1.Size = new System.Drawing.Size(138, 52);
             this.button1.TabIndex = 11;
             this.button1.Text = "Удалить";
             this.button1.UseVisualStyleBackColor = true;
@@ -215,7 +216,7 @@
             this.Controls.Add(this.MarkUp);
             this.Name = "ElementForm";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(795, 115);
+            this.Size = new System.Drawing.Size(805, 122);
             this.MarkUp.ResumeLayout(false);
             this.MarkUp.PerformLayout();
             this.ResumeLayout(false);
