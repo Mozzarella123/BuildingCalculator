@@ -71,13 +71,13 @@ namespace BuildingCalculator
         /// <summary>
         /// Списки элементов разбитые по категориям
         /// </summary>
-        public List<Element> Elements { get; set; }
+        public List<List<Element>> Elements { get; set; }
         public List<WorkTypeClass.Category> CheckedCats { get; set; }
         public List<WorkTypeClass> CheckedWorks { get; set; }
 
         public Room() : base()
         {
-            Elements = new List<Element>();
+            Elements = new List<List<Element>>();
             CheckedCats = new List<WorkTypeClass.Category>();
             CheckedWorks = new List<WorkTypeClass>();
         }
@@ -129,7 +129,8 @@ namespace BuildingCalculator
             get
             {
                 double sum = 0;
-                foreach (var elem in Elements)
+                foreach (var list in Elements)
+                    foreach (var elem in list)
                     if (elem.Categories.Find(x => x == WorkTypeClass.Category.walls)==WorkTypeClass.Category.walls)
                                 sum += elem.Area;
                 return (base.Area + Params[ParamName.Height] * Params[ParamName.Length]) * 2 - sum;
@@ -153,8 +154,9 @@ namespace BuildingCalculator
             get
             {
                 double sum = 0;
-                foreach (var elem in Elements)
-                    if (elem.Categories.Find(x => x == WorkTypeClass.Category.floorPer) == WorkTypeClass.Category.floorPer)
+                foreach (var list in Elements)
+                    foreach (var elem in list)
+                        if (elem.Categories.Find(x => x == WorkTypeClass.Category.floorPer) == WorkTypeClass.Category.floorPer)
                                 sum += elem.Params[ParamName.Width];
                 return (Params[ParamName.Width] + Params[ParamName.Length]) * 2 - sum;
             }
@@ -171,6 +173,8 @@ namespace BuildingCalculator
             Element element = new Element();
             element.Params[param1] = valueparam1;
             element.Params[param2] = valueparam2;
+            if (Title != null)
+                element.Title = Title;
             if (cats!=null)
                 foreach (WorkTypeClass.Category cat in cats)
                     element.Categories.Add(cat);

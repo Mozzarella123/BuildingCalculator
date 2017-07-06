@@ -85,6 +85,7 @@ namespace BuildingCalculator.Classes
                     if (input.Text.Contains(e.KeyChar))
                         e.Handled = true;
                 }
+                if (input.SelectionLength==0)
                 input.SelectionStart = input.Text.Length;
 
             }
@@ -181,7 +182,7 @@ namespace BuildingCalculator.Classes
                 hint.SetToolTip(control, text);
             }
         }
-        public static void BuildList(TreeView Tree, bool allcats = false, bool sorted = true, bool visibleAllCat = false)
+        public static void BuildList(TreeView Tree, bool allcats = false, bool sorted = true)
         {
             if (JSONSerializeService.InputItems != null)
             {
@@ -194,9 +195,6 @@ namespace BuildingCalculator.Classes
                 //Добавляем категорию
                 foreach (var pair in WorkTypeClass.CategoryNames)
                 {
-                    if (!visibleAllCat)
-                        if (pair.Key == WorkTypeClass.Category.door || pair.Key == WorkTypeClass.Category.window)
-                            continue;
                     TreeNode newnode = new TreeNode(pair.Value);
                     newnode.Name = pair.Value;
                     newnode.Tag = pair.Key;
@@ -205,9 +203,6 @@ namespace BuildingCalculator.Classes
                 //Разбиваем по категориям
                 foreach (WorkTypeClass ob in workslist)
                 {
-                    if (!visibleAllCat)
-                        if (ob.category == WorkTypeClass.Category.door || ob.category == WorkTypeClass.Category.window)
-                            continue;
                     TreeNode newnode = new TreeNode(ob.article);
                     //newnode.Name = WorkTypeClass.CategoryNames[ob.category];
                     newnode.Text = ob.article + " " + ob.formula;
