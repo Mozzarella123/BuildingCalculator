@@ -48,10 +48,6 @@
             this.HeightInp = new System.Windows.Forms.TextBox();
             this.LengthInp = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Summ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.None_StandardRoom = new System.Windows.Forms.TabPage();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,6 +63,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.AddElement = new System.Windows.Forms.Button();
+            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Summ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -351,28 +351,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(826, 394);
             this.dataGridView1.TabIndex = 1;
             // 
-            // Title
-            // 
-            this.Title.HeaderText = "Наименование работ";
-            this.Title.Name = "Title";
-            this.Title.ReadOnly = true;
-            // 
-            // Count
-            // 
-            this.Count.HeaderText = "Кол-во";
-            this.Count.Name = "Count";
-            // 
-            // Price
-            // 
-            this.Price.HeaderText = "Цена";
-            this.Price.Name = "Price";
-            // 
-            // Summ
-            // 
-            this.Summ.HeaderText = "Сумма";
-            this.Summ.Name = "Summ";
-            this.Summ.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
             // None_StandardRoom
             // 
             this.None_StandardRoom.BackColor = System.Drawing.SystemColors.Window;
@@ -558,6 +536,31 @@
             this.AddElement.Text = "Добавить элемент";
             this.AddElement.UseVisualStyleBackColor = true;
             this.AddElement.Click += new System.EventHandler(this.AddElement_Click);
+            // 
+            // Title
+            // 
+            this.Title.HeaderText = "Наименование работ";
+            this.Title.Name = "Title";
+            this.Title.ReadOnly = true;
+            // 
+            // Count
+            // 
+            this.Count.HeaderText = "Кол-во";
+            this.Count.Name = "Count";
+            this.Count.ReadOnly = true;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Цена";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
+            // Summ
+            // 
+            this.Summ.HeaderText = "Сумма";
+            this.Summ.Name = "Summ";
+            this.Summ.ReadOnly = true;
+            this.Summ.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // RoomTabContent
             // 

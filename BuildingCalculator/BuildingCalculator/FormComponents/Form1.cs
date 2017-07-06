@@ -38,7 +38,7 @@ namespace BuildingCalculator
                 ConfigWorksService.Add("Images", "Data");
             if (!Directory.Exists(ConfigWorksService.getValue("Images")))
                 Directory.CreateDirectory(ConfigWorksService.getValue("Images"));
-            s = new SelectDoorsWindows(WorkTypeClass.Category.door);
+            s = new SelectDoorsWindows();
         }
         private void Form1_Load(object sender, EventArgs e)
         {

@@ -76,7 +76,7 @@ namespace BuildingCalculator.FormComponents
                         CheckedWorks.Add((WorkTypeClass)work.Clone());
                 }
                 else
-                    CheckedWorks.Remove(work);
+                    CheckedWorks.Remove(CheckedWorks.Find(x => x.category==work.category&&x.article==work.article));
                 if (check)
                 {
                     if (!CheckedCats.Contains(work.category))
