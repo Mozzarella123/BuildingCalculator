@@ -78,6 +78,18 @@ namespace BuildingCalculator
             
             if (headers != null&&content.GetLength(1) != headers.Length)
                 throw new IndexOutOfRangeException("Количество заголовков не совпадает с количеством столбцов в таблице контента");
+            //Cell cell = new Cell();
+            int[] width = new int[content.GetLength(1)];
+            for (int i = 0; i < content.GetLength(1); i++)
+            {
+                double sum = 0;
+                for (int j = 0; j < content.GetLength(0); j++)
+                {
+                    if(content[j,i]!=null)
+                    sum += content[j, i].Length;
+                }
+                width[i] = (int)(sum / content.GetLength(0));
+            }
             PDFDocument doc = documents[ident];
             Document document = doc.doc;
             int columncounts = 0;
@@ -117,13 +129,32 @@ namespace BuildingCalculator
                     Cell cell = row.Cells[j];
                     if (content[i, j] == null)
                         content[i, j] = "";
-                    cell.AddParagraph(content[i, j]);
+                    AddTextToCell(content[i, j], cell, width[j]);
+                    
                 }
             }
             doc.getSection(type).Add(table);
             
             
         }
+
+        static private Paragraph AddTextToCell(string instring, Cell cell, int width)
+        {
+
+            if (instring.Length > width)
+            {
+                double FinalWidth = instring.Length;
+                while (FinalWidth > width)
+                {
+                    int center = (int)(instring.Length / 2);
+                    instring = instring.Substring(0, center) + "\n" + instring.Substring(center, instring.Length - center);
+                    FinalWidth /= 2;
+                }
+            }
+            Paragraph par = cell.AddParagraph(instring);
+            return par;
+        }
+
         public static void AddHeader(string ident,string text,HeaderType htype,AddType type = AddType.ActivePage)
         {
             PDFDocument document = documents[ident];
