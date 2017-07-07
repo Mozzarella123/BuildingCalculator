@@ -14,7 +14,9 @@ namespace BuildingCalculator.FormComponents
     public partial class ElementForm : UserControl
     {
         public Element Element;
-        public List<Element> ElementLists = new List<Element>();
+        public List<Element> ElementLists = new List<Element>();        
+        public event ValueChangedHandler ValueChanged;
+        public delegate void ValueChangedHandler(object sender, EventArgs e);
         public ElementForm()
         {
             InitializeComponent();  
@@ -43,6 +45,7 @@ namespace BuildingCalculator.FormComponents
                 count = Convert.ToInt16(text.Text);
             for (int i = 0; i < count; i++)
                 ElementLists.Add(Element);
+            ValueChanged?.Invoke(ContInp, new EventArgs());
         }
 
         private void WidthInp_TextChanged(object sender, EventArgs e)
@@ -59,6 +62,7 @@ namespace BuildingCalculator.FormComponents
                 case "HeightInp": Element.Params[Entity.ParamName.Height] = Convert.ToDouble(Text); break;
 
             }
+            ValueChanged?.Invoke(sender as TextBox, new EventArgs());
         }
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)

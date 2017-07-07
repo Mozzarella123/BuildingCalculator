@@ -61,11 +61,6 @@ namespace BuildingCalculator.FormComponents
             });
             roomTabContent1.Room.CheckedWorks = roomTabContent1.worksTypeTree1.CheckedWorks;
             
-            SaveDirectoryInp.Text = ConfigWorksService.getValue(ConfigWorksService.Options.ReportDirectory);
-            if (ConfigWorksService.getValue(ConfigWorksService.Options.Units) == "sm")
-                cmRadio.Checked = true;
-            else
-                mRadio.Checked = true;
             
         }
         private void Create_Report(object sender, EventArgs e)
@@ -82,10 +77,9 @@ namespace BuildingCalculator.FormComponents
                     else
                         content[i, j] = "";
                 }
-            string path = ConfigWorksService.getValue(ConfigWorksService.Options.ReportDirectory) + "\\Отчёт";
-            
+            string path = ConfigWorksService.getValue(ConfigWorksService.Options.ReportDirectory) + "\\Отчёт" + PDFWriteService.CurrentDocumentsCount;
             PDFWriteService.CreateNewDocument(path);
-            PDFWriteService.AddTable(path, content, headers);
+            PDFWriteService.AddTable(path, content, headers,new bool[] { true,false,true,false });
             PDFWriteService.RenderDocToPdf(path);
         }
         private void Refresh(object sender, EventArgs e)
@@ -147,6 +141,14 @@ namespace BuildingCalculator.FormComponents
                 menbut.BackColor = DefaultBackColor;
             but.BackColor = Color.LightGray;
             MainTabs.SelectedIndex = but.TabIndex;
+            if (MainTabs.SelectedIndex==2)
+            {
+                SaveDirectoryInp.Text = ConfigWorksService.getValue(ConfigWorksService.Options.ReportDirectory);
+                if (ConfigWorksService.getValue(ConfigWorksService.Options.Units) == "sm")
+                    cmRadio.Checked = true;
+                else
+                    mRadio.Checked = true;
+            }
         }
         private void RoomTabs_DoubleClick(object sender, EventArgs e)
         {
@@ -177,7 +179,8 @@ namespace BuildingCalculator.FormComponents
                 RoomTabs.TabPages[lastindex].BackColor = Color.White;
                 //добавляем содержимое
                 RoomTabContent content = new RoomTabContent();
-                content.worktable.CellValueChanged += Refresh;
+                content.worktable.RowsAdded += Refresh;
+                content.worktable.RowsRemoved += Refresh;
                 content.Dock = DockStyle.Fill;
                 content.HeightInp.Text = roomTabContent1.HeightInp.Text;
                 RoomTabs.TabPages[lastindex].Controls.Add(content);
@@ -262,7 +265,6 @@ namespace BuildingCalculator.FormComponents
                 SaveDirectoryInp.Text = SelectReportDirDialog.SelectedPath;
             }
         }
-
         private void CreateReportBut_Click(object sender, EventArgs e)
         {
             Create_Report(finaltable, new EventArgs());

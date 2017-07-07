@@ -24,7 +24,7 @@ namespace BuildingCalculator
         static Unit ColumnWidth = new Unit(200, UnitType.Point);
         static string FilePath = Directory.GetCurrentDirectory();
         static XPdfFontOptions options = new XPdfFontOptions(PdfFontEncoding.Unicode);
-        
+        public static int CurrentDocumentsCount { get { return documents.Count; } }
         public static void HelloWorld()
         {
             CreateNewDocument("HelloWorld");
@@ -63,7 +63,7 @@ namespace BuildingCalculator
                 render.Save(ident + "(" + i + ").pdf");
             }
         }
-        static Dictionary<string, PDFDocument> documents = new Dictionary<string, PDFDocument>();
+        static Dictionary<string, PDFDocument> documents = new Dictionary<string, PDFDocument>();       
         /// <summary>
         /// Добавление таблицы в документ
         /// </summary>
