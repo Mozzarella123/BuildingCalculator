@@ -6,26 +6,13 @@ using System.Threading.Tasks;
 
 namespace BuildingCalculator
 {
-    public class IInterface
-    {
-        //То что считается у комнаты
-        //приравнять в WorkTypeClass
-        enum RoomPart
-        {
-            WallsArea = WorkTypeClass.Category.walls,
-            CeilingArea = WorkTypeClass.Category.ceiling,
-            FloorArea = WorkTypeClass.Category.floor,
-            CeilingPerimeter = WorkTypeClass.Category.ceilingPer,
-            FloorPerimeter = WorkTypeClass.Category.floorPer
-        } 
-    }
     public class Entity
     {
         /// <summary>
         /// Измерение элемента
         /// </summary>
         public enum ParamName
-        { 
+        {
             Length,
             Width,
             Height
@@ -89,10 +76,12 @@ namespace BuildingCalculator
         public double GetAreaFromCat(WorkTypeClass.Category cat)
         {
             double unit = 1;
+            if (ConfigWorksService.getValue(ConfigWorksService.Options.Units) == "sm")
+                unit = 0.01;
             switch (cat)
             {
                 case WorkTypeClass.Category.walls:
-                    return CommonArea*unit;
+                    return CommonArea * unit;
                 case WorkTypeClass.Category.floorPer:
                     return BottomPerimeter * unit;
                 case WorkTypeClass.Category.ceiling:
@@ -119,7 +108,7 @@ namespace BuildingCalculator
         }
         public void GetSumFromCat()
         {
-            
+
         }
         /// <summary>
         /// Общая площадь стен
@@ -131,8 +120,8 @@ namespace BuildingCalculator
                 double sum = 0;
                 foreach (var list in Elements)
                     foreach (var elem in list)
-                    if (elem.Categories.Find(x => x == WorkTypeClass.Category.walls)==WorkTypeClass.Category.walls)
-                                sum += elem.Area;
+                        if (elem.Categories.Find(x => x == WorkTypeClass.Category.walls) == WorkTypeClass.Category.walls)
+                            sum += elem.Area;
                 return (base.Area + Params[ParamName.Height] * Params[ParamName.Length]) * 2 - sum;
             }
         }
@@ -157,7 +146,7 @@ namespace BuildingCalculator
                 foreach (var list in Elements)
                     foreach (var elem in list)
                         if (elem.Categories.Find(x => x == WorkTypeClass.Category.floorPer) == WorkTypeClass.Category.floorPer)
-                                sum += elem.Params[ParamName.Width];
+                            sum += elem.Params[ParamName.Width];
                 return (Params[ParamName.Width] + Params[ParamName.Length]) * 2 - sum;
             }
         }
@@ -168,14 +157,14 @@ namespace BuildingCalculator
         /// Части комнаты к которым принадлежит элемент
         /// </summary>
         public List<WorkTypeClass.Category> Categories { get; set; }
-        public static Element CreateElement(ParamName param1,double valueparam1,ParamName param2,double valueparam2,string Title =null,List<WorkTypeClass.Category> cats=null)
+        public static Element CreateElement(ParamName param1, double valueparam1, ParamName param2, double valueparam2, string Title = null, List<WorkTypeClass.Category> cats = null)
         {
             Element element = new Element();
             element.Params[param1] = valueparam1;
             element.Params[param2] = valueparam2;
             if (Title != null)
                 element.Title = Title;
-            if (cats!=null)
+            if (cats != null)
                 foreach (WorkTypeClass.Category cat in cats)
                     element.Categories.Add(cat);
             return element;

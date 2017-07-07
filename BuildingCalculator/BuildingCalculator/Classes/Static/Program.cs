@@ -24,7 +24,7 @@ namespace BuildingCalculator
             }
             catch (Exception e)
             {
-                logger.Fatal("\n Метод, вызвавший исключение:"+e.TargetSite+ "\n Объект, вызвавший исключение:"+e.InnerException+ "\n Сообщение:"+e.Message);
+                logger.Fatal("\n Метод, вызвавший исключение:" + e.TargetSite + "\n Объект, вызвавший исключение:" + e.InnerException + "\n Сообщение:" + e.Message);
                 MessageBox.Show(e.Message);
                 Application.Restart();
             }

@@ -43,7 +43,6 @@ namespace BuildingCalculator.FormComponents
             Functions.SetValidator(LengthInp, Functions.ValidateType.OnlyNumbers);
             Functions.SetValidator(HeightInp, Functions.ValidateType.OnlyNumbers);
             worksTypeTree1.CheckedNodesChanged += NodesChanged;
-
         }
         private void RefrehTable(object sender, EventArgs e)
         {
@@ -65,9 +64,9 @@ namespace BuildingCalculator.FormComponents
                         parameters[0] = Room.GetAreaFromCat(work.category);
                     }
                     //заполняем параметры 
-                    if (sender is TreeNode)
+                    if (sender is TreeNode&&(sender as TreeNode).Checked)
                     {
-                        if (work.ParametersValue[i1] == 0)
+                        if (work.ParametersValue.Length==0||work.ParametersValue.Contains(0))
                         {
                             for (int i = i1; i < work.parametrs.Count; i++)
                             {
@@ -145,6 +144,7 @@ namespace BuildingCalculator.FormComponents
             RoomMarkup.SetColumnSpan(element, RoomMarkup.ColumnCount);
             Room.Elements.Add(element.ElementLists);
             element.Focus();
+            element.ValueChanged += RefrehTable;
             RefrehTable(worktable, new EventArgs());
         }
         private void Count_TextChanged(object sender, EventArgs e)

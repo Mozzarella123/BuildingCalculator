@@ -15,12 +15,12 @@ namespace BuildingCalculator.FormComponents
         public SettingForm()
         {
             InitializeComponent();
-            if (!ConfigWorksService.Contains("tutorial"))
-                ConfigWorksService.Add("tutorial", "true");
-            if(!ConfigWorksService.Contains("units"))
-                ConfigWorksService.Add("units", "m");
-            if(!ConfigWorksService.Contains("endDir"))
-                ConfigWorksService.Add("endDir", "");
+            //if (!ConfigWorksService.Contains("tutorial"))
+            //    ConfigWorksService.Add("tutorial", "true");
+            //if(!ConfigWorksService.Contains("units"))
+            //    ConfigWorksService.Add("units", "m");
+            //if(!ConfigWorksService.Contains("endDir"))
+            //    ConfigWorksService.Add("endDir", Application.StartupPath);
             label1.Text = ConfigWorksService.getValue(ConfigWorksService.Options.ReportDirectory);
             if (ConfigWorksService.getValue(ConfigWorksService.Options.Units) == "sm")
                 radioButton1.Checked = true;
@@ -45,7 +45,7 @@ namespace BuildingCalculator.FormComponents
             if (!ConfigWorksService.Contains("units"))
                 ConfigWorksService.Add("units", "m");
             if (!ConfigWorksService.Contains("endDir"))
-                ConfigWorksService.Add("endDir", "");
+                ConfigWorksService.Add("endDir", Application.StartupPath);
             label1.Text = ConfigWorksService.getValue(ConfigWorksService.Options.ReportDirectory);
             if (ConfigWorksService.getValue(ConfigWorksService.Options.Units) == "sm")
                 radioButton1.Checked = true;
