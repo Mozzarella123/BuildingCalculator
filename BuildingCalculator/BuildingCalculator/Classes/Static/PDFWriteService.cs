@@ -71,24 +71,54 @@ namespace BuildingCalculator
         /// <param name="content">Содержание таблицы</param>
         /// <param name="size">Размер таблицы на странице</param>
         /// <param name="headers">Заголовки столбцов</param>
+        /// <param name="wrap">Флаги для переноса строки в столбце false: ширина столбца равна максимальной ширине true: ширина столбцы равна средней ширине, все что больше переносится. </param>
         /// <param name="x">Координата Х на странице</param>
         /// <param name="y">Координата У на странице</param>
-        public static void AddTable(string ident,string[,] content, string[] headers=null,AddType type=AddType.ActivePage)
+        public static void AddTable(string ident,string[,] content, string[] headers=null,bool[] wrap=null,AddType type=AddType.ActivePage)
         {
             
             if (headers != null&&content.GetLength(1) != headers.Length)
                 throw new IndexOutOfRangeException("Количество заголовков не совпадает с количеством столбцов в таблице контента");
             //Cell cell = new Cell();
             int[] width = new int[content.GetLength(1)];
+            if (wrap == null)
+            {
+                wrap = new bool[content.GetLength(1)];
+                for (int i = 0; i < wrap.Length; i++)
+                    wrap[i] = false;
+            }
+            if(wrap.Length<content.GetLength(1))
+            {
+                int l = wrap.Length;
+                Array.Resize(ref wrap, content.GetLength(1));
+                for (int i = l; i < wrap.Length; i++)
+                    wrap[i] = false;
+            }
             for (int i = 0; i < content.GetLength(1); i++)
             {
                 double sum = 0;
-                for (int j = 0; j < content.GetLength(0); j++)
+                if (wrap[i])
                 {
-                    if(content[j,i]!=null)
-                    sum += content[j, i].Length;
+                    for (int j = 0; j < content.GetLength(0); j++)
+                    {
+                        if (content[j, i] != null)
+                            sum += content[j, i].Length;
+                    }
+                    width[i] = (int)(sum / content.GetLength(0));
                 }
-                width[i] = (int)(sum / content.GetLength(0));
+                else
+                {
+                    int maxL;
+                    if (headers != null)
+                        maxL = headers[i].Length;
+                    else
+                        maxL = content[i, 0].Length;
+                    for (int j = 0; j < content.GetLength(0); j++)
+                        if (content[j, i] != null && content[j, i].Length > maxL) 
+                            maxL = content[j, i].Length;
+                    width[i] = maxL;
+                }
+                    
             }
             PDFDocument doc = documents[ident];
             Document document = doc.doc;
@@ -105,7 +135,7 @@ namespace BuildingCalculator
             {
                 if (headers != null)
                 {
-                    Column column = table.AddColumn(Unit.FromPoint(headers[i].Length*10));
+                    Column column = table.AddColumn(Unit.FromPoint(width[i]*10));
                     column.Format.Alignment = ParagraphAlignment.Center;                    
                 }
                 else table.AddColumn(ColumnWidth);
