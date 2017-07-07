@@ -87,10 +87,8 @@ namespace BuildingCalculator
         /// <param name="cat">Категория</param>
         /// <returns>Площадь в double</returns>
         public double GetAreaFromCat(WorkTypeClass.Category cat)
-        {          
+        {
             double unit = 1;
-            if (ConfigWorksService.getValue(ConfigWorksService.Options.Units)=="sm")
-                unit = 0.01;
             switch (cat)
             {
                 case WorkTypeClass.Category.walls:

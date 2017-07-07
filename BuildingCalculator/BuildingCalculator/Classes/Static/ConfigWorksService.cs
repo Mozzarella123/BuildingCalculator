@@ -13,14 +13,14 @@ namespace BuildingCalculator
     {
         public static System.Configuration.Configuration currentConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
         public enum Options { Login,Password,Remebered,Hints,Units,ReportDirectory }
-        static Dictionary<Options, string> OptionKeys = new Dictionary<Options, string>()
+        public static Dictionary<Options, List<string>> OptionKeys = new Dictionary<Options, List<string>>()
         {
-            {Options.Login, "login" },
-            {Options.Password, "password" },
-            {Options.Remebered, "Remembered" },
-            {Options.Hints, "tutorial" },
-            {Options.Units, "units" },
-            {Options.ReportDirectory, "endDir" }
+            {Options.Login, new List<string> {"login","slon" } },
+            {Options.Password, new List<string> {"password","12345" } },
+            {Options.Remebered, new List<string> { "Remembered", "false" } },
+            {Options.Hints, new List<string> { "tutorial", "false" } },
+            {Options.Units, new List<string> { "tutorial", "m" } },
+            {Options.ReportDirectory, new List<string> { "endDir", "" } }
         };
         /// <summary>
         /// проверка наличия поля в конфигах
@@ -50,15 +50,18 @@ namespace BuildingCalculator
         {
             return ConfigurationManager.AppSettings[key];
         }
-
         /// <summary>
         /// получение значения из указанного поля
         /// </summary>
         /// <param name="key">имя поля</param>
         /// <returns></returns>
-        public static string getValue(Options key)
+        public static string getValue(Options option)
         {
-            return ConfigurationManager.AppSettings[OptionKeys[key]];
+            return ConfigurationManager.AppSettings[OptionKeys[option][1]];
+        }
+        public static string getKey(Options option)
+        {
+            return ConfigurationManager.AppSettings[OptionKeys[option][0]];
         }
 
         /// <summary>
