@@ -34,13 +34,13 @@ namespace BuildingCalculator
             };
             Functions.ContextMenu(ItemsinTree, names, functions);
             FormClosing += new FormClosingEventHandler(_FormClosing);
-            Functions.BuildList(ItemsinTree,false,true,true);
+            Functions.BuildList(ItemsinTree,false,true);
             Functions.SetToolTip("Нажмите правую кнопку мыши.\n Для редактирования выберите работу", ItemsinTree);
         }
         public void RefreshList()
         {
             ItemsinTree.Nodes.Clear();
-            Functions.BuildList(ItemsinTree,false,true,true);
+            Functions.BuildList(ItemsinTree,false,true);
             
         }
         private void _FormClosing(object sender, FormClosingEventArgs e)

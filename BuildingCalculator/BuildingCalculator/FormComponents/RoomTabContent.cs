@@ -127,37 +127,32 @@ namespace BuildingCalculator.FormComponents
             RoomMarkup.RowCount++;
             ElementForm element = new ElementForm();
             element.Anchor = (AnchorStyles.Top|AnchorStyles.Bottom);
-            element.Element.Categories.Add(WorkTypeClass.Category.walls);
-            Room.Elements.AddRange(element.ElementLists);
             RoomMarkup.Height += element.Height;
             RoomMarkup.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             RoomMarkup.Controls.Add(element,0, RoomMarkup.RowCount - 1);                   
             RoomMarkup.SetColumnSpan(element, RoomMarkup.ColumnCount);
+            Room.Elements.Add(element.ElementLists);
             element.Focus();
         }
         private void Count_TextChanged(object sender, EventArgs e)
         {
             
         }
-
         private void MarkUp_Paint(object sender, PaintEventArgs e)
         {
 
         }
-
         private void RoomMarkup_ControlRemoved(object sender, ControlEventArgs e)
         {
-            ElementForm element = new ElementForm();
-            RoomMarkup.Height -= element.Height;
+            RoomMarkup.Height -= ElementForm.HeightC;
             RoomMarkup.RowCount--;
-            Room.Elements.RemoveAll(item => item == null);
-        }
+            Room.Elements.RemoveAll(item => item.Count == 0);
 
+        }
         private void RoomTypeSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             TypeTabs.SelectedIndex = RoomTypeSelect.SelectedIndex;
         }
-
         private void LengthInp_TextChanged(object sender, EventArgs e)
         {
             TextBox text = sender as TextBox;

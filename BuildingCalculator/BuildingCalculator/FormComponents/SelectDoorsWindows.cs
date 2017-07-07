@@ -13,102 +13,181 @@ namespace BuildingCalculator.FormComponents
 {
     public partial class SelectDoorsWindows : Form
     {
+        public Element Checked;
         List<Element> doors = new List<Element>()
         {
             Element.CreateElement
             (
-                Entity.ParamName.Height,80,
-                Entity.ParamName.Width,200,
-                "Дверь",
+                Entity.ParamName.Width,0.8,
+                Entity.ParamName.Height,2,
+                "Дверь 80x200",
                 new List<WorkTypeClass.Category>()
                 { WorkTypeClass.Category.floorPer,WorkTypeClass.Category.walls }
             ),
             Element.CreateElement
             (
-                Entity.ParamName.Height,70,
-                Entity.ParamName.Width,200,
-                "Дверь",
+                Entity.ParamName.Width,0.7,
+                Entity.ParamName.Height,2,
+                "Дверь 70x200",
                 new List<WorkTypeClass.Category>()
                 { WorkTypeClass.Category.floorPer,WorkTypeClass.Category.walls }
             ),
             Element.CreateElement
             (
-                Entity.ParamName.Height,90,
-                Entity.ParamName.Width,200,
-                "Дверь",
+                Entity.ParamName.Width,0.9,
+                Entity.ParamName.Height,2,
+                "Дверь 90x200",
                 new List<WorkTypeClass.Category>()
                 { WorkTypeClass.Category.floorPer,WorkTypeClass.Category.walls }
             ),
+
 
         }
         ;
-        public SelectDoorsWindows(WorkTypeClass.Category cat)
+        List<Element> windows = new List<Element>()
+        {
+            Element.CreateElement
+            (
+                Entity.ParamName.Width,1.15,
+                Entity.ParamName.Height,1.42,
+                "Окно 137 серия 1420x1150",
+                new List<WorkTypeClass.Category>()
+                { WorkTypeClass.Category.walls }
+            ),
+            Element.CreateElement
+            (
+                Entity.ParamName.Width,1.7,
+                Entity.ParamName.Height,1.42,
+                "Окно 137 серия 1420x1700",
+                new List<WorkTypeClass.Category>()
+                { WorkTypeClass.Category.walls }
+            ),
+            Element.CreateElement
+            (
+                Entity.ParamName.Width,1.5796,
+                Entity.ParamName.Height,2,
+                "Окно 137 серия с дверью",
+                new List<WorkTypeClass.Category>()
+                { WorkTypeClass.Category.walls }
+            ),
+            Element.CreateElement
+            (
+                Entity.ParamName.Width,1.48,
+                Entity.ParamName.Height,1.53,
+                "Окно 504-Д серия 1530x1480",
+                new List<WorkTypeClass.Category>()
+                { WorkTypeClass.Category.walls }
+            ),
+            Element.CreateElement
+            (
+                Entity.ParamName.Width,2.23,
+                Entity.ParamName.Height,1.53,
+                "Окно 504-Д серия 1530x2230",
+                new List<WorkTypeClass.Category>()
+                { WorkTypeClass.Category.walls }
+            ),
+            Element.CreateElement
+            (
+                Entity.ParamName.Width,1.93225,
+                Entity.ParamName.Height,2,
+                "Окно 504-Д серия с дверью",
+                new List<WorkTypeClass.Category>()
+                { WorkTypeClass.Category.walls }
+            ),
+            Element.CreateElement
+            (
+                Entity.ParamName.Width,2.36,
+                Entity.ParamName.Height,1.13,
+                "Окно Корабль серия 1130x2360",
+                new List<WorkTypeClass.Category>()
+                { WorkTypeClass.Category.walls }
+            ),
+            Element.CreateElement
+            (
+                Entity.ParamName.Width,2.38,
+                Entity.ParamName.Height,1.42,
+                "Окно Корабль серия 1420x2380",
+                new List<WorkTypeClass.Category>()
+                { WorkTypeClass.Category.walls }
+            ),
+            Element.CreateElement
+            (
+                Entity.ParamName.Width,2.048,
+                Entity.ParamName.Height,2,
+                "Окно Корабль серия с дверью",
+                new List<WorkTypeClass.Category>()
+                { WorkTypeClass.Category.walls }
+            ),
+                        Element.CreateElement
+            (
+                Entity.ParamName.Width,1.45,
+                Entity.ParamName.Height,1.5,
+                "Окно Хрущевка серия 1500x1450",
+                new List<WorkTypeClass.Category>()
+                { WorkTypeClass.Category.walls }
+            ),
+            Element.CreateElement
+            (
+                Entity.ParamName.Width,2.04,
+                Entity.ParamName.Height,1.5,
+                "Окно Хрущевка серия 1500x2040",
+                new List<WorkTypeClass.Category>()
+                { WorkTypeClass.Category.walls }
+            ),
+            Element.CreateElement
+            (
+                Entity.ParamName.Width,1.6083,
+                Entity.ParamName.Height,2,
+                "Окно Хрущевка серия с дверью",
+                new List<WorkTypeClass.Category>()
+                { WorkTypeClass.Category.walls }
+            )
+        };
+        public SelectDoorsWindows()
         {
             InitializeComponent();
-            Cat = cat;
-            tableLayoutPanel1.RowStyles.Clear();
-            tableLayoutPanel1.RowCount = (int)Math.Ceiling(5 / 4.0);
-            tableLayoutPanel1.Height = tableLayoutPanel1.RowCount * 100;
-            for (int i = 0; i < tableLayoutPanel1.RowCount; i++)
-                tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 100));
-            for (int i = 0; i < 5; i++)
-            {
-                RadioButton radio = new RadioButton();
-                radio.Name = "radio" + i;
-                radio.Text = "Шаблон:" + " Имя" + " Размер";
-                radio.Anchor = (AnchorStyles.Top | AnchorStyles.Bottom);
-                tableLayoutPanel1.Controls.Add(radio, i, i / 5);
-            }
+            Doors.Controls.Add(CreateTable(doors));
+            Windows.Controls.Add(CreateTable(windows));
         }
-        public WorkTypeClass.Category Cat;
-        public void Refresh(WorkTypeClass.Category cat)
+        TableLayoutPanel CreateTable(List<Element> patterns)
+        {
+            TableLayoutPanel table = new TableLayoutPanel();
+            table.Dock = DockStyle.Top;
+            table.RowCount = (int)Math.Ceiling(patterns.Count / 4.0);
+            table.ColumnCount = 3;
+            table.Height = table.RowCount * 100;
+            for (int i=0;i<table.ColumnCount;i++)
+                table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent) { Width = 33 });
+            for (int i = 0; i < table.RowCount; i++)
+                table.RowStyles.Add(new RowStyle(SizeType.Absolute) { Height = 100 });
+            for (int i = 0; i < patterns.Count; i++)
+                table.Controls.Add(new RadioButton() { Anchor = AnchorStyles.Bottom|AnchorStyles.Top,Tag = patterns[i],Text = patterns[i].Title }, i % 3, i / 3);
+            return table;
+        }
+        RadioButton GetCheckedRadio(Control control)
+        {
+            foreach (RadioButton button in control.Controls)
+                if (button.Checked)
+                    return button;
+            return null;
+        }          
+        private void SelectDoorsWindows_Load(object sender, EventArgs e)
         {
             
         }
-        bool ContainWork(WorkTypeClass work)
-        {
-            //foreach (ToolStripPanelRow r in tableLayoutPanel1.RowStyles)
-            //    foreach (Control p in Controls) 
-            //    {
-            //            if (p is PictureBox)
-            //                if (work.Equals(p.Tag))
-            //                    return true;
-            //    }
-            return false;
-        }
-        static Image getImage(WorkTypeClass work)
-        {
-            var dir = Directory.CreateDirectory(ConfigWorksService.getValue("Images"));
-            foreach(FileInfo f in dir.EnumerateFiles())
-            {
-                if (f.Name.Split('.')[0].ToLower() == work.article.ToLower())
-                    
-                    return Image.FromFile(f.FullName);
-            }
-            return null;
-        }
-        void ImageClick(object sender, EventArgs e)
-        {
-            MessageBox.Show(((sender as Control).Tag as WorkTypeClass).article);
-        }
-
-        private void SelectDoorsWindows_Load(object sender, EventArgs e)
-        {
-            Refresh(Cat);
-        }
-
         private void SelectDoorsWindows_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
                 e.Cancel = true;
-                this.Hide();
+                Hide();
             }
         }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void выбратьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (GetCheckedRadio(tabControl1.TabPages[tabControl1.SelectedIndex].Controls[0])!=null)
+            Checked = GetCheckedRadio(tabControl1.TabPages[tabControl1.SelectedIndex].Controls[0]).Tag as Element;
+            Close();
         }
     }
 }

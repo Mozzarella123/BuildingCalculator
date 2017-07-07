@@ -31,6 +31,10 @@ namespace BuildingCalculator
             Height
         }
         public Dictionary<ParamName, double> Params { get; private set; }
+        /// <summary>
+        /// Название
+        /// </summary>
+        public string Title { get; set; }
         public Entity()
         {
             Params = new Dictionary<ParamName, double>()
@@ -67,16 +71,13 @@ namespace BuildingCalculator
         /// <summary>
         /// Списки элементов разбитые по категориям
         /// </summary>
-        public List<Element> Elements { get; set; }
+        public List<List<Element>> Elements { get; set; }
         public List<WorkTypeClass.Category> CheckedCats { get; set; }
         public List<WorkTypeClass> CheckedWorks { get; set; }
-        /// <summary>
-        /// Название
-        /// </summary>
-        public string Title { get; set; }
+
         public Room() : base()
         {
-            Elements = new List<Element>();
+            Elements = new List<List<Element>>();
             CheckedCats = new List<WorkTypeClass.Category>();
             CheckedWorks = new List<WorkTypeClass>();
         }
@@ -128,7 +129,8 @@ namespace BuildingCalculator
             get
             {
                 double sum = 0;
-                foreach (var elem in Elements)
+                foreach (var list in Elements)
+                    foreach (var elem in list)
                     if (elem.Categories.Find(x => x == WorkTypeClass.Category.walls)==WorkTypeClass.Category.walls)
                                 sum += elem.Area;
                 return (base.Area + Params[ParamName.Height] * Params[ParamName.Length]) * 2 - sum;
@@ -152,8 +154,9 @@ namespace BuildingCalculator
             get
             {
                 double sum = 0;
-                foreach (var elem in Elements)
-                    if (elem.Categories.Find(x => x == WorkTypeClass.Category.floorPer) == WorkTypeClass.Category.floorPer)
+                foreach (var list in Elements)
+                    foreach (var elem in list)
+                        if (elem.Categories.Find(x => x == WorkTypeClass.Category.floorPer) == WorkTypeClass.Category.floorPer)
                                 sum += elem.Params[ParamName.Width];
                 return (Params[ParamName.Width] + Params[ParamName.Length]) * 2 - sum;
             }
@@ -165,7 +168,18 @@ namespace BuildingCalculator
         /// Части комнаты к которым принадлежит элемент
         /// </summary>
         public List<WorkTypeClass.Category> Categories { get; set; }
-        
+        public static Element CreateElement(ParamName param1,double valueparam1,ParamName param2,double valueparam2,string Title =null,List<WorkTypeClass.Category> cats=null)
+        {
+            Element element = new Element();
+            element.Params[param1] = valueparam1;
+            element.Params[param2] = valueparam2;
+            if (Title != null)
+                element.Title = Title;
+            if (cats!=null)
+                foreach (WorkTypeClass.Category cat in cats)
+                    element.Categories.Add(cat);
+            return element;
+        }
         public Element() : base()
         {
             Categories = new List<WorkTypeClass.Category>();

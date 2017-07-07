@@ -19,11 +19,9 @@ namespace BuildingCalculator
                 {Category.elworks, "Электромонтажные работы" },
                 {Category.santechworks, "Сантехнические работы" },
                 {Category.other, "Другое" },
-                {Category.door, "Двери" },
-                {Category.window, "Окна" }
             };
         
-        public enum Category { none=-1,walls, floor, ceiling, floorPer, ceilingPer,elworks,santechworks, other,door,window};
+        public enum Category { none=-1,walls, floor, ceiling, floorPer, ceilingPer,elworks,santechworks, other};
         public double[] ParametersValue { get; set; }
         public WorkTypeClass()
         {

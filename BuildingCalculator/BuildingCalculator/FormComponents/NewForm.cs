@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BuildingCalculator.Classes;
+using BuildingCalculator.FormComponents;
+using BuildingCalculator.Classes.Static;
+using System.IO;
 
 namespace BuildingCalculator.FormComponents
 {
@@ -29,19 +32,64 @@ namespace BuildingCalculator.FormComponents
                 DeleteTab
             }
             );
-            Functions.ContextMenu(dataGridView1, new List<string>()
+            Functions.ContextMenu(AdminWorks.WorksList, new List<string>()
             {
-                "Обновить"
+                "Добавить",
+                "Редактировать",
+                "Удалить"
+            }, 
+            new List<EventHandler>()
+            {
+                Add,
+                Edit,
+                Remove
+            });
+            Functions.ContextMenu(finaltable, new List<string>()
+            {
+                "Обновить",
+                "Создать отчёт"
             },
             new List<EventHandler>()
             {
-                Refresh
+                Refresh,
+                Create_Report
             });
             roomTabContent1.Room.CheckedWorks = roomTabContent1.worksTypeTree1.CheckedWorks;
+            if (!ConfigWorksService.Contains("tutorial"))
+                ConfigWorksService.Add("tutorial", "true");
+            if (!ConfigWorksService.Contains("units"))
+                ConfigWorksService.Add("units", "m");
+            if (!ConfigWorksService.Contains("endDir"))
+                ConfigWorksService.Add("endDir", "");
+            SaveDirectoryInp.Text = ConfigWorksService.getValue(ConfigWorksService.Options.ReportDirectory);
+            if (ConfigWorksService.getValue(ConfigWorksService.Options.Units) == "sm")
+                cmRadio.Checked = true;
+            else
+                mRadio.Checked = true;
+
+        }
+        private void Create_Report(object sender, EventArgs e)
+        {
+            string[,] content = new string[finaltable.RowCount, finaltable.ColumnCount];
+            string[] headers = new string[finaltable.ColumnCount];
+            for (int i = 0; i < finaltable.ColumnCount; i++)
+                headers[i] = finaltable.Columns[i].HeaderText;
+            for (int i = 0; i < finaltable.RowCount; i++)
+                for (int j = 0; j < finaltable.ColumnCount; j++)
+                {
+                    if (finaltable.Rows[i].Cells[j].Value != null)
+                        content[i, j] = finaltable.Rows[i].Cells[j].Value.ToString();
+                    else
+                        content[i, j] = "";
+                }
+            string path = ConfigWorksService.getValue(ConfigWorksService.Options.ReportDirectory) + "\\Отчёт";
+            PDFWriteService.CreateNewDocument(path);
+            PDFWriteService.AddTable(path, content, headers);
+            PDFWriteService.RenderDocToPdf(path);
         }
         private void Refresh(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Clear();
+            finaltable.Rows.Clear();
             //сумма для каждой работы
             Dictionary<WorkTypeClass, double> everyworksumm = new Dictionary<WorkTypeClass, double>();
             //сумма параметров
@@ -73,9 +121,9 @@ namespace BuildingCalculator.FormComponents
                 string quantity = "";
                 for (int i = 0; i < paramssumm[pair.Key].Length; i++)
                     quantity += paramssumm[pair.Key][i]+ " " + pair.Key.parametrs[i] + "\n";
-                dataGridView1.Rows.Add(new string[] { pair.Key.article, quantity, pair.Key.formula, pair.Value.ToString() });
+                finaltable.Rows.Add(new string[] { pair.Key.article, quantity, pair.Key.formula, pair.Value.ToString() });
             }
-            dataGridView1.Rows.Add(new string[] { "", "", "Сумма", commonsum.ToString() });
+            finaltable.Rows.Add(new string[] { "", "", "Сумма", commonsum.ToString() });
 
         }
         private void DeleteTab(object sender, EventArgs e)
@@ -111,12 +159,10 @@ namespace BuildingCalculator.FormComponents
             RoomTabs.SelectedTab.Text = (sender as TextBox).Text;
             Rooms[RoomTabs.SelectedIndex].Title = (sender as TextBox).Text;
         }
-
         private void treeView1_DrawNode(object sender, DrawTreeNodeEventArgs e)
         {
 
         }
-
         private void RoomTabs_SelectedIndexChanged(object sender, EventArgs e)
         {
             int lastindex = RoomTabs.TabPages.Count - 1;
@@ -136,6 +182,78 @@ namespace BuildingCalculator.FormComponents
                 Rooms[lastindex].Title = RoomTabs.TabPages[lastindex].Text;
                 Rooms[lastindex].CheckedWorks = content.worksTypeTree1.CheckedWorks;
 
+            }
+        }
+        private void Add(object sender, EventArgs e)
+        {
+            CreateWorkTypeForm.CreateWorkType();
+            CreateWorkTypeForm.Button.Text = "Добавить тип работ";
+            CreateWorkTypeForm.ActiveForm.Text = "Добавить тип работ";
+
+        }
+        private void Edit(object sender, EventArgs e)
+        {
+
+            if (AdminWorks.WorksList.SelectedNode != null)
+            {
+
+                CreateWorkTypeForm.CreateWorkType((WorkTypeClass)AdminWorks.WorksList.SelectedNode.Tag);
+
+                CreateWorkTypeForm.Button.Text = "Редактировать тип работ";
+                CreateWorkTypeForm.ActiveForm.Text = "Редактировать тип работ";
+            }
+
+        }
+        private void Remove(object sender, EventArgs e)
+        {
+            if (AdminWorks.WorksList.SelectedNode != null)
+            {
+                JSONSerializeService.OutputItems.Remove((WorkTypeClass)AdminWorks.WorksList.SelectedNode.Tag);
+                JSONSerializeService.Save();
+            }
+        }
+        private void splitContainer2_Panel2_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (AdminTable.ClientRectangle.Contains(e.Location))
+            {
+                if (!LoginClass.IsLoged&&!Convert.ToBoolean(ConfigWorksService.getValue(ConfigWorksService.Options.Remebered)))
+                {
+                    Form lf = LoginClass.SignIn();
+                    Functions.CenterForm(lf, this);
+                    lf.Show();
+                }
+                else
+                    AdminTable.Enabled = true;
+            }
+        }
+        private void DownloadfromExcel_Click(object sender, EventArgs e)
+        {
+            ExcelDownloadDialog.ShowDialog();
+        }
+        private void Clear_Click(object sender, EventArgs e)
+        {
+            AdminWorks.WorksList.Nodes.Clear();
+            JSONSerializeService.OutputItems.Clear();
+            JSONSerializeService.Save();
+        }
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            Classes.Static.ExcelWorkServicecs.OpenFile(ExcelDownloadDialog.FileName);
+        }
+        private void SaveSetBut_Click(object sender, EventArgs e)
+        {
+            ConfigWorksService.ChangeValue("tutorial", Help.Checked.ToString());
+            if (cmRadio.Checked)
+                ConfigWorksService.ChangeValue("units", "sm");
+            if (mRadio.Checked)
+                ConfigWorksService.ChangeValue("units", "m");
+            ConfigWorksService.ChangeValue("endDir", SelectReportDirDialog.SelectedPath);
+        }
+        private void ChangeSaveDirectory_Click(object sender, EventArgs e)
+        {
+            if (SelectReportDirDialog.ShowDialog() == DialogResult.OK)
+            {
+                SaveDirectoryInp.Text = SelectReportDirDialog.SelectedPath;
             }
         }
     }

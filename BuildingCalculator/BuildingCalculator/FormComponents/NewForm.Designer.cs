@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.MainTabs = new System.Windows.Forms.TabControl();
             this.InputParamsTab = new System.Windows.Forms.TabPage();
@@ -38,26 +39,34 @@
             this.roomTabContent1 = new BuildingCalculator.FormComponents.RoomTabContent();
             this.AddRoomTab = new System.Windows.Forms.TabPage();
             this.ViewTab = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.SettingTab = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.worksTypeTree1 = new BuildingCalculator.FormComponents.WorksTypeTree();
-            this.MenuMarkup = new System.Windows.Forms.TableLayoutPanel();
-            this.InputParamsBut = new System.Windows.Forms.Button();
-            this.ViewBut = new System.Windows.Forms.Button();
-            this.SettingsBut = new System.Windows.Forms.Button();
+            this.finaltable = new System.Windows.Forms.DataGridView();
             this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Summ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label3 = new System.Windows.Forms.Label();
+            this.SettingTab = new System.Windows.Forms.TabPage();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.SaveSetBut = new System.Windows.Forms.Button();
+            this.Help = new System.Windows.Forms.CheckBox();
+            this.ChangeSaveDirectory = new System.Windows.Forms.Button();
+            this.UnitsT = new System.Windows.Forms.Label();
+            this.SaveDirectoryInp = new System.Windows.Forms.TextBox();
+            this.Units = new System.Windows.Forms.Panel();
+            this.mRadio = new System.Windows.Forms.RadioButton();
+            this.cmRadio = new System.Windows.Forms.RadioButton();
+            this.SaveDirectoryT = new System.Windows.Forms.Label();
+            this.AdminTable = new System.Windows.Forms.TableLayoutPanel();
+            this.WorksListLabel = new System.Windows.Forms.Label();
+            this.DownloadfromExcel = new System.Windows.Forms.Button();
+            this.Clear = new System.Windows.Forms.Button();
+            this.AdminWorks = new BuildingCalculator.FormComponents.WorksTypeTree();
+            this.MenuMarkup = new System.Windows.Forms.TableLayoutPanel();
+            this.InputParamsBut = new System.Windows.Forms.Button();
+            this.ViewBut = new System.Windows.Forms.Button();
+            this.SettingsBut = new System.Windows.Forms.Button();
+            this.ExcelDownloadDialog = new System.Windows.Forms.OpenFileDialog();
+            this.SelectReportDirDialog = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -67,9 +76,14 @@
             this.RoomTabs.SuspendLayout();
             this.FirstRoom.SuspendLayout();
             this.ViewTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.finaltable)).BeginInit();
             this.SettingTab.SuspendLayout();
-            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            this.Units.SuspendLayout();
+            this.AdminTable.SuspendLayout();
             this.MenuMarkup.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -166,7 +180,7 @@
             // ViewTab
             // 
             this.ViewTab.AutoScroll = true;
-            this.ViewTab.Controls.Add(this.dataGridView1);
+            this.ViewTab.Controls.Add(this.finaltable);
             this.ViewTab.Controls.Add(this.label3);
             this.ViewTab.Location = new System.Drawing.Point(4, 32);
             this.ViewTab.Name = "ViewTab";
@@ -175,29 +189,61 @@
             this.ViewTab.Text = "Просмотр";
             this.ViewTab.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // finaltable
             // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.finaltable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.finaltable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.finaltable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.finaltable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Title,
             this.Count,
             this.Price,
             this.Summ});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(906, 547);
-            this.dataGridView1.TabIndex = 1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.finaltable.DefaultCellStyle = dataGridViewCellStyle4;
+            this.finaltable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.finaltable.Location = new System.Drawing.Point(0, 0);
+            this.finaltable.Name = "finaltable";
+            this.finaltable.RowTemplate.Height = 28;
+            this.finaltable.Size = new System.Drawing.Size(906, 547);
+            this.finaltable.TabIndex = 1;
+            // 
+            // Title
+            // 
+            this.Title.HeaderText = "Наименование";
+            this.Title.Name = "Title";
+            this.Title.ReadOnly = true;
+            // 
+            // Count
+            // 
+            this.Count.HeaderText = "Кол-во";
+            this.Count.Name = "Count";
+            this.Count.ReadOnly = true;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Цена";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
+            // Summ
+            // 
+            this.Summ.HeaderText = "Сумма";
+            this.Summ.Name = "Summ";
+            this.Summ.ReadOnly = true;
             // 
             // label3
             // 
@@ -211,13 +257,7 @@
             // SettingTab
             // 
             this.SettingTab.AutoScroll = true;
-            this.SettingTab.Controls.Add(this.button1);
-            this.SettingTab.Controls.Add(this.textBox1);
-            this.SettingTab.Controls.Add(this.label2);
-            this.SettingTab.Controls.Add(this.panel1);
-            this.SettingTab.Controls.Add(this.label1);
-            this.SettingTab.Controls.Add(this.checkBox1);
-            this.SettingTab.Controls.Add(this.worksTypeTree1);
+            this.SettingTab.Controls.Add(this.splitContainer2);
             this.SettingTab.Location = new System.Drawing.Point(4, 32);
             this.SettingTab.Name = "SettingTab";
             this.SettingTab.Size = new System.Drawing.Size(906, 547);
@@ -225,104 +265,198 @@
             this.SettingTab.Text = "Настройки";
             this.SettingTab.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // splitContainer2
             // 
-            this.button1.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(234, 195);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(166, 40);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Изменить";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.UseVisualStyleBackColor = true;
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
             // 
-            // textBox1
+            // splitContainer2.Panel1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(12, 196);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(206, 36);
-            this.textBox1.TabIndex = 7;
+            this.splitContainer2.Panel1.Controls.Add(this.SaveSetBut);
+            this.splitContainer2.Panel1.Controls.Add(this.Help);
+            this.splitContainer2.Panel1.Controls.Add(this.ChangeSaveDirectory);
+            this.splitContainer2.Panel1.Controls.Add(this.UnitsT);
+            this.splitContainer2.Panel1.Controls.Add(this.SaveDirectoryInp);
+            this.splitContainer2.Panel1.Controls.Add(this.Units);
+            this.splitContainer2.Panel1.Controls.Add(this.SaveDirectoryT);
             // 
-            // label2
+            // splitContainer2.Panel2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(8, 164);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(294, 29);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Место сохранения отчёта";
+            this.splitContainer2.Panel2.Controls.Add(this.AdminTable);
+            this.splitContainer2.Panel2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.splitContainer2_Panel2_MouseClick);
+            this.splitContainer2.Size = new System.Drawing.Size(906, 547);
+            this.splitContainer2.SplitterDistance = 474;
+            this.splitContainer2.TabIndex = 9;
             // 
-            // panel1
+            // SaveSetBut
             // 
-            this.panel1.Controls.Add(this.radioButton2);
-            this.panel1.Controls.Add(this.radioButton1);
-            this.panel1.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.panel1.Location = new System.Drawing.Point(13, 88);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(188, 71);
-            this.panel1.TabIndex = 5;
+            this.SaveSetBut.Location = new System.Drawing.Point(19, 245);
+            this.SaveSetBut.Name = "SaveSetBut";
+            this.SaveSetBut.Size = new System.Drawing.Size(202, 38);
+            this.SaveSetBut.TabIndex = 9;
+            this.SaveSetBut.Text = "Сохранить настройки";
+            this.SaveSetBut.UseVisualStyleBackColor = true;
+            this.SaveSetBut.Click += new System.EventHandler(this.SaveSetBut_Click);
             // 
-            // radioButton2
+            // Help
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Checked = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 37);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(113, 33);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Метры";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.Help.AutoSize = true;
+            this.Help.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Help.Location = new System.Drawing.Point(19, 25);
+            this.Help.Name = "Help";
+            this.Help.Size = new System.Drawing.Size(337, 33);
+            this.Help.TabIndex = 2;
+            this.Help.Text = "Включить режим обучения";
+            this.Help.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // ChangeSaveDirectory
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 5);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(176, 33);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.Text = "Сантиметры";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.ChangeSaveDirectory.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ChangeSaveDirectory.Location = new System.Drawing.Point(241, 202);
+            this.ChangeSaveDirectory.Margin = new System.Windows.Forms.Padding(0);
+            this.ChangeSaveDirectory.Name = "ChangeSaveDirectory";
+            this.ChangeSaveDirectory.Size = new System.Drawing.Size(166, 40);
+            this.ChangeSaveDirectory.TabIndex = 8;
+            this.ChangeSaveDirectory.Text = "Изменить";
+            this.ChangeSaveDirectory.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ChangeSaveDirectory.UseVisualStyleBackColor = true;
+            this.ChangeSaveDirectory.Click += new System.EventHandler(this.ChangeSaveDirectory_Click);
             // 
-            // label1
+            // UnitsT
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(8, 54);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(237, 29);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Единицы измерения";
+            this.UnitsT.AutoSize = true;
+            this.UnitsT.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UnitsT.Location = new System.Drawing.Point(15, 61);
+            this.UnitsT.Name = "UnitsT";
+            this.UnitsT.Size = new System.Drawing.Size(237, 29);
+            this.UnitsT.TabIndex = 4;
+            this.UnitsT.Text = "Единицы измерения";
             // 
-            // checkBox1
+            // SaveDirectoryInp
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox1.Location = new System.Drawing.Point(12, 18);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(337, 33);
-            this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "Включить режим обучения";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.SaveDirectoryInp.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SaveDirectoryInp.Location = new System.Drawing.Point(19, 203);
+            this.SaveDirectoryInp.Multiline = true;
+            this.SaveDirectoryInp.Name = "SaveDirectoryInp";
+            this.SaveDirectoryInp.ReadOnly = true;
+            this.SaveDirectoryInp.Size = new System.Drawing.Size(206, 36);
+            this.SaveDirectoryInp.TabIndex = 7;
             // 
-            // worksTypeTree1
+            // Units
             // 
-            this.worksTypeTree1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.worksTypeTree1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.worksTypeTree1.Location = new System.Drawing.Point(620, 3);
-            this.worksTypeTree1.Name = "worksTypeTree1";
-            this.worksTypeTree1.Padding = new System.Windows.Forms.Padding(3);
-            this.worksTypeTree1.Size = new System.Drawing.Size(283, 400);
-            this.worksTypeTree1.TabIndex = 1;
+            this.Units.Controls.Add(this.mRadio);
+            this.Units.Controls.Add(this.cmRadio);
+            this.Units.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Units.Location = new System.Drawing.Point(20, 95);
+            this.Units.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Units.Name = "Units";
+            this.Units.Size = new System.Drawing.Size(188, 71);
+            this.Units.TabIndex = 5;
+            // 
+            // mRadio
+            // 
+            this.mRadio.AutoSize = true;
+            this.mRadio.Checked = true;
+            this.mRadio.Location = new System.Drawing.Point(6, 37);
+            this.mRadio.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.mRadio.Name = "mRadio";
+            this.mRadio.Size = new System.Drawing.Size(113, 33);
+            this.mRadio.TabIndex = 1;
+            this.mRadio.TabStop = true;
+            this.mRadio.Text = "Метры";
+            this.mRadio.UseVisualStyleBackColor = true;
+            // 
+            // cmRadio
+            // 
+            this.cmRadio.AutoSize = true;
+            this.cmRadio.Location = new System.Drawing.Point(6, 5);
+            this.cmRadio.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmRadio.Name = "cmRadio";
+            this.cmRadio.Size = new System.Drawing.Size(176, 33);
+            this.cmRadio.TabIndex = 0;
+            this.cmRadio.Text = "Сантиметры";
+            this.cmRadio.UseVisualStyleBackColor = true;
+            // 
+            // SaveDirectoryT
+            // 
+            this.SaveDirectoryT.AutoSize = true;
+            this.SaveDirectoryT.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SaveDirectoryT.Location = new System.Drawing.Point(15, 171);
+            this.SaveDirectoryT.Name = "SaveDirectoryT";
+            this.SaveDirectoryT.Size = new System.Drawing.Size(294, 29);
+            this.SaveDirectoryT.TabIndex = 6;
+            this.SaveDirectoryT.Text = "Место сохранения отчёта";
+            // 
+            // AdminTable
+            // 
+            this.AdminTable.ColumnCount = 2;
+            this.AdminTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.64935F));
+            this.AdminTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.35065F));
+            this.AdminTable.Controls.Add(this.WorksListLabel, 0, 0);
+            this.AdminTable.Controls.Add(this.DownloadfromExcel, 0, 1);
+            this.AdminTable.Controls.Add(this.Clear, 1, 1);
+            this.AdminTable.Controls.Add(this.AdminWorks, 0, 2);
+            this.AdminTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AdminTable.Enabled = false;
+            this.AdminTable.Location = new System.Drawing.Point(0, 0);
+            this.AdminTable.Name = "AdminTable";
+            this.AdminTable.RowCount = 4;
+            this.AdminTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.719851F));
+            this.AdminTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.98701F));
+            this.AdminTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.AdminTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.95454F));
+            this.AdminTable.Size = new System.Drawing.Size(428, 547);
+            this.AdminTable.TabIndex = 5;
+            // 
+            // WorksListLabel
+            // 
+            this.WorksListLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.WorksListLabel.AutoSize = true;
+            this.AdminTable.SetColumnSpan(this.WorksListLabel, 2);
+            this.WorksListLabel.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.WorksListLabel.Location = new System.Drawing.Point(133, 10);
+            this.WorksListLabel.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.WorksListLabel.Name = "WorksListLabel";
+            this.WorksListLabel.Size = new System.Drawing.Size(161, 27);
+            this.WorksListLabel.TabIndex = 2;
+            this.WorksListLabel.Text = "Список работ";
+            // 
+            // DownloadfromExcel
+            // 
+            this.DownloadfromExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.DownloadfromExcel.Font = new System.Drawing.Font("Roboto Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DownloadfromExcel.Location = new System.Drawing.Point(3, 50);
+            this.DownloadfromExcel.Name = "DownloadfromExcel";
+            this.DownloadfromExcel.Size = new System.Drawing.Size(210, 64);
+            this.DownloadfromExcel.TabIndex = 4;
+            this.DownloadfromExcel.Text = "Загрузить из Excel";
+            this.DownloadfromExcel.UseVisualStyleBackColor = true;
+            this.DownloadfromExcel.Click += new System.EventHandler(this.DownloadfromExcel_Click);
+            // 
+            // Clear
+            // 
+            this.Clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.Clear.Font = new System.Drawing.Font("Roboto Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Clear.Location = new System.Drawing.Point(219, 50);
+            this.Clear.Name = "Clear";
+            this.Clear.Size = new System.Drawing.Size(206, 64);
+            this.Clear.TabIndex = 5;
+            this.Clear.Text = "Очистить список";
+            this.Clear.UseVisualStyleBackColor = true;
+            this.Clear.Click += new System.EventHandler(this.Clear_Click);
+            // 
+            // AdminWorks
+            // 
+            this.AdminWorks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AdminTable.SetColumnSpan(this.AdminWorks, 2);
+            this.AdminWorks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AdminWorks.Location = new System.Drawing.Point(3, 120);
+            this.AdminWorks.Name = "AdminWorks";
+            this.AdminWorks.Padding = new System.Windows.Forms.Padding(3);
+            this.AdminTable.SetRowSpan(this.AdminWorks, 2);
+            this.AdminWorks.Size = new System.Drawing.Size(422, 424);
+            this.AdminWorks.TabIndex = 6;
             // 
             // MenuMarkup
             // 
@@ -385,29 +519,11 @@
             this.SettingsBut.UseVisualStyleBackColor = true;
             this.SettingsBut.Click += new System.EventHandler(this.MenuClick);
             // 
-            // Title
+            // ExcelDownloadDialog
             // 
-            this.Title.HeaderText = "Наименование";
-            this.Title.Name = "Title";
-            this.Title.ReadOnly = true;
-            // 
-            // Count
-            // 
-            this.Count.HeaderText = "Кол-во";
-            this.Count.Name = "Count";
-            this.Count.ReadOnly = true;
-            // 
-            // Price
-            // 
-            this.Price.HeaderText = "Цена";
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            // 
-            // Summ
-            // 
-            this.Summ.HeaderText = "Сумма";
-            this.Summ.Name = "Summ";
-            this.Summ.ReadOnly = true;
+            this.ExcelDownloadDialog.FileName = "openFileDialog1";
+            this.ExcelDownloadDialog.Filter = "Excel Таблица|*.xls;*.xlsx;\"";
+            this.ExcelDownloadDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // NewForm
             // 
@@ -427,11 +543,17 @@
             this.FirstRoom.ResumeLayout(false);
             this.ViewTab.ResumeLayout(false);
             this.ViewTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.finaltable)).EndInit();
             this.SettingTab.ResumeLayout(false);
-            this.SettingTab.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            this.Units.ResumeLayout(false);
+            this.Units.PerformLayout();
+            this.AdminTable.ResumeLayout(false);
+            this.AdminTable.PerformLayout();
             this.MenuMarkup.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -453,19 +575,27 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabPage SettingTab;
         private RoomTabContent roomTabContent1;
-        private WorksTypeTree worksTypeTree1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.CheckBox Help;
+        private System.Windows.Forms.Label UnitsT;
+        private System.Windows.Forms.Panel Units;
+        private System.Windows.Forms.RadioButton mRadio;
+        private System.Windows.Forms.RadioButton cmRadio;
+        private System.Windows.Forms.Button ChangeSaveDirectory;
+        private System.Windows.Forms.TextBox SaveDirectoryInp;
+        private System.Windows.Forms.Label SaveDirectoryT;
+        private System.Windows.Forms.DataGridView finaltable;
         private System.Windows.Forms.DataGridViewTextBoxColumn Title;
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn Summ;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.TableLayoutPanel AdminTable;
+        private System.Windows.Forms.Label WorksListLabel;
+        private System.Windows.Forms.Button DownloadfromExcel;
+        private System.Windows.Forms.Button Clear;
+        private WorksTypeTree AdminWorks;
+        private System.Windows.Forms.OpenFileDialog ExcelDownloadDialog;
+        private System.Windows.Forms.Button SaveSetBut;
+        private System.Windows.Forms.FolderBrowserDialog SelectReportDirDialog;
     }
 }

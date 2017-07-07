@@ -123,10 +123,10 @@
         }
 
         #endregion
-        private System.Windows.Forms.TableLayoutPanel MarkUp;
         public System.Windows.Forms.Label Title;
         public System.Windows.Forms.Label SearchT;
         private System.Windows.Forms.TextBox Search;
         public System.Windows.Forms.TreeView WorksList;
+        public System.Windows.Forms.TableLayoutPanel MarkUp;
     }
 }
