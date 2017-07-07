@@ -60,12 +60,7 @@ namespace BuildingCalculator.FormComponents
                 
             });
             roomTabContent1.Room.CheckedWorks = roomTabContent1.worksTypeTree1.CheckedWorks;
-            if (!ConfigWorksService.Contains("tutorial"))
-                ConfigWorksService.Add("tutorial", "true");
-            if (!ConfigWorksService.Contains("units"))
-                ConfigWorksService.Add("units", "m");
-            if (!ConfigWorksService.Contains("endDir"))
-                ConfigWorksService.Add("endDir", "");
+            
             SaveDirectoryInp.Text = ConfigWorksService.getValue(ConfigWorksService.Options.ReportDirectory);
             if (ConfigWorksService.getValue(ConfigWorksService.Options.Units) == "sm")
                 cmRadio.Checked = true;

@@ -39,6 +39,12 @@ namespace BuildingCalculator
             if (!Directory.Exists(ConfigWorksService.getValue("Images")))
                 Directory.CreateDirectory(ConfigWorksService.getValue("Images"));
             s = new SelectDoorsWindows();
+            if (!ConfigWorksService.Contains("tutorial"))
+                ConfigWorksService.Add("tutorial", "true");
+            if (!ConfigWorksService.Contains("units"))
+                ConfigWorksService.Add("units", "m");
+            if (!ConfigWorksService.Contains("endDir"))
+                ConfigWorksService.Add("endDir", Application.StartupPath);
         }
         private void Form1_Load(object sender, EventArgs e)
         {

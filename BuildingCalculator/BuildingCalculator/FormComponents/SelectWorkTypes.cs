@@ -171,7 +171,7 @@ namespace BuildingCalculator.FormComponents
                         }
                         content[rooms[i].CheckedWorks.Count, 0] = "Сумма";
                         content[rooms[i].CheckedWorks.Count, 3] = sum.ToString() + "р.";
-                        PDFWriteService.AddTable(filename, content, headers);
+                        PDFWriteService.AddTable(filename, content, headers,new bool[4] { true, true, true, false});
                         resultsum += sum;
                     }
 
@@ -189,7 +189,7 @@ namespace BuildingCalculator.FormComponents
             }
             catch (ArgumentException)
             {
-
+                MessageBox.Show("Error");
             }
         }
 
