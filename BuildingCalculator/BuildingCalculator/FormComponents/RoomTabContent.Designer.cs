@@ -47,7 +47,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.HeightInp = new System.Windows.Forms.TextBox();
             this.LengthInp = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.worktable = new System.Windows.Forms.DataGridView();
+            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Summ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.None_StandardRoom = new System.Windows.Forms.TabPage();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,10 +67,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.AddElement = new System.Windows.Forms.Button();
-            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Summ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -79,7 +79,7 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.RoomMarkup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.worktable)).BeginInit();
             this.None_StandardRoom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.RoomMarkUp2.SuspendLayout();
@@ -203,13 +203,14 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.dataGridView1);
+            this.splitContainer2.Panel2.Controls.Add(this.worktable);
             this.splitContainer2.Size = new System.Drawing.Size(826, 468);
             this.splitContainer2.SplitterDistance = 70;
             this.splitContainer2.TabIndex = 2;
             // 
             // RoomMarkup
             // 
+            this.RoomMarkup.AutoSize = true;
             this.RoomMarkup.ColumnCount = 7;
             this.RoomMarkup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.RoomMarkup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
@@ -230,7 +231,7 @@
             this.RoomMarkup.Name = "RoomMarkup";
             this.RoomMarkup.RowCount = 1;
             this.RoomMarkup.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.RoomMarkup.Size = new System.Drawing.Size(800, 90);
+            this.RoomMarkup.Size = new System.Drawing.Size(826, 64);
             this.RoomMarkup.TabIndex = 0;
             this.RoomMarkup.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.RoomMarkup_ControlRemoved);
             // 
@@ -239,7 +240,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(3, 16);
+            this.label2.Location = new System.Drawing.Point(3, 3);
             this.label2.Margin = new System.Windows.Forms.Padding(3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(144, 58);
@@ -252,7 +253,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(153, 30);
+            this.label3.Location = new System.Drawing.Point(153, 17);
             this.label3.Margin = new System.Windows.Forms.Padding(3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(83, 29);
@@ -265,7 +266,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(348, 30);
+            this.label4.Location = new System.Drawing.Point(348, 17);
             this.label4.Margin = new System.Windows.Forms.Padding(3);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 29);
@@ -277,7 +278,7 @@
             // 
             this.WidthInp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.WidthInp.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.WidthInp.Location = new System.Drawing.Point(454, 27);
+            this.WidthInp.Location = new System.Drawing.Point(454, 14);
             this.WidthInp.Name = "WidthInp";
             this.WidthInp.Size = new System.Drawing.Size(100, 36);
             this.WidthInp.TabIndex = 4;
@@ -288,7 +289,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(560, 30);
+            this.label5.Location = new System.Drawing.Point(560, 17);
             this.label5.Margin = new System.Windows.Forms.Padding(3);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(95, 29);
@@ -300,7 +301,7 @@
             // 
             this.HeightInp.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.HeightInp.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.HeightInp.Location = new System.Drawing.Point(661, 27);
+            this.HeightInp.Location = new System.Drawing.Point(661, 14);
             this.HeightInp.Name = "HeightInp";
             this.HeightInp.Size = new System.Drawing.Size(110, 36);
             this.HeightInp.TabIndex = 6;
@@ -310,17 +311,17 @@
             // 
             this.LengthInp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.LengthInp.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LengthInp.Location = new System.Drawing.Point(242, 27);
+            this.LengthInp.Location = new System.Drawing.Point(242, 14);
             this.LengthInp.Name = "LengthInp";
             this.LengthInp.Size = new System.Drawing.Size(100, 36);
             this.LengthInp.TabIndex = 1;
             this.LengthInp.TextChanged += new System.EventHandler(this.LengthInp_TextChanged);
             // 
-            // dataGridView1
+            // worktable
             // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.worktable.AllowUserToOrderColumns = true;
+            this.worktable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.worktable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -328,9 +329,9 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.worktable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.worktable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.worktable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Title,
             this.Count,
             this.Price,
@@ -342,14 +343,40 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(826, 394);
-            this.dataGridView1.TabIndex = 1;
+            this.worktable.DefaultCellStyle = dataGridViewCellStyle2;
+            this.worktable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.worktable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.worktable.Location = new System.Drawing.Point(0, 0);
+            this.worktable.Name = "worktable";
+            this.worktable.RowHeadersVisible = false;
+            this.worktable.RowTemplate.Height = 28;
+            this.worktable.Size = new System.Drawing.Size(826, 394);
+            this.worktable.TabIndex = 1;
+            // 
+            // Title
+            // 
+            this.Title.HeaderText = "Наименование работ";
+            this.Title.Name = "Title";
+            this.Title.ReadOnly = true;
+            // 
+            // Count
+            // 
+            this.Count.HeaderText = "Кол-во";
+            this.Count.Name = "Count";
+            this.Count.ReadOnly = true;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Цена";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
+            // Summ
+            // 
+            this.Summ.HeaderText = "Сумма";
+            this.Summ.Name = "Summ";
+            this.Summ.ReadOnly = true;
+            this.Summ.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // None_StandardRoom
             // 
@@ -537,31 +564,6 @@
             this.AddElement.UseVisualStyleBackColor = true;
             this.AddElement.Click += new System.EventHandler(this.AddElement_Click);
             // 
-            // Title
-            // 
-            this.Title.HeaderText = "Наименование работ";
-            this.Title.Name = "Title";
-            this.Title.ReadOnly = true;
-            // 
-            // Count
-            // 
-            this.Count.HeaderText = "Кол-во";
-            this.Count.Name = "Count";
-            this.Count.ReadOnly = true;
-            // 
-            // Price
-            // 
-            this.Price.HeaderText = "Цена";
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            // 
-            // Summ
-            // 
-            this.Summ.HeaderText = "Сумма";
-            this.Summ.Name = "Summ";
-            this.Summ.ReadOnly = true;
-            this.Summ.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
             // RoomTabContent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -579,12 +581,13 @@
             this.TypeTabs.ResumeLayout(false);
             this.StandardRoom.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.RoomMarkup.ResumeLayout(false);
             this.RoomMarkup.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.worktable)).EndInit();
             this.None_StandardRoom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.RoomMarkUp2.ResumeLayout(false);
@@ -609,7 +612,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button AddElement;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TableLayoutPanel RoomMarkUp2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
@@ -631,5 +633,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn Summ;
+        public System.Windows.Forms.DataGridView worktable;
     }
 }

@@ -148,6 +148,19 @@ namespace BuildingCalculator.FormComponents
             InitializeComponent();
             Doors.Controls.Add(CreateTable(doors));
             Windows.Controls.Add(CreateTable(windows));
+            if (ConfigWorksService.getValue(ConfigWorksService.Options.Units)=="sm")
+            {
+                foreach (var elem in doors)
+                {
+                    elem.Params[Entity.ParamName.Height] *= 100;
+                    elem.Params[Entity.ParamName.Width] *= 100;
+                }
+                foreach (var elem in windows)
+                {
+                    elem.Params[Entity.ParamName.Height] *= 100;
+                    elem.Params[Entity.ParamName.Width] *= 100;
+                }
+            }
         }
         TableLayoutPanel CreateTable(List<Element> patterns)
         {
@@ -155,13 +168,17 @@ namespace BuildingCalculator.FormComponents
             table.Dock = DockStyle.Top;
             table.RowCount = (int)Math.Ceiling(patterns.Count / 4.0);
             table.ColumnCount = 3;
-            table.Height = table.RowCount * 100;
+            table.AutoSize = true;
             for (int i=0;i<table.ColumnCount;i++)
                 table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent) { Width = 33 });
-            for (int i = 0; i < table.RowCount; i++)
-                table.RowStyles.Add(new RowStyle(SizeType.Absolute) { Height = 100 });
             for (int i = 0; i < patterns.Count; i++)
-                table.Controls.Add(new RadioButton() { Anchor = AnchorStyles.Bottom|AnchorStyles.Top,Tag = patterns[i],Text = patterns[i].Title }, i % 3, i / 3);
+            {
+                RadioButton radio = new RadioButton() { Height = 100, Anchor = AnchorStyles.Top | AnchorStyles.Bottom, Tag = patterns[i], Text = patterns[i].Title };
+                radio.CheckedChanged += CheckedType;
+                table.Controls.Add(radio, i % 3, i / 3);
+            }
+            for (int i = 0; i < table.RowCount; i++)
+                table.RowStyles.Add(new RowStyle(SizeType.AutoSize) {  });
             return table;
         }
         RadioButton GetCheckedRadio(Control control)
@@ -170,7 +187,12 @@ namespace BuildingCalculator.FormComponents
                 if (button.Checked)
                     return button;
             return null;
-        }          
+        }
+        private void CheckedType(object sender, EventArgs e)
+        {
+            Checked = (sender as RadioButton).Tag as Element;
+            Close();
+        }
         private void SelectDoorsWindows_Load(object sender, EventArgs e)
         {
             

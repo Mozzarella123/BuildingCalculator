@@ -13,7 +13,6 @@ namespace BuildingCalculator.FormComponents
 {
     public partial class ElementForm : UserControl
     {
-        public static int HeightC;
         public Element Element;
         public List<Element> ElementLists = new List<Element>();
         public ElementForm()
@@ -26,7 +25,6 @@ namespace BuildingCalculator.FormComponents
             Element = new Element();
             comboBox1_SelectionChangeCommitted(PatternSelect, new EventArgs());
             ContInp.Text = "1";
-            HeightC = Height;
         }
 
 
@@ -72,6 +70,7 @@ namespace BuildingCalculator.FormComponents
                         MarkUp.RowStyles[1].SizeType = SizeType.Absolute;
                         MarkUp.RowStyles[1].Height = 0;
                         SelectDoorsWindows selectpat = new SelectDoorsWindows();
+                        Functions.CenterForm(selectpat, NewForm.ActiveForm);
                         selectpat.ShowDialog();
                         if (selectpat.Checked != null)
                         {

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.MainTabs = new System.Windows.Forms.TabControl();
             this.InputParamsTab = new System.Windows.Forms.TabPage();
@@ -65,6 +65,7 @@
             this.InputParamsBut = new System.Windows.Forms.Button();
             this.ViewBut = new System.Windows.Forms.Button();
             this.SettingsBut = new System.Windows.Forms.Button();
+            this.CreateReportBut = new System.Windows.Forms.Button();
             this.ExcelDownloadDialog = new System.Windows.Forms.OpenFileDialog();
             this.SelectReportDirDialog = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -192,31 +193,33 @@
             // finaltable
             // 
             this.finaltable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.finaltable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.finaltable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.finaltable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.finaltable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Title,
             this.Count,
             this.Price,
             this.Summ});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.finaltable.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.finaltable.DefaultCellStyle = dataGridViewCellStyle2;
             this.finaltable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.finaltable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.finaltable.Location = new System.Drawing.Point(0, 0);
             this.finaltable.Name = "finaltable";
+            this.finaltable.RowHeadersVisible = false;
             this.finaltable.RowTemplate.Height = 28;
             this.finaltable.Size = new System.Drawing.Size(906, 547);
             this.finaltable.TabIndex = 1;
@@ -225,25 +228,21 @@
             // 
             this.Title.HeaderText = "Наименование";
             this.Title.Name = "Title";
-            this.Title.ReadOnly = true;
             // 
             // Count
             // 
             this.Count.HeaderText = "Кол-во";
             this.Count.Name = "Count";
-            this.Count.ReadOnly = true;
             // 
             // Price
             // 
             this.Price.HeaderText = "Цена";
             this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
             // 
             // Summ
             // 
             this.Summ.HeaderText = "Сумма";
             this.Summ.Name = "Summ";
-            this.Summ.ReadOnly = true;
             // 
             // label3
             // 
@@ -465,6 +464,7 @@
             this.MenuMarkup.Controls.Add(this.InputParamsBut, 0, 0);
             this.MenuMarkup.Controls.Add(this.ViewBut, 0, 1);
             this.MenuMarkup.Controls.Add(this.SettingsBut, 0, 2);
+            this.MenuMarkup.Controls.Add(this.CreateReportBut, 0, 3);
             this.MenuMarkup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MenuMarkup.Location = new System.Drawing.Point(0, 0);
             this.MenuMarkup.Name = "MenuMarkup";
@@ -519,6 +519,19 @@
             this.SettingsBut.UseVisualStyleBackColor = true;
             this.SettingsBut.Click += new System.EventHandler(this.MenuClick);
             // 
+            // CreateReportBut
+            // 
+            this.CreateReportBut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CreateReportBut.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CreateReportBut.Location = new System.Drawing.Point(3, 153);
+            this.CreateReportBut.Name = "CreateReportBut";
+            this.CreateReportBut.Size = new System.Drawing.Size(153, 82);
+            this.CreateReportBut.TabIndex = 3;
+            this.CreateReportBut.Text = "Создать отчет";
+            this.CreateReportBut.UseVisualStyleBackColor = true;
+            this.CreateReportBut.Click += new System.EventHandler(this.CreateReportBut_Click);
+            // 
             // ExcelDownloadDialog
             // 
             this.ExcelDownloadDialog.FileName = "openFileDialog1";
@@ -532,7 +545,7 @@
             this.ClientSize = new System.Drawing.Size(1077, 583);
             this.Controls.Add(this.splitContainer1);
             this.Name = "NewForm";
-            this.Text = "NewForm";
+            this.Text = "Калькулятор";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -584,10 +597,6 @@
         private System.Windows.Forms.TextBox SaveDirectoryInp;
         private System.Windows.Forms.Label SaveDirectoryT;
         private System.Windows.Forms.DataGridView finaltable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Count;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Summ;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.TableLayoutPanel AdminTable;
         private System.Windows.Forms.Label WorksListLabel;
@@ -597,5 +606,10 @@
         private System.Windows.Forms.OpenFileDialog ExcelDownloadDialog;
         private System.Windows.Forms.Button SaveSetBut;
         private System.Windows.Forms.FolderBrowserDialog SelectReportDirDialog;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Count;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Summ;
+        private System.Windows.Forms.Button CreateReportBut;
     }
 }

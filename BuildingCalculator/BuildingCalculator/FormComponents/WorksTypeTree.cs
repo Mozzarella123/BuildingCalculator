@@ -15,6 +15,8 @@ namespace BuildingCalculator.FormComponents
     {
         public List<WorkTypeClass> CheckedWorks = new List<WorkTypeClass>();
         public List<WorkTypeClass.Category> CheckedCats = new List<WorkTypeClass.Category>();
+        public event CheckedNodesChangedHandler CheckedNodesChanged;
+        public delegate void CheckedNodesChangedHandler(object sender, EventArgs e);
         public WorksTypeTree()
         {
             InitializeComponent();
@@ -84,7 +86,8 @@ namespace BuildingCalculator.FormComponents
                 }
                 else
                     CheckedCats.Remove(work.category);
-
+                if (CheckedNodesChanged!=null)
+                CheckedNodesChanged(node, new EventArgs());
             }
         }
         private void WorksList_BeforeCheck(object sender, TreeViewCancelEventArgs e)

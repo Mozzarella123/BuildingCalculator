@@ -30,7 +30,7 @@ namespace BuildingCalculator.FormComponents
                     Hide_Elems
                 }
             );
-            Functions.ContextMenu(dataGridView1, new List<string>()
+            Functions.ContextMenu(worktable, new List<string>()
                 {
                     "Обновить",
                 }, new List<EventHandler>()
@@ -42,10 +42,12 @@ namespace BuildingCalculator.FormComponents
             Functions.SetValidator(WidthInp, Functions.ValidateType.OnlyNumbers);
             Functions.SetValidator(LengthInp, Functions.ValidateType.OnlyNumbers);
             Functions.SetValidator(HeightInp, Functions.ValidateType.OnlyNumbers);
+            worksTypeTree1.CheckedNodesChanged += NodesChanged;
+
         }
         private void RefrehTable(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Clear();
+            worktable.Rows.Clear();
             double sum = 0;
             foreach (WorkTypeClass work in worksTypeTree1.CheckedWorks)
             {
@@ -63,19 +65,25 @@ namespace BuildingCalculator.FormComponents
                         parameters[0] = Room.GetAreaFromCat(work.category);
                     }
                     //заполняем параметры 
-                    for (int i = i1; i < work.parametrs.Count; i++)
+                    if (sender is TreeNode)
                     {
-                        param.Label.Text = "Введите " + work.parametrs[i] + " в " + work.article;
-                        param.Width = param.Label.Text.Length * 10;
-                        Classes.Functions.CenterForm(param, ParentForm);
-                        param.ShowDialog();
-                        Array.Resize(ref parameters, parameters.Length + 1);
-                        if (param.TextBox.Text == "")
-                            param.TextBox.Text = "0";
-                        parameters[parameters.Length - 1] = double.Parse(param.TextBox.Text);
-                        param.Label.Text = "";
+                        if (work.ParametersValue[i1] == 0)
+                        {
+                            for (int i = i1; i < work.parametrs.Count; i++)
+                            {
+                                param.Label.Text = "Введите " + work.parametrs[i] + " в " + work.article;
+                                param.Width = param.Label.Text.Length * 10;
+                                Classes.Functions.CenterForm(param, ParentForm);
+                                param.ShowDialog();
+                                Array.Resize(ref parameters, parameters.Length + 1);
+                                if (param.TextBox.Text == "")
+                                    param.TextBox.Text = "0";
+                                parameters[parameters.Length - 1] = double.Parse(param.TextBox.Text);
+                                param.Label.Text = "";
+                            }
+                            work.ParametersValue = parameters;
+                        }
                     }
-                    work.ParametersValue = parameters;
                 }
                 else
                     work.ParametersValue = new double[] { Room.GetAreaFromCat(work.category) };
@@ -83,10 +91,10 @@ namespace BuildingCalculator.FormComponents
                 //значения параметров
                 for (int k = 0; k < work.parametrs.Count; k++)
                     quantity += work.ParametersValue[k] + " " + work.parametrs[k] + "\n";
-                dataGridView1.Rows.Add(new string[] { work.article, quantity, work.formula, work.GetPrice().ToString() });
+                worktable.Rows.Add(new string[] { work.article, quantity, work.formula, work.GetPrice().ToString() });
                 sum += work.GetPrice();
             }
-            dataGridView1.Rows.Add(new string[] { "","", "Сумма", sum.ToString() });            
+            worktable.Rows.Add(new string[] { "","", "Сумма", sum.ToString() });            
         }
         private void Hide_Works(object sender, EventArgs e)
         {
@@ -106,6 +114,11 @@ namespace BuildingCalculator.FormComponents
             worksTypeTree1.Visible = !worksTypeTree1.Visible;
             
         }
+        private void NodesChanged(object sender, EventArgs e)
+        {
+            RefrehTable(sender as TreeNode,new EventArgs());
+        }
+
         private void Hide_Elems(object sender, EventArgs e)
         {
             if (RoomMarkup.Visible)
@@ -127,12 +140,12 @@ namespace BuildingCalculator.FormComponents
             RoomMarkup.RowCount++;
             ElementForm element = new ElementForm();
             element.Anchor = (AnchorStyles.Top|AnchorStyles.Bottom);
-            RoomMarkup.Height += element.Height;
             RoomMarkup.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             RoomMarkup.Controls.Add(element,0, RoomMarkup.RowCount - 1);                   
             RoomMarkup.SetColumnSpan(element, RoomMarkup.ColumnCount);
             Room.Elements.Add(element.ElementLists);
             element.Focus();
+            RefrehTable(worktable, new EventArgs());
         }
         private void Count_TextChanged(object sender, EventArgs e)
         {
@@ -144,10 +157,9 @@ namespace BuildingCalculator.FormComponents
         }
         private void RoomMarkup_ControlRemoved(object sender, ControlEventArgs e)
         {
-            RoomMarkup.Height -= ElementForm.HeightC;
             RoomMarkup.RowCount--;
             Room.Elements.RemoveAll(item => item.Count == 0);
-
+            RefrehTable(worktable, new EventArgs());
         }
         private void RoomTypeSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -166,6 +178,7 @@ namespace BuildingCalculator.FormComponents
                 case "HeightInp": Room.Params[Entity.ParamName.Height] = Convert.ToDouble(Text); break;
                 case "LengthInp": Room.Params[Entity.ParamName.Length] = Convert.ToDouble(Text); break;
             }
+            RefrehTable(worktable, new EventArgs());
         }
     }
 }

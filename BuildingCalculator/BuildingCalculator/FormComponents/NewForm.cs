@@ -16,13 +16,19 @@ namespace BuildingCalculator.FormComponents
 {
     public partial class NewForm : Form
     {
-        List<Room> Rooms = new List<Room>();
+        public static List<Room> Rooms = new List<Room>();
+        //public static Form MainForm;
         public List<string[]> table = new List<string[]>();
         public NewForm()
         {
+            JSONSerializeService.ReadInput("works.json");
             InitializeComponent();
+            //MainForm = this;
             MainTabs.ItemSize = new Size(0, 1);
             Rooms.Add(roomTabContent1.Room);
+            roomTabContent1.worktable.RowsAdded += Refresh;
+            roomTabContent1.worktable.RowsRemoved += Refresh;
+            finaltable.Rows[finaltable.RowCount - 1].ReadOnly = false;
             Functions.ContextMenu(RoomTabs, new List<string>()
             {
                 "Удалить"
@@ -46,13 +52,12 @@ namespace BuildingCalculator.FormComponents
             });
             Functions.ContextMenu(finaltable, new List<string>()
             {
-                "Обновить",
-                "Создать отчёт"
+                "Обновить"
             },
             new List<EventHandler>()
             {
-                Refresh,
-                Create_Report
+                Refresh
+                
             });
             roomTabContent1.Room.CheckedWorks = roomTabContent1.worksTypeTree1.CheckedWorks;
             if (!ConfigWorksService.Contains("tutorial"))
@@ -66,7 +71,7 @@ namespace BuildingCalculator.FormComponents
                 cmRadio.Checked = true;
             else
                 mRadio.Checked = true;
-
+            
         }
         private void Create_Report(object sender, EventArgs e)
         {
@@ -83,6 +88,7 @@ namespace BuildingCalculator.FormComponents
                         content[i, j] = "";
                 }
             string path = ConfigWorksService.getValue(ConfigWorksService.Options.ReportDirectory) + "\\Отчёт";
+            
             PDFWriteService.CreateNewDocument(path);
             PDFWriteService.AddTable(path, content, headers);
             PDFWriteService.RenderDocToPdf(path);
@@ -122,9 +128,12 @@ namespace BuildingCalculator.FormComponents
                 for (int i = 0; i < paramssumm[pair.Key].Length; i++)
                     quantity += paramssumm[pair.Key][i]+ " " + pair.Key.parametrs[i] + "\n";
                 finaltable.Rows.Add(new string[] { pair.Key.article, quantity, pair.Key.formula, pair.Value.ToString() });
-            }
-            finaltable.Rows.Add(new string[] { "", "", "Сумма", commonsum.ToString() });
+                finaltable.Rows[finaltable.RowCount - 2].ReadOnly = true;
 
+            }
+            DataGridViewRow row = new DataGridViewRow();
+            finaltable.Rows.Add(new string[] { "", "", "Сумма", commonsum.ToString() });
+            finaltable.Rows[finaltable.RowCount - 2].ReadOnly = true;
         }
         private void DeleteTab(object sender, EventArgs e)
         {
@@ -173,6 +182,7 @@ namespace BuildingCalculator.FormComponents
                 RoomTabs.TabPages[lastindex].BackColor = Color.White;
                 //добавляем содержимое
                 RoomTabContent content = new RoomTabContent();
+                content.worktable.CellValueChanged += Refresh;
                 content.Dock = DockStyle.Fill;
                 content.HeightInp.Text = roomTabContent1.HeightInp.Text;
                 RoomTabs.TabPages[lastindex].Controls.Add(content);
@@ -229,6 +239,7 @@ namespace BuildingCalculator.FormComponents
         private void DownloadfromExcel_Click(object sender, EventArgs e)
         {
             ExcelDownloadDialog.ShowDialog();
+            Functions.BuildList(AdminWorks.WorksList);
         }
         private void Clear_Click(object sender, EventArgs e)
         {
@@ -255,6 +266,11 @@ namespace BuildingCalculator.FormComponents
             {
                 SaveDirectoryInp.Text = SelectReportDirDialog.SelectedPath;
             }
+        }
+
+        private void CreateReportBut_Click(object sender, EventArgs e)
+        {
+            Create_Report(finaltable, new EventArgs());
         }
     }
 }
