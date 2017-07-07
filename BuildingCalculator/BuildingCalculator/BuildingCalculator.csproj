@@ -97,6 +97,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Room.cs" />
     <Compile Include="FormComponents\ElementForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -210,7 +211,6 @@
       <DependentUpon>WorksTypeTree.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Classes\Room.cs" />
     <Compile Include="FormComponents\Slider.cs">
       <SubType>UserControl</SubType>
     </Compile>
