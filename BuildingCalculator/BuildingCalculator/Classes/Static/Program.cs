@@ -20,11 +20,13 @@ namespace BuildingCalculator
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Form1());
+                Application.Run(new FormComponents.NewForm());
             }
             catch (Exception e)
             {
                 logger.Fatal("\n Метод, вызвавший исключение:"+e.TargetSite+ "\n Объект, вызвавший исключение:"+e.InnerException+ "\n Сообщение:"+e.Message);
+                MessageBox.Show(e.Message);
+                Application.Restart();
             }
         }
     }

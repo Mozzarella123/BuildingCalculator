@@ -21,7 +21,7 @@ namespace BuildingCalculator
         public Form1()
         {
             InitializeComponent();
-            JSONSerializeService.ReadInput("works.json");
+            //JSONSerializeService.ReadInput("works.json");
             Rooms.Add((RoomTabs.TabPages[0].Controls["tabContent1"] as TabContent).Room);
             Rooms[0].Title = RoomTabs.TabPages[0].Text;
             List<string> names = new List<string>()

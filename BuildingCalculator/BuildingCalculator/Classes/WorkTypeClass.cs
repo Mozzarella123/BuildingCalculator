@@ -18,10 +18,29 @@ namespace BuildingCalculator
                 {Category.ceilingPer, "Периметр потолка" },
                 {Category.elworks, "Электромонтажные работы" },
                 {Category.santechworks, "Сантехнические работы" },
+                {Category.windowsanddoors,"Окна,двери" },
+                {Category.ventilation,"Вентиляция" },
+                {Category.corners,"Углы наружние и внутрение" },
+                {Category.boring,"Сверление,резка,крепеж" },
+                {Category.curtain,"Гардины,карнизы,вешалки,тумбы" },
                 {Category.other, "Другое" },
             };
         
-        public enum Category { none=-1,walls, floor, ceiling, floorPer, ceilingPer,elworks,santechworks, other};
+        public enum Category {
+            none =-1,
+            walls,
+            floor,
+            ceiling,
+            floorPer,
+            ceilingPer,
+            elworks,
+            santechworks,
+            windowsanddoors,
+            ventilation,
+            corners,
+            boring,
+            curtain,
+            other };
         public double[] ParametersValue { get; set; }
         public WorkTypeClass()
         {

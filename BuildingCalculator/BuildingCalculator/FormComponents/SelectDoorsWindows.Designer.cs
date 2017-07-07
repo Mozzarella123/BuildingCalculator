@@ -45,7 +45,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 33);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(819, 556);
+            this.tabControl1.Size = new System.Drawing.Size(690, 511);
             this.tabControl1.TabIndex = 0;
             // 
             // Doors
@@ -54,17 +54,18 @@
             this.Doors.Location = new System.Drawing.Point(4, 29);
             this.Doors.Name = "Doors";
             this.Doors.Padding = new System.Windows.Forms.Padding(3);
-            this.Doors.Size = new System.Drawing.Size(811, 556);
+            this.Doors.Size = new System.Drawing.Size(660, 320);
             this.Doors.TabIndex = 0;
             this.Doors.Text = "Двери";
             this.Doors.UseVisualStyleBackColor = true;
             // 
             // Windows
             // 
+            this.Windows.AutoScroll = true;
             this.Windows.Location = new System.Drawing.Point(4, 29);
             this.Windows.Name = "Windows";
             this.Windows.Padding = new System.Windows.Forms.Padding(3);
-            this.Windows.Size = new System.Drawing.Size(811, 523);
+            this.Windows.Size = new System.Drawing.Size(682, 478);
             this.Windows.TabIndex = 1;
             this.Windows.Text = "Окна";
             this.Windows.UseVisualStyleBackColor = true;
@@ -76,7 +77,7 @@
             this.выбратьToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(819, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(690, 33);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -91,7 +92,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(819, 589);
+            this.ClientSize = new System.Drawing.Size(690, 544);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
