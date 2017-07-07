@@ -31,10 +31,6 @@ namespace BuildingCalculator
             Height
         }
         public Dictionary<ParamName, double> Params { get; private set; }
-        /// <summary>
-        /// Название
-        /// </summary>
-        public string Title { get; set; }
         public Entity()
         {
             Params = new Dictionary<ParamName, double>()
@@ -74,7 +70,10 @@ namespace BuildingCalculator
         public List<Element> Elements { get; set; }
         public List<WorkTypeClass.Category> CheckedCats { get; set; }
         public List<WorkTypeClass> CheckedWorks { get; set; }
-
+        /// <summary>
+        /// Название
+        /// </summary>
+        public string Title { get; set; }
         public Room() : base()
         {
             Elements = new List<Element>();
@@ -166,16 +165,7 @@ namespace BuildingCalculator
         /// Части комнаты к которым принадлежит элемент
         /// </summary>
         public List<WorkTypeClass.Category> Categories { get; set; }
-        public static Element CreateElement(ParamName param1,double valueparam1,ParamName param2,double valueparam2,string Title =null,List<WorkTypeClass.Category> cats=null)
-        {
-            Element element = new Element();
-            element.Params[param1] = valueparam1;
-            element.Params[param2] = valueparam2;
-            if (cats!=null)
-                foreach (WorkTypeClass.Category cat in cats)
-                    element.Categories.Add(cat);
-            return element;
-        }
+        
         public Element() : base()
         {
             Categories = new List<WorkTypeClass.Category>();
