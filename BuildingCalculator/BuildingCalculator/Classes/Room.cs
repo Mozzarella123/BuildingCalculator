@@ -41,6 +41,7 @@ namespace BuildingCalculator
             {
                 return Params[ParamName.Height] * Params[ParamName.Width];
             }
+            set { Area = value; }
         }
         /// <summary>
         /// Периметр
@@ -51,6 +52,7 @@ namespace BuildingCalculator
             {
                 return (Params[ParamName.Length] + Params[ParamName.Width]) * 2;
             }
+            set { Perimeter = value; }
         }
     }
     public class Room : Entity
@@ -61,12 +63,16 @@ namespace BuildingCalculator
         public List<List<Element>> Elements { get; set; }
         public List<WorkTypeClass.Category> CheckedCats { get; set; }
         public List<WorkTypeClass> CheckedWorks { get; set; }
-
+        public bool Standard
+        {
+            get;set;
+        }
         public Room() : base()
         {
             Elements = new List<List<Element>>();
             CheckedCats = new List<WorkTypeClass.Category>();
             CheckedWorks = new List<WorkTypeClass>();
+            Standard = true;
         }
         /// <summary>
         /// Получить площадь по указанной части комнаты
@@ -78,18 +84,22 @@ namespace BuildingCalculator
             double unit = 1;
             if (ConfigWorksService.getValue(ConfigWorksService.Options.Units) == "sm")
                 unit = 0.01;
-            switch (cat)
-            {
-                case WorkTypeClass.Category.walls:
-                    return CommonArea * unit;
-                case WorkTypeClass.Category.floorPer:
-                    return BottomPerimeter * unit;
-                case WorkTypeClass.Category.ceiling:
-                case WorkTypeClass.Category.floor:
-                    return Area * unit;
-                case WorkTypeClass.Category.ceilingPer:
-                    return Perimeter * unit;
-            }
+                switch (cat)
+                {
+                    case WorkTypeClass.Category.walls:
+                        return CommonArea * unit;
+                    case WorkTypeClass.Category.floorPer:
+                        return BottomPerimeter * unit;
+                    case WorkTypeClass.Category.ceiling:
+                    case WorkTypeClass.Category.floor:
+                        return Area * unit;
+                    case WorkTypeClass.Category.ceilingPer:
+                    {
+                        if (Standard)
+                        return Perimeter * unit;
+                        return BottomPerimeter * unit;
+                    }
+                }
             return -1;
         }
         public string GetUnits(WorkTypeClass.Category cat)
@@ -106,10 +116,6 @@ namespace BuildingCalculator
             }
             return "";
         }
-        public void GetSumFromCat()
-        {
-
-        }
         /// <summary>
         /// Общая площадь стен
         /// </summary>
@@ -122,33 +128,44 @@ namespace BuildingCalculator
                     foreach (var elem in list)
                         if (elem.Categories.Find(x => x == WorkTypeClass.Category.walls) == WorkTypeClass.Category.walls)
                             sum += elem.Area;
-                return (base.Area + Params[ParamName.Height] * Params[ParamName.Length]) * 2 - sum;
+                if (Standard)
+                    return (base.Area + Params[ParamName.Height] * Params[ParamName.Length]) * 2 - sum;
+                return BottomPerimeter * Params[ParamName.Height] - sum;
             }
         }
         /// <summary>
         /// Площадь потолка и пола
         /// </summary>
+        private double area;
         public override double Area
         {
             get
             {
-                return Params[ParamName.Width] * Params[ParamName.Length];
+                if (Standard)
+                    return Params[ParamName.Width] * Params[ParamName.Length];
+                return area;
             }
+            set { if (!Standard) area = value; }
         }
         /// <summary>
         /// Периметр пола
         /// </summary>
+        private double bottomperimeter;
         public double BottomPerimeter
         {
             get
             {
+
                 double sum = 0;
                 foreach (var list in Elements)
                     foreach (var elem in list)
                         if (elem.Categories.Find(x => x == WorkTypeClass.Category.floorPer) == WorkTypeClass.Category.floorPer)
                             sum += elem.Params[ParamName.Width];
-                return (Params[ParamName.Width] + Params[ParamName.Length]) * 2 - sum;
+                if (Standard)
+                    return (Params[ParamName.Width] + Params[ParamName.Length]) * 2 - sum;
+                return bottomperimeter - sum;
             }
+            set { if (!Standard) bottomperimeter = value; }
         }
     }
     public class Element : Entity

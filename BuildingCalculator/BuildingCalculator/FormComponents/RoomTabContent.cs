@@ -13,7 +13,6 @@ namespace BuildingCalculator.FormComponents
 {
     public partial class RoomTabContent : UserControl
     {
-        public List<string[]> table = new List<string[]>();
         public Room Room = new Room();
         public RoomTabContent()
         {
@@ -38,16 +37,35 @@ namespace BuildingCalculator.FormComponents
                     RefrehTable
                 }
             );
+            Functions.ContextMenu(NonStandardWorkTable, new List<string>()
+                {
+                    "Обновить",
+                }, new List<EventHandler>()
+                {
+                    RefrehTable
+                }
+);
             worksTypeTree1.WorksList.CheckBoxes = true;
             Functions.SetValidator(WidthInp, Functions.ValidateType.OnlyNumbers);
             Functions.SetValidator(LengthInp, Functions.ValidateType.OnlyNumbers);
             Functions.SetValidator(HeightInp, Functions.ValidateType.OnlyNumbers);
+            Functions.SetValidator(BottomArea, Functions.ValidateType.OnlyNumbers);
+            Functions.SetValidator(BottomPerInp, Functions.ValidateType.OnlyNumbers);
+            Functions.SetValidator(HeightInp2, Functions.ValidateType.OnlyNumbers);
             worksTypeTree1.CheckedNodesChanged += NodesChanged;
         }
         private void RefrehTable(object sender, EventArgs e)
         {
+            DataGridView worktable;
+            switch (RoomTypeSelect.SelectedIndex)
+            {
+                case 0:worktable = this.worktable;break;
+                case 1:worktable = this.NonStandardWorkTable;break;
+                default: worktable = null;break;
+            }
             worktable.Rows.Clear();
             double sum = 0;
+            if (!Room.Params.ContainsValue(0)||Room.BottomPerimeter!=0)
             foreach (WorkTypeClass work in worksTypeTree1.CheckedWorks)
             {
                 //если параметры не входят в список стандартных
@@ -66,22 +84,24 @@ namespace BuildingCalculator.FormComponents
                     //заполняем параметры 
                     if (sender is TreeNode&&(sender as TreeNode).Checked)
                     {
-                        if (work.ParametersValue.Length==0||work.ParametersValue.Contains(0))
-                        {
-                            for (int i = i1; i < work.parametrs.Count; i++)
+                            if (work.ParametersValue.Length == 0 || work.ParametersValue.Contains(0))
                             {
-                                param.Label.Text = "Введите " + work.parametrs[i] + " в " + work.article;
-                                param.Width = param.Label.Text.Length * 10;
-                                Classes.Functions.CenterForm(param, ParentForm);
-                                param.ShowDialog();
-                                Array.Resize(ref parameters, parameters.Length + 1);
-                                if (param.TextBox.Text == "")
-                                    param.TextBox.Text = "0";
-                                parameters[parameters.Length - 1] = double.Parse(param.TextBox.Text);
-                                param.Label.Text = "";
-                            }
-                            work.ParametersValue = parameters;
-                        }
+                                for (int i = i1; i < work.parametrs.Count; i++)
+                                {
+                                    param.WorkTitle.Text = work.article;
+                                    param.Paramname.Text = work.parametrs[i];
+                                    //param.Width = param.Label.Text.Length * 10;
+                                    Classes.Functions.CenterForm(param, ParentForm);
+                                    param.ShowDialog();
+                                    Array.Resize(ref parameters, parameters.Length + 1);
+                                    if (param.Paramname.Text == "")
+                                        param.Paramname.Text = "1";
+                                    parameters[parameters.Length - 1] = double.Parse(param.TextBox.Text);
+                                    param.WorkTitle.Text = "";
+                                    param.Paramname.Text = "1";
+                                }
+                                work.ParametersValue = parameters;
+                            } 
                     }
                 }
                 else
@@ -97,7 +117,6 @@ namespace BuildingCalculator.FormComponents
         }
         private void Hide_Works(object sender, EventArgs e)
         {
-            
             if (worksTypeTree1.Visible)
             {
                 splitContainer1.SplitterDistance = 0;
@@ -120,6 +139,14 @@ namespace BuildingCalculator.FormComponents
 
         private void Hide_Elems(object sender, EventArgs e)
         {
+            SplitContainer splitcontainer2;
+            TableLayoutPanel RoomMarkup;
+            switch (RoomTypeSelect.SelectedIndex)
+            {
+                case 0: { splitcontainer2 = this.splitContainer2; RoomMarkup = this.RoomMarkup; break; }
+                case 1: { splitcontainer2 = splitContainer3; RoomMarkup = RoomMarkUp2; break; }
+                default: { splitcontainer2 = null; RoomMarkup = null; break; }
+            }
             if (RoomMarkup.Visible)
             {
                 splitContainer2.SplitterDistance = 0;
@@ -136,6 +163,13 @@ namespace BuildingCalculator.FormComponents
         }
         private void AddElement_Click(object sender, EventArgs e)
         {
+            TableLayoutPanel RoomMarkup;
+            switch (RoomTypeSelect.SelectedIndex)
+            {
+                case 0: RoomMarkup = this.RoomMarkup; break;
+                case 1: RoomMarkup = RoomMarkUp2; break;
+                default: RoomMarkup = null; break;
+            }
             RoomMarkup.RowCount++;
             ElementForm element = new ElementForm();
             element.Anchor = (AnchorStyles.Top|AnchorStyles.Bottom);
@@ -157,6 +191,13 @@ namespace BuildingCalculator.FormComponents
         }
         private void RoomMarkup_ControlRemoved(object sender, ControlEventArgs e)
         {
+            TableLayoutPanel RoomMarkup;
+            switch (RoomTypeSelect.SelectedIndex)
+            {
+                case 0: RoomMarkup = this.RoomMarkup; break;
+                case 1: RoomMarkup = RoomMarkUp2; break;
+                default: RoomMarkup = null; break;
+            }
             RoomMarkup.RowCount--;
             Room.Elements.RemoveAll(item => item.Count == 0);
             RefrehTable(worktable, new EventArgs());
@@ -164,6 +205,12 @@ namespace BuildingCalculator.FormComponents
         private void RoomTypeSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             TypeTabs.SelectedIndex = RoomTypeSelect.SelectedIndex;
+            switch (TypeTabs.SelectedIndex)
+            {
+                case 0:Room.Standard = true;break;
+                case 1:Room.Standard = false;break;
+            }
+            Room.Elements.Clear();
         }
         private void LengthInp_TextChanged(object sender, EventArgs e)
         {
@@ -179,6 +226,27 @@ namespace BuildingCalculator.FormComponents
                 case "LengthInp": Room.Params[Entity.ParamName.Length] = Convert.ToDouble(Text); break;
             }
             RefrehTable(worktable, new EventArgs());
+        }
+
+        private void worktable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void HeightInp2_TextChanged(object sender, EventArgs e)
+        {
+            TextBox text = sender as TextBox;
+            string Text = "";
+            if (text.Text == "")
+                Text = "0";
+            else Text = text.Text;
+            switch (text.Name)
+            {
+                case "BottomArea": Room.Area = Convert.ToDouble(Text); break;
+                case "BottomPerInp": Room.BottomPerimeter = Convert.ToDouble(Text); break;
+                case "HeightInp2": Room.Params[Entity.ParamName.Height] = Convert.ToDouble(Text); break;
+            }
+            RefrehTable(NonStandardWorkTable, new EventArgs());
         }
     }
 }

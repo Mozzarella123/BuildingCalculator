@@ -79,7 +79,6 @@ namespace BuildingCalculator
             
             if (headers != null&&content.GetLength(1) != headers.Length)
                 throw new IndexOutOfRangeException("Количество заголовков не совпадает с количеством столбцов в таблице контента");
-            //Cell cell = new Cell();
             int[] width = new int[content.GetLength(1)];
             if (wrap == null)
             {
@@ -124,7 +123,7 @@ namespace BuildingCalculator
             Document document = doc.doc;
             int columncounts = 0;
             Table table = new Table();
-            table.Borders.Width = 0.75;
+            table.Borders.Width = 0.1;
             table.TopPadding = 5;
             table.BottomPadding = 5;
             if (headers==null)

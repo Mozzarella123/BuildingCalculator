@@ -204,12 +204,6 @@ namespace BuildingCalculator.FormComponents
                 e.Cancel = true;
                 Hide();
             }
-        }
-        private void выбратьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (GetCheckedRadio(tabControl1.TabPages[tabControl1.SelectedIndex].Controls[0])!=null)
-            Checked = GetCheckedRadio(tabControl1.TabPages[tabControl1.SelectedIndex].Controls[0]).Tag as Element;
-            Close();
-        }
+        }       
     }
 }

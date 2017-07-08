@@ -74,7 +74,7 @@ namespace BuildingCalculator.FormComponents
             {
                 if (check)
                 {
-                    if (!CheckedWorks.Contains(work))
+                    if (!CheckedWorks.Exists(w =>w.Equals(work)))
                         CheckedWorks.Add((WorkTypeClass)work.Clone());
                 }
                 else
@@ -86,8 +86,7 @@ namespace BuildingCalculator.FormComponents
                 }
                 else
                     CheckedCats.Remove(work.category);
-                if (CheckedNodesChanged!=null)
-                CheckedNodesChanged(node, new EventArgs());
+                CheckedNodesChanged?.Invoke(node, new EventArgs());
             }
         }
         private void WorksList_BeforeCheck(object sender, TreeViewCancelEventArgs e)
@@ -102,6 +101,20 @@ namespace BuildingCalculator.FormComponents
                 foreach (TreeNode node in e.Node.Nodes)
                     node.Checked = !check;
             }
+        }
+        protected override void WndProc(ref Message m)
+        {
+            switch (m.Msg)
+            {
+                case 0x203:
+                    m.Msg = 0;
+                    break;
+            }
+            base.WndProc(ref m);
+        }
+        private void WorksList_DoubleClick(object sender, EventArgs e)
+        {
+            
         }
     }
 }
