@@ -187,7 +187,7 @@
             this.formula.Dock = System.Windows.Forms.DockStyle.Fill;
             this.formula.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.formula.Location = new System.Drawing.Point(2, 170);
-            this.formula.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.formula.Margin = new System.Windows.Forms.Padding(2);
             this.formula.Name = "formula";
             this.formula.Size = new System.Drawing.Size(337, 198);
             this.formula.TabIndex = 14;

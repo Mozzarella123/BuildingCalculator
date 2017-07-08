@@ -260,7 +260,6 @@ namespace BuildingCalculator.Classes
         }
         private static void SearchNodes(string SearchText, TreeNode StartNode)
         {
-            TreeNode node = null;
             while (StartNode != null)
             {
                 if (StartNode.Text.ToLower().Contains(SearchText.ToLower()))
