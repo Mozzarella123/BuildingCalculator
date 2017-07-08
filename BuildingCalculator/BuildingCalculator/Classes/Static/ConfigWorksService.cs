@@ -37,8 +37,7 @@ namespace BuildingCalculator
         /// <param name="key">имя поля</param>
         /// <param name="value">значение поля</param>
         public static void Add(string key, string value)
-        {
-            
+        {           
             // добавляем позицию в раздел AppSettings
             currentConfig.AppSettings.Settings.Add(key, value);
             //сохраняем

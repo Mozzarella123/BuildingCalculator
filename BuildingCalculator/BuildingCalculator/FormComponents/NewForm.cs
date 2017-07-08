@@ -17,13 +17,11 @@ namespace BuildingCalculator.FormComponents
     public partial class NewForm : Form
     {
         public static List<Room> Rooms = new List<Room>();
-        //public static Form MainForm;
         public List<string[]> table = new List<string[]>();
         public NewForm()
         {
             JSONSerializeService.ReadInput("works.json");
             InitializeComponent();
-            //MainForm = this;
             MainTabs.ItemSize = new Size(0, 1);
             Rooms.Add(roomTabContent1.Room);
             roomTabContent1.worktable.RowsAdded += Refresh;
@@ -81,6 +79,7 @@ namespace BuildingCalculator.FormComponents
             PDFWriteService.CreateNewDocument(path);
             PDFWriteService.AddTable(path, content, headers,new bool[] { true,false,true,false });
             PDFWriteService.RenderDocToPdf(path);
+            MessageBox.Show("Отчёт создан");
         }
         private void Refresh(object sender, EventArgs e)
         {
@@ -181,6 +180,8 @@ namespace BuildingCalculator.FormComponents
                 RoomTabContent content = new RoomTabContent();
                 content.worktable.RowsAdded += Refresh;
                 content.worktable.RowsRemoved += Refresh;
+                content.NonStandardWorkTable.RowsAdded += Refresh;
+                content.NonStandardWorkTable.RowsRemoved += Refresh;
                 content.Dock = DockStyle.Fill;
                 content.HeightInp.Text = roomTabContent1.HeightInp.Text;
                 RoomTabs.TabPages[lastindex].Controls.Add(content);
@@ -214,7 +215,7 @@ namespace BuildingCalculator.FormComponents
         }
         private void Remove(object sender, EventArgs e)
         {
-            if (AdminWorks.WorksList.SelectedNode != null)
+            if (AdminWorks.WorksList.SelectedNode != null&& AdminWorks.WorksList.SelectedNode.Tag is WorkTypeClass)
             {
                 JSONSerializeService.OutputItems.Remove((WorkTypeClass)AdminWorks.WorksList.SelectedNode.Tag);
                 JSONSerializeService.Save();
