@@ -53,9 +53,12 @@ namespace BuildingCalculator.FormComponents
             Functions.SetValidator(BottomPerInp, Functions.ValidateType.OnlyNumbers);
             Functions.SetValidator(HeightInp2, Functions.ValidateType.OnlyNumbers);
             worksTypeTree1.CheckedNodesChanged += NodesChanged;
+            worktable.AutoGenerateColumns = false;
+            dataGridView2.AutoGenerateColumns = false;
         }
         private void RefrehTable(object sender, EventArgs e)
         {
+
             DataGridView worktable;
             switch (RoomTypeSelect.SelectedIndex)
             {
@@ -63,8 +66,6 @@ namespace BuildingCalculator.FormComponents
                 case 1:worktable = this.NonStandardWorkTable;break;
                 default: worktable = null;break;
             }
-            worktable.Rows.Clear();
-            double sum = 0;
             if (!Room.Params.ContainsValue(0)||Room.BottomPerimeter!=0)
             foreach (WorkTypeClass work in worksTypeTree1.CheckedWorks)
             {
@@ -82,7 +83,7 @@ namespace BuildingCalculator.FormComponents
                         parameters[0] = Room.GetAreaFromCat(work.category);
                     }
                     //заполняем параметры 
-                    if (sender is TreeNode&&(sender as TreeNode).Checked)
+                    if (sender is TreeNode && (sender as TreeNode).Checked)
                     {
                             if (work.ParametersValue.Length == 0 || work.ParametersValue.Contains(0))
                             {
@@ -110,10 +111,22 @@ namespace BuildingCalculator.FormComponents
                 //значения параметров
                 for (int k = 0; k < work.parametrs.Count; k++)
                     quantity += work.ParametersValue[k] + " " + work.parametrs[k] + "\n";
-                worktable.Rows.Add(new string[] { work.article, quantity, work.formula, work.GetPrice().ToString() });
-                sum += work.GetPrice();
+                work.quantity = quantity;
+                //worktable.Rows.Add(new string[] { work.article, quantity, work.formula, work.GetPrice().ToString() });
+                //sum += work.GetPrice();
             }
-            worktable.Rows.Add(new string[] { "","", "Сумма", sum.ToString() });            
+            //worktable.Rows.Add(new string[] { "","", "Сумма", sum.ToString() });   
+            BindingSource source = new BindingSource();
+            source.DataSource = worksTypeTree1.CheckedWorks;
+
+
+            worktable.DataSource = source;
+            worktable.Columns["Title"].DataPropertyName = "article";
+            worktable.Columns["Count"].DataPropertyName = "quantity";
+            worktable.Columns["Price"].DataPropertyName = "formula";
+            worktable.Columns["Summ"].DataPropertyName = "Price";
+            for (int i = 4; i < worktable.ColumnCount; i++)
+                worktable.Columns[i].Visible = false;
         }
         private void Hide_Works(object sender, EventArgs e)
         {
