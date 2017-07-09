@@ -172,14 +172,14 @@ namespace BuildingCalculator
         /// <param name="cats">Категории</param>
         public Element(ParamName param1, double valueparam1, ParamName param2, double valueparam2, string Title = null, List<WorkTypeClass.Category> cats = null)
         {
-            Element element = new Element();
-            element.Params[param1] = valueparam1;
-            element.Params[param2] = valueparam2;
+            Categories = new List<WorkTypeClass.Category>();
+            Params[param1] = valueparam1;
+            Params[param2] = valueparam2;
             if (Title != null)
-                element.Title = Title;
+                this.Title = Title;
             if (cats != null)
                 foreach (WorkTypeClass.Category cat in cats)
-                    element.Categories.Add(cat);           
+                    Categories.Add(cat);           
         }
         public Element() : base()
         {

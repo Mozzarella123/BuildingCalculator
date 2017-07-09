@@ -164,11 +164,7 @@ namespace BuildingCalculator.FormComponents
         }
         TableLayoutPanel CreateTable(List<Element> patterns)
         {
-            TableLayoutPanel table = new TableLayoutPanel();
-            table.Dock = DockStyle.Top;
-            table.RowCount = (int)Math.Ceiling(patterns.Count / 4.0);
-            table.ColumnCount = 3;
-            table.AutoSize = true;
+            TableLayoutPanel table = new TableLayoutPanel() { Dock = DockStyle.Top, RowCount = (int)Math.Ceiling(patterns.Count / 4.0), ColumnCount = 3, AutoSize = true };         
             for (int i=0;i<table.ColumnCount;i++)
                 table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent) { Width = 33 });
             for (int i = 0; i < patterns.Count; i++)
