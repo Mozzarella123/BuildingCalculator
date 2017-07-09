@@ -30,16 +30,28 @@ namespace BuildingCalculator.FormComponents
         private void ParamInput_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
+            {
+                if (ParamInput.Text == "0") ParamInput.Text = "1";
                 Hide();
+            }
         }
 
         private void inputparams_FormClosing(object sender, FormClosingEventArgs e)
         {
                 if (e.CloseReason == CloseReason.UserClosing)
                 {
-                    e.Cancel = true;
-                    this.Hide();
+                if (ParamInput.Text == "0") ParamInput.Text = "1";
+
+                e.Cancel = true;
+                    Hide();
                 }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (ParamInput.Text == "0") ParamInput.Text = "1";
+
+            Hide();
         }
     }
 }

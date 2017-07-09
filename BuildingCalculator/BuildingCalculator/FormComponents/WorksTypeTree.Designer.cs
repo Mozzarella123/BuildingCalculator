@@ -106,6 +106,7 @@
             this.WorksList.BeforeCheck += new System.Windows.Forms.TreeViewCancelEventHandler(this.WorksList_BeforeCheck);
             this.WorksList.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.WorksList_AfterCheck);
             this.WorksList.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.WorksList_BeforeSelect);
+            this.WorksList.DoubleClick += new System.EventHandler(this.WorksList_DoubleClick);
             // 
             // WorksTypeTree
             // 
