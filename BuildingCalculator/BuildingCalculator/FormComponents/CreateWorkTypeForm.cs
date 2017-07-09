@@ -155,7 +155,7 @@ namespace BuildingCalculator
             //FCreate.Show();
             WorkTypeClass work = new WorkTypeClass();
             work.article = WorkTypeNameInp.Text;
-            work.formula = formula.TextBox.Text;
+            work.setPriceFunc(formula.TextBox.Text);
             var numer = Listofparams.Items.GetEnumerator();
             while (numer.MoveNext())
                 work.parametrs.Add(numer.Current.ToString());

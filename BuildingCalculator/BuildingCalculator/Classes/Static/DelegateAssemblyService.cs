@@ -42,7 +42,8 @@ namespace MyNamespace
             CompileString = begin;//формирование файла с кодом для дальнейшей компиляции
             foreach (WorkTypeClass w in JSONSerializeService.InputItems)
             {
-                CompileString += CreateFunctions(w);
+                if (!w.isFixedPrice)
+                    CompileString += CreateFunctions(w);
             }
             CompileString += end;//завершение формирования кода
 

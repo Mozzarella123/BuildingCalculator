@@ -48,7 +48,7 @@ namespace BuildingCalculator.Classes.Static
                     work.article = ar[i][0];
                     if (ar[i][1] != null)
                         work.parametrs = ar[i][1].Split(',').ToList();
-                    work.formula = ar[i][2];
+                    work.setPriceFunc(ar[i][2]);
                     work.setCategory(CatName);
                     if (DelegateAssemblyService.isCreatedCorrect(work)&&!JSONSerializeService.Contains(work))
                         JSONSerializeService.AddToOutput(work);
