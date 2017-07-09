@@ -60,12 +60,12 @@
             this.Title.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.Title.AutoSize = true;
             this.Title.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Title.Location = new System.Drawing.Point(79, 3);
+            this.Title.Location = new System.Drawing.Point(61, 3);
             this.Title.Margin = new System.Windows.Forms.Padding(3);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(119, 44);
+            this.Title.Size = new System.Drawing.Size(154, 44);
             this.Title.TabIndex = 0;
-            this.Title.Text = "Название";
+            this.Title.Text = "Выбор работ";
             this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SearchT

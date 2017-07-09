@@ -146,7 +146,6 @@ namespace BuildingCalculator
         {
 
         }
-        static FormulaCreater FCreate;
         private void AddWorkType(object sender, EventArgs e)
         {
             //if (FCreate == null)
