@@ -288,10 +288,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\BuildingCalculator.FormComponents.NewForm.datasource" />
-    <None Include="Properties\DataSources\BuildingCalculator.FormComponents.RoomTabContent.datasource" />
-    <None Include="Properties\DataSources\BuildingCalculator.FormComponents.WorksTypeTree.datasource" />
-    <None Include="Properties\DataSources\WorkTypeClass.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

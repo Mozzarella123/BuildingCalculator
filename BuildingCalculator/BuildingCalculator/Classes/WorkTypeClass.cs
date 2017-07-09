@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BuildingCalculator.Classes;
+using System.Text.RegularExpressions;
 
 namespace BuildingCalculator
 {
@@ -55,6 +56,17 @@ namespace BuildingCalculator
             isFixedPrice = true;
             fixedPrice = price;
         }
+        public void setPriceFunc(string f)
+        {
+            if (double.TryParse(f, out fixedPrice))
+                isFixedPrice = true;
+            else
+            {
+                formula = f;
+                isFixedPrice = false;
+            }
+
+        }
         public double GetPrice()
         {
             if (isFixedPrice)
@@ -63,7 +75,7 @@ namespace BuildingCalculator
             return result;
         }
         public string Price { get { return GetPrice().ToString(); } }
-        bool isFixedPrice;
+        public bool isFixedPrice { get; private set; }
         public double fixedPrice;
         public string article { get; set; }
         public string formula { get; set; }
