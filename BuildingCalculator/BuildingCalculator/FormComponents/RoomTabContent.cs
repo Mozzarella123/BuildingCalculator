@@ -56,26 +56,19 @@ namespace BuildingCalculator.FormComponents
             {
                 RefrehTable(sender as TreeNode, new EventArgs());
             };
-            splitContainer1.Panel1.MouseClick += (sender, eargs) =>
+            worksTypeTree1.Enabled = true;
+            worktable.DoubleClick += (sender, ea) =>
              {
-                 if (worksTypeTree1.ClientRectangle.Contains(eargs.Location))
-                 {
-                     if (Room.Params.ContainsValue(0)&&Room.Standard || (Room.BottomPerimeter == 0 && !Room.Standard))
-                     {
-                         MessageBox.Show("Сначала заполните параметры комнаты");
-                         worksTypeTree1.Enabled = false;
-                     }
-                     else worksTypeTree1.Enabled = true;
-                 }
+                 DataGridView table = sender as DataGridView;
+                 if (table.SelectedCells.Count == 1)
+                     RefrehTable(new TreeNode() { Tag = table.SelectedCells[0].OwningRow.DataBoundItem as WorkTypeClass, Checked = true }, new EventArgs());
              };
             worktable.AutoGenerateColumns = false;
             NonStandardWorkTable.AutoGenerateColumns = false;
         }
-        bool showerror = false;
         private void RefrehTable(object sender, EventArgs e)
         {
             Area.Text = $"Площадь:{Room.Area}\nПериметр:{Room.Perimeter}\nОбщая площадь:{Room.CommonArea}";
-
             DataGridView worktable;
             switch (RoomTypeSelect.SelectedIndex)
             {
@@ -83,59 +76,33 @@ namespace BuildingCalculator.FormComponents
                 case 1: worktable = this.NonStandardWorkTable; break;
                 default: worktable = null; break;
             }
-            if (!Room.Params.ContainsValue(0) || (Room.Perimeter != 0 && !Room.Standard))
-                worksTypeTree1.Enabled = true;
-            foreach (WorkTypeClass work in worksTypeTree1.CheckedWorks)
+            if (sender is TreeNode && (sender as TreeNode).Checked)
             {
-                //если параметры не входят в список стандартных
-                if (work.parametrs.Count > 1 || Room.GetAreaFromCat(work.category) == -1)
+                WorkTypeClass work = worksTypeTree1.CheckedWorks.Find(w => w.Equals(((sender as TreeNode).Tag as WorkTypeClass)));
+                int i1 = 0;
+                if (Room.GetAreaFromCat(work.category) != -1)
+                {
+                    work.ParametersValue[0] = Room.GetAreaFromCat(work.category);
+                    i1++;
+                }
+                for (int i = i1; i < work.ParametersValue.Length; i++)
                 {
                     inputparams param = new inputparams();
-                    double[] parameters = new double[0];
-                    int i1 = 0;
-                    //если есть один стандартный 
-                    if (Room.GetAreaFromCat(work.category) != -1)
-                    {
-                        i1++;
-                        Array.Resize(ref parameters, parameters.Length + 1);
-                        parameters[0] = Room.GetAreaFromCat(work.category);
-                    }
-                    //заполняем параметры 
-                    if (sender is TreeNode && (sender as TreeNode).Checked)
-                    {
-                        if (work.ParametersValue.Length == 0 || work.ParametersValue.Contains(0))
-                        {
-                            for (int i = i1; i < work.parametrs.Count; i++)
-                            {
-                                param.WorkTitle.Text = work.article;
-                                param.Paramname.Text = work.parametrs[i];
-                                //param.Width = param.Label.Text.Length * 10;
-                                Classes.Functions.CenterForm(param, ParentForm);
-                                param.ShowDialog();
-                                Array.Resize(ref parameters, parameters.Length + 1);
-                                if (param.Paramname.Text == "")
-                                    param.Paramname.Text = "1";
-                                parameters[parameters.Length - 1] = double.Parse(param.TextBox.Text);
-                                param.WorkTitle.Text = "";
-                                param.Paramname.Text = "1";
-                            }
-                            work.ParametersValue = parameters;
-                        }
-                    }
+                    param.WorkTitle.Text = work.article;
+                    param.Paramname.Text = work.parametrs[i];
+                    Classes.Functions.CenterForm(param, ParentForm);
+                    param.ShowDialog();
+                    if (param.Paramname.Text == "")
+                        param.Paramname.Text = "1";
+                    work.ParametersValue[i] = double.Parse(param.TextBox.Text);
                 }
-                else
-                    work.ParametersValue = new double[] { Room.GetAreaFromCat(work.category) };
-                string quantity = "";
-                //значения параметров
-                for (int k = 0; k < work.parametrs.Count; k++)
-                    quantity += work.ParametersValue[k] + " " + work.parametrs[k] + "\n";
-                work.quantity = quantity;
-                //worktable.Rows.Add(new string[] { work.article, quantity, work.formula, work.GetPrice().ToString() });
-                //sum += work.GetPrice();
             }
+            else
+                foreach (WorkTypeClass work in worksTypeTree1.CheckedWorks)
+                    if (Room.GetAreaFromCat(work.category) != -1)
+                        work.ParametersValue[0] = Room.GetAreaFromCat(work.category);           
             BindingSource source = new BindingSource();
             source.DataSource = worksTypeTree1.CheckedWorks;
-
             string[] names = new string[4];
             names[0] = "Title";
             names[1] = "Count";
@@ -144,12 +111,7 @@ namespace BuildingCalculator.FormComponents
             if (worktable == NonStandardWorkTable)
                 for (int i = 0; i < names.Length; i++)
                     names[i] += "1";
-
             worktable.DataSource = source;
-            //worktable.Columns[0].Name = names[0];
-            //worktable.Columns[1].Name = names[1];
-            //worktable.Columns[2].Name = names[2];
-            //worktable.Columns[3].Name = names[3];
             worktable.Columns[names[0]].DisplayIndex = 0;
             worktable.Columns[names[1]].DisplayIndex = 1;
             worktable.Columns[names[2]].DisplayIndex = 2;
@@ -251,7 +213,7 @@ namespace BuildingCalculator.FormComponents
                 case 0: Room.Standard = true; break;
                 case 1: Room.Standard = false; break;
             }
-            Room.Elements.Clear();           
+            Room.Elements.Clear();
         }
         private void LengthInp_TextChanged(object sender, EventArgs e)
         {
@@ -266,10 +228,10 @@ namespace BuildingCalculator.FormComponents
                 case "HeightInp": Room.Params[Entity.ParamName.Height] = Convert.ToDouble(Text); break;
                 case "LengthInp": Room.Params[Entity.ParamName.Length] = Convert.ToDouble(Text); break;
             }
-            if (Text == "0")
-                worksTypeTree1.Enabled = false;
-            if (!Room.Params.ContainsValue(0))
-                worksTypeTree1.Enabled = true;
+            //if (Text == "0")
+            //    worksTypeTree1.Enabled = false;
+            //if (!Room.Params.ContainsValue(0))
+            //    worksTypeTree1.Enabled = true;
             RefrehTable(worktable, new EventArgs());
         }
 
@@ -291,10 +253,10 @@ namespace BuildingCalculator.FormComponents
                 case "BottomPerInp": Room.BottomPerimeter = Convert.ToDouble(Text); break;
                 case "HeightInp2": Room.Params[Entity.ParamName.Height] = Convert.ToDouble(Text); break;
             }
-            if (Text == "0")
-                worksTypeTree1.Enabled = false;
-            if (Room.Perimeter != 0)
-                worksTypeTree1.Enabled = true;
+            //if (Text == "0")
+            //    worksTypeTree1.Enabled = false;
+            //if (Room.BottomPerimeter != 0)
+            //    worksTypeTree1.Enabled = true;
             RefrehTable(NonStandardWorkTable, new EventArgs());
         }
     }

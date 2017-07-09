@@ -23,6 +23,8 @@ namespace BuildingCalculator.FormComponents
         public NewForm()
         {
             JSONSerializeService.ReadInput("works.json");
+            foreach(WorkTypeClass work in JSONSerializeService.OutputItems)
+                work.ParametersValue = new double[work.parametrs.Count];
             ConfigWorksService.CheckSettings();
             InitializeComponent();
             MainForm = this;

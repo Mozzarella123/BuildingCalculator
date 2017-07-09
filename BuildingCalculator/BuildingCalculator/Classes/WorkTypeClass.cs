@@ -78,7 +78,17 @@ namespace BuildingCalculator
         public double fixedPrice;
         public string article { get; set; }
         public string formula { get; set; }
-        public string quantity { get; set; }
+        public string quantity
+        {
+            get
+            {
+                string quantity = "";
+                //значения параметров
+                for (int k = 0; k <parametrs.Count; k++)
+                    quantity += ParametersValue[k] + " " + parametrs[k] + "\n";
+                return quantity;
+            }
+        }
         public List<string> parametrs;
         public string description;
         public override string ToString()
