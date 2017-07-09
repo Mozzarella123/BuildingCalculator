@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using BuildingCalculator.Classes;
 using BuildingCalculator.FormComponents;
 using BuildingCalculator.Classes.Static;
+using System.Text.RegularExpressions;
 using System.IO;
 
 namespace BuildingCalculator.FormComponents
@@ -17,16 +18,19 @@ namespace BuildingCalculator.FormComponents
     public partial class NewForm : Form
     {
         public static List<Room> Rooms = new List<Room>();
+        public static Form MainForm;
         public List<string[]> table = new List<string[]>();
         public NewForm()
         {
             JSONSerializeService.ReadInput("works.json");
+            ConfigWorksService.CheckSettings();
             InitializeComponent();
+            MainForm = this;
             MainTabs.ItemSize = new Size(0, 1);
             Rooms.Add(roomTabContent1.Room);
             roomTabContent1.worktable.RowsAdded += Refresh;
             roomTabContent1.worktable.RowsRemoved += Refresh;
-            finaltable.Rows[finaltable.RowCount - 1].ReadOnly = false;
+            roomTabContent1.Area.TextChanged += Refresh;
             Functions.ContextMenu(RoomTabs, new List<string>()
             {
                 "Удалить"
@@ -57,71 +61,137 @@ namespace BuildingCalculator.FormComponents
                 Refresh
                 
             });
+            AdminWorks.Title.Text = "Настройка работ";
             roomTabContent1.Room.CheckedWorks = roomTabContent1.worksTypeTree1.CheckedWorks;
-            
+            roomTabContent1.Room.Title = "Комната";
             
         }
         private void Create_Report(object sender, EventArgs e)
         {
-            string[,] content = new string[finaltable.RowCount, finaltable.ColumnCount];
-            string[] headers = new string[finaltable.ColumnCount];
-            for (int i = 0; i < finaltable.ColumnCount; i++)
-                headers[i] = finaltable.Columns[i].HeaderText;
-            for (int i = 0; i < finaltable.RowCount; i++)
-                for (int j = 0; j < finaltable.ColumnCount; j++)
+
+            if (finaltable.RowCount != 1)
+            {
+                string[,] content = new string[finaltable.RowCount, finaltable.ColumnCount];
+                string[] headers = new string[finaltable.ColumnCount];
+                for (int i = 0; i < finaltable.ColumnCount; i++)
+                    headers[i] = finaltable.Columns[i].HeaderText;
+                for (int i = 0; i < finaltable.RowCount; i++)
+                    for (int j = 0; j < finaltable.ColumnCount; j++)
+                    {
+                        if (finaltable.Rows[i].Cells[j].Value != null)
+                            content[i, j] = finaltable.Rows[i].Cells[j].Value.ToString();
+                        else
+                            content[i, j] = "";
+                    }
+                string path = "";
+                if (!Directory.Exists(ConfigWorksService.getValue(ConfigWorksService.Options.ReportDirectory)))
                 {
-                    if (finaltable.Rows[i].Cells[j].Value != null)
-                        content[i, j] = finaltable.Rows[i].Cells[j].Value.ToString();
-                    else
-                        content[i, j] = "";
+                    FolderBrowserDialog dialog = new FolderBrowserDialog();
+                    dialog.ShowDialog();
+                    path = dialog.SelectedPath + "\\Отчёт";
+                    dialog.Dispose();
                 }
-            string path = ConfigWorksService.getValue(ConfigWorksService.Options.ReportDirectory) + "\\Отчёт" + PDFWriteService.CurrentDocumentsCount;
-            PDFWriteService.CreateNewDocument(path);
-            PDFWriteService.AddTable(path, content, headers,new bool[] { true,false,true,false });
-            PDFWriteService.RenderDocToPdf(path);
-            MessageBox.Show("Отчёт создан");
+                else
+                    path = ConfigWorksService.getValue(ConfigWorksService.Options.ReportDirectory) + "\\Отчёт" + PDFWriteService.CurrentDocumentsCount;
+                int k;
+                for ( k = 0; File.Exists(path + "(" + k + ").pdf"); k++) ;
+                if (File.Exists(path+".pdf"))
+                path += "(" + k + ")";
+                PDFWriteService.CreateNewDocument(path);
+                PDFWriteService.AddTable(path, content, headers, new bool[] { true, false, true, false });
+                PDFWriteService.RenderDocToPdf(path);
+                MessageBox.Show("Отчёт создан");
+            }
+            else MessageBox.Show("Отчёт не создан, пустая таблица");
         }
         private void Refresh(object sender, EventArgs e)
         {
+            Regex reg = new Regex(@"[0-9]+");
             finaltable.Rows.Clear();
-            //сумма для каждой работы
-            Dictionary<WorkTypeClass, double> everyworksumm = new Dictionary<WorkTypeClass, double>();
-            //сумма параметров
-            Dictionary<WorkTypeClass, double[]> paramssumm = new Dictionary<WorkTypeClass, double[]>();
-            double commonsum = 0;
-            for (int i=0;i<Rooms.Count;i++)
+            RoomResT.Text = "";
+            double[] results = new double[4];
+            foreach (Room room in Rooms)
             {
-                for  (int j=0;j<Rooms[i].CheckedWorks.Count;j++)
+                RoomResT.Text += 
+                    room.Title + "\n" + 
+                    "Периметр пола: "+room.BottomPerimeter + "\n" + 
+                    "Площадь потолка и пола: "+room.Area + "\n" +
+                    "Периметр потолка: " +room.Perimeter + "\n" +
+                    "Общая площадь: " +room.CommonArea+ "\n" ;
+                results[0] += room.BottomPerimeter;
+                results[1] += room.Area;
+                results[2] += room.Perimeter;
+                results[3] += room.CommonArea;
+            }
+            RoomResT.Text += "==Общее=="+ "\n" +
+                    "Периметр пола:" + results[0] + "\n" +
+                    "Площадь потолка и пола: " + results[1] + "\n" +
+                    "Периметр потолка: " + results[2] + "\n" +
+                    "Общая площадь:" + results[3];
+            if (Convert.ToBoolean(ConfigWorksService.getValue(ConfigWorksService.Options.ReportRooms)))
+            {
+                double commonsum = 0;
+                foreach (Room room in Rooms)
                 {
-                    WorkTypeClass work = Rooms[i].CheckedWorks[j];
-                    if (work.ParametersValue.Length == 0)
-                        work.ParametersValue = new double[work.parametrs.Count];
-                    //проверяем содержит 
-                    if (everyworksumm.FirstOrDefault(x => x.Key.article == work.article && x.Key.category == work.category).Key == null)
+                    double sum = 0;
+                    finaltable.Rows.Add(new string[] { room.Title, "", "", "" });
+                    finaltable.Rows.Add(new string[] { "Площадь стен", room.CommonArea.ToString(), "", "" });
+                    finaltable.Rows.Add(new string[] { "Площадь пола", room.Area.ToString(), "", "" });
+                    finaltable.Rows.Add(new string[] { "Периметр пола", room.BottomPerimeter.ToString(), "", "" });
+                    foreach (WorkTypeClass work in room.CheckedWorks)
+                    {
+                        finaltable.Rows.Add(new string[] { work.article, work.quantity, reg.Match(work.formula,0).Value, work.Price });
+                        sum += work.GetPrice();
+                    }
+                    finaltable.Rows.Add(new string[] { "", "", "Сумма", sum.ToString() });
+                    commonsum += sum;
+                }
+                finaltable.Rows.Add(new string[] { "", "", "Общая сумма", commonsum.ToString() });
+                foreach (DataGridViewRow row in finaltable.Rows)
+                    row.ReadOnly = true;
+                finaltable.Rows[finaltable.RowCount - 1].ReadOnly = false;
+            }
+            else
+            {
+                //сумма для каждой работы
+                Dictionary<WorkTypeClass, double> everyworksumm = new Dictionary<WorkTypeClass, double>();
+                //сумма параметров
+                Dictionary<WorkTypeClass, double[]> paramssumm = new Dictionary<WorkTypeClass, double[]>();
+                double commonsum = 0;
+                for (int i = 0; i < Rooms.Count; i++)
+                {
+                    for (int j = 0; j < Rooms[i].CheckedWorks.Count; j++)
+                    {
+                        WorkTypeClass work = Rooms[i].CheckedWorks[j];
+                        if (work.ParametersValue.Length == 0)
+                            work.ParametersValue = new double[work.parametrs.Count];
+                        //проверяем содержит 
+                        if (everyworksumm.FirstOrDefault(x => x.Key.article == work.article && x.Key.category == work.category).Key == null)
                         {
                             everyworksumm.Add(work, 0);
                             paramssumm.Add(work, new double[work.ParametersValue.Length]);
                         }
-                    if (work.ParametersValue.Length == 0)
-                        work.ParametersValue = new double[work.parametrs.Count];
-                    for (int k = 0; k < Rooms[i].CheckedWorks[j].parametrs.Count; k++)
-                        paramssumm.First(x => x.Key.article == work.article && x.Key.category == work.category).Value[k] += work.ParametersValue[k];
-                    everyworksumm[everyworksumm.First(x => x.Key.article == work.article && x.Key.category == work.category).Key] += work.GetPrice();
-                    commonsum += work.GetPrice();
+                        if (work.ParametersValue.Length == 0)
+                            work.ParametersValue = new double[work.parametrs.Count];
+                        for (int k = 0; k < Rooms[i].CheckedWorks[j].parametrs.Count; k++)
+                            paramssumm.First(x => x.Key.article == work.article && x.Key.category == work.category).Value[k] += work.ParametersValue[k];
+                        everyworksumm[everyworksumm.First(x => x.Key.article == work.article && x.Key.category == work.category).Key] += work.GetPrice();
+                        commonsum += work.GetPrice();
+                    }
                 }
-            }
-            foreach (var pair in everyworksumm)
-            {
-                string quantity = "";
-                for (int i = 0; i < paramssumm[pair.Key].Length; i++)
-                    quantity += paramssumm[pair.Key][i]+ " " + pair.Key.parametrs[i] + "\n";
-                finaltable.Rows.Add(new string[] { pair.Key.article, quantity, pair.Key.formula, pair.Value.ToString() });
-                finaltable.Rows[finaltable.RowCount - 2].ReadOnly = true;
+                foreach (var pair in everyworksumm)
+                {
+                    string quantity = "";
+                    for (int i = 0; i < paramssumm[pair.Key].Length; i++)
+                        quantity += paramssumm[pair.Key][i] + " " + pair.Key.parametrs[i] + "\n";
+                    finaltable.Rows.Add(new string[] { pair.Key.article, quantity, reg.Match(pair.Key.formula, 0).Value, pair.Value.ToString() });
+                    finaltable.Rows[finaltable.RowCount - 2].ReadOnly = true;
 
+                }
+                DataGridViewRow row = new DataGridViewRow();
+                finaltable.Rows.Add(new string[] { "", "", "Сумма", commonsum.ToString() });
+                finaltable.Rows[finaltable.RowCount - 2].ReadOnly = false;
             }
-            DataGridViewRow row = new DataGridViewRow();
-            finaltable.Rows.Add(new string[] { "", "", "Сумма", commonsum.ToString() });
-            finaltable.Rows[finaltable.RowCount - 2].ReadOnly = true;
         }
         private void DeleteTab(object sender, EventArgs e)
         {
@@ -136,7 +206,8 @@ namespace BuildingCalculator.FormComponents
         private void MenuClick(object sender, EventArgs e)
         {
             Button but = sender as Button;
-            foreach (Button menbut in MenuMarkup.Controls)
+            foreach (Control menbut in MenuMarkup.Controls)
+                if (menbut is Button)
                 menbut.BackColor = DefaultBackColor;
             but.BackColor = Color.LightGray;
             MainTabs.SelectedIndex = but.TabIndex;
@@ -147,6 +218,7 @@ namespace BuildingCalculator.FormComponents
                     cmRadio.Checked = true;
                 else
                     mRadio.Checked = true;
+                RepotRooms.Checked =  Convert.ToBoolean(ConfigWorksService.getValue(ConfigWorksService.Options.ReportRooms)) ? true:false;
             }
         }
         private void RoomTabs_DoubleClick(object sender, EventArgs e)
@@ -177,12 +249,12 @@ namespace BuildingCalculator.FormComponents
                 RoomTabs.TabPages.Insert(lastindex, "Комната " + (lastindex + 1).ToString());
                 RoomTabs.TabPages[lastindex].BackColor = Color.White;
                 //добавляем содержимое
-                RoomTabContent content = new RoomTabContent();
+                RoomTabContent content = new RoomTabContent() {Dock=DockStyle.Fill};
                 content.worktable.RowsAdded += Refresh;
                 content.worktable.RowsRemoved += Refresh;
                 content.NonStandardWorkTable.RowsAdded += Refresh;
                 content.NonStandardWorkTable.RowsRemoved += Refresh;
-                content.Dock = DockStyle.Fill;
+                content.Area.TextChanged += Refresh;
                 content.HeightInp.Text = roomTabContent1.HeightInp.Text;
                 RoomTabs.TabPages[lastindex].Controls.Add(content);
                 RoomTabs.SelectedIndex = lastindex;
@@ -197,8 +269,7 @@ namespace BuildingCalculator.FormComponents
         {
             CreateWorkTypeForm.CreateWorkType();
             CreateWorkTypeForm.Button.Text = "Добавить тип работ";
-            CreateWorkTypeForm.ActiveForm.Text = "Добавить тип работ";
-
+            //CreateWorkTypeForm.ActiveForm.Text 
         }
         private void Edit(object sender, EventArgs e)
         {
@@ -224,21 +295,26 @@ namespace BuildingCalculator.FormComponents
         private void splitContainer2_Panel2_MouseClick(object sender, MouseEventArgs e)
         {
             if (AdminTable.ClientRectangle.Contains(e.Location))
-            {
                 if (!LoginClass.IsLoged&&!Convert.ToBoolean(ConfigWorksService.getValue(ConfigWorksService.Options.Remebered)))
                 {
                     Form lf = LoginClass.SignIn();
                     Functions.CenterForm(lf, this);
                     lf.Show();
+                    if (LoginClass.IsLoged)
+                        AdminTable.Enabled = true;
                 }
                 else
                     AdminTable.Enabled = true;
-            }
         }
         private void DownloadfromExcel_Click(object sender, EventArgs e)
         {
             ExcelDownloadDialog.ShowDialog();
+            
+        }
+        public void RefreshTrees()
+        {
             Functions.BuildList(AdminWorks.WorksList);
+            Functions.BuildList(roomTabContent1.worksTypeTree1.WorksList);
         }
         private void Clear_Click(object sender, EventArgs e)
         {
@@ -249,6 +325,7 @@ namespace BuildingCalculator.FormComponents
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             Classes.Static.ExcelWorkServicecs.OpenFile(ExcelDownloadDialog.FileName);
+            
         }
         private void SaveSetBut_Click(object sender, EventArgs e)
         {
@@ -257,18 +334,28 @@ namespace BuildingCalculator.FormComponents
                 ConfigWorksService.ChangeValue("units", "sm");
             if (mRadio.Checked)
                 ConfigWorksService.ChangeValue("units", "m");
+            if (RepotRooms.Checked)
+                ConfigWorksService.ChangeValue(ConfigWorksService.getKey(ConfigWorksService.Options.ReportRooms), "true");
+            else
+                ConfigWorksService.ChangeValue(ConfigWorksService.getKey(ConfigWorksService.Options.ReportRooms), "false");
             ConfigWorksService.ChangeValue("endDir", SelectReportDirDialog.SelectedPath);
         }
         private void ChangeSaveDirectory_Click(object sender, EventArgs e)
         {
             if (SelectReportDirDialog.ShowDialog() == DialogResult.OK)
-            {
                 SaveDirectoryInp.Text = SelectReportDirDialog.SelectedPath;
-            }
         }
         private void CreateReportBut_Click(object sender, EventArgs e)
         {
             Create_Report(finaltable, new EventArgs());
+        }
+        private void MenuMarkup_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        private void RefreshTable_Click(object sender, EventArgs e)
+        {
+            Refresh(sender,e);
         }
     }
 }

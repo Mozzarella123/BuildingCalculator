@@ -74,9 +74,7 @@ namespace BuildingCalculator
         static int? RedactedItemIndex = null;      
         public static void CreateWorkType(WorkTypeClass obj=null)
         {
-            cwf.Top = (ActiveForm.Top + (ActiveForm.Height / 2)) - cwf.Height / 2;
-            cwf.Left = (ActiveForm.Left + (ActiveForm.Width / 2)) - cwf.Width / 2;
-            cwf.StartPosition = FormStartPosition.Manual;
+            Functions.CenterForm(cwf, NewForm.MainForm);
             cwf.Show();
             if (obj != null)
             {
@@ -146,7 +144,6 @@ namespace BuildingCalculator
         {
 
         }
-        static FormulaCreater FCreate;
         private void AddWorkType(object sender, EventArgs e)
         {
             //if (FCreate == null)
@@ -177,6 +174,7 @@ namespace BuildingCalculator
             }
             else
                 MessageBox.Show("Параметры обьекта заданны некоректно.");
+            
         }
 
         private void formula_Load(object sender, EventArgs e)

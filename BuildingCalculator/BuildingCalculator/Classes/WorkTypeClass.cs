@@ -25,8 +25,7 @@ namespace BuildingCalculator
                 {Category.boring,"Сверление,резка,крепеж" },
                 {Category.curtain,"Гардины,карнизы,вешалки,тумбы" },
                 {Category.other, "Другое" },
-            };
-        
+            };    
         public enum Category {
             none =-1,
             walls,

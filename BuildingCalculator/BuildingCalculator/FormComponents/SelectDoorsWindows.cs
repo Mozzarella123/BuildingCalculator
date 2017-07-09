@@ -16,7 +16,7 @@ namespace BuildingCalculator.FormComponents
         public Element Checked;
         List<Element> doors = new List<Element>()
         {
-            Element.CreateElement
+            new Element
             (
                 Entity.ParamName.Width,0.8,
                 Entity.ParamName.Height,2,
@@ -24,7 +24,7 @@ namespace BuildingCalculator.FormComponents
                 new List<WorkTypeClass.Category>()
                 { WorkTypeClass.Category.floorPer,WorkTypeClass.Category.walls }
             ),
-            Element.CreateElement
+            new Element
             (
                 Entity.ParamName.Width,0.7,
                 Entity.ParamName.Height,2,
@@ -32,7 +32,7 @@ namespace BuildingCalculator.FormComponents
                 new List<WorkTypeClass.Category>()
                 { WorkTypeClass.Category.floorPer,WorkTypeClass.Category.walls }
             ),
-            Element.CreateElement
+            new Element
             (
                 Entity.ParamName.Width,0.9,
                 Entity.ParamName.Height,2,
@@ -46,7 +46,7 @@ namespace BuildingCalculator.FormComponents
         ;
         List<Element> windows = new List<Element>()
         {
-            Element.CreateElement
+            new Element
             (
                 Entity.ParamName.Width,1.15,
                 Entity.ParamName.Height,1.42,
@@ -54,7 +54,7 @@ namespace BuildingCalculator.FormComponents
                 new List<WorkTypeClass.Category>()
                 { WorkTypeClass.Category.walls }
             ),
-            Element.CreateElement
+            new Element
             (
                 Entity.ParamName.Width,1.7,
                 Entity.ParamName.Height,1.42,
@@ -62,7 +62,7 @@ namespace BuildingCalculator.FormComponents
                 new List<WorkTypeClass.Category>()
                 { WorkTypeClass.Category.walls }
             ),
-            Element.CreateElement
+            new Element
             (
                 Entity.ParamName.Width,1.5796,
                 Entity.ParamName.Height,2,
@@ -70,7 +70,7 @@ namespace BuildingCalculator.FormComponents
                 new List<WorkTypeClass.Category>()
                 { WorkTypeClass.Category.walls }
             ),
-            Element.CreateElement
+            new Element
             (
                 Entity.ParamName.Width,1.48,
                 Entity.ParamName.Height,1.53,
@@ -78,7 +78,7 @@ namespace BuildingCalculator.FormComponents
                 new List<WorkTypeClass.Category>()
                 { WorkTypeClass.Category.walls }
             ),
-            Element.CreateElement
+            new Element
             (
                 Entity.ParamName.Width,2.23,
                 Entity.ParamName.Height,1.53,
@@ -86,7 +86,7 @@ namespace BuildingCalculator.FormComponents
                 new List<WorkTypeClass.Category>()
                 { WorkTypeClass.Category.walls }
             ),
-            Element.CreateElement
+            new Element
             (
                 Entity.ParamName.Width,1.93225,
                 Entity.ParamName.Height,2,
@@ -94,7 +94,7 @@ namespace BuildingCalculator.FormComponents
                 new List<WorkTypeClass.Category>()
                 { WorkTypeClass.Category.walls }
             ),
-            Element.CreateElement
+            new Element
             (
                 Entity.ParamName.Width,2.36,
                 Entity.ParamName.Height,1.13,
@@ -102,7 +102,7 @@ namespace BuildingCalculator.FormComponents
                 new List<WorkTypeClass.Category>()
                 { WorkTypeClass.Category.walls }
             ),
-            Element.CreateElement
+            new Element
             (
                 Entity.ParamName.Width,2.38,
                 Entity.ParamName.Height,1.42,
@@ -110,7 +110,7 @@ namespace BuildingCalculator.FormComponents
                 new List<WorkTypeClass.Category>()
                 { WorkTypeClass.Category.walls }
             ),
-            Element.CreateElement
+            new Element
             (
                 Entity.ParamName.Width,2.048,
                 Entity.ParamName.Height,2,
@@ -118,7 +118,7 @@ namespace BuildingCalculator.FormComponents
                 new List<WorkTypeClass.Category>()
                 { WorkTypeClass.Category.walls }
             ),
-                        Element.CreateElement
+                        new Element
             (
                 Entity.ParamName.Width,1.45,
                 Entity.ParamName.Height,1.5,
@@ -126,7 +126,7 @@ namespace BuildingCalculator.FormComponents
                 new List<WorkTypeClass.Category>()
                 { WorkTypeClass.Category.walls }
             ),
-            Element.CreateElement
+            new Element
             (
                 Entity.ParamName.Width,2.04,
                 Entity.ParamName.Height,1.5,
@@ -134,7 +134,7 @@ namespace BuildingCalculator.FormComponents
                 new List<WorkTypeClass.Category>()
                 { WorkTypeClass.Category.walls }
             ),
-            Element.CreateElement
+            new Element
             (
                 Entity.ParamName.Width,1.6083,
                 Entity.ParamName.Height,2,
