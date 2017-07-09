@@ -146,11 +146,19 @@ namespace BuildingCalculator.FormComponents
                     names[i] += "1";
 
             worktable.DataSource = source;
+            //worktable.Columns[0].Name = names[0];
+            //worktable.Columns[1].Name = names[1];
+            //worktable.Columns[2].Name = names[2];
+            //worktable.Columns[3].Name = names[3];
+            worktable.Columns[names[0]].DisplayIndex = 0;
+            worktable.Columns[names[1]].DisplayIndex = 1;
+            worktable.Columns[names[2]].DisplayIndex = 2;
+            worktable.Columns[names[3]].DisplayIndex = 3;
             worktable.Columns[names[0]].DataPropertyName = "article";
             worktable.Columns[names[1]].DataPropertyName = "quantity";
             worktable.Columns[names[2]].DataPropertyName = "formula";
             worktable.Columns[names[3]].DataPropertyName = "Price";
-            for (int i = 4; i < worktable.ColumnCount; i++)
+            for (int i = 5; i < worktable.ColumnCount; i++)
                 worktable.Columns[i].Visible = false;
         }
         private void Hide_Works(object sender, EventArgs e)
