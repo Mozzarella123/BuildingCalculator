@@ -61,7 +61,7 @@ namespace BuildingCalculator
             double result = DelegateAssemblyService.getPriceforWorkType(this, ParametersValue);
             return result;
         }
-        public string Price { get { return GetPrice().ToString(); } }
+        public string Price { get { try { return GetPrice().ToString(); } catch { return "0"; } } }
         bool isFixedPrice;
         public double fixedPrice;
         public string article { get; set; }

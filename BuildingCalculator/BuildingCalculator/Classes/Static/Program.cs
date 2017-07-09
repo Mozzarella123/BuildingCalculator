@@ -20,7 +20,8 @@ namespace BuildingCalculator
             //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new FormComponents.NewForm());
+            mainForm = new FormComponents.NewForm();
+                Application.Run(mainForm);
             //}
             //catch (Exception e)
             //{
@@ -29,5 +30,6 @@ namespace BuildingCalculator
             //    Application.Restart();
             //}
         }
+        public static FormComponents.NewForm mainForm;
     }
 }

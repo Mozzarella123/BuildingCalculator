@@ -176,6 +176,7 @@ namespace BuildingCalculator
             }
             else
                 MessageBox.Show("Параметры обьекта заданны некоректно.");
+            
         }
 
         private void formula_Load(object sender, EventArgs e)

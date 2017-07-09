@@ -306,7 +306,12 @@ namespace BuildingCalculator.FormComponents
         private void DownloadfromExcel_Click(object sender, EventArgs e)
         {
             ExcelDownloadDialog.ShowDialog();
+            
+        }
+        public void RefreshTrees()
+        {
             Functions.BuildList(AdminWorks.WorksList);
+            Functions.BuildList(roomTabContent1.worksTypeTree1.WorksList);
         }
         private void Clear_Click(object sender, EventArgs e)
         {
@@ -317,6 +322,7 @@ namespace BuildingCalculator.FormComponents
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             Classes.Static.ExcelWorkServicecs.OpenFile(ExcelDownloadDialog.FileName);
+            
         }
         private void SaveSetBut_Click(object sender, EventArgs e)
         {
