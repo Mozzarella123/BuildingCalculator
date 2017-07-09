@@ -14,7 +14,7 @@ namespace BuildingCalculator
         public static Project getProjectForSave()
         {
             Project ret = new Project();
-            ret.Rooms = Form1.Rooms;
+            //ret.Rooms = Form1.Rooms;
             return ret;
         }
     }

@@ -47,7 +47,7 @@
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>2</WarningLevel>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -114,12 +114,6 @@
     <Compile Include="Classes\Project.cs" />
     <Compile Include="Classes\Static\ExcelWorkServicecs.cs" />
     <Compile Include="Classes\Static\PDFWriteService.cs" />
-    <Compile Include="FormComponents\AdminForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormComponents\AdminForm.Designer.cs">
-      <DependentUpon>AdminForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Classes\Static\ConfigWorksService.cs" />
     <Compile Include="FormComponents\ChangeName.cs">
       <SubType>Form</SubType>
@@ -134,12 +128,6 @@
       <DependentUpon>CreateWorkTypeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Static\DelegateAssemblyService.cs" />
-    <Compile Include="FormComponents\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormComponents\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Classes\Static\JSONSerializeService.cs" />
     <Compile Include="Classes\Static\LoginClass.cs" />
     <Compile Include="FormComponents\FormulaCreater.cs">
@@ -160,12 +148,6 @@
     <Compile Include="FormComponents\LogInForm.Designer.cs">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormComponents\MultiSliders.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormComponents\MultiSliders.Designer.cs">
-      <DependentUpon>MultiSliders.cs</DependentUpon>
-    </Compile>
     <Compile Include="Classes\Static\Program.cs" />
     <Compile Include="FormComponents\NewForm.cs">
       <SubType>Form</SubType>
@@ -184,12 +166,6 @@
     </Compile>
     <Compile Include="FormComponents\SelectDoorsWindows.Designer.cs">
       <DependentUpon>SelectDoorsWindows.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormComponents\SelectWorkTypes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormComponents\SelectWorkTypes.Designer.cs">
-      <DependentUpon>SelectWorkTypes.cs</DependentUpon>
     </Compile>
     <Compile Include="FormComponents\TextwithBut.cs">
       <SubType>UserControl</SubType>
@@ -210,33 +186,15 @@
       <DependentUpon>WorksTypeTree.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FormComponents\Slider.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormComponents\Slider.Designer.cs">
-      <DependentUpon>Slider.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormComponents\TabContent.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormComponents\TabContent.Designer.cs">
-      <DependentUpon>TabContent.cs</DependentUpon>
-    </Compile>
     <Compile Include="Classes\WorkTypeClass.cs" />
     <EmbeddedResource Include="FormComponents\ElementForm.resx">
       <DependentUpon>ElementForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormComponents\AdminForm.resx">
-      <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\ChangeName.resx">
       <DependentUpon>ChangeName.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\CreateWorkTypeForm.resx">
       <DependentUpon>CreateWorkTypeForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormComponents\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\FormulaCreater.resx">
       <DependentUpon>FormulaCreater.cs</DependentUpon>
@@ -247,9 +205,6 @@
     <EmbeddedResource Include="FormComponents\LogInForm.resx">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormComponents\MultiSliders.resx">
-      <DependentUpon>MultiSliders.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\NewForm.resx">
       <DependentUpon>NewForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -258,9 +213,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\SelectDoorsWindows.resx">
       <DependentUpon>SelectDoorsWindows.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormComponents\SelectWorkTypes.resx">
-      <DependentUpon>SelectWorkTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\TextwithBut.resx">
       <DependentUpon>TextwithBut.cs</DependentUpon>
@@ -280,13 +232,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FormComponents\Slider.resx">
-      <DependentUpon>Slider.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormComponents\TabContent.resx">
-      <DependentUpon>TabContent.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="FodyWeavers.xml" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -296,10 +241,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Properties\DataSources\BuildingCalculator.FormComponents.NewForm.datasource" />
-    <None Include="Properties\DataSources\BuildingCalculator.FormComponents.RoomTabContent.datasource" />
-    <None Include="Properties\DataSources\BuildingCalculator.FormComponents.WorksTypeTree.datasource" />
-    <None Include="Properties\DataSources\WorkTypeClass.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

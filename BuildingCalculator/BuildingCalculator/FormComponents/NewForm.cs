@@ -245,13 +245,12 @@ namespace BuildingCalculator.FormComponents
                 RoomTabs.TabPages.Insert(lastindex, "Комната " + (lastindex + 1).ToString());
                 RoomTabs.TabPages[lastindex].BackColor = Color.White;
                 //добавляем содержимое
-                RoomTabContent content = new RoomTabContent();
+                RoomTabContent content = new RoomTabContent() {Dock=DockStyle.Fill};
                 content.worktable.RowsAdded += Refresh;
                 content.worktable.RowsRemoved += Refresh;
                 content.NonStandardWorkTable.RowsAdded += Refresh;
                 content.NonStandardWorkTable.RowsRemoved += Refresh;
                 content.Area.TextChanged += Refresh;
-                content.Dock = DockStyle.Fill;
                 content.HeightInp.Text = roomTabContent1.HeightInp.Text;
                 RoomTabs.TabPages[lastindex].Controls.Add(content);
                 RoomTabs.SelectedIndex = lastindex;
@@ -335,20 +334,16 @@ namespace BuildingCalculator.FormComponents
         private void ChangeSaveDirectory_Click(object sender, EventArgs e)
         {
             if (SelectReportDirDialog.ShowDialog() == DialogResult.OK)
-            {
                 SaveDirectoryInp.Text = SelectReportDirDialog.SelectedPath;
-            }
         }
         private void CreateReportBut_Click(object sender, EventArgs e)
         {
             Create_Report(finaltable, new EventArgs());
         }
-
         private void MenuMarkup_Paint(object sender, PaintEventArgs e)
         {
 
         }
-
         private void RefreshTable_Click(object sender, EventArgs e)
         {
             Refresh(sender,e);

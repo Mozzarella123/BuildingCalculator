@@ -94,7 +94,7 @@ namespace BuildingCalculator
         {
             WriteOutput();
             ReadInput(OutputFilePath);
-            LoginClass.af.RefreshList();
+            //LoginClass.af.RefreshList();
         }
         public static bool Contains(WorkTypeClass work)
         {

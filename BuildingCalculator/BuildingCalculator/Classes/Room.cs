@@ -63,10 +63,7 @@ namespace BuildingCalculator
         public List<List<Element>> Elements { get; set; }
         public List<WorkTypeClass.Category> CheckedCats { get; set; }
         public List<WorkTypeClass> CheckedWorks { get; set; }
-        public bool Standard
-        {
-            get;set;
-        }
+        public bool Standard { get; set; }
         public Room() : base()
         {
             Elements = new List<List<Element>>();
@@ -84,38 +81,24 @@ namespace BuildingCalculator
             double unit = 1;
             if (ConfigWorksService.getValue(ConfigWorksService.Options.Units) == "sm")
                 unit = 0.01;
-                switch (cat)
-                {
-                    case WorkTypeClass.Category.walls:
-                        return CommonArea * unit;
-                    case WorkTypeClass.Category.floorPer:
-                        return BottomPerimeter * unit;
-                    case WorkTypeClass.Category.ceiling:
-                    case WorkTypeClass.Category.floor:
-                        return Area * unit;
-                    case WorkTypeClass.Category.ceilingPer:
-                    {
-                        if (Standard)
-                        return Perimeter * unit;
-                        return BottomPerimeter * unit;
-                    }
-                }
-            return -1;
-        }
-        public string GetUnits(WorkTypeClass.Category cat)
-        {
             switch (cat)
             {
                 case WorkTypeClass.Category.walls:
-                case WorkTypeClass.Category.floor:
-                case WorkTypeClass.Category.ceiling:
-                    return "м2";
+                    return CommonArea * unit;
                 case WorkTypeClass.Category.floorPer:
+                    return BottomPerimeter * unit;
+                case WorkTypeClass.Category.ceiling:
+                case WorkTypeClass.Category.floor:
+                    return Area * unit;
                 case WorkTypeClass.Category.ceilingPer:
-                    return "м";
+                    {
+                        if (Standard)
+                            return Perimeter * unit;
+                        return BottomPerimeter * unit;
+                    }
             }
-            return "";
-        }
+            return -1;
+        }       
         /// <summary>
         /// Общая площадь стен
         /// </summary>
@@ -126,10 +109,13 @@ namespace BuildingCalculator
                 double sum = 0;
                 foreach (var list in Elements)
                     foreach (var elem in list)
+                        //вычитаем все элементы, которые относятся к стенам
                         if (elem.Categories.Find(x => x == WorkTypeClass.Category.walls) == WorkTypeClass.Category.walls)
                             sum += elem.Area;
+
                 if (Standard)
                     return (base.Area + Params[ParamName.Height] * Params[ParamName.Length]) * 2 - sum;
+                //если нестандартная комната
                 return BottomPerimeter * Params[ParamName.Height] - sum;
             }
         }
@@ -159,6 +145,7 @@ namespace BuildingCalculator
                 double sum = 0;
                 foreach (var list in Elements)
                     foreach (var elem in list)
+                        //вычитаем все элементы, которые отностятся к периметру пола
                         if (elem.Categories.Find(x => x == WorkTypeClass.Category.floorPer) == WorkTypeClass.Category.floorPer)
                             sum += elem.Params[ParamName.Width];
                 if (Standard)
@@ -174,7 +161,16 @@ namespace BuildingCalculator
         /// Части комнаты к которым принадлежит элемент
         /// </summary>
         public List<WorkTypeClass.Category> Categories { get; set; }
-        public static Element CreateElement(ParamName param1, double valueparam1, ParamName param2, double valueparam2, string Title = null, List<WorkTypeClass.Category> cats = null)
+        /// <summary>
+        /// Элемент с двумя заданными параметрами и категориями, к которым он относится
+        /// </summary>
+        /// <param name="param1">Параметр 1</param>
+        /// <param name="valueparam1">Значения параметра 1</param>
+        /// <param name="param2">Параметр 2</param>
+        /// <param name="valueparam2">Значение параметра 2</param>
+        /// <param name="Title">Название</param>
+        /// <param name="cats">Категории</param>
+        public Element(ParamName param1, double valueparam1, ParamName param2, double valueparam2, string Title = null, List<WorkTypeClass.Category> cats = null)
         {
             Element element = new Element();
             element.Params[param1] = valueparam1;
@@ -183,8 +179,7 @@ namespace BuildingCalculator
                 element.Title = Title;
             if (cats != null)
                 foreach (WorkTypeClass.Category cat in cats)
-                    element.Categories.Add(cat);
-            return element;
+                    element.Categories.Add(cat);           
         }
         public Element() : base()
         {
