@@ -12,7 +12,7 @@ namespace BuildingCalculator
     public static class ConfigWorksService
     {
         public static System.Configuration.Configuration currentConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-        public enum Options { Login,Password,Remebered,Hints,Units,ReportDirectory }
+        public enum Options { Login,Password,Remebered,Hints,Units,ReportDirectory,ReportRooms }
         static Dictionary<Options, string> OptionKeys = new Dictionary<Options, string>()
         {
             {Options.Login, "login" },
@@ -20,8 +20,28 @@ namespace BuildingCalculator
             {Options.Remebered, "Remembered" },
             {Options.Hints, "tutorial" },
             {Options.Units, "units" },
-            {Options.ReportDirectory, "endDir" }
+            {Options.ReportDirectory, "endDir" },
+            {Options.ReportRooms, "reportrooms" }
         };
+        /// <summary>
+        /// Проверяет все ли настройки на месте
+        /// </summary>
+        public static void CheckSettings()
+        {
+            foreach (var opt in OptionKeys)
+                if (!Contains(opt.Value))
+                    switch(opt.Key)
+                    {
+                        case Options.Login:Add(opt.Value, "slon");break;
+                        case Options.Password: Add(opt.Value, "12345"); break;
+                        case Options.Remebered: Add(opt.Value, "false"); break;
+                        case Options.Hints: Add(opt.Value, "false"); break;
+                        case Options.Units: Add(opt.Value, "m"); break;
+                        case Options.ReportDirectory: Add(opt.Value, Directory.GetCurrentDirectory()); break;
+                        case Options.ReportRooms: Add(opt.Value, "false"); break;
+
+                    }
+        }
         /// <summary>
         /// проверка наличия поля в конфигах
         /// </summary>
@@ -45,11 +65,14 @@ namespace BuildingCalculator
             //принудительно перезагружаем соотвествующую секцию
             ConfigurationManager.RefreshSection("appSettings");
         }
+        public static string getKey(Options key)
+        {
+            return OptionKeys[key];
+        }
         public static string getValue(string key)
         {
             return ConfigurationManager.AppSettings[key];
         }
-
         /// <summary>
         /// получение значения из указанного поля
         /// </summary>
@@ -59,7 +82,6 @@ namespace BuildingCalculator
         {
             return ConfigurationManager.AppSettings[OptionKeys[key]];
         }
-
         /// <summary>
         /// Изменение значения в указанном поле
         /// </summary>

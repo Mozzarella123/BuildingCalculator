@@ -66,10 +66,6 @@ namespace BuildingCalculator
                     ConfigWorksService.ChangeValue("Remembered", "True");
 
                 LoginClass.IsLoged = true;
-                LoginClass.af.Top = (this.Top + (this.Height / 2)) - LoginClass.af.Height / 2;
-                LoginClass.af.Left = (this.Top + (this.Height / 2)) - LoginClass.af.Height / 2;
-                LoginClass.af.StartPosition = FormStartPosition.Manual;
-                LoginClass.af.Show();
                 this.Hide();
             }
         }
