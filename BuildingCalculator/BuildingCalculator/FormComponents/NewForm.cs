@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using BuildingCalculator.Classes;
 using BuildingCalculator.FormComponents;
 using BuildingCalculator.Classes.Static;
+using System.Text.RegularExpressions;
 using System.IO;
 
 namespace BuildingCalculator.FormComponents
@@ -17,12 +18,14 @@ namespace BuildingCalculator.FormComponents
     public partial class NewForm : Form
     {
         public static List<Room> Rooms = new List<Room>();
+        public static Form MainForm;
         public List<string[]> table = new List<string[]>();
         public NewForm()
         {
             JSONSerializeService.ReadInput("works.json");
             ConfigWorksService.CheckSettings();
             InitializeComponent();
+            MainForm = this;
             MainTabs.ItemSize = new Size(0, 1);
             Rooms.Add(roomTabContent1.Room);
             roomTabContent1.worktable.RowsAdded += Refresh;
@@ -65,6 +68,7 @@ namespace BuildingCalculator.FormComponents
         }
         private void Create_Report(object sender, EventArgs e)
         {
+
             if (finaltable.RowCount != 1)
             {
                 string[,] content = new string[finaltable.RowCount, finaltable.ColumnCount];
@@ -100,9 +104,9 @@ namespace BuildingCalculator.FormComponents
             }
             else MessageBox.Show("Отчёт не создан, пустая таблица");
         }
-
         private void Refresh(object sender, EventArgs e)
         {
+            Regex reg = new Regex(@"[0-9]+");
             finaltable.Rows.Clear();
             RoomResT.Text = "";
             double[] results = new double[4];
@@ -136,7 +140,7 @@ namespace BuildingCalculator.FormComponents
                     finaltable.Rows.Add(new string[] { "Периметр пола", room.BottomPerimeter.ToString(), "", "" });
                     foreach (WorkTypeClass work in room.CheckedWorks)
                     {
-                        finaltable.Rows.Add(new string[] { work.article, work.quantity, work.formula, work.Price });
+                        finaltable.Rows.Add(new string[] { work.article, work.quantity, reg.Match(work.formula,0).Value, work.Price });
                         sum += work.GetPrice();
                     }
                     finaltable.Rows.Add(new string[] { "", "", "Сумма", sum.ToString() });
@@ -180,7 +184,7 @@ namespace BuildingCalculator.FormComponents
                     string quantity = "";
                     for (int i = 0; i < paramssumm[pair.Key].Length; i++)
                         quantity += paramssumm[pair.Key][i] + " " + pair.Key.parametrs[i] + "\n";
-                    finaltable.Rows.Add(new string[] { pair.Key.article, quantity, pair.Key.formula, pair.Value.ToString() });
+                    finaltable.Rows.Add(new string[] { pair.Key.article, quantity, reg.Match(pair.Key.formula, 0).Value, pair.Value.ToString() });
                     finaltable.Rows[finaltable.RowCount - 2].ReadOnly = true;
 
                 }
@@ -265,8 +269,7 @@ namespace BuildingCalculator.FormComponents
         {
             CreateWorkTypeForm.CreateWorkType();
             CreateWorkTypeForm.Button.Text = "Добавить тип работ";
-            CreateWorkTypeForm.ActiveForm.Text = "Добавить тип работ";
-
+            //CreateWorkTypeForm.ActiveForm.Text 
         }
         private void Edit(object sender, EventArgs e)
         {
@@ -292,16 +295,16 @@ namespace BuildingCalculator.FormComponents
         private void splitContainer2_Panel2_MouseClick(object sender, MouseEventArgs e)
         {
             if (AdminTable.ClientRectangle.Contains(e.Location))
-            {
                 if (!LoginClass.IsLoged&&!Convert.ToBoolean(ConfigWorksService.getValue(ConfigWorksService.Options.Remebered)))
                 {
                     Form lf = LoginClass.SignIn();
                     Functions.CenterForm(lf, this);
                     lf.Show();
+                    if (LoginClass.IsLoged)
+                        AdminTable.Enabled = true;
                 }
                 else
                     AdminTable.Enabled = true;
-            }
         }
         private void DownloadfromExcel_Click(object sender, EventArgs e)
         {

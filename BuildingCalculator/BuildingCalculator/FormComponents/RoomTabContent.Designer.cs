@@ -40,6 +40,7 @@
             this.StandardRoom = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.RoomMarkup = new System.Windows.Forms.TableLayoutPanel();
+            this.Area = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -48,6 +49,10 @@
             this.HeightInp = new System.Windows.Forms.TextBox();
             this.LengthInp = new System.Windows.Forms.TextBox();
             this.worktable = new System.Windows.Forms.DataGridView();
+            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Summ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.None_StandardRoom = new System.Windows.Forms.TabPage();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.RoomMarkUp2 = new System.Windows.Forms.TableLayoutPanel();
@@ -59,17 +64,12 @@
             this.BottomPerT = new System.Windows.Forms.Label();
             this.BottomPerInp = new System.Windows.Forms.TextBox();
             this.NonStandardWorkTable = new System.Windows.Forms.DataGridView();
-            this.AddElement = new System.Windows.Forms.Button();
-            this.RoomTypeT = new System.Windows.Forms.Label();
-            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Summ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Title1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Count1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Summ1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Area = new System.Windows.Forms.Label();
+            this.AddElement = new System.Windows.Forms.Button();
+            this.RoomTypeT = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -114,6 +114,7 @@
             // 
             this.worksTypeTree1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.worksTypeTree1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.worksTypeTree1.Enabled = false;
             this.worksTypeTree1.Location = new System.Drawing.Point(0, 0);
             this.worksTypeTree1.Name = "worksTypeTree1";
             this.worksTypeTree1.Padding = new System.Windows.Forms.Padding(3);
@@ -230,6 +231,19 @@
             this.RoomMarkup.Size = new System.Drawing.Size(826, 64);
             this.RoomMarkup.TabIndex = 0;
             this.RoomMarkup.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.RoomMarkup_ControlRemoved);
+            // 
+            // Area
+            // 
+            this.Area.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Area.AutoSize = true;
+            this.Area.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Area.Location = new System.Drawing.Point(777, 17);
+            this.Area.Margin = new System.Windows.Forms.Padding(3);
+            this.Area.Name = "Area";
+            this.Area.Size = new System.Drawing.Size(116, 29);
+            this.Area.TabIndex = 7;
+            this.Area.Text = "Площадь";
+            this.Area.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
@@ -350,6 +364,31 @@
             this.worktable.Size = new System.Drawing.Size(826, 400);
             this.worktable.TabIndex = 1;
             this.worktable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.worktable_CellContentClick);
+            // 
+            // Title
+            // 
+            this.Title.HeaderText = "Наименование работ";
+            this.Title.Name = "Title";
+            this.Title.ReadOnly = true;
+            // 
+            // Count
+            // 
+            this.Count.HeaderText = "Кол-во";
+            this.Count.Name = "Count";
+            this.Count.ReadOnly = true;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Цена";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
+            // Summ
+            // 
+            this.Summ.HeaderText = "Сумма";
+            this.Summ.Name = "Summ";
+            this.Summ.ReadOnly = true;
+            this.Summ.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // None_StandardRoom
             // 
@@ -526,6 +565,30 @@
             this.NonStandardWorkTable.Size = new System.Drawing.Size(826, 393);
             this.NonStandardWorkTable.TabIndex = 2;
             // 
+            // Title1
+            // 
+            this.Title1.HeaderText = "Наименование работ";
+            this.Title1.Name = "Title1";
+            this.Title1.ReadOnly = true;
+            // 
+            // Count1
+            // 
+            this.Count1.HeaderText = "Кол-во";
+            this.Count1.Name = "Count1";
+            this.Count1.ReadOnly = true;
+            // 
+            // Price1
+            // 
+            this.Price1.HeaderText = "Цена";
+            this.Price1.Name = "Price1";
+            this.Price1.ReadOnly = true;
+            // 
+            // Summ1
+            // 
+            this.Summ1.HeaderText = "Сумма";
+            this.Summ1.Name = "Summ1";
+            this.Summ1.ReadOnly = true;
+            // 
             // AddElement
             // 
             this.AddElement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -551,68 +614,6 @@
             this.RoomTypeT.TabIndex = 1;
             this.RoomTypeT.Text = "Тип комнаты";
             this.RoomTypeT.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Title
-            // 
-            this.Title.HeaderText = "Наименование работ";
-            this.Title.Name = "Title";
-            this.Title.ReadOnly = true;
-            // 
-            // Count
-            // 
-            this.Count.HeaderText = "Кол-во";
-            this.Count.Name = "Count";
-            this.Count.ReadOnly = true;
-            // 
-            // Price
-            // 
-            this.Price.HeaderText = "Цена";
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            // 
-            // Summ
-            // 
-            this.Summ.HeaderText = "Сумма";
-            this.Summ.Name = "Summ";
-            this.Summ.ReadOnly = true;
-            this.Summ.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Title1
-            // 
-            this.Title1.HeaderText = "Наименование работ";
-            this.Title1.Name = "Title1";
-            this.Title1.ReadOnly = true;
-            // 
-            // Count1
-            // 
-            this.Count1.HeaderText = "Кол-во";
-            this.Count1.Name = "Count1";
-            this.Count1.ReadOnly = true;
-            // 
-            // Price1
-            // 
-            this.Price1.HeaderText = "Цена";
-            this.Price1.Name = "Price1";
-            this.Price1.ReadOnly = true;
-            // 
-            // Summ1
-            // 
-            this.Summ1.HeaderText = "Сумма";
-            this.Summ1.Name = "Summ1";
-            this.Summ1.ReadOnly = true;
-            // 
-            // Area
-            // 
-            this.Area.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Area.AutoSize = true;
-            this.Area.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Area.Location = new System.Drawing.Point(777, 17);
-            this.Area.Margin = new System.Windows.Forms.Padding(3);
-            this.Area.Name = "Area";
-            this.Area.Size = new System.Drawing.Size(116, 29);
-            this.Area.TabIndex = 7;
-            this.Area.Text = "Площадь";
-            this.Area.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // RoomTabContent
             // 
