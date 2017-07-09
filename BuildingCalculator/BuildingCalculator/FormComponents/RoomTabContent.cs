@@ -59,12 +59,14 @@ namespace BuildingCalculator.FormComponents
             splitContainer1.Panel1.MouseClick += (sender, eargs) =>
              {
                  if (worksTypeTree1.ClientRectangle.Contains(eargs.Location))
-                     if (Room.Params.ContainsValue(0) || (Room.BottomPerimeter != 0 && !Room.Standard))
+                 {
+                     if (Room.Params.ContainsValue(0)&&Room.Standard || (Room.BottomPerimeter == 0 && !Room.Standard))
                      {
                          MessageBox.Show("Сначала заполните параметры комнаты");
                          worksTypeTree1.Enabled = false;
                      }
                      else worksTypeTree1.Enabled = true;
+                 }
              };
             worktable.AutoGenerateColumns = false;
             NonStandardWorkTable.AutoGenerateColumns = false;
@@ -241,7 +243,7 @@ namespace BuildingCalculator.FormComponents
                 case 0: Room.Standard = true; break;
                 case 1: Room.Standard = false; break;
             }
-            Room.Elements.Clear();
+            Room.Elements.Clear();           
         }
         private void LengthInp_TextChanged(object sender, EventArgs e)
         {
@@ -256,6 +258,10 @@ namespace BuildingCalculator.FormComponents
                 case "HeightInp": Room.Params[Entity.ParamName.Height] = Convert.ToDouble(Text); break;
                 case "LengthInp": Room.Params[Entity.ParamName.Length] = Convert.ToDouble(Text); break;
             }
+            if (Text == "0")
+                worksTypeTree1.Enabled = false;
+            if (!Room.Params.ContainsValue(0))
+                worksTypeTree1.Enabled = true;
             RefrehTable(worktable, new EventArgs());
         }
 
@@ -277,6 +283,10 @@ namespace BuildingCalculator.FormComponents
                 case "BottomPerInp": Room.BottomPerimeter = Convert.ToDouble(Text); break;
                 case "HeightInp2": Room.Params[Entity.ParamName.Height] = Convert.ToDouble(Text); break;
             }
+            if (Text == "0")
+                worksTypeTree1.Enabled = false;
+            if (Room.Perimeter != 0)
+                worksTypeTree1.Enabled = true;
             RefrehTable(NonStandardWorkTable, new EventArgs());
         }
     }
