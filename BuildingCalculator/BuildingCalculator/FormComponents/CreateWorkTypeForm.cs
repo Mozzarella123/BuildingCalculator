@@ -74,9 +74,7 @@ namespace BuildingCalculator
         static int? RedactedItemIndex = null;      
         public static void CreateWorkType(WorkTypeClass obj=null)
         {
-            cwf.Top = (ActiveForm.Top + (ActiveForm.Height / 2)) - cwf.Height / 2;
-            cwf.Left = (ActiveForm.Left + (ActiveForm.Width / 2)) - cwf.Width / 2;
-            cwf.StartPosition = FormStartPosition.Manual;
+            Functions.CenterForm(cwf, NewForm.MainForm);
             cwf.Show();
             if (obj != null)
             {

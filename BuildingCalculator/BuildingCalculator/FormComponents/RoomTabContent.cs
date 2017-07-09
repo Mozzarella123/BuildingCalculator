@@ -52,7 +52,20 @@ namespace BuildingCalculator.FormComponents
             Functions.SetValidator(BottomArea, Functions.ValidateType.OnlyNumbers);
             Functions.SetValidator(BottomPerInp, Functions.ValidateType.OnlyNumbers);
             Functions.SetValidator(HeightInp2, Functions.ValidateType.OnlyNumbers);
-            worksTypeTree1.CheckedNodesChanged += NodesChanged;
+            worksTypeTree1.CheckedNodesChanged += (sender, eargs) =>
+            {
+                RefrehTable(sender as TreeNode, new EventArgs());
+            };
+            splitContainer1.Panel1.MouseClick += (sender, eargs) =>
+             {
+                 if (worksTypeTree1.ClientRectangle.Contains(eargs.Location))
+                     if (Room.Params.ContainsValue(0) || (Room.BottomPerimeter != 0 && !Room.Standard))
+                     {
+                         MessageBox.Show("Сначала заполните параметры комнаты");
+                         worksTypeTree1.Enabled = false;
+                     }
+                     else worksTypeTree1.Enabled = true;
+             };
             worktable.AutoGenerateColumns = false;
             NonStandardWorkTable.AutoGenerateColumns = false;
         }
@@ -60,7 +73,7 @@ namespace BuildingCalculator.FormComponents
         private void RefrehTable(object sender, EventArgs e)
         {
             Area.Text = $"Площадь:{Room.Area}\nПериметр:{Room.Perimeter}\nОбщая площадь:{Room.CommonArea}";
-            
+
             DataGridView worktable;
             switch (RoomTypeSelect.SelectedIndex)
             {
@@ -68,84 +81,75 @@ namespace BuildingCalculator.FormComponents
                 case 1: worktable = this.NonStandardWorkTable; break;
                 default: worktable = null; break;
             }
-            if (!Room.Params.ContainsValue(0) || Room.BottomPerimeter != 0)
+            if (!Room.Params.ContainsValue(0) || (Room.Perimeter != 0 && !Room.Standard))
+                worksTypeTree1.Enabled = true;
+            foreach (WorkTypeClass work in worksTypeTree1.CheckedWorks)
             {
-                foreach (WorkTypeClass work in worksTypeTree1.CheckedWorks)
+                //если параметры не входят в список стандартных
+                if (work.parametrs.Count > 1 || Room.GetAreaFromCat(work.category) == -1)
                 {
-                    //если параметры не входят в список стандартных
-                    if (work.parametrs.Count > 1 || Room.GetAreaFromCat(work.category) == -1)
+                    inputparams param = new inputparams();
+                    double[] parameters = new double[0];
+                    int i1 = 0;
+                    //если есть один стандартный 
+                    if (Room.GetAreaFromCat(work.category) != -1)
                     {
-                        inputparams param = new inputparams();
-                        double[] parameters = new double[0];
-                        int i1 = 0;
-                        //если есть один стандартный 
-                        if (Room.GetAreaFromCat(work.category) != -1)
+                        i1++;
+                        Array.Resize(ref parameters, parameters.Length + 1);
+                        parameters[0] = Room.GetAreaFromCat(work.category);
+                    }
+                    //заполняем параметры 
+                    if (sender is TreeNode && (sender as TreeNode).Checked)
+                    {
+                        if (work.ParametersValue.Length == 0 || work.ParametersValue.Contains(0))
                         {
-                            i1++;
-                            Array.Resize(ref parameters, parameters.Length + 1);
-                            parameters[0] = Room.GetAreaFromCat(work.category);
-                        }
-                        //заполняем параметры 
-                        if (sender is TreeNode && (sender as TreeNode).Checked)
-                        {
-                            if (work.ParametersValue.Length == 0 || work.ParametersValue.Contains(0))
+                            for (int i = i1; i < work.parametrs.Count; i++)
                             {
-                                for (int i = i1; i < work.parametrs.Count; i++)
-                                {
-                                    param.WorkTitle.Text = work.article;
-                                    param.Paramname.Text = work.parametrs[i];
-                                    //param.Width = param.Label.Text.Length * 10;
-                                    Classes.Functions.CenterForm(param, ParentForm);
-                                    param.ShowDialog();
-                                    Array.Resize(ref parameters, parameters.Length + 1);
-                                    if (param.Paramname.Text == "")
-                                        param.Paramname.Text = "1";
-                                    parameters[parameters.Length - 1] = double.Parse(param.TextBox.Text);
-                                    param.WorkTitle.Text = "";
+                                param.WorkTitle.Text = work.article;
+                                param.Paramname.Text = work.parametrs[i];
+                                //param.Width = param.Label.Text.Length * 10;
+                                Classes.Functions.CenterForm(param, ParentForm);
+                                param.ShowDialog();
+                                Array.Resize(ref parameters, parameters.Length + 1);
+                                if (param.Paramname.Text == "")
                                     param.Paramname.Text = "1";
-                                }
-                                work.ParametersValue = parameters;
+                                parameters[parameters.Length - 1] = double.Parse(param.TextBox.Text);
+                                param.WorkTitle.Text = "";
+                                param.Paramname.Text = "1";
                             }
+                            work.ParametersValue = parameters;
                         }
                     }
-                    else
-                        work.ParametersValue = new double[] { Room.GetAreaFromCat(work.category) };
-                    string quantity = "";
-                    //значения параметров
-                    for (int k = 0; k < work.parametrs.Count; k++)
-                        quantity += work.ParametersValue[k] + " " + work.parametrs[k] + "\n";
-                    work.quantity = quantity;
-                    //worktable.Rows.Add(new string[] { work.article, quantity, work.formula, work.GetPrice().ToString() });
-                    //sum += work.GetPrice();
                 }
-                BindingSource source = new BindingSource();
-                source.DataSource = worksTypeTree1.CheckedWorks;
-
-                string[] names = new string[4];
-                names[0] = "Title";
-                names[1] = "Count";
-                names[2] = "Price";
-                names[3] = "Summ";
-                if (worktable == NonStandardWorkTable)
-                    for (int i = 0; i < names.Length; i++)
-                        names[i] += "1";
-
-                worktable.DataSource = source;
-                worktable.Columns[names[0]].DataPropertyName = "article";
-                worktable.Columns[names[1]].DataPropertyName = "quantity";
-                worktable.Columns[names[2]].DataPropertyName = "formula";
-                worktable.Columns[names[3]].DataPropertyName = "Price";
-                for (int i = 4; i < worktable.ColumnCount; i++)
-                    worktable.Columns[i].Visible = false;
+                else
+                    work.ParametersValue = new double[] { Room.GetAreaFromCat(work.category) };
+                string quantity = "";
+                //значения параметров
+                for (int k = 0; k < work.parametrs.Count; k++)
+                    quantity += work.ParametersValue[k] + " " + work.parametrs[k] + "\n";
+                work.quantity = quantity;
+                //worktable.Rows.Add(new string[] { work.article, quantity, work.formula, work.GetPrice().ToString() });
+                //sum += work.GetPrice();
             }
-            else
-            {
-                if (!showerror && worksTypeTree1.CheckedWorks.Count != 0)
-                {
-                    MessageBox.Show("Сначала заполните параметры комнаты");
-                    showerror = true;
-                }
-            }
+            BindingSource source = new BindingSource();
+            source.DataSource = worksTypeTree1.CheckedWorks;
+
+            string[] names = new string[4];
+            names[0] = "Title";
+            names[1] = "Count";
+            names[2] = "Price";
+            names[3] = "Summ";
+            if (worktable == NonStandardWorkTable)
+                for (int i = 0; i < names.Length; i++)
+                    names[i] += "1";
+
+            worktable.DataSource = source;
+            worktable.Columns[names[0]].DataPropertyName = "article";
+            worktable.Columns[names[1]].DataPropertyName = "quantity";
+            worktable.Columns[names[2]].DataPropertyName = "formula";
+            worktable.Columns[names[3]].DataPropertyName = "Price";
+            for (int i = 4; i < worktable.ColumnCount; i++)
+                worktable.Columns[i].Visible = false;
         }
         private void Hide_Works(object sender, EventArgs e)
         {
@@ -164,11 +168,6 @@ namespace BuildingCalculator.FormComponents
             worksTypeTree1.Visible = !worksTypeTree1.Visible;
 
         }
-        private void NodesChanged(object sender, EventArgs e)
-        {
-            RefrehTable(sender as TreeNode, new EventArgs());
-        }
-
         private void Hide_Elems(object sender, EventArgs e)
         {
             SplitContainer splitcontainer2;
