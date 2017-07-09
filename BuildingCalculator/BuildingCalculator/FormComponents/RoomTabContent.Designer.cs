@@ -561,6 +561,7 @@
             this.NonStandardWorkTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.NonStandardWorkTable.Location = new System.Drawing.Point(0, 0);
             this.NonStandardWorkTable.Name = "NonStandardWorkTable";
+            this.NonStandardWorkTable.RowHeadersVisible = false;
             this.NonStandardWorkTable.RowTemplate.Height = 28;
             this.NonStandardWorkTable.Size = new System.Drawing.Size(826, 393);
             this.NonStandardWorkTable.TabIndex = 2;
