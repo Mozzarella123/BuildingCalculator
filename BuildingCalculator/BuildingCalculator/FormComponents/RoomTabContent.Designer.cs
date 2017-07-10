@@ -40,7 +40,6 @@
             this.StandardRoom = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.RoomMarkup = new System.Windows.Forms.TableLayoutPanel();
-            this.Area = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -215,7 +214,6 @@
             this.RoomMarkup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.RoomMarkup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.RoomMarkup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.RoomMarkup.Controls.Add(this.Area, 7, 0);
             this.RoomMarkup.Controls.Add(this.label2, 0, 0);
             this.RoomMarkup.Controls.Add(this.label3, 1, 0);
             this.RoomMarkup.Controls.Add(this.label4, 3, 0);
@@ -231,19 +229,6 @@
             this.RoomMarkup.Size = new System.Drawing.Size(826, 64);
             this.RoomMarkup.TabIndex = 0;
             this.RoomMarkup.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.RoomMarkup_ControlRemoved);
-            // 
-            // Area
-            // 
-            this.Area.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.Area.AutoSize = true;
-            this.Area.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Area.Location = new System.Drawing.Point(777, 17);
-            this.Area.Margin = new System.Windows.Forms.Padding(3);
-            this.Area.Name = "Area";
-            this.Area.Size = new System.Drawing.Size(116, 29);
-            this.Area.TabIndex = 7;
-            this.Area.Text = "Площадь";
-            this.Area.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
@@ -692,6 +677,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Count1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Summ1;
-        public System.Windows.Forms.Label Area;
     }
 }
