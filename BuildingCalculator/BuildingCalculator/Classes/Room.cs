@@ -63,6 +63,16 @@ namespace BuildingCalculator
         public List<List<Element>> Elements { get; set; }
         public List<WorkTypeClass.Category> CheckedCats { get; set; }
         public List<WorkTypeClass> CheckedWorks { get; set; }
+        public double Summ
+        {
+            get
+            {
+                double sum = 0;
+                foreach (WorkTypeClass work in CheckedWorks)
+                    sum += work.GetPrice();
+                return sum;
+            }
+        }
         public bool Standard { get; set; }
         public Room() : base()
         {
@@ -98,7 +108,7 @@ namespace BuildingCalculator
                     }
             }
             return -1;
-        }       
+        }
         /// <summary>
         /// Общая площадь стен
         /// </summary>
@@ -179,7 +189,7 @@ namespace BuildingCalculator
                 this.Title = Title;
             if (cats != null)
                 foreach (WorkTypeClass.Category cat in cats)
-                    Categories.Add(cat);           
+                    Categories.Add(cat);
         }
         public Element() : base()
         {

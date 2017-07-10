@@ -130,6 +130,14 @@ namespace BuildingCalculator.FormComponents
                     "Площадь потолка и пола: " + results[1] + "\n" +
                     "Периметр потолка: " + results[2] + "\n" +
                     "Площадь стен:" + results[3];
+            SummT.Text = "";
+            double commonsumm = 0;
+            for (int i = 0; i < Rooms.Count; i++)
+            {
+                SummT.Text += Rooms[i].Title + "\nСумма:" + Rooms[i].Summ +"\n";
+                commonsumm += Rooms[i].Summ;
+            }
+            SummT.Text += "=====" + "\nОбщая сумма:" + commonsumm;
             if (Convert.ToBoolean(ConfigWorksService.getValue(ConfigWorksService.Options.ReportRooms)))
             {
                 double commonsum = 0;

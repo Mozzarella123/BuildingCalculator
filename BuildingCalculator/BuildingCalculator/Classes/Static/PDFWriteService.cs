@@ -117,7 +117,7 @@ namespace BuildingCalculator
                         if (content[j, i] != null && content[j, i].Length > maxL) 
                             maxL = content[j, i].Length;
                     width[i] = maxL;
-                    //width[i] = (int)(width[i] * 0.85);
+                    width[i] = width[i];
 
                 }
 

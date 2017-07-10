@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.MainTabs = new System.Windows.Forms.TabControl();
             this.InputParamsTab = new System.Windows.Forms.TabPage();
@@ -69,10 +69,10 @@
             this.RoomResT = new System.Windows.Forms.Label();
             this.CreateReportBut = new System.Windows.Forms.Button();
             this.RefreshTable = new System.Windows.Forms.Button();
+            this.SummT = new System.Windows.Forms.Label();
             this.ExcelDownloadDialog = new System.Windows.Forms.OpenFileDialog();
             this.SelectReportDirDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -198,28 +198,28 @@
             // finaltable
             // 
             this.finaltable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.finaltable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.finaltable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.finaltable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.finaltable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Title,
             this.Count,
             this.Price,
             this.Summ});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.finaltable.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.finaltable.DefaultCellStyle = dataGridViewCellStyle6;
             this.finaltable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.finaltable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.finaltable.Location = new System.Drawing.Point(0, 0);
@@ -484,7 +484,7 @@
             this.MenuMarkup.Controls.Add(this.RoomResT, 0, 5);
             this.MenuMarkup.Controls.Add(this.CreateReportBut, 0, 4);
             this.MenuMarkup.Controls.Add(this.RefreshTable, 0, 3);
-            this.MenuMarkup.Controls.Add(this.label1, 0, 6);
+            this.MenuMarkup.Controls.Add(this.SummT, 0, 6);
             this.MenuMarkup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MenuMarkup.Location = new System.Drawing.Point(0, 0);
             this.MenuMarkup.Name = "MenuMarkup";
@@ -580,22 +580,22 @@
             this.RefreshTable.UseVisualStyleBackColor = true;
             this.RefreshTable.Click += new System.EventHandler(this.RefreshTable_Click);
             // 
+            // SummT
+            // 
+            this.SummT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SummT.AutoSize = true;
+            this.SummT.Font = new System.Drawing.Font("Roboto Light", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SummT.Location = new System.Drawing.Point(3, 559);
+            this.SummT.Name = "SummT";
+            this.SummT.Size = new System.Drawing.Size(153, 24);
+            this.SummT.TabIndex = 7;
+            // 
             // ExcelDownloadDialog
             // 
             this.ExcelDownloadDialog.FileName = "openFileDialog1";
             this.ExcelDownloadDialog.Filter = "Excel Таблица|*.xls;*.xlsx;\"";
             this.ExcelDownloadDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 563);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(153, 20);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "label1";
             // 
             // NewForm
             // 
@@ -677,6 +677,6 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Button RefreshTable;
         public System.Windows.Forms.Label RoomResT;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label SummT;
     }
 }
