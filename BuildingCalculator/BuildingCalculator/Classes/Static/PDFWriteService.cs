@@ -104,6 +104,7 @@ namespace BuildingCalculator
                             sum += content[j, i].Length;
                     }
                     width[i] = (int)(sum / content.GetLength(0));
+                    width[i] = (int)(width[i] * 0.65);
                 }
                 else
                 {
@@ -116,8 +117,10 @@ namespace BuildingCalculator
                         if (content[j, i] != null && content[j, i].Length > maxL) 
                             maxL = content[j, i].Length;
                     width[i] = maxL;
+                    //width[i] = (int)(width[i] * 0.85);
+
                 }
-                    
+
             }
             PDFDocument doc = documents[ident];
             Document document = doc.doc;

@@ -19,6 +19,7 @@ namespace BuildingCalculator.FormComponents
             InitializeComponent();
             TypeTabs.ItemSize = new Size(0, 1);
             RoomTypeSelect.SelectedIndex = 0;
+            #region Контекстное меню
             Functions.ContextMenu(this, new List<string>()
                 {
                     "Скрыть работы",
@@ -45,13 +46,17 @@ namespace BuildingCalculator.FormComponents
                     RefrehTable
                 }
             );
-            worksTypeTree1.WorksList.CheckBoxes = true;
+            #endregion
+            #region Валидаторы 
             Functions.SetValidator(WidthInp, Functions.ValidateType.OnlyNumbers);
             Functions.SetValidator(LengthInp, Functions.ValidateType.OnlyNumbers);
             Functions.SetValidator(HeightInp, Functions.ValidateType.OnlyNumbers);
             Functions.SetValidator(BottomArea, Functions.ValidateType.OnlyNumbers);
             Functions.SetValidator(BottomPerInp, Functions.ValidateType.OnlyNumbers);
             Functions.SetValidator(HeightInp2, Functions.ValidateType.OnlyNumbers);
+            #endregion
+            Functions.SetToolTip("Щелкните два раза по ячейке с параметром,\n чтобы изменить его", worktable);
+            worksTypeTree1.WorksList.CheckBoxes = true;
             worksTypeTree1.CheckedNodesChanged += (sender, eargs) =>
             {
                 RefrehTable(sender as TreeNode, new EventArgs());
@@ -68,7 +73,7 @@ namespace BuildingCalculator.FormComponents
         }
         private void RefrehTable(object sender, EventArgs e)
         {
-            Area.Text = $"Площадь:{Room.Area}\nПериметр:{Room.Perimeter}\nОбщая площадь:{Room.CommonArea}";
+            Area.Text = $"Площадь:{Room.Area}\nПериметр:{Room.Perimeter}\nПлощадь стен:{Room.CommonArea}";
             DataGridView worktable;
             switch (RoomTypeSelect.SelectedIndex)
             {
@@ -96,11 +101,15 @@ namespace BuildingCalculator.FormComponents
                         param.Paramname.Text = "1";
                     work.ParametersValue[i] = double.Parse(param.TextBox.Text);
                 }
+                work.quantity = work.getQuantity();
             }
             else
                 foreach (WorkTypeClass work in worksTypeTree1.CheckedWorks)
+                {
                     if (Room.GetAreaFromCat(work.category) != -1)
-                        work.ParametersValue[0] = Room.GetAreaFromCat(work.category);           
+                        work.ParametersValue[0] = Room.GetAreaFromCat(work.category);
+                    work.quantity = work.getQuantity();
+                }
             BindingSource source = new BindingSource();
             source.DataSource = worksTypeTree1.CheckedWorks;
             string[] names = new string[4];
@@ -228,10 +237,6 @@ namespace BuildingCalculator.FormComponents
                 case "HeightInp": Room.Params[Entity.ParamName.Height] = Convert.ToDouble(Text); break;
                 case "LengthInp": Room.Params[Entity.ParamName.Length] = Convert.ToDouble(Text); break;
             }
-            //if (Text == "0")
-            //    worksTypeTree1.Enabled = false;
-            //if (!Room.Params.ContainsValue(0))
-            //    worksTypeTree1.Enabled = true;
             RefrehTable(worktable, new EventArgs());
         }
 
@@ -253,10 +258,6 @@ namespace BuildingCalculator.FormComponents
                 case "BottomPerInp": Room.BottomPerimeter = Convert.ToDouble(Text); break;
                 case "HeightInp2": Room.Params[Entity.ParamName.Height] = Convert.ToDouble(Text); break;
             }
-            //if (Text == "0")
-            //    worksTypeTree1.Enabled = false;
-            //if (Room.BottomPerimeter != 0)
-            //    worksTypeTree1.Enabled = true;
             RefrehTable(NonStandardWorkTable, new EventArgs());
         }
     }
