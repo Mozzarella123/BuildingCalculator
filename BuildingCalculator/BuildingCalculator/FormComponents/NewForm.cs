@@ -23,6 +23,8 @@ namespace BuildingCalculator.FormComponents
         public NewForm()
         {
             JSONSerializeService.ReadInput("works.json");
+            foreach(WorkTypeClass work in JSONSerializeService.OutputItems)
+                work.ParametersValue = new double[work.parametrs.Count];
             ConfigWorksService.CheckSettings();
             InitializeComponent();
             MainForm = this;
@@ -117,7 +119,7 @@ namespace BuildingCalculator.FormComponents
                     "Периметр пола: "+room.BottomPerimeter + "\n" + 
                     "Площадь потолка и пола: "+room.Area + "\n" +
                     "Периметр потолка: " +room.Perimeter + "\n" +
-                    "Общая площадь: " +room.CommonArea+ "\n" ;
+                    "Площадь стен: " +room.CommonArea+ "\n" ;
                 results[0] += room.BottomPerimeter;
                 results[1] += room.Area;
                 results[2] += room.Perimeter;
@@ -127,7 +129,15 @@ namespace BuildingCalculator.FormComponents
                     "Периметр пола:" + results[0] + "\n" +
                     "Площадь потолка и пола: " + results[1] + "\n" +
                     "Периметр потолка: " + results[2] + "\n" +
-                    "Общая площадь:" + results[3];
+                    "Площадь стен:" + results[3];
+            SummT.Text = "";
+            double commonsumm = 0;
+            for (int i = 0; i < Rooms.Count; i++)
+            {
+                SummT.Text += Rooms[i].Title + "\nСумма:" + Rooms[i].Summ +"\n";
+                commonsumm += Rooms[i].Summ;
+            }
+            SummT.Text += "=====" + "\nОбщая сумма:" + commonsumm;
             if (Convert.ToBoolean(ConfigWorksService.getValue(ConfigWorksService.Options.ReportRooms)))
             {
                 double commonsum = 0;
@@ -219,6 +229,7 @@ namespace BuildingCalculator.FormComponents
                 else
                     mRadio.Checked = true;
                 RepotRooms.Checked =  Convert.ToBoolean(ConfigWorksService.getValue(ConfigWorksService.Options.ReportRooms)) ? true:false;
+                Help.Checked = Convert.ToBoolean(ConfigWorksService.getValue(ConfigWorksService.Options.Hints)) ? true : false;
             }
         }
         private void RoomTabs_DoubleClick(object sender, EventArgs e)
@@ -313,8 +324,10 @@ namespace BuildingCalculator.FormComponents
         }
         public void RefreshTrees()
         {
-            Functions.BuildList(AdminWorks.WorksList);
-            Functions.BuildList(roomTabContent1.worksTypeTree1.WorksList);
+            Functions.RefreshList(AdminWorks.WorksList);
+            Functions.RefreshList(roomTabContent1.worksTypeTree1.WorksList);
+            foreach (WorkTypeClass work in JSONSerializeService.OutputItems)
+                work.ParametersValue = new double[work.parametrs.Count];
         }
         private void Clear_Click(object sender, EventArgs e)
         {
@@ -329,16 +342,16 @@ namespace BuildingCalculator.FormComponents
         }
         private void SaveSetBut_Click(object sender, EventArgs e)
         {
-            ConfigWorksService.ChangeValue("tutorial", Help.Checked.ToString());
+            ConfigWorksService.ChangeValue(ConfigWorksService.getKey(ConfigWorksService.Options.Hints), Help.Checked.ToString());
             if (cmRadio.Checked)
-                ConfigWorksService.ChangeValue("units", "sm");
+                ConfigWorksService.ChangeValue(ConfigWorksService.getKey(ConfigWorksService.Options.Units), "sm");
             if (mRadio.Checked)
-                ConfigWorksService.ChangeValue("units", "m");
+                ConfigWorksService.ChangeValue(ConfigWorksService.getKey(ConfigWorksService.Options.Units), "m");
             if (RepotRooms.Checked)
                 ConfigWorksService.ChangeValue(ConfigWorksService.getKey(ConfigWorksService.Options.ReportRooms), "true");
             else
                 ConfigWorksService.ChangeValue(ConfigWorksService.getKey(ConfigWorksService.Options.ReportRooms), "false");
-            ConfigWorksService.ChangeValue("endDir", SelectReportDirDialog.SelectedPath);
+            ConfigWorksService.ChangeValue(ConfigWorksService.getKey(ConfigWorksService.Options.ReportDirectory), SelectReportDirDialog.SelectedPath);
         }
         private void ChangeSaveDirectory_Click(object sender, EventArgs e)
         {

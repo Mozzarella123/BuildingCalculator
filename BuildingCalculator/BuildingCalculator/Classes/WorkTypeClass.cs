@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace BuildingCalculator
 {
-    public class WorkTypeClass:ICloneable
+    public class WorkTypeClass : ICloneable
     {
         public static Dictionary<Category, string> CategoryNames = new Dictionary<Category, string>()
             {
@@ -25,9 +25,10 @@ namespace BuildingCalculator
                 {Category.boring,"Сверление,резка,крепеж" },
                 {Category.curtain,"Гардины,карнизы,вешалки,тумбы" },
                 {Category.other, "Другое" },
-            };    
-        public enum Category {
-            none =-1,
+            };
+        public enum Category
+        {
+            none = -1,
             walls,
             floor,
             ceiling,
@@ -40,14 +41,15 @@ namespace BuildingCalculator
             corners,
             boring,
             curtain,
-            other };
+            other
+        };
         public double[] ParametersValue { get; set; }
         public WorkTypeClass()
         {
             parametrs = new List<string>();
             ParametersValue = new double[parametrs.Count];
             isFixedPrice = false;
-            
+
         }
         public WorkTypeClass(double price)
         {
@@ -78,7 +80,10 @@ namespace BuildingCalculator
         public double fixedPrice;
         public string article { get; set; }
         public string formula { get; set; }
-        public string quantity { get; set; }
+        public string quantity
+        {
+            get; set;
+        }
         public List<string> parametrs;
         public string description;
         public override string ToString()
@@ -87,9 +92,18 @@ namespace BuildingCalculator
         }
         public string delegateName;
         public Category category;
+        public string getQuantity()
+        {
+            string quantity = "";
+            //значения параметров
+            for (int k = 0; k < parametrs.Count; k++)
+                quantity += ParametersValue[k] + " " + parametrs[k] + "\n";
+            return quantity;
+
+        }
         public void setCategory(string catName)
         {
-            foreach(KeyValuePair<Category,string> rec in CategoryNames)
+            foreach (KeyValuePair<Category, string> rec in CategoryNames)
                 if (catName.ToLower() == rec.Value.ToLower())
                 {
                     category = rec.Key;
@@ -110,8 +124,8 @@ namespace BuildingCalculator
             ret &= formula.Equals(work.formula);
             ret &= category.Equals(work.category);
             return ret;
-        }       
-        static bool Equals(List<string> s1,List<string> s2)
+        }
+        static bool Equals(List<string> s1, List<string> s2)
         {
             if (s1 == null && s2 == null)
                 return true;

@@ -94,91 +94,18 @@ namespace BuildingCalculator.Classes
         {
             if (!Char.IsLetter(e.KeyChar) && e.KeyChar != '\b')
                 e.Handled = true;
-        }
-        /// <summary>
-        /// Функция для связи control'а и параметра, куда будет заносится значение
-        /// </summary>
-        /// <param name="control">Control для связи</param>
-        /// <param name="obj">Объект, к которому хотим привязать</param>
-        /// <param name="property">Название свойства</param>
-        /// <param name="validatetype">Тип валидации</param>
-        /// <param name="userfunc">Собственный обработчик set</param>
-        public static void Input(Control control, object obj, string property, ValidateType validatetype=ValidateType.Default, KeyPressEventHandler userfunc = null)
-        {
-            //Привязываем валидацию
-            SetValidator(control, validatetype);
-            //Добавляем обработчик
-            control.TextChanged += Input_TextChanged;
-            //Создаем параметры для передачи в обработчик
-            object[] param = { obj,property };
-            control.Tag = param;
-        }
-        /// <summary>
-        /// Функция для связи control'а и параметра, куда будет заносится значение
-        /// </summary>
-        /// <param name="control">Control для связи</param>
-        /// <param name="obj">Объект, к которому хотим привязать</param>
-        /// <param name="set">Метод задания свойству значения</param>
-        /// <param name="validatetype">Тип валидации</param>
-        /// <param name="userfunc">Собственный обработчик set</param>
-        public static void Input(Control control, object obj,SetMethod set, ValidateType validatetype= ValidateType.Default, KeyPressEventHandler userfunc = null)
-        {
-            //Привязываем валидацию
-            SetValidator(control, validatetype);
-            //Создаем параметры для передачи в обработчик с пользовательским метом
-            object[] param = { obj, set };
-            control.Tag = param;
-            control.TextChanged += Input_TextChanged;
-        }
-        private static void Input_TextChanged(object sender, EventArgs e)
-        {     
-            Control control = sender as Control;
-            //получаем параметры
-            object[] obj = (control.Tag as object[]);
-            //если свойство простое
-            if (obj[1] is string)
-            {
-                string property = obj[1] as string;
-                obj[0] = Convert.ChangeType(obj[0], obj[0].GetType());
-                PropertyInfo prop = obj[0].GetType().GetProperty(property);
-                prop.SetValue(obj[0], Convert.ChangeType(control.Text, prop.GetType()));
-            }
-            else
-            {
-                SetMethod set = obj[1] as SetMethod;
-                //Вызываем пользовательский метод set
-                set.Invoke(obj[0], control);
-            }
-
-        }
-        public static void SetEntityParams(object obj, Control control)
-        {
-            try
-            {
-                Entity obj1 = obj as Entity;
-                Entity.ParamName param = Entity.ParamName.Width;//костыль
-                switch (control.Name)
-                {
-                    case "Width": param = Entity.ParamName.Width; break;
-                    case "Length": param = Entity.ParamName.Length; break;
-                    case "Height": param = Entity.ParamName.Height; break;
-                }
-                obj1.Params[param] = Convert.ToDouble(Convert.ToDouble(control.Text));
-
-            }
-            catch (FormatException)
-            {
-
-            }
-        }
+        }       
         public static void SetToolTip(string text,Control control)
         {
             if (Convert.ToBoolean(ConfigWorksService.getValue(ConfigWorksService.Options.Hints)))
             { 
                 ToolTip hint = new ToolTip();
-                hint.AutoPopDelay = 5000;
                 hint.InitialDelay = 10;
+                //hint.ReshowDelay = 1;
                 hint.ShowAlways = true;
+                hint.Active = true;
+                hint.UseAnimation = true;
+                hint.UseFading = true;
                 hint.SetToolTip(control, text);
             }
         }

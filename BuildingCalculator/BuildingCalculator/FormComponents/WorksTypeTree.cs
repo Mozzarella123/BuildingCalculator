@@ -21,7 +21,7 @@ namespace BuildingCalculator.FormComponents
         {
             InitializeComponent();
             WorksList.Nodes.Add("Все категории");
-            Functions.BuildList(WorksList, true, true);            
+            Functions.BuildList(WorksList, true, true);
         }
         private void Search_TextChanged(object sender, EventArgs e)
         {
@@ -41,27 +41,26 @@ namespace BuildingCalculator.FormComponents
                 e.Cancel = true;
                 WorksList.SelectedNode = e.Node.FirstNode;
             }
-            //e.Cancel = true;
         }
-        private void Check(TreeNode node, bool check)
-        {
-            if (node.FirstNode != null)
-            {
-                if (check)
-                {
-                    node.ExpandAll();
-                    foreach (TreeNode nod in node.Nodes)
-                        nod.Checked = true;
-                }
-                else
-                {
-                    node.Collapse();
-                    foreach (TreeNode nod in node.Nodes)
-                        nod.Checked = false;
-                }
-            }
-            else return;
-        }
+        //private void Check(TreeNode node, bool check)
+        //{
+        //    if (node.FirstNode != null)
+        //    {
+        //        if (check)
+        //        {
+        //            node.ExpandAll();
+        //            foreach (TreeNode nod in node.Nodes)
+        //                nod.Checked = true;
+        //        }
+        //        else
+        //        {
+        //            node.Collapse();
+        //            foreach (TreeNode nod in node.Nodes)
+        //                nod.Checked = false;
+        //        }
+        //    }
+        //    else return;
+        //}
         private void WorksList_AfterCheck(object sender, TreeViewEventArgs e)
         {
             TreeNode node = e.Node;
@@ -74,11 +73,11 @@ namespace BuildingCalculator.FormComponents
             {
                 if (check)
                 {
-                    if (!CheckedWorks.Exists(w =>w.Equals(work)))
+                    if (!CheckedWorks.Exists(w => w.Equals(work)))
                         CheckedWorks.Add((WorkTypeClass)work.Clone());
                 }
                 else
-                    CheckedWorks.Remove(CheckedWorks.Find(x => x.category==work.category&&x.article==work.article));
+                    CheckedWorks.Remove(CheckedWorks.Find(x => x.category == work.category && x.article == work.article));
                 if (check)
                 {
                     if (!CheckedCats.Contains(work.category))
@@ -95,26 +94,26 @@ namespace BuildingCalculator.FormComponents
             if (e.Node.Nodes != null)
             {
                 if (!check)
+                {
+                    if (e.Node.Level == 0)
+                    {
+                        DialogResult res = MessageBox.Show("Вы действительно хотите выбрать все работы?", "Выбрать всё", MessageBoxButtons.OKCancel);
+                        if (res == DialogResult.Cancel)
+                            e.Cancel = true;
+                        e.Node.Expand();
+                        return;
+                    }
                     e.Node.ExpandAll();
+                }
                 else
                     e.Node.Collapse();
                 foreach (TreeNode node in e.Node.Nodes)
                     node.Checked = !check;
             }
         }
-        protected override void WndProc(ref Message m)
-        {
-            switch (m.Msg)
-            {
-                case 0x203:
-                    m.Msg = 0;
-                    break;
-            }
-            base.WndProc(ref m);
-        }
         private void WorksList_DoubleClick(object sender, EventArgs e)
         {
-            
+
         }
     }
 }
