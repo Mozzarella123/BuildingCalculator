@@ -73,7 +73,7 @@ namespace BuildingCalculator.FormComponents
         }
         private void RefrehTable(object sender, EventArgs e)
         {
-            Area.Text = $"Площадь:{Room.Area}\nПериметр:{Room.Perimeter}\nПлощадь стен:{Room.CommonArea}";
+            //Area.Text = $"Площадь:{Room.Area}\nПериметр:{Room.Perimeter}\nПлощадь стен:{Room.CommonArea}";
             DataGridView worktable;
             switch (RoomTypeSelect.SelectedIndex)
             {
@@ -111,7 +111,16 @@ namespace BuildingCalculator.FormComponents
                     work.quantity = work.getQuantity();
                 }
             BindingSource source = new BindingSource();
-            source.DataSource = worksTypeTree1.CheckedWorks;
+            source.DataSource = worksTypeTree1.CheckedWorks;           
+            worktable.DataBindingComplete += (send, ea) =>
+             {
+                 foreach (DataGridViewRow dgvr in worktable.Rows)
+                 {
+                     WorkTypeClass work = dgvr.DataBoundItem as WorkTypeClass;
+                     if (Room.GetAreaFromCat(work.category) == -1 || work.ParametersValue.Length > 1)
+                         dgvr.DefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+                 }
+             };
             string[] names = new string[4];
             names[0] = "Title";
             names[1] = "Count";
@@ -128,7 +137,7 @@ namespace BuildingCalculator.FormComponents
             worktable.Columns[names[0]].DataPropertyName = "article";
             worktable.Columns[names[1]].DataPropertyName = "quantity";
             worktable.Columns[names[2]].DataPropertyName = "formula";
-            worktable.Columns[names[3]].DataPropertyName = "Price";
+            worktable.Columns[names[3]].DataPropertyName = "Price";            
             for (int i = 5; i < worktable.ColumnCount; i++)
                 worktable.Columns[i].Visible = false;
         }
