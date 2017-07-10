@@ -49,10 +49,10 @@ namespace MyNamespace
 
             CSharpCodeProvider provider = new CSharpCodeProvider();
             CompilerParameters parameters = new CompilerParameters();
-            parameters.GenerateInMemory = true;//задание параметров компиляции
-            if (File.Exists("compile.dll"))
-                File.Delete("compile.dll");
-            parameters.OutputAssembly = "compile.dll";
+            parameters.GenerateInMemory = false;//задание параметров компиляции
+            //if (File.Exists("compile.dll"))
+            //    File.Delete("compile.dll");
+            //parameters.OutputAssembly = "compile.dll";
             parameters.ReferencedAssemblies.Add("System.dll");
             CompilerResults results = provider.CompileAssemblyFromSource(parameters, CompileString);//компиляция
             var cls = results.CompiledAssembly.GetType("MyNamespace.PriceFunctions");//извлечение скомпилированного класса
@@ -126,10 +126,10 @@ namespace MyNamespace
             {
                 CSharpCodeProvider provider = new CSharpCodeProvider();
                 CompilerParameters parameters = new CompilerParameters();
-                parameters.GenerateInMemory = true;
-                if (File.Exists("test.dll"))
-                    File.Delete("test.dll");
-                parameters.OutputAssembly = "test.dll";
+                parameters.GenerateInMemory = false;
+                //if (File.Exists("test.dll"))
+                //    File.Delete("test.dll");
+                //parameters.OutputAssembly = "test.dll";
                 parameters.ReferencedAssemblies.Add("System.dll");
                 CompilerResults results = provider.CompileAssemblyFromSource(parameters, begin + func + end);//компиляция кода
 
