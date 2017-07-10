@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 using System.IO;
 using PdfSharp;
 using PdfSharp.Drawing;
@@ -74,9 +75,9 @@ namespace BuildingCalculator
         /// <param name="wrap">Флаги для переноса строки в столбце false: ширина столбца равна максимальной ширине true: ширина столбцы равна средней ширине, все что больше переносится. </param>
         /// <param name="x">Координата Х на странице</param>
         /// <param name="y">Координата У на странице</param>
-        public static void AddTable(string ident,string[,] content, string[] headers=null,bool[] wrap=null,AddType type=AddType.ActivePage)
+        public static void AddTable(string ident,string[,] content, string[] headers=null,ParagraphAlignment[] align = null, bool[] wrap=null,AddType type=AddType.ActivePage)
         {
-            
+            string[] maxind = new string[4] { " ", " ", " ", " " };
             if (headers != null&&content.GetLength(1) != headers.Length)
                 throw new IndexOutOfRangeException("Количество заголовков не совпадает с количеством столбцов в таблице контента");
             int[] width = new int[content.GetLength(1)];
@@ -104,21 +105,28 @@ namespace BuildingCalculator
                             sum += content[j, i].Length;
                     }
                     width[i] = (int)(sum / content.GetLength(0));
-                    width[i] = (int)(width[i] * 0.65);
                 }
                 else
                 {
                     int maxL;
                     if (headers != null)
+                    {
                         maxL = headers[i].Length;
+                        maxind[i] = headers[i];
+                    }
                     else
+                    {
                         maxL = content[i, 0].Length;
+                        maxind[i] = content[i, 0];
+                    }
                     for (int j = 0; j < content.GetLength(0); j++)
-                        if (content[j, i] != null && content[j, i].Length > maxL) 
+                        if (content[j, i] != null && content[j, i].Length > maxL)
+                        {
                             maxL = content[j, i].Length;
+                            maxind[i] = content[j, i];
+                        }
                     width[i] = maxL;
-                    width[i] = width[i];
-
+                    
                 }
 
             }
@@ -127,8 +135,6 @@ namespace BuildingCalculator
             int columncounts = 0;
             Table table = new Table();
             table.Borders.Width = 0.1;
-            table.TopPadding = 5;
-            table.BottomPadding = 5;
             if (headers==null)
                 columncounts = content.GetLength(1);
             else
@@ -137,7 +143,10 @@ namespace BuildingCalculator
             {
                 if (headers != null)
                 {
-                    Column column = table.AddColumn(Unit.FromPoint(width[i]*10));
+                    XGraphics gfx = XGraphics.FromPdfPage(new PdfPage(new PdfDocument()));
+                    XSize  size = gfx.MeasureString(maxind[i], new XFont("Times New Roman", 12));
+                    //SizeF stringsize = Graphics.
+                    Column column = table.AddColumn(Unit.FromPoint(size.Width+10));
                     column.Format.Alignment = ParagraphAlignment.Center;                    
                 }
                 else table.AddColumn(ColumnWidth);
@@ -161,7 +170,7 @@ namespace BuildingCalculator
                     Cell cell = row.Cells[j];
                     if (content[i, j] == null)
                         content[i, j] = "";
-                    AddTextToCell(content[i, j], cell, width[j]);
+                    AddTextToCell(content[i, j], cell, width[j],align[j]);
                     
                 }
             }
@@ -169,8 +178,7 @@ namespace BuildingCalculator
             
             
         }
-
-        static private Paragraph AddTextToCell(string instring, Cell cell, int width)
+        static private Paragraph AddTextToCell(string instring, Cell cell, int width, ParagraphAlignment align = ParagraphAlignment.Center)
         {
 
             if (instring.Length > width)
@@ -184,6 +192,7 @@ namespace BuildingCalculator
                 }
             }
             Paragraph par = cell.AddParagraph(instring);
+            par.Format.Alignment = align;
             return par;
         }
 

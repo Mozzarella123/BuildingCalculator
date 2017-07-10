@@ -99,9 +99,11 @@ namespace BuildingCalculator.FormComponents
                     {
                         DialogResult res = MessageBox.Show("Вы действительно хотите выбрать все работы?", "Выбрать всё", MessageBoxButtons.OKCancel);
                         if (res == DialogResult.Cancel)
+                        {
                             e.Cancel = true;
-                        e.Node.Expand();
-                        return;
+                            e.Node.Expand();
+                            return;
+                        }
                     }
                     e.Node.ExpandAll();
                 }

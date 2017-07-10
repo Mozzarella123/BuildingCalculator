@@ -99,7 +99,13 @@ namespace BuildingCalculator.FormComponents
                 if (File.Exists(path+".pdf"))
                 path += "(" + k + ")";
                 PDFWriteService.CreateNewDocument(path);
-                PDFWriteService.AddTable(path, content, headers, new bool[] { true, false, false, false });
+                PDFWriteService.AddTable(path, content, headers,
+                    new MigraDoc.DocumentObjectModel.ParagraphAlignment[] 
+                    { MigraDoc.DocumentObjectModel.ParagraphAlignment.Left,
+                        MigraDoc.DocumentObjectModel.ParagraphAlignment.Center,
+                        MigraDoc.DocumentObjectModel.ParagraphAlignment.Center,
+                        MigraDoc.DocumentObjectModel.ParagraphAlignment.Center }, 
+                    new bool[] { false, false, false, false });
                 PDFWriteService.RenderDocToPdf(path);
                 MessageBox.Show("Отчёт создан");
             }
