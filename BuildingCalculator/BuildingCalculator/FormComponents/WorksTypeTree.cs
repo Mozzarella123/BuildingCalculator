@@ -36,7 +36,7 @@ namespace BuildingCalculator.FormComponents
         }
         private void WorksList_BeforeSelect(object sender, TreeViewCancelEventArgs e)
         {
-            if (e.Node.Nodes.Count != 0)
+            if (e.Node!=null&&e.Node.Nodes.Count != 0)
             {
                 e.Cancel = true;
                 WorksList.SelectedNode = e.Node.FirstNode;
@@ -49,7 +49,6 @@ namespace BuildingCalculator.FormComponents
             WorkTypeClass work = null;
             if (node.Tag is WorkTypeClass)
                 work = node.Tag as WorkTypeClass;
-
             if (work != null)
             {
                 if (check)

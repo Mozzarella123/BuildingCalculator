@@ -80,33 +80,36 @@ namespace BuildingCalculator.FormComponents
                 case 0: worktable = this.worktable; break;
                 case 1: worktable = this.NonStandardWorkTable; break;
                 default: worktable = null; break;
-            }
+            }           
             if (sender is TreeNode && (sender as TreeNode).Checked)
             {
                 WorkTypeClass work = worksTypeTree1.CheckedWorks.Find(w => w.Equals(((sender as TreeNode).Tag as WorkTypeClass)));
-                int i1 = 0;
-                if (Room.GetAreaFromCat(work.category) != -1)
+                if (work.ParametersValue.Length != 0)
                 {
-                    work.ParametersValue[0] = Room.GetAreaFromCat(work.category);
-                    i1++;
+                    int i1 = 0;
+                    if (Room.GetAreaFromCat(work.category) != -1)
+                    {
+                        work.ParametersValue[0] = Room.GetAreaFromCat(work.category);
+                        i1++;
+                    }
+                    for (int i = i1; i < work.ParametersValue.Length; i++)
+                    {
+                        inputparams param = new inputparams();
+                        param.WorkTitle.Text = work.article;
+                        param.Paramname.Text = work.parametrs[i];
+                        Classes.Functions.CenterForm(param, ParentForm);
+                        param.ShowDialog();
+                        if (param.Paramname.Text == "")
+                            param.Paramname.Text = "1";
+                        work.ParametersValue[i] = double.Parse(param.TextBox.Text);
+                    }
+                    work.quantity = work.getQuantity();
                 }
-                for (int i = i1; i < work.ParametersValue.Length; i++)
-                {
-                    inputparams param = new inputparams();
-                    param.WorkTitle.Text = work.article;
-                    param.Paramname.Text = work.parametrs[i];
-                    Classes.Functions.CenterForm(param, ParentForm);
-                    param.ShowDialog();
-                    if (param.Paramname.Text == "")
-                        param.Paramname.Text = "1";
-                    work.ParametersValue[i] = double.Parse(param.TextBox.Text);
-                }
-                work.quantity = work.getQuantity();
             }
             else
                 foreach (WorkTypeClass work in worksTypeTree1.CheckedWorks)
                 {
-                    if (Room.GetAreaFromCat(work.category) != -1)
+                    if (Room.GetAreaFromCat(work.category) != -1&& work.ParametersValue.Length!=0)
                         work.ParametersValue[0] = Room.GetAreaFromCat(work.category);
                     work.quantity = work.getQuantity();
                 }
