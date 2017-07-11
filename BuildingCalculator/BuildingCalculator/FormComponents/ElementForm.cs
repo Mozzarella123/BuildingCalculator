@@ -27,6 +27,9 @@ namespace BuildingCalculator.FormComponents
             Element = new Element();
             comboBox1_SelectionChangeCommitted(PatternSelect, new EventArgs());
             ContInp.Text = "1";
+            Classes.Static.TipsService.AddTip(ContInp, "Количество элементов данного типа");
+            Classes.Static.TipsService.AddTip(PatternSelect, "Выбрать элемент нестандартного типажа");
+
         }
 
 

@@ -33,29 +33,31 @@
             // 
             // TipText
             // 
-            this.TipText.AutoSize = true;
-            this.TipText.Location = new System.Drawing.Point(12, 19);
-            this.TipText.MaximumSize = new System.Drawing.Size(140, 0);
+            this.TipText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TipText.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TipText.Location = new System.Drawing.Point(0, 0);
+            this.TipText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TipText.Name = "TipText";
-            this.TipText.Size = new System.Drawing.Size(0, 13);
+            this.TipText.Size = new System.Drawing.Size(330, 240);
             this.TipText.TabIndex = 0;
             this.TipText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TipForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(220, 430);
+            this.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.ClientSize = new System.Drawing.Size(330, 240);
             this.ControlBox = false;
             this.Controls.Add(this.TipText);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "TipForm";
             this.ShowInTaskbar = false;
             this.Text = "Подсказка";
             this.Load += new System.EventHandler(this.TipForm_Load);
             this.MouseEnter += new System.EventHandler(this.TipForm_MouseEnter);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

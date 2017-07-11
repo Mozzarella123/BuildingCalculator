@@ -48,7 +48,7 @@ namespace BuildingCalculator.FormComponents
         public void LifeForm()
         {
             
-            LifeTimer.Interval = 5000;
+            LifeTimer.Interval = 600;
             LifeTimer.Tick += new EventHandler((object sender, EventArgs e) => { InviseForm(); LifeTimer.Stop(); });
             LifeTimer.Start();   
         }
@@ -63,7 +63,7 @@ namespace BuildingCalculator.FormComponents
         public void InviseForm()
         {
             
-            inviseTimer.Interval = 100;
+            inviseTimer.Interval = 50;
             inviseTimer.Tick += new EventHandler((object sender, EventArgs e) => { Opacity -= 0.01; if (Opacity == 0) { Hide(); inviseTimer.Stop(); } });
             inviseTimer.Start();
         }

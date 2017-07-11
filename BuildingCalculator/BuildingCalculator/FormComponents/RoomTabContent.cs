@@ -55,7 +55,7 @@ namespace BuildingCalculator.FormComponents
             Functions.SetValidator(BottomPerInp, Functions.ValidateType.OnlyNumbers);
             Functions.SetValidator(HeightInp2, Functions.ValidateType.OnlyNumbers);
             #endregion
-            Functions.SetToolTip("Щелкните два раза по ячейке с параметром,\n чтобы изменить его", worktable);
+            //Functions.SetToolTip("Щелкните два раза по ячейке с параметром,\n чтобы изменить его", worktable);
             worksTypeTree1.WorksList.CheckBoxes = true;
             worksTypeTree1.CheckedNodesChanged += (sender, eargs) =>
             {
@@ -70,6 +70,8 @@ namespace BuildingCalculator.FormComponents
              };
             worktable.AutoGenerateColumns = false;
             NonStandardWorkTable.AutoGenerateColumns = false;
+            Classes.Static.TipsService.AddTip(RoomTypeSelect, "Выберите тип комнаты (нестандартный - форма отличная от прямоугольника)");
+            Classes.Static.TipsService.AddTip(AddElement, "Добавить дверь или окно в комнату");
         }
         private void RefrehTable(object sender, EventArgs e)
         {

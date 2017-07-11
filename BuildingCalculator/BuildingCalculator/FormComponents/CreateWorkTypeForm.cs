@@ -30,11 +30,11 @@ namespace BuildingCalculator
             };
             Functions.ContextMenu(Listofparams, names, functions);
             FormClosing += new FormClosingEventHandler(_FormClosing);
-            Functions.SetToolTip("Введите название работы", WorkTypeNameInp);
-            Functions.SetToolTip("Выберите категорию,\n к которой относится работа", Category);
-            Functions.SetToolTip("Чтобы добавить параметр для формулы расчёта,\n нажмите +",parameters.TextBox);
-            Functions.SetToolTip("Формула для расчёта, например: 20*Площадь\n перенести параметры на это поле, \n ПКМ, чтобы очистить", formula.TextBox);
-            Functions.SetToolTip("Добавить в формулу с помощью Enter или переноса \n Удалить правой кнопкой мыши ", Listofparams);
+            Classes.Static.TipsService.AddTip( WorkTypeNameInp, "Введите название работы");
+            Classes.Static.TipsService.AddTip( Category, "Выберите категорию,\n к которой относится работа");
+            Classes.Static.TipsService.AddTip(parameters.TextBox,"Здесь нужно ввести параметры, которые используются в формуле, чтобы добавить параметр нажмите +,первый параметр относится к площади категории");
+            Classes.Static.TipsService.AddTip(formula.TextBox,"Здесь нужно ввести формулу для расчёта, с параметрами занесенными в лист справа, по шаблону Цена*Параметр1*Параметр2, пример 100*кв_м*слои");
+            Classes.Static.TipsService.AddTip( Listofparams, "Чтобы добавить параметр в формулу нажмите enter или перенесите его на поле формулы");
             Button = AddType;
             parameters.Button.Click += Add_Param;
             formula.TextBox.AllowDrop = true;

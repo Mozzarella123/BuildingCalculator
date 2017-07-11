@@ -64,8 +64,19 @@ namespace BuildingCalculator.FormComponents
             AdminWorks.Title.Text = "Настройка работ";
             roomTabContent1.Room.CheckedWorks = roomTabContent1.worksTypeTree1.CheckedWorks;
             roomTabContent1.Room.Title = "Комната";
-            TipsService.AddTip(roomTabContent1.worksTypeTree1, "Дерево с типами работ, распределенными по категориям");
-            TipsService.AddTip(roomTabContent1.worktable, "Рабочая область, здесь находятся все работы, которые вы добавили в проект.");
+            TipsService.AddTip(roomTabContent1.worksTypeTree1, "Выберите работы, которые нужно добавить в смету");
+            TipsService.AddTip(roomTabContent1.worktable, "Здесь находятся те работы, которые вы добавили к данной комнате, чтобы изменить параметр кликните дважды на серой строке");
+            TipsService.AddTip(finaltable, "Так будет выглядеть таблица в отчёте");
+            TipsService.AddTip(RefreshTable, "Обновить таблицы, для внесения изменений");
+            TipsService.AddTip(Units, "Выберите единицы измерения, они будут применятся ко всем параметрам ");
+            TipsService.AddTip(RepotRooms, "Создать смету по каждой комнате");
+            TipsService.AddTip(SaveSetBut, "Чтобы изменения вступили в силу, нажмите сохранить");
+            TipsService.AddTip(Help, "Включить режим обучения(требуется перезапуск)");
+            if (ConfigWorksService.getValue(ConfigWorksService.Options.Remebered) == "false")
+                TipsService.AddTip(splitContainer2.Panel2, "Кликните для того, чтобы авторизоваться и  редактировать список работ");
+            TipsService.AddTip(DownloadfromExcel, "Загрузить работы из Excel шаблона");
+            TipsService.AddTip(AdminWorks, "Нажмите правой кнопкой мыши, чтобы увидеть список действий, для того, чтобы удалить работу выберите её");
+
         }
         private void Create_Report(object sender, EventArgs e)
         {

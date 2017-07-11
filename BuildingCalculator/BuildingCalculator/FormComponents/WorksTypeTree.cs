@@ -25,6 +25,7 @@ namespace BuildingCalculator.FormComponents
             treelist.Add(this);
             treelist.RemoveAll(t => t == null);
             BuildList(true, true);
+            Classes.Static.TipsService.AddTip(Search, "Чтобы найти следующую работу, нажмите enter");
         }
         private void Search_TextChanged(object sender, EventArgs e)
         {
