@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Room.cs" />
+    <Compile Include="Classes\Static\TipsService.cs" />
     <Compile Include="FormComponents\ElementForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -200,6 +201,12 @@
     <Compile Include="FormComponents\TextWithOperations.Designer.cs">
       <DependentUpon>TextWithOperations.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormComponents\TipForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormComponents\TipForm.Designer.cs">
+      <DependentUpon>TipForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormComponents\WorksTypeTree.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -241,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\TextWithOperations.resx">
       <DependentUpon>TextWithOperations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormComponents\TipForm.resx">
+      <DependentUpon>TipForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormComponents\WorksTypeTree.resx">
       <DependentUpon>WorksTypeTree.cs</DependentUpon>
