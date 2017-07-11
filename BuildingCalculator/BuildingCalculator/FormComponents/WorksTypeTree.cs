@@ -13,6 +13,7 @@ namespace BuildingCalculator.FormComponents
 {
     public partial class WorksTypeTree : UserControl
     {
+        public static List<WorksTypeTree> treelist = new List<WorksTypeTree>();
         public List<WorkTypeClass> CheckedWorks = new List<WorkTypeClass>();
         public List<WorkTypeClass.Category> CheckedCats = new List<WorkTypeClass.Category>();
         public event CheckedNodesChangedHandler CheckedNodesChanged;
@@ -21,6 +22,8 @@ namespace BuildingCalculator.FormComponents
         {
             InitializeComponent();
             WorksList.Nodes.Add("Все категории");
+            treelist.Add(this);
+            treelist.RemoveAll(t => t == null);
             BuildList(true, true);
         }
         private void Search_TextChanged(object sender, EventArgs e)
@@ -149,14 +152,20 @@ namespace BuildingCalculator.FormComponents
                     newnode.Text = ob.article + " " + ob.formula;
                     newnode.Name = ob.article;
                     newnode.Tag = ob;
-                    tree[WorkTypeClass.CategoryNames[ob.category]].Nodes.Add(newnode);
                     if (WorksList.CheckBoxes)
                         if (CheckedWorks.Find(w => w.Equals(ob)) != null)
-                        {
                             newnode.Checked = true;
-                            newnode.Parent.Expand();
-                        }
+                    tree[WorkTypeClass.CategoryNames[ob.category]].Nodes.Add(newnode);
                 }
+                if (WorksList.CheckBoxes)
+                    for (int i=0;i<CheckedWorks.Count;i++)
+                    {
+                        if (workslist.Find(w => w.Equals(CheckedWorks[i])) == null)
+                        {
+                            CheckedWorks.Remove(CheckedWorks[i]);
+                            break;
+                        }
+                    }
                 if (sorted)
                     WorksList.Sort();
             }
@@ -165,8 +174,8 @@ namespace BuildingCalculator.FormComponents
         {
             WorksList.Nodes.Clear();
             WorksList.Nodes.Add("Все категории");
-            CheckedWorks.RemoveAll(w => JSONSerializeService.OutputItems.Find(w1 => w1.Equals(w))==null);
             BuildList(true,true);
         }
+        
     }
 }

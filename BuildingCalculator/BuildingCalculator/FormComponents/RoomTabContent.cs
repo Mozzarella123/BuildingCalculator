@@ -272,5 +272,17 @@ namespace BuildingCalculator.FormComponents
             }
             RefrehTable(NonStandardWorkTable, new EventArgs());
         }
+
+        private void worktable_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {           
+            e.ThrowException = false;
+            e.Cancel = true;
+        }
+
+        private void NonStandardWorkTable_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.ThrowException = false;
+            e.Cancel = true;
+        }
     }
 }

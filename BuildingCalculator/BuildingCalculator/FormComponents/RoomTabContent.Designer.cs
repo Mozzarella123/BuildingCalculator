@@ -349,6 +349,7 @@
             this.worktable.Size = new System.Drawing.Size(826, 400);
             this.worktable.TabIndex = 1;
             this.worktable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.worktable_CellContentClick);
+            this.worktable.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.worktable_DataError);
             // 
             // Title
             // 
@@ -550,6 +551,7 @@
             this.NonStandardWorkTable.RowTemplate.Height = 28;
             this.NonStandardWorkTable.Size = new System.Drawing.Size(826, 393);
             this.NonStandardWorkTable.TabIndex = 2;
+            this.NonStandardWorkTable.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.NonStandardWorkTable_DataError);
             // 
             // Title1
             // 

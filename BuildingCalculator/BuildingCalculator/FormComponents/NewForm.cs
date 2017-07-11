@@ -213,7 +213,7 @@ namespace BuildingCalculator.FormComponents
             if (index != 0)
             {
                 Rooms.RemoveAt(index);
-                RoomTabs.TabPages.RemoveAt(index);
+                RoomTabs.TabPages[index].Dispose();
                 RoomTabs.SelectedIndex = --index;
             }
         }
@@ -283,7 +283,6 @@ namespace BuildingCalculator.FormComponents
         {
             CreateWorkTypeForm.CreateWorkType();
             CreateWorkTypeForm.Button.Text = "Добавить тип работ";
-            RefreshTrees();
         }
         private void Edit(object sender, EventArgs e)
         {
@@ -303,7 +302,6 @@ namespace BuildingCalculator.FormComponents
             {
                 JSONSerializeService.OutputItems.Remove((WorkTypeClass)AdminWorks.WorksList.SelectedNode.Tag);
                 JSONSerializeService.Save();
-                RefreshTrees();
             }
         }
         private void splitContainer2_Panel2_MouseClick(object sender, MouseEventArgs e)
