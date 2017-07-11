@@ -48,7 +48,7 @@ namespace BuildingCalculator
         {
             parametrs = new List<string>();
             ParametersValue = new double[parametrs.Count];
-            isFixedPrice = false;
+            
 
         }
         public WorkTypeClass(double price)
@@ -76,7 +76,7 @@ namespace BuildingCalculator
             return result;
         }
         public string Price { get { try { return GetPrice().ToString(); } catch { return "0"; } } }
-        public bool isFixedPrice { get; private set; }
+        public bool isFixedPrice { get; set; }
         public double fixedPrice;
         public string article { get; set; }
         public string formula { get; set; }
