@@ -64,7 +64,8 @@ namespace BuildingCalculator.FormComponents
             AdminWorks.Title.Text = "Настройка работ";
             roomTabContent1.Room.CheckedWorks = roomTabContent1.worksTypeTree1.CheckedWorks;
             roomTabContent1.Room.Title = "Комната";
-            
+            TipsService.AddTip(roomTabContent1.worksTypeTree1, "Дерево с типами работ, распределенными по категориям");
+            TipsService.AddTip(roomTabContent1.worktable, "Рабочая область, здесь находятся все работы, которые вы добавили в проект.");
         }
         private void Create_Report(object sender, EventArgs e)
         {
@@ -371,5 +372,7 @@ namespace BuildingCalculator.FormComponents
         {
             Refresh(sender,e);
         }
+
+        
     }
 }
