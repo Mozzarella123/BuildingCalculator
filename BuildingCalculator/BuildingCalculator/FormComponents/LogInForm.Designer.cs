@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogInForm));
             this.LoginInp = new System.Windows.Forms.TextBox();
             this.PassInp = new System.Windows.Forms.TextBox();
             this.LoginT = new System.Windows.Forms.Label();
@@ -146,6 +147,7 @@
             this.ClientSize = new System.Drawing.Size(282, 280);
             this.Controls.Add(this.MarkUp);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "LogInForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

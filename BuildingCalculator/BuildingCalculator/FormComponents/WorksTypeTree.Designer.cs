@@ -97,6 +97,7 @@
             // 
             this.WorksList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.WorksList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.WorksList.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawText;
             this.WorksList.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WorksList.HideSelection = false;
             this.WorksList.Location = new System.Drawing.Point(3, 150);
@@ -105,6 +106,7 @@
             this.WorksList.TabIndex = 4;
             this.WorksList.BeforeCheck += new System.Windows.Forms.TreeViewCancelEventHandler(this.WorksList_BeforeCheck);
             this.WorksList.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.WorksList_AfterCheck);
+            this.WorksList.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.WorksList_DrawNode);
             this.WorksList.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.WorksList_BeforeSelect);
             this.WorksList.DoubleClick += new System.EventHandler(this.WorksList_DoubleClick);
             // 

@@ -17,7 +17,7 @@ namespace BuildingCalculator
 {
     class PDFDocument
     {
-        public Document doc; 
+        public Document doc;
         public PDFDocument()
         {
 
@@ -40,7 +40,7 @@ namespace BuildingCalculator
             style.Font.Color = Colors.DarkBlue;
             style.ParagraphFormat.PageBreakBefore = true;
             style.ParagraphFormat.SpaceAfter = 6;
-            
+
 
             style = doc.Styles["Heading2"];
             style.Font.Size = 16;
@@ -58,16 +58,28 @@ namespace BuildingCalculator
 
 
             style = doc.Styles[StyleNames.Header];
-            style.ParagraphFormat.AddTabStop("16cm", TabAlignment.Right);
+            style.ParagraphFormat.AddTabStop("1cm", TabAlignment.Right);
 
             style = doc.Styles[StyleNames.Footer];
-            style.ParagraphFormat.AddTabStop("8cm", TabAlignment.Center);
+            style.ParagraphFormat.AddTabStop("1cm", TabAlignment.Center);
         }
         public Section getSection(AddType type)
         {
             switch (type)
             {
-                case AddType.ActivePage: if (doc.LastSection == null) return doc.AddSection();else return doc.LastSection; 
+                case AddType.ActivePage:
+                    {
+                        if (doc.LastSection == null)
+                        {
+                            Section sect = new Section();
+                            sect.PageSetup.LeftMargin = 10;
+                            sect.PageSetup.TopMargin = 10;
+                            doc.Add(sect);
+                            return sect;
+                        }
+                        else return doc.LastSection;
+
+                    }
                 case AddType.newPage: doc.AddSection(); return doc.LastSection;
             }
             return null;

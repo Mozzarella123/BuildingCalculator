@@ -72,6 +72,12 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup />
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Wwalczyszyn-Android-Style-Honeycomb-Calculator.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Excel, Version=2.1.2.3, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelDataReader.2.1.2.3\lib\net45\Excel.dll</HintPath>
@@ -202,6 +208,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\WorkTypeClass.cs" />
+    <Content Include="Wwalczyszyn-Android-Style-Honeycomb-Calculator.ico" />
     <EmbeddedResource Include="FormComponents\ElementForm.resx">
       <DependentUpon>ElementForm.cs</DependentUpon>
     </EmbeddedResource>

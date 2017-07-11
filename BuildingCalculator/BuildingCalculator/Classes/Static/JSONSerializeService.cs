@@ -77,6 +77,7 @@ namespace BuildingCalculator
         /// <param name="item"> добавляемый объект</param>
         public static void AddToOutput(WorkTypeClass item)
         {
+            item.ParametersValue = new double[item.parametrs.Count];
             OutputItems.Add(item);
         }
         /// <summary>
