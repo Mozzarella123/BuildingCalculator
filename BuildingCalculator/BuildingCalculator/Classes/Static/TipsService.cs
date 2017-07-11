@@ -39,7 +39,7 @@ namespace BuildingCalculator.Classes.Static
         static bool tutorial = bool.Parse(ConfigWorksService.getValue("tutorial"));
         public static void AddTip(Control control,string text)
         {
-            //if (tutorial)
+            if (tutorial)
                 _Tips.Add(new Tip(control, text));
         }
     }
