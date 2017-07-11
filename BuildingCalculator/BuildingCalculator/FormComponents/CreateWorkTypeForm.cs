@@ -146,19 +146,17 @@ namespace BuildingCalculator
         }
         private void AddWorkType(object sender, EventArgs e)
         {
-            //if (FCreate == null)
-            //    FCreate = new FormulaCreater();
-            //List<string> par = new List<string>();
-            //for (int i = 0; i < Listofparams.Items.Count; i++)
-            //    par.Add(Listofparams.Items[i].ToString());
-            //FCreate.setParam(par);
-            //FCreate.Show();
             WorkTypeClass work = new WorkTypeClass();
             work.article = WorkTypeNameInp.Text;
             work.setPriceFunc(formula.TextBox.Text);
             var numer = Listofparams.Items.GetEnumerator();
             while (numer.MoveNext())
                 work.parametrs.Add(numer.Current.ToString());
+            if (Category.SelectedIndex==-1)
+            {
+                MessageBox.Show("Выберите категорию!");
+                return;
+            }
             work.category = (WorkTypeClass.Category)(Category.SelectedIndex);
             if (DelegateAssemblyService.isCreatedCorrect(work))
             {

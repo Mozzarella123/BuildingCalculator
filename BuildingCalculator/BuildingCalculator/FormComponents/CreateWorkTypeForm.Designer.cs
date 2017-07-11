@@ -49,7 +49,7 @@
             this.Listofparams.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Listofparams.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Listofparams.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Listofparams.FormattingEnabled = true;
             this.Listofparams.ItemHeight = 29;
             this.Listofparams.Location = new System.Drawing.Point(599, 71);
@@ -64,7 +64,7 @@
             // WorkTypeNameInp
             // 
             this.WorkTypeNameInp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.WorkTypeNameInp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.WorkTypeNameInp.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.WorkTypeNameInp.Location = new System.Drawing.Point(80, 71);
             this.WorkTypeNameInp.Margin = new System.Windows.Forms.Padding(4, 9, 4, 9);
             this.WorkTypeNameInp.Multiline = true;
@@ -76,11 +76,11 @@
             // 
             this.WorkTypeName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.WorkTypeName.AutoSize = true;
-            this.WorkTypeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.WorkTypeName.Location = new System.Drawing.Point(76, 9);
+            this.WorkTypeName.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.WorkTypeName.Location = new System.Drawing.Point(82, 9);
             this.WorkTypeName.Margin = new System.Windows.Forms.Padding(4, 9, 4, 9);
             this.WorkTypeName.Name = "WorkTypeName";
-            this.WorkTypeName.Size = new System.Drawing.Size(189, 44);
+            this.WorkTypeName.Size = new System.Drawing.Size(176, 44);
             this.WorkTypeName.TabIndex = 5;
             this.WorkTypeName.Text = "Наименование";
             this.WorkTypeName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -89,11 +89,11 @@
             // 
             this.formulat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.formulat.AutoSize = true;
-            this.formulat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.formulat.Location = new System.Drawing.Point(29, 126);
+            this.formulat.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.formulat.Location = new System.Drawing.Point(36, 126);
             this.formulat.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.formulat.Name = "formulat";
-            this.formulat.Size = new System.Drawing.Size(283, 33);
+            this.formulat.Size = new System.Drawing.Size(269, 33);
             this.formulat.TabIndex = 6;
             this.formulat.Text = "Формула расчёта цены";
             this.formulat.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -102,11 +102,11 @@
             // 
             this.ParamsT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.ParamsT.AutoSize = true;
-            this.ParamsT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ParamsT.Location = new System.Drawing.Point(392, 126);
+            this.ParamsT.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ParamsT.Location = new System.Drawing.Point(394, 126);
             this.ParamsT.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.ParamsT.Name = "ParamsT";
-            this.ParamsT.Size = new System.Drawing.Size(145, 33);
+            this.ParamsT.Size = new System.Drawing.Size(141, 33);
             this.ParamsT.TabIndex = 7;
             this.ParamsT.Text = "Параметры";
             this.ParamsT.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -132,7 +132,7 @@
             this.Category.Cursor = System.Windows.Forms.Cursors.Default;
             this.Category.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Category.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.Category.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Category.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Category.FormattingEnabled = true;
             this.Category.Location = new System.Drawing.Point(365, 71);
             this.Category.Margin = new System.Windows.Forms.Padding(4, 9, 4, 9);
@@ -144,11 +144,11 @@
             // 
             this.CategoryT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.CategoryT.AutoSize = true;
-            this.CategoryT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CategoryT.Location = new System.Drawing.Point(397, 9);
+            this.CategoryT.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CategoryT.Location = new System.Drawing.Point(402, 9);
             this.CategoryT.Margin = new System.Windows.Forms.Padding(4, 9, 4, 9);
             this.CategoryT.Name = "CategoryT";
-            this.CategoryT.Size = new System.Drawing.Size(136, 44);
+            this.CategoryT.Size = new System.Drawing.Size(125, 44);
             this.CategoryT.TabIndex = 11;
             this.CategoryT.Text = "Категория";
             this.CategoryT.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -186,7 +186,7 @@
             // formula
             // 
             this.formula.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.formula.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.formula.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.formula.Location = new System.Drawing.Point(2, 170);
             this.formula.Margin = new System.Windows.Forms.Padding(2);
             this.formula.Name = "formula";
@@ -197,7 +197,7 @@
             // parameters
             // 
             this.parameters.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.parameters.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.parameters.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.parameters.Location = new System.Drawing.Point(351, 177);
             this.parameters.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.parameters.Name = "parameters";
@@ -208,11 +208,11 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(664, 9);
+            this.label1.Font = new System.Drawing.Font("Roboto Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(671, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(244, 44);
+            this.label1.Size = new System.Drawing.Size(230, 44);
             this.label1.TabIndex = 13;
             this.label1.Text = "Список параметров";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
