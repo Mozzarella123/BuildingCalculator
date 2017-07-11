@@ -46,6 +46,7 @@ namespace MyNamespace
                     CompileString += CreateFunctions(w);
             }
             CompileString += end;//завершение формирования кода
+            fId = 0;
 
             CSharpCodeProvider provider = new CSharpCodeProvider();
             CompilerParameters parameters = new CompilerParameters();
@@ -85,6 +86,8 @@ namespace MyNamespace
         /// <returns></returns>
         static string CreateFunctions(WorkTypeClass work)
         {
+            //if (work.isFixedPrice)
+            //    return "";
             string parametrs="";
             foreach (string str in work.parametrs)
                 parametrs += "double " + str + ",";//формирование стороки параметров
@@ -104,13 +107,15 @@ namespace MyNamespace
         /// </summary>
         public static void WriteCompileStringToFile()
         {
+            
             CompileString = begin;
             foreach(WorkTypeClass work in JSONSerializeService.InputItems)
             {
-                CompileString += CreateFunctions(work);
+                if (!work.isFixedPrice)
+                    CompileString += CreateFunctions(work);
             }
             CompileString += end;
-
+            fId = 0;
             File.WriteAllText("ForCompile.cs", CompileString);
             
         }
@@ -121,30 +126,35 @@ namespace MyNamespace
         /// <returns></returns>
         public static bool isCreatedCorrect(WorkTypeClass work)
         {
-            string func = CreateFunctions(work);//генерация кода
-            try
+            if (!work.isFixedPrice)
             {
-                CSharpCodeProvider provider = new CSharpCodeProvider();
-                CompilerParameters parameters = new CompilerParameters();
-                parameters.GenerateInMemory = false;
-                //if (File.Exists("test.dll"))
-                //    File.Delete("test.dll");
-                //parameters.OutputAssembly = "test.dll";
-                parameters.ReferencedAssemblies.Add("System.dll");
-                CompilerResults results = provider.CompileAssemblyFromSource(parameters, begin + func + end);//компиляция кода
-
-                if (results.Errors.Count == 0)
-                    return true;
-                else
+                string func = CreateFunctions(work);//генерация кода
+                try
                 {
-                    
-                    return false;
+                    CSharpCodeProvider provider = new CSharpCodeProvider();
+                    CompilerParameters parameters = new CompilerParameters();
+                    parameters.GenerateInMemory = false;
+                    //if (File.Exists("test.dll"))
+                    //    File.Delete("test.dll");
+                    //parameters.OutputAssembly = "test.dll";
+                    parameters.ReferencedAssemblies.Add("System.dll");
+                    CompilerResults results = provider.CompileAssemblyFromSource(parameters, begin + func + end);//компиляция кода
+
+                    if (results.Errors.Count == 0)
+                        return true;
+                    else
+                    {
+
+                        return false;
+                    }
+                }
+                catch
+                {
+                    return false;//в случае ошибки, код сгенерирован неверно
                 }
             }
-            catch
-            {
-                return false;//в случае ошибки, код сгенерирован неверно
-            }
+            else
+                return true;
         } 
     }
 }

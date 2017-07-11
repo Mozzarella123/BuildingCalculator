@@ -29,8 +29,8 @@ namespace BuildingCalculator
             InputFilePath = OutputFilePath = path;
             if (File.Exists(InputFilePath))//если данные есть
             {
-                try
-                {
+                //try
+                //{
                 InputJsonString = File.ReadAllText(InputFilePath);//чтение файла
                 isHaveInput = true;
                 InputItems = OutputItems = JsonConvert.DeserializeObject<List<WorkTypeClass>>(InputJsonString);//чтение входных данных
@@ -44,18 +44,18 @@ namespace BuildingCalculator
                     DelegateAssemblyService.AssemblyDelegate();//сборка делегатов(проверка корректности входных данных)
                     if (isLoadingCorrect)
                         File.Copy("works.json", "lastCompleteBuild.json", true);//если начальные данные не поврежденны, то сохраняем их как последний рабочий билд
-                }
-                catch//если начальные данные повреждены
-                {
-                    if (File.Exists("lastCompleteBuild.json"))
-                    {
-                        isLoadingCorrect = false;
-                        ReadInput("lastCompleteBuild.json");//загрузка последнего рабочего билда
-                        MessageBox.Show("Cборка не была загружена из-за ошибки, поэтому была загружена последняя рабочая версия.");
-                        return;
-                    }
+                //}
+                //catch//если начальные данные повреждены
+                //{
+                //    if (File.Exists("lastCompleteBuild.json"))
+                //    {
+                //        isLoadingCorrect = false;
+                //        ReadInput("lastCompleteBuild.json");//загрузка последнего рабочего билда
+                //        MessageBox.Show("Cборка не была загружена из-за ошибки, поэтому была загружена последняя рабочая версия.");
+                //        return;
+                //    }
                     
-                }
+                //}
                 
                 
             }
