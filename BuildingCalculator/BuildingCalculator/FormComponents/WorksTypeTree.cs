@@ -21,7 +21,7 @@ namespace BuildingCalculator.FormComponents
         {
             InitializeComponent();
             WorksList.Nodes.Add("Все категории");
-            Functions.BuildList(WorksList, true, true);
+            BuildList(true, true);
         }
         private void Search_TextChanged(object sender, EventArgs e)
         {
@@ -42,25 +42,6 @@ namespace BuildingCalculator.FormComponents
                 WorksList.SelectedNode = e.Node.FirstNode;
             }
         }
-        //private void Check(TreeNode node, bool check)
-        //{
-        //    if (node.FirstNode != null)
-        //    {
-        //        if (check)
-        //        {
-        //            node.ExpandAll();
-        //            foreach (TreeNode nod in node.Nodes)
-        //                nod.Checked = true;
-        //        }
-        //        else
-        //        {
-        //            node.Collapse();
-        //            foreach (TreeNode nod in node.Nodes)
-        //                nod.Checked = false;
-        //        }
-        //    }
-        //    else return;
-        //}
         private void WorksList_AfterCheck(object sender, TreeViewEventArgs e)
         {
             TreeNode node = e.Node;
@@ -116,6 +97,77 @@ namespace BuildingCalculator.FormComponents
         private void WorksList_DoubleClick(object sender, EventArgs e)
         {
 
+        }
+        private void WorksList_DrawNode(object sender, DrawTreeNodeEventArgs e)
+        {
+            Color foreColor;
+            if (e.Node == ((TreeView)sender).SelectedNode)
+            {
+                // is selected, draw a HightliteText rectangle under the text
+                foreColor = SystemColors.HighlightText;
+                e.Graphics.FillRectangle(SystemBrushes.Highlight, e.Bounds);
+                ControlPaint.DrawFocusRectangle(e.Graphics, e.Bounds, foreColor, SystemColors.Highlight);
+            }
+            else
+            {
+                foreColor = (e.Node.ForeColor == Color.Empty) ? ((TreeView)sender).ForeColor : e.Node.ForeColor;
+                e.Graphics.FillRectangle(SystemBrushes.Window, e.Bounds.X+5,e.Bounds.Y,e.Bounds.Width,e.Bounds.Height);
+            }
+
+            TextRenderer.DrawText(
+                e.Graphics,
+                e.Node.Text,
+                e.Node.NodeFont ?? e.Node.TreeView.Font,
+                e.Bounds,
+                foreColor,
+                TextFormatFlags.GlyphOverhangPadding);
+        }
+        public  void BuildList(bool allcats = true, bool sorted = true, List<WorkTypeClass> checkedworks = null)
+        {
+            if (JSONSerializeService.InputItems != null)
+            {
+                TreeNodeCollection tree;
+                if (!allcats)
+                    tree = WorksList.Nodes;
+                else
+                    tree = WorksList.Nodes[0].Nodes;
+                List<WorkTypeClass> workslist = JSONSerializeService.InputItems;
+                //Добавляем категорию
+                foreach (var pair in WorkTypeClass.CategoryNames)
+                {
+                    TreeNode newnode = new TreeNode(pair.Value);
+                    if (WorksList.CheckBoxes)
+                        if (CheckedCats.Contains(pair.Key))
+                            newnode.Checked = true;
+                    newnode.Name = pair.Value;
+                    newnode.Tag = pair.Key;
+                    tree.Add(newnode);
+                }
+                //Разбиваем по категориям
+                foreach (WorkTypeClass ob in workslist)
+                {
+                    TreeNode newnode = new TreeNode(ob.article);
+                    newnode.Text = ob.article + " " + ob.formula;
+                    newnode.Name = ob.article;
+                    newnode.Tag = ob;
+                    tree[WorkTypeClass.CategoryNames[ob.category]].Nodes.Add(newnode);
+                    if (WorksList.CheckBoxes)
+                        if (CheckedWorks.Find(w => w.Equals(ob)) != null)
+                        {
+                            newnode.Checked = true;
+                            newnode.Parent.Expand();
+                        }
+                }
+                if (sorted)
+                    WorksList.Sort();
+            }
+        }
+        public void RefreshList()
+        {
+            WorksList.Nodes.Clear();
+            WorksList.Nodes.Add("Все категории");
+            CheckedWorks.RemoveAll(w => JSONSerializeService.OutputItems.Find(w1 => w1.Equals(w))==null);
+            BuildList(true,true);
         }
     }
 }

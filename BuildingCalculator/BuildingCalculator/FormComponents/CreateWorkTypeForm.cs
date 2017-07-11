@@ -75,7 +75,7 @@ namespace BuildingCalculator
         public static void CreateWorkType(WorkTypeClass obj=null)
         {
             Functions.CenterForm(cwf, NewForm.MainForm);
-            cwf.Show();
+            cwf.ShowDialog();
             if (obj != null)
             {
                 RedactedItemIndex = JSONSerializeService.OutputItems.IndexOf(obj);

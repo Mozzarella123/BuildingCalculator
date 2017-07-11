@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,8 +24,6 @@ namespace BuildingCalculator.FormComponents
         public NewForm()
         {
             JSONSerializeService.ReadInput("works.json");
-            foreach(WorkTypeClass work in JSONSerializeService.OutputItems)
-                work.ParametersValue = new double[work.parametrs.Count];
             ConfigWorksService.CheckSettings();
             InitializeComponent();
             MainForm = this;
@@ -121,28 +120,28 @@ namespace BuildingCalculator.FormComponents
             {
                 RoomResT.Text += 
                     room.Title + "\n" + 
-                    "Периметр пола: "+room.BottomPerimeter + "\n" + 
-                    "Площадь потолка и пола: "+room.Area + "\n" +
-                    "Периметр потолка: " +room.Perimeter + "\n" +
-                    "Площадь стен: " +room.CommonArea+ "\n" ;
+                    "Периметр пола: "+room.BottomPerimeter.ToString("#.##") + "\n" + 
+                    "Площадь потолка и пола: "+room.Area.ToString("#.##") + "\n" +
+                    "Периметр потолка: " +room.Perimeter.ToString("#.##") + "\n" +
+                    "Площадь стен: " +room.CommonArea.ToString("#.##") + "\n" ;
                 results[0] += room.BottomPerimeter;
                 results[1] += room.Area;
                 results[2] += room.Perimeter;
                 results[3] += room.CommonArea;
             }
             RoomResT.Text += "==Общее=="+ "\n" +
-                    "Периметр пола:" + results[0] + "\n" +
-                    "Площадь потолка и пола: " + results[1] + "\n" +
-                    "Периметр потолка: " + results[2] + "\n" +
-                    "Площадь стен:" + results[3];
+                    "Периметр пола:" + results[0].ToString("#.##") + "\n" +
+                    "Площадь потолка и пола: " + results[1].ToString("#.##") + "\n" +
+                    "Периметр потолка: " + results[2].ToString("#.##") + "\n" +
+                    "Площадь стен:" + results[3].ToString("#.##");
             SummT.Text = "========\n";
             double commonsumm = 0;
             for (int i = 0; i < Rooms.Count; i++)
             {
-                SummT.Text += Rooms[i].Title + "\nСумма:" + Rooms[i].Summ +"\n";
+                SummT.Text += Rooms[i].Title + "\nСумма:" + Rooms[i].Summ.ToString("#.##") + "\n";
                 commonsumm += Rooms[i].Summ;
             }
-            SummT.Text += "========" + "\nОбщая сумма:" + commonsumm;
+            SummT.Text += "========" + "\nОбщая сумма:" + commonsumm.ToString("#.##");
             if (Convert.ToBoolean(ConfigWorksService.getValue(ConfigWorksService.Options.ReportRooms)))
             {
                 double commonsum = 0;
@@ -150,18 +149,18 @@ namespace BuildingCalculator.FormComponents
                 {
                     double sum = 0;
                     finaltable.Rows.Add(new string[] { room.Title, "", "", "" });
-                    finaltable.Rows.Add(new string[] { "Площадь стен", room.CommonArea.ToString(), "", "" });
-                    finaltable.Rows.Add(new string[] { "Площадь пола", room.Area.ToString(), "", "" });
-                    finaltable.Rows.Add(new string[] { "Периметр пола", room.BottomPerimeter.ToString(), "", "" });
+                    finaltable.Rows.Add(new string[] { "Площадь стен", room.CommonArea.ToString("#.##"), "", "" });
+                    finaltable.Rows.Add(new string[] { "Площадь пола", room.Area.ToString("#.##"), "", "" });
+                    finaltable.Rows.Add(new string[] { "Периметр пола", room.BottomPerimeter.ToString("#.##"), "", "" });
                     foreach (WorkTypeClass work in room.CheckedWorks)
                     {
                         finaltable.Rows.Add(new string[] { work.article, work.quantity, reg.Match(work.formula,0).Value, work.Price });
                         sum += work.GetPrice();
                     }
-                    finaltable.Rows.Add(new string[] { "", "", "Сумма", sum.ToString() });
+                    finaltable.Rows.Add(new string[] { "", "", "Сумма", sum.ToString("#.##") });
                     commonsum += sum;
                 }
-                finaltable.Rows.Add(new string[] { "", "", "Общая сумма", commonsum.ToString() });
+                finaltable.Rows.Add(new string[] { "", "", "Общая сумма", commonsum.ToString("#.##") });
                 foreach (DataGridViewRow row in finaltable.Rows)
                     row.ReadOnly = true;
                 finaltable.Rows[finaltable.RowCount - 1].ReadOnly = false;
@@ -199,12 +198,12 @@ namespace BuildingCalculator.FormComponents
                     string quantity = "";
                     for (int i = 0; i < paramssumm[pair.Key].Length; i++)
                         quantity += paramssumm[pair.Key][i] + " " + pair.Key.parametrs[i] + "\n";
-                    finaltable.Rows.Add(new string[] { pair.Key.article, quantity, reg.Match(pair.Key.formula, 0).Value, pair.Value.ToString() });
+                    finaltable.Rows.Add(new string[] { pair.Key.article, quantity, reg.Match(pair.Key.formula, 0).Value, pair.Value.ToString("#.##") });
                     finaltable.Rows[finaltable.RowCount - 2].ReadOnly = true;
 
                 }
                 DataGridViewRow row = new DataGridViewRow();
-                finaltable.Rows.Add(new string[] { "", "", "Сумма", commonsum.ToString() });
+                finaltable.Rows.Add(new string[] { "", "", "Сумма", commonsum.ToString("#.##") });
                 finaltable.Rows[finaltable.RowCount - 2].ReadOnly = false;
             }
         }
@@ -284,7 +283,7 @@ namespace BuildingCalculator.FormComponents
         {
             CreateWorkTypeForm.CreateWorkType();
             CreateWorkTypeForm.Button.Text = "Добавить тип работ";
-            //CreateWorkTypeForm.ActiveForm.Text 
+            RefreshTrees();
         }
         private void Edit(object sender, EventArgs e)
         {
@@ -293,7 +292,6 @@ namespace BuildingCalculator.FormComponents
             {
 
                 CreateWorkTypeForm.CreateWorkType((WorkTypeClass)AdminWorks.WorksList.SelectedNode.Tag);
-
                 CreateWorkTypeForm.Button.Text = "Редактировать тип работ";
                 CreateWorkTypeForm.ActiveForm.Text = "Редактировать тип работ";
             }
@@ -305,6 +303,7 @@ namespace BuildingCalculator.FormComponents
             {
                 JSONSerializeService.OutputItems.Remove((WorkTypeClass)AdminWorks.WorksList.SelectedNode.Tag);
                 JSONSerializeService.Save();
+                RefreshTrees();
             }
         }
         private void splitContainer2_Panel2_MouseClick(object sender, MouseEventArgs e)
@@ -328,10 +327,10 @@ namespace BuildingCalculator.FormComponents
         }
         public void RefreshTrees()
         {
-            Functions.RefreshList(AdminWorks.WorksList);
-            Functions.RefreshList(roomTabContent1.worksTypeTree1.WorksList);
-            foreach (WorkTypeClass work in JSONSerializeService.OutputItems)
-                work.ParametersValue = new double[work.parametrs.Count];
+            AdminWorks.RefreshList();
+            foreach (TabPage tab in RoomTabs.TabPages)
+                foreach (var tabcont in tab.Controls.OfType<RoomTabContent>())
+                    tabcont.worksTypeTree1.RefreshList();
         }
         private void Clear_Click(object sender, EventArgs e)
         {

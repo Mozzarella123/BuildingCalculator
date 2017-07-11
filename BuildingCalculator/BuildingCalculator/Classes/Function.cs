@@ -109,43 +109,7 @@ namespace BuildingCalculator.Classes
                 hint.SetToolTip(control, text);
             }
         }
-        public static void BuildList(TreeView Tree, bool allcats = false, bool sorted = true)
-        {
-            if (JSONSerializeService.InputItems != null)
-            {
-                TreeNodeCollection tree;
-                if (!allcats)
-                    tree = Tree.Nodes;
-                else
-                    tree = Tree.Nodes[0].Nodes;
-                List<WorkTypeClass> workslist = JSONSerializeService.InputItems;
-                //Добавляем категорию
-                foreach (var pair in WorkTypeClass.CategoryNames)
-                {
-                    TreeNode newnode = new TreeNode(pair.Value);
-                    newnode.Name = pair.Value;
-                    newnode.Tag = pair.Key;
-                    tree.Add(newnode);
-                }
-                //Разбиваем по категориям
-                foreach (WorkTypeClass ob in workslist)
-                {
-                    TreeNode newnode = new TreeNode(ob.article);
-                    //newnode.Name = WorkTypeClass.CategoryNames[ob.category];
-                    newnode.Text = ob.article + " " + ob.formula;
-                    newnode.Name = ob.article;
-                    newnode.Tag = ob;
-                    tree[WorkTypeClass.CategoryNames[ob.category]].Nodes.Add(newnode);
-                }
-                if (sorted)
-                    Tree.Sort();
-            }
-        }
-        public static void RefreshList(TreeView tree)
-        {
-            tree.Nodes.Clear();
-            BuildList(tree);
-        }
+        
         public static void CenterForm(Form form, Form parentform)
         {
             form.Top = (parentform.Top + (parentform.Height / 2)) - form.Height / 2;
@@ -180,7 +144,6 @@ namespace BuildingCalculator.Classes
                     tree.SelectedNode.Parent.Collapse();
                 tree.SelectedNode = selectedNode;
                 tree.SelectedNode.Expand();
-                //tree.Select();
                 if (LastNodeIndex == CurrentNodeMatches.Count)
                     LastNodeIndex = 0;
             }
