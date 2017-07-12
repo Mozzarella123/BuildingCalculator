@@ -78,6 +78,7 @@ namespace BuildingCalculator.FormComponents
             TipsService.AddTip(AdminWorks, "Нажмите правой кнопкой мыши, чтобы увидеть список действий, для того, чтобы удалить работу выберите её");
 
         }
+        
         private void Create_Report(object sender, EventArgs e)
         {
 
