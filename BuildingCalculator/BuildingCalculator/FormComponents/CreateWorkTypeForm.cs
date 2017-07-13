@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BuildingCalculator.Classes;
 using BuildingCalculator.FormComponents;
+using BuildingCalculator;
 
 
 namespace BuildingCalculator
@@ -45,6 +46,7 @@ namespace BuildingCalculator
             foreach (var pair in WorkTypeClass.CategoryNames)
                 Category.Items.Add(pair.Value);
             Functions.ContextMenu(formula.TextBox, new List<string>() { "Очистить" }, new List<EventHandler>() { ClearFormula});
+            
         }
         private void ClearFormula(object sender, EventArgs e)
         {
@@ -75,7 +77,7 @@ namespace BuildingCalculator
         public static void CreateWorkType(WorkTypeClass obj=null)
         {
             Functions.CenterForm(cwf, NewForm.MainForm);
-            cwf.ShowDialog();
+            
             if (obj != null)
             {
                 RedactedItemIndex = JSONSerializeService.OutputItems.IndexOf(obj);
@@ -84,16 +86,7 @@ namespace BuildingCalculator
                 cwf.Listofparams.Items.Clear();
                 foreach (string str in obj.parametrs)
                     cwf.Listofparams.Items.Add(str);
-                switch (obj.category)
-                {
-                    case WorkTypeClass.Category.walls:cwf.Category.SelectedIndex = 0; break;
-                    case WorkTypeClass.Category.floor: cwf.Category.SelectedIndex = 1; break;
-                    case WorkTypeClass.Category.ceiling: cwf.Category.SelectedIndex = 2; break;
-                    case WorkTypeClass.Category.floorPer: cwf.Category.SelectedIndex = 3; break;
-                    case WorkTypeClass.Category.ceilingPer: cwf.Category.SelectedIndex = 4; break;
-                    case WorkTypeClass.Category.other: cwf.Category.SelectedIndex = 5; break;
-                    default:cwf.Category.SelectedIndex = 5;break;
-                }
+                cwf.Category.SelectedIndex = (int)obj.category;
             }
             else
             {
@@ -102,7 +95,7 @@ namespace BuildingCalculator
                 cwf.formula.Text = "";
                 cwf.Listofparams.Items.Clear();
             }
-            
+            cwf.ShowDialog();
         }
         private void CreateWorkTypeForm_Load(object sender, EventArgs e)
         {
@@ -172,6 +165,7 @@ namespace BuildingCalculator
             }
             else
                 MessageBox.Show("Параметры обьекта заданны некоректно.");
+
             
         }
 
