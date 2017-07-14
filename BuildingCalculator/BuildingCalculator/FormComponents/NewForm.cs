@@ -167,7 +167,7 @@ namespace BuildingCalculator.FormComponents
                     finaltable.Rows.Add(new string[] { "Периметр пола", room.BottomPerimeter.ToString("#.##"), "", "" });
                     foreach (WorkTypeClass work in room.CheckedWorks)
                     {
-                        finaltable.Rows.Add(new string[] { work.article, work.quantity, reg.Match(work.formula,0).Value, work.Price });
+                        finaltable.Rows.Add(new string[] { work.Article, work.Quantity, reg.Match(work.Formula,0).Value, work.Price });
                         sum += work.GetPrice();
                     }
                     finaltable.Rows.Add(new string[] { "", "", "Сумма", sum.ToString("#.##") });
@@ -193,7 +193,7 @@ namespace BuildingCalculator.FormComponents
                         if (work.ParametersValue.Length == 0)
                             work.ParametersValue = new double[work.parametrs.Count];
                         //проверяем содержит 
-                        if (everyworksumm.FirstOrDefault(x => x.Key.article == work.article && x.Key.category == work.category).Key == null)
+                        if (everyworksumm.FirstOrDefault(x => x.Key.Article == work.Article && x.Key.category == work.category).Key == null)
                         {
                             everyworksumm.Add(work, 0);
                             paramssumm.Add(work, new double[work.ParametersValue.Length]);
@@ -201,8 +201,8 @@ namespace BuildingCalculator.FormComponents
                         if (work.ParametersValue.Length == 0)
                             work.ParametersValue = new double[work.parametrs.Count];
                         for (int k = 0; k <Rooms[i].CheckedWorks[j].parametrs.Count; k++)                           
-                            paramssumm.First(x => x.Key.article == work.article && x.Key.category == work.category).Value[k] += work.ParametersValue[k];
-                        everyworksumm[everyworksumm.First(x => x.Key.article == work.article && x.Key.category == work.category).Key] += work.GetPrice();
+                            paramssumm.First(x => x.Key.Article == work.Article && x.Key.category == work.category).Value[k] += work.ParametersValue[k];
+                        everyworksumm[everyworksumm.First(x => x.Key.Article == work.Article && x.Key.category == work.category).Key] += work.GetPrice();
                         commonsum += work.GetPrice();
                     }
                 }
@@ -212,7 +212,7 @@ namespace BuildingCalculator.FormComponents
                     for (int i = 0; i < paramssumm[pair.Key].Length; i++)
                         quantity += paramssumm[pair.Key][i] + " " + pair.Key.parametrs[i] + "\n";
 
-                    finaltable.Rows.Add(new string[] { pair.Key.article, quantity, reg.Match(pair.Key.formula, 0).Value, pair.Value.ToString("#.##") });
+                    finaltable.Rows.Add(new string[] { pair.Key.Article, quantity, reg.Match(pair.Key.Formula, 0).Value, pair.Value.ToString("#.##") });
                     finaltable.Rows[finaltable.RowCount - 2].ReadOnly = true;
 
                 }

@@ -18,7 +18,7 @@ namespace BuildingCalculator.Test
         public void AddToOutput_AddNewWork()
         {
             WorkTypeClass work = new WorkTypeClass();
-            work.article = "Test";
+            work.Article = "Test";
             work.category = WorkTypeClass.Category.other;
             work.setPriceFunc("0");
 
@@ -32,7 +32,7 @@ namespace BuildingCalculator.Test
         public void AddToOutput_AddExistedWork()
         {
             WorkTypeClass work = new WorkTypeClass();
-            work.article = "Test2";
+            work.Article = "Test2";
             work.category = WorkTypeClass.Category.other;
             work.setPriceFunc("0");
 

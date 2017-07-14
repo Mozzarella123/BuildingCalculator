@@ -29,14 +29,62 @@ namespace BuildingCalculator.FormComponents
         }
         private void Search_TextChanged(object sender, EventArgs e)
         {
-            Functions.Search((sender as TextBox).Text, WorksList);
+            FindNode((sender as TextBox).Text);
 
         }
         private void Search_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Return)
                 e.Handled = true;
-            Functions.Search((sender as TextBox).Text, WorksList);
+            FindNode((sender as TextBox).Text);
+        }
+        protected  List<TreeNode> CurrentNodeMatches = new List<TreeNode>();
+        protected int LastNodeIndex = 0;
+        protected  string LastSearchText;
+        protected void FindNode(string pattern)
+        {
+            TreeView tree = WorksList;
+            string searchText = pattern;
+            if (String.IsNullOrEmpty(searchText))
+            {
+                return;
+            };
+            if (LastSearchText != searchText)
+            {
+                //It's a new Search
+                CurrentNodeMatches.Clear();
+                LastSearchText = searchText;
+                LastNodeIndex = 0;
+                SearchNodes(searchText, tree.Nodes[0]);
+            }
+
+            if (LastNodeIndex >= 0 && CurrentNodeMatches.Count > 0)
+            {
+                TreeNode selectedNode = CurrentNodeMatches[LastNodeIndex];
+                LastNodeIndex++;
+                if (tree.SelectedNode != null && tree.SelectedNode.Parent != null && tree.SelectedNode.Parent != selectedNode.Parent)
+                    tree.SelectedNode.Parent.Collapse();
+                tree.SelectedNode = selectedNode;
+                tree.SelectedNode.Expand();
+                if (LastNodeIndex == CurrentNodeMatches.Count)
+                    LastNodeIndex = 0;
+            }
+        }
+        protected  void SearchNodes(string SearchText, TreeNode StartNode)
+        {
+            while (StartNode != null)
+            {
+                if (StartNode.Text.ToLower().Contains(SearchText.ToLower()))
+                {
+                    CurrentNodeMatches.Add(StartNode);
+                };
+                if (StartNode.Nodes.Count != 0)
+                {
+                    SearchNodes(SearchText, StartNode.Nodes[0]);//Recursive Search 
+                };
+                StartNode = StartNode.NextNode;
+            };
+
         }
         private void WorksList_BeforeSelect(object sender, TreeViewCancelEventArgs e)
         {
@@ -61,7 +109,7 @@ namespace BuildingCalculator.FormComponents
                         CheckedWorks.Add((WorkTypeClass)work.Clone());
                 }
                 else
-                    CheckedWorks.Remove(CheckedWorks.Find(x => x.category == work.category && x.article == work.article));
+                    CheckedWorks.Remove(CheckedWorks.Find(x => x.category == work.category && x.Article == work.Article));
                 if (check)
                 {
                     if (!CheckedCats.Contains(work.category))
@@ -149,9 +197,9 @@ namespace BuildingCalculator.FormComponents
                 //Разбиваем по категориям
                 foreach (WorkTypeClass ob in workslist)
                 {
-                    TreeNode newnode = new TreeNode(ob.article);
-                    newnode.Text = ob.article + " " + ob.formula;
-                    newnode.Name = ob.article;
+                    TreeNode newnode = new TreeNode(ob.Article);
+                    newnode.Text = ob.Article + " " + ob.Formula;
+                    newnode.Name = ob.Article;
                     newnode.Tag = ob;
                     if (WorksList.CheckBoxes)
                         if (CheckedWorks.Find(w => w.Equals(ob)) != null)
@@ -166,7 +214,7 @@ namespace BuildingCalculator.FormComponents
                             CheckedWorks.Remove(CheckedWorks[i]);
                             i--;
                         }
-                        List<WorkTypeClass> works = workslist.FindAll(w => w.category == CheckedWorks[i].category && w.article == CheckedWorks[i].article && (w.formula != CheckedWorks[i].formula) || w.parametrs.Count != CheckedWorks[i].parametrs.Count);
+                        List<WorkTypeClass> works = workslist.FindAll(w => w.category == CheckedWorks[i].category && w.Article == CheckedWorks[i].Article && (w.Formula != CheckedWorks[i].Formula) || w.parametrs.Count != CheckedWorks[i].parametrs.Count);
                         if (works!=null)
                         {
                             foreach (WorkTypeClass work in works)
@@ -192,7 +240,7 @@ namespace BuildingCalculator.FormComponents
         {
             foreach (WorksTypeTree tree in treelist)
             {
-                tree.WorksList.Nodes
+                //tree.WorksList.
             }
         }
     }

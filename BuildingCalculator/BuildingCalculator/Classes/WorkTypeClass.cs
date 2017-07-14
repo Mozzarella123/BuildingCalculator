@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace BuildingCalculator
 {
+
     public class WorkTypeClass : ICloneable
     {
         public static Dictionary<Category, string> CategoryNames = new Dictionary<Category, string>()
@@ -54,41 +55,41 @@ namespace BuildingCalculator
         public WorkTypeClass(double price)
         {
             parametrs = new List<string>();
-            isFixedPrice = true;
+            IsFixedPrice = true;
             fixedPrice = price;
         }
         public void setPriceFunc(string f)
         {
             if (double.TryParse(f, out fixedPrice))
-                isFixedPrice = true;
+                IsFixedPrice = true;
             else
             {
-                formula = f;
-                isFixedPrice = false;
+                Formula = f;
+                IsFixedPrice = false;
             }
 
         }
         public double GetPrice()
         {
-            if (isFixedPrice)
+            if (IsFixedPrice)
                 return fixedPrice;
             double result = DelegateAssemblyService.getPriceforWorkType(this, ParametersValue);
             return result;
         }
         public string Price { get { try { return GetPrice().ToString(); } catch { return "0"; } } }
-        public bool isFixedPrice { get; set; }
+        public bool IsFixedPrice { get; set; }
         public double fixedPrice;
-        public string article { get; set; }
-        public string formula { get; set; }
-        public string quantity
+        public string Article { get ; set; }
+        public string Formula { get; set; }
+        public string Quantity
         {
             get; set;
         }
         public List<string> parametrs;
-        public string description;
+        public int id;
         public override string ToString()
         {
-            return article + " " + formula;
+            return Article + " " + Formula;
         }
         public string delegateName;
         public Category category;
@@ -113,15 +114,15 @@ namespace BuildingCalculator
         }
         public bool Equals(WorkTypeClass work)
         {
-            bool ret = article.Equals(work.article);
+            bool ret = Article.Equals(work.Article);
             ret &= category.Equals(work.category);
             return ret;
         }
         public bool FullEquals(WorkTypeClass work)
         {
-            bool ret = article.Equals(work.article);
+            bool ret = Article.Equals(work.Article);
             ret &= Equals(ParametersValue, work.ParametersValue);
-            ret &= formula.Equals(work.formula);
+            ret &= Formula.Equals(work.Formula);
             ret &= category.Equals(work.category);
             return ret;
         }
@@ -142,13 +143,13 @@ namespace BuildingCalculator
         public object Clone()
         {
             WorkTypeClass copywork = new WorkTypeClass();
-            copywork.article = article;
+            copywork.Article = Article;
             copywork.category = category;
             copywork.delegateName = delegateName;
-            copywork.formula = formula;
-            copywork.description = description;
-            copywork.isFixedPrice = isFixedPrice;
-            copywork.quantity = quantity;            
+            copywork.Formula = Formula;
+            copywork.id = id;
+            copywork.IsFixedPrice = IsFixedPrice;
+            copywork.Quantity = Quantity;            
             double[] copyparams = new double[ParametersValue.Length];
             ParametersValue.CopyTo(copyparams, 0);
             copywork.ParametersValue = copyparams;

@@ -80,8 +80,8 @@ namespace BuildingCalculator
                 cwf.AddType.Text = "Редактировать работу";
                 cwf.Text = "Редактировать работу";
                 RedactedItemIndex = JSONSerializeService.OutputItems.IndexOf(obj);
-                cwf.WorkTypeNameInp.Text = obj.article;
-                cwf.formula.TextBox.Text = obj.formula;
+                cwf.WorkTypeNameInp.Text = obj.Article;
+                cwf.formula.TextBox.Text = obj.Formula;
                 cwf.Listofparams.Items.Clear();
                 foreach (string str in obj.parametrs)
                     cwf.Listofparams.Items.Add(str);
@@ -141,7 +141,7 @@ namespace BuildingCalculator
         private void AddWorkType(object sender, EventArgs e)
         {
             WorkTypeClass work = new WorkTypeClass();
-            work.article = WorkTypeNameInp.Text;
+            work.Article = WorkTypeNameInp.Text;
             work.setPriceFunc(formula.TextBox.Text);
             var numer = Listofparams.Items.GetEnumerator();
             while (numer.MoveNext())
@@ -155,12 +155,16 @@ namespace BuildingCalculator
             if (DelegateAssemblyService.isCreatedCorrect(work))
             {
 
-                JSONSerializeService.AddToOutput(work);
+                
                 if (RedactedItemIndex != null)
                 {
-                    JSONSerializeService.OutputItems.RemoveAt((int)RedactedItemIndex);
+                    WorkTypeClass redactedwork = JSONSerializeService.OutputItems[(int)RedactedItemIndex];
+                    redactedwork = work;
                     RedactedItemIndex = null;
-
+                }
+                else
+                {
+                    JSONSerializeService.AddToOutput(work);
                 }
                 JSONSerializeService.Save();
                 this.Hide();

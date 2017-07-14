@@ -42,7 +42,7 @@ namespace MyNamespace
             CompileString = begin;//формирование файла с кодом для дальнейшей компиляции
             foreach (WorkTypeClass w in JSONSerializeService.InputItems)
             {
-                if (!w.isFixedPrice)
+                if (!w.IsFixedPrice)
                     CompileString += CreateFunctions(w);
             }
             CompileString += end;//завершение формирования кода
@@ -96,7 +96,7 @@ namespace MyNamespace
                 parametrs = parametrs.Substring(0, parametrs.Length - 1);
             }
             string ret = @"
-        public static double " + "f" + fId + "(" + parametrs + ")" + "{ return " + work.formula + ";}";//формирование кода
+        public static double " + "f" + fId + "(" + parametrs + ")" + "{ return " + work.Formula + ";}";//формирование кода
             work.delegateName = "f" + fId.ToString();//запоминание объектом имени соответствующей ему функции
             fId++;
             return ret;
@@ -111,7 +111,7 @@ namespace MyNamespace
             CompileString = begin;
             foreach(WorkTypeClass work in JSONSerializeService.InputItems)
             {
-                if (!work.isFixedPrice)
+                if (!work.IsFixedPrice)
                     CompileString += CreateFunctions(work);
             }
             CompileString += end;
@@ -126,7 +126,7 @@ namespace MyNamespace
         /// <returns></returns>
         public static bool isCreatedCorrect(WorkTypeClass work)
         {
-            if (!work.isFixedPrice)
+            if (!work.IsFixedPrice)
             {
                 string func = CreateFunctions(work);//генерация кода
                 try

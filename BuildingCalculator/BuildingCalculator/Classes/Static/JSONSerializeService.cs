@@ -119,7 +119,7 @@ namespace BuildingCalculator
         public static WorkTypeClass GetWork(string name,WorkTypeClass.Category cat)
         {
             foreach (WorkTypeClass work in OutputItems)
-                if (work.article == name&&work.category ==cat)
+                if (work.Article == name&&work.category ==cat)
                     return work;
             return null;
         }
