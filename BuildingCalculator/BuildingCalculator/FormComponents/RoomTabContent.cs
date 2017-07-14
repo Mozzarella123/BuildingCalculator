@@ -65,7 +65,7 @@ namespace BuildingCalculator.FormComponents
             worktable.DoubleClick += (sender, ea) =>
              {
                  DataGridView table = sender as DataGridView;
-                 if (table.SelectedCells.Count == 1)
+                 if (table.SelectedCells.Count == 1&&table.SelectedCells[0].Value!=null)
                      RefrehTable(new TreeNode() { Tag = table.SelectedCells[0].OwningRow.DataBoundItem as WorkTypeClass, Checked = true }, new EventArgs());
              };
             worktable.AutoGenerateColumns = false;
@@ -73,7 +73,7 @@ namespace BuildingCalculator.FormComponents
             Classes.Static.TipsService.AddTip(RoomTypeSelect, "Выберите тип комнаты (нестандартный - форма отличная от прямоугольника)");
             Classes.Static.TipsService.AddTip(AddElement, "Добавить дверь или окно в комнату");
         }
-        private void RefrehTable(object sender, EventArgs e)
+        public void RefrehTable(object sender, EventArgs e)
         {
             //Area.Text = $"Площадь:{Room.Area}\nПериметр:{Room.Perimeter}\nПлощадь стен:{Room.CommonArea}";
             DataGridView worktable;
@@ -94,7 +94,7 @@ namespace BuildingCalculator.FormComponents
                         work.ParametersValue[0] = Room.GetAreaFromCat(work.category);
                         i1++;
                     }
-                    for (int i = i1; i < work.ParametersValue.Length; i++)
+                    for (int i = i1; !work.isFixedPrice&&i < work.ParametersValue.Length; i++)
                     {
                         inputparams param = new inputparams();
                         param.WorkTitle.Text = work.article;

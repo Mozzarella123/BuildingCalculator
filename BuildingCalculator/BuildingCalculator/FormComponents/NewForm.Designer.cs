@@ -98,6 +98,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -107,8 +108,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.MenuMarkup);
-            this.splitContainer1.Size = new System.Drawing.Size(1077, 583);
-            this.splitContainer1.SplitterDistance = 913;
+            this.splitContainer1.Size = new System.Drawing.Size(718, 379);
+            this.splitContainer1.SplitterDistance = 608;
+            this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 0;
             // 
             // MainTabs
@@ -122,7 +124,7 @@
             this.MainTabs.Margin = new System.Windows.Forms.Padding(0);
             this.MainTabs.Name = "MainTabs";
             this.MainTabs.SelectedIndex = 0;
-            this.MainTabs.Size = new System.Drawing.Size(913, 583);
+            this.MainTabs.Size = new System.Drawing.Size(608, 379);
             this.MainTabs.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.MainTabs.TabIndex = 0;
             this.MainTabs.TabStop = false;
@@ -131,10 +133,11 @@
             // 
             this.InputParamsTab.AutoScroll = true;
             this.InputParamsTab.Controls.Add(this.RoomTabs);
-            this.InputParamsTab.Location = new System.Drawing.Point(4, 32);
+            this.InputParamsTab.Location = new System.Drawing.Point(4, 25);
+            this.InputParamsTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.InputParamsTab.Name = "InputParamsTab";
-            this.InputParamsTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.InputParamsTab.Size = new System.Drawing.Size(905, 547);
+            this.InputParamsTab.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.InputParamsTab.Size = new System.Drawing.Size(600, 350);
             this.InputParamsTab.TabIndex = 0;
             this.InputParamsTab.Text = "Ввод данных";
             this.InputParamsTab.UseVisualStyleBackColor = true;
@@ -144,11 +147,11 @@
             this.RoomTabs.Controls.Add(this.FirstRoom);
             this.RoomTabs.Controls.Add(this.AddRoomTab);
             this.RoomTabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RoomTabs.Location = new System.Drawing.Point(3, 3);
+            this.RoomTabs.Location = new System.Drawing.Point(2, 2);
             this.RoomTabs.Margin = new System.Windows.Forms.Padding(0);
             this.RoomTabs.Name = "RoomTabs";
             this.RoomTabs.SelectedIndex = 0;
-            this.RoomTabs.Size = new System.Drawing.Size(899, 541);
+            this.RoomTabs.Size = new System.Drawing.Size(596, 346);
             this.RoomTabs.TabIndex = 0;
             this.RoomTabs.SelectedIndexChanged += new System.EventHandler(this.RoomTabs_SelectedIndexChanged);
             this.RoomTabs.DoubleClick += new System.EventHandler(this.RoomTabs_DoubleClick);
@@ -156,10 +159,11 @@
             // FirstRoom
             // 
             this.FirstRoom.Controls.Add(this.roomTabContent1);
-            this.FirstRoom.Location = new System.Drawing.Point(4, 29);
+            this.FirstRoom.Location = new System.Drawing.Point(4, 22);
+            this.FirstRoom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.FirstRoom.Name = "FirstRoom";
-            this.FirstRoom.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.FirstRoom.Size = new System.Drawing.Size(891, 508);
+            this.FirstRoom.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FirstRoom.Size = new System.Drawing.Size(588, 320);
             this.FirstRoom.TabIndex = 0;
             this.FirstRoom.Text = "Комната";
             this.FirstRoom.UseVisualStyleBackColor = true;
@@ -169,18 +173,19 @@
             this.roomTabContent1.AutoScroll = true;
             this.roomTabContent1.BackColor = System.Drawing.SystemColors.Window;
             this.roomTabContent1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roomTabContent1.Location = new System.Drawing.Point(3, 3);
-            this.roomTabContent1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.roomTabContent1.Location = new System.Drawing.Point(2, 2);
+            this.roomTabContent1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.roomTabContent1.Name = "roomTabContent1";
-            this.roomTabContent1.Size = new System.Drawing.Size(885, 502);
+            this.roomTabContent1.Size = new System.Drawing.Size(584, 316);
             this.roomTabContent1.TabIndex = 0;
             // 
             // AddRoomTab
             // 
-            this.AddRoomTab.Location = new System.Drawing.Point(4, 29);
+            this.AddRoomTab.Location = new System.Drawing.Point(4, 22);
+            this.AddRoomTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AddRoomTab.Name = "AddRoomTab";
-            this.AddRoomTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.AddRoomTab.Size = new System.Drawing.Size(888, 489);
+            this.AddRoomTab.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddRoomTab.Size = new System.Drawing.Size(591, 330);
             this.AddRoomTab.TabIndex = 1;
             this.AddRoomTab.Text = "+";
             this.AddRoomTab.UseVisualStyleBackColor = true;
@@ -190,9 +195,10 @@
             this.ViewTab.AutoScroll = true;
             this.ViewTab.Controls.Add(this.finaltable);
             this.ViewTab.Controls.Add(this.label3);
-            this.ViewTab.Location = new System.Drawing.Point(4, 32);
+            this.ViewTab.Location = new System.Drawing.Point(4, 25);
+            this.ViewTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ViewTab.Name = "ViewTab";
-            this.ViewTab.Size = new System.Drawing.Size(905, 547);
+            this.ViewTab.Size = new System.Drawing.Size(601, 350);
             this.ViewTab.TabIndex = 2;
             this.ViewTab.Text = "Просмотр";
             this.ViewTab.UseVisualStyleBackColor = true;
@@ -225,10 +231,11 @@
             this.finaltable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.finaltable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.finaltable.Location = new System.Drawing.Point(0, 0);
+            this.finaltable.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.finaltable.Name = "finaltable";
             this.finaltable.RowHeadersVisible = false;
             this.finaltable.RowTemplate.Height = 28;
-            this.finaltable.Size = new System.Drawing.Size(905, 547);
+            this.finaltable.Size = new System.Drawing.Size(601, 350);
             this.finaltable.TabIndex = 1;
             // 
             // Title
@@ -254,9 +261,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 0);
+            this.label3.Location = new System.Drawing.Point(5, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 20);
+            this.label3.Size = new System.Drawing.Size(58, 13);
             this.label3.TabIndex = 0;
             this.label3.Text = "Просмотр";
             // 
@@ -264,9 +272,10 @@
             // 
             this.SettingTab.AutoScroll = true;
             this.SettingTab.Controls.Add(this.splitContainer2);
-            this.SettingTab.Location = new System.Drawing.Point(4, 32);
+            this.SettingTab.Location = new System.Drawing.Point(4, 25);
+            this.SettingTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SettingTab.Name = "SettingTab";
-            this.SettingTab.Size = new System.Drawing.Size(905, 547);
+            this.SettingTab.Size = new System.Drawing.Size(601, 350);
             this.SettingTab.TabIndex = 3;
             this.SettingTab.Text = "Настройки";
             this.SettingTab.UseVisualStyleBackColor = true;
@@ -275,6 +284,7 @@
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
@@ -292,26 +302,29 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.AdminTable);
             this.splitContainer2.Panel2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.splitContainer2_Panel2_MouseClick);
-            this.splitContainer2.Size = new System.Drawing.Size(905, 547);
-            this.splitContainer2.SplitterDistance = 482;
+            this.splitContainer2.Size = new System.Drawing.Size(601, 350);
+            this.splitContainer2.SplitterDistance = 320;
+            this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 9;
             // 
             // RepotRooms
             // 
             this.RepotRooms.AutoSize = true;
             this.RepotRooms.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RepotRooms.Location = new System.Drawing.Point(20, 174);
+            this.RepotRooms.Location = new System.Drawing.Point(13, 113);
+            this.RepotRooms.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RepotRooms.Name = "RepotRooms";
-            this.RepotRooms.Size = new System.Drawing.Size(369, 33);
+            this.RepotRooms.Size = new System.Drawing.Size(248, 24);
             this.RepotRooms.TabIndex = 10;
             this.RepotRooms.Text = "Разбивать отчёт по формам";
             this.RepotRooms.UseVisualStyleBackColor = true;
             // 
             // SaveSetBut
             // 
-            this.SaveSetBut.Location = new System.Drawing.Point(20, 285);
+            this.SaveSetBut.Location = new System.Drawing.Point(13, 185);
+            this.SaveSetBut.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SaveSetBut.Name = "SaveSetBut";
-            this.SaveSetBut.Size = new System.Drawing.Size(202, 38);
+            this.SaveSetBut.Size = new System.Drawing.Size(135, 25);
             this.SaveSetBut.TabIndex = 9;
             this.SaveSetBut.Text = "Сохранить настройки";
             this.SaveSetBut.UseVisualStyleBackColor = true;
@@ -321,9 +334,10 @@
             // 
             this.Help.AutoSize = true;
             this.Help.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Help.Location = new System.Drawing.Point(20, 25);
+            this.Help.Location = new System.Drawing.Point(13, 16);
+            this.Help.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Help.Name = "Help";
-            this.Help.Size = new System.Drawing.Size(356, 33);
+            this.Help.Size = new System.Drawing.Size(232, 24);
             this.Help.TabIndex = 2;
             this.Help.Text = "Включить режим обучения";
             this.Help.UseVisualStyleBackColor = true;
@@ -331,10 +345,10 @@
             // ChangeSaveDirectory
             // 
             this.ChangeSaveDirectory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ChangeSaveDirectory.Location = new System.Drawing.Point(242, 242);
+            this.ChangeSaveDirectory.Location = new System.Drawing.Point(161, 157);
             this.ChangeSaveDirectory.Margin = new System.Windows.Forms.Padding(0);
             this.ChangeSaveDirectory.Name = "ChangeSaveDirectory";
-            this.ChangeSaveDirectory.Size = new System.Drawing.Size(166, 40);
+            this.ChangeSaveDirectory.Size = new System.Drawing.Size(111, 26);
             this.ChangeSaveDirectory.TabIndex = 8;
             this.ChangeSaveDirectory.Text = "Изменить";
             this.ChangeSaveDirectory.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -345,20 +359,22 @@
             // 
             this.UnitsT.AutoSize = true;
             this.UnitsT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.UnitsT.Location = new System.Drawing.Point(15, 62);
+            this.UnitsT.Location = new System.Drawing.Point(10, 40);
+            this.UnitsT.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.UnitsT.Name = "UnitsT";
-            this.UnitsT.Size = new System.Drawing.Size(258, 29);
+            this.UnitsT.Size = new System.Drawing.Size(164, 20);
             this.UnitsT.TabIndex = 4;
             this.UnitsT.Text = "Единицы измерения";
             // 
             // SaveDirectoryInp
             // 
             this.SaveDirectoryInp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SaveDirectoryInp.Location = new System.Drawing.Point(20, 242);
+            this.SaveDirectoryInp.Location = new System.Drawing.Point(13, 157);
+            this.SaveDirectoryInp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SaveDirectoryInp.Multiline = true;
             this.SaveDirectoryInp.Name = "SaveDirectoryInp";
             this.SaveDirectoryInp.ReadOnly = true;
-            this.SaveDirectoryInp.Size = new System.Drawing.Size(206, 36);
+            this.SaveDirectoryInp.Size = new System.Drawing.Size(139, 25);
             this.SaveDirectoryInp.TabIndex = 7;
             // 
             // Units
@@ -366,20 +382,18 @@
             this.Units.Controls.Add(this.mRadio);
             this.Units.Controls.Add(this.cmRadio);
             this.Units.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Units.Location = new System.Drawing.Point(20, 95);
-            this.Units.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Units.Location = new System.Drawing.Point(13, 62);
             this.Units.Name = "Units";
-            this.Units.Size = new System.Drawing.Size(188, 71);
+            this.Units.Size = new System.Drawing.Size(125, 46);
             this.Units.TabIndex = 5;
             // 
             // mRadio
             // 
             this.mRadio.AutoSize = true;
             this.mRadio.Checked = true;
-            this.mRadio.Location = new System.Drawing.Point(6, 37);
-            this.mRadio.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.mRadio.Location = new System.Drawing.Point(4, 24);
             this.mRadio.Name = "mRadio";
-            this.mRadio.Size = new System.Drawing.Size(115, 33);
+            this.mRadio.Size = new System.Drawing.Size(78, 24);
             this.mRadio.TabIndex = 1;
             this.mRadio.TabStop = true;
             this.mRadio.Text = "Метры";
@@ -388,10 +402,9 @@
             // cmRadio
             // 
             this.cmRadio.AutoSize = true;
-            this.cmRadio.Location = new System.Drawing.Point(6, 5);
-            this.cmRadio.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmRadio.Location = new System.Drawing.Point(4, 3);
             this.cmRadio.Name = "cmRadio";
-            this.cmRadio.Size = new System.Drawing.Size(185, 33);
+            this.cmRadio.Size = new System.Drawing.Size(123, 24);
             this.cmRadio.TabIndex = 0;
             this.cmRadio.Text = "Сантиметры";
             this.cmRadio.UseVisualStyleBackColor = true;
@@ -400,9 +413,10 @@
             // 
             this.SaveDirectoryT.AutoSize = true;
             this.SaveDirectoryT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SaveDirectoryT.Location = new System.Drawing.Point(15, 209);
+            this.SaveDirectoryT.Location = new System.Drawing.Point(10, 136);
+            this.SaveDirectoryT.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SaveDirectoryT.Name = "SaveDirectoryT";
-            this.SaveDirectoryT.Size = new System.Drawing.Size(313, 29);
+            this.SaveDirectoryT.Size = new System.Drawing.Size(206, 20);
             this.SaveDirectoryT.TabIndex = 6;
             this.SaveDirectoryT.Text = "Место сохранения отчёта";
             // 
@@ -418,13 +432,14 @@
             this.AdminTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AdminTable.Enabled = false;
             this.AdminTable.Location = new System.Drawing.Point(0, 0);
+            this.AdminTable.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AdminTable.Name = "AdminTable";
             this.AdminTable.RowCount = 4;
             this.AdminTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.719851F));
             this.AdminTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.98701F));
-            this.AdminTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.AdminTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
             this.AdminTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.95454F));
-            this.AdminTable.Size = new System.Drawing.Size(419, 547);
+            this.AdminTable.Size = new System.Drawing.Size(278, 350);
             this.AdminTable.TabIndex = 5;
             // 
             // WorksListLabel
@@ -433,10 +448,10 @@
             this.WorksListLabel.AutoSize = true;
             this.AdminTable.SetColumnSpan(this.WorksListLabel, 2);
             this.WorksListLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.WorksListLabel.Location = new System.Drawing.Point(124, 9);
-            this.WorksListLabel.Margin = new System.Windows.Forms.Padding(0, 9, 0, 9);
+            this.WorksListLabel.Location = new System.Drawing.Point(83, 6);
+            this.WorksListLabel.Margin = new System.Windows.Forms.Padding(0, 6, 0, 6);
             this.WorksListLabel.Name = "WorksListLabel";
-            this.WorksListLabel.Size = new System.Drawing.Size(171, 29);
+            this.WorksListLabel.Size = new System.Drawing.Size(112, 18);
             this.WorksListLabel.TabIndex = 2;
             this.WorksListLabel.Text = "Список работ";
             // 
@@ -444,9 +459,10 @@
             // 
             this.DownloadfromExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.DownloadfromExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DownloadfromExcel.Location = new System.Drawing.Point(3, 50);
+            this.DownloadfromExcel.Location = new System.Drawing.Point(2, 32);
+            this.DownloadfromExcel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DownloadfromExcel.Name = "DownloadfromExcel";
-            this.DownloadfromExcel.Size = new System.Drawing.Size(206, 64);
+            this.DownloadfromExcel.Size = new System.Drawing.Size(136, 40);
             this.DownloadfromExcel.TabIndex = 4;
             this.DownloadfromExcel.Text = "Загрузить из Excel";
             this.DownloadfromExcel.UseVisualStyleBackColor = true;
@@ -456,9 +472,10 @@
             // 
             this.Clear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.Clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Clear.Location = new System.Drawing.Point(215, 50);
+            this.Clear.Location = new System.Drawing.Point(142, 32);
+            this.Clear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Clear.Name = "Clear";
-            this.Clear.Size = new System.Drawing.Size(201, 64);
+            this.Clear.Size = new System.Drawing.Size(134, 40);
             this.Clear.TabIndex = 5;
             this.Clear.Text = "Очистить список";
             this.Clear.UseVisualStyleBackColor = true;
@@ -469,12 +486,12 @@
             this.AdminWorks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.AdminTable.SetColumnSpan(this.AdminWorks, 2);
             this.AdminWorks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AdminWorks.Location = new System.Drawing.Point(2, 119);
-            this.AdminWorks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AdminWorks.Location = new System.Drawing.Point(1, 75);
+            this.AdminWorks.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.AdminWorks.Name = "AdminWorks";
-            this.AdminWorks.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.AdminWorks.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AdminTable.SetRowSpan(this.AdminWorks, 2);
-            this.AdminWorks.Size = new System.Drawing.Size(415, 426);
+            this.AdminWorks.Size = new System.Drawing.Size(276, 274);
             this.AdminWorks.TabIndex = 6;
             // 
             // MenuMarkup
@@ -491,16 +508,17 @@
             this.MenuMarkup.Controls.Add(this.SummT, 0, 6);
             this.MenuMarkup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MenuMarkup.Location = new System.Drawing.Point(0, 0);
+            this.MenuMarkup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MenuMarkup.Name = "MenuMarkup";
             this.MenuMarkup.RowCount = 7;
-            this.MenuMarkup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.MenuMarkup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.MenuMarkup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.MenuMarkup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.MenuMarkup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.MenuMarkup.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.MenuMarkup.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.MenuMarkup.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.MenuMarkup.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.MenuMarkup.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.MenuMarkup.Size = new System.Drawing.Size(160, 583);
+            this.MenuMarkup.Size = new System.Drawing.Size(107, 379);
             this.MenuMarkup.TabIndex = 0;
             this.MenuMarkup.Paint += new System.Windows.Forms.PaintEventHandler(this.MenuMarkup_Paint);
             // 
@@ -513,7 +531,7 @@
             this.InputParamsBut.Location = new System.Drawing.Point(0, 0);
             this.InputParamsBut.Margin = new System.Windows.Forms.Padding(0);
             this.InputParamsBut.Name = "InputParamsBut";
-            this.InputParamsBut.Size = new System.Drawing.Size(160, 49);
+            this.InputParamsBut.Size = new System.Drawing.Size(107, 32);
             this.InputParamsBut.TabIndex = 0;
             this.InputParamsBut.Text = "Ввод данных";
             this.InputParamsBut.UseVisualStyleBackColor = false;
@@ -524,10 +542,10 @@
             this.ViewBut.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ViewBut.FlatAppearance.BorderSize = 0;
             this.ViewBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ViewBut.Location = new System.Drawing.Point(0, 49);
+            this.ViewBut.Location = new System.Drawing.Point(0, 32);
             this.ViewBut.Margin = new System.Windows.Forms.Padding(0);
             this.ViewBut.Name = "ViewBut";
-            this.ViewBut.Size = new System.Drawing.Size(160, 49);
+            this.ViewBut.Size = new System.Drawing.Size(107, 32);
             this.ViewBut.TabIndex = 1;
             this.ViewBut.Text = "Просмотр";
             this.ViewBut.UseVisualStyleBackColor = true;
@@ -538,10 +556,10 @@
             this.SettingsBut.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SettingsBut.FlatAppearance.BorderSize = 0;
             this.SettingsBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SettingsBut.Location = new System.Drawing.Point(0, 98);
+            this.SettingsBut.Location = new System.Drawing.Point(0, 64);
             this.SettingsBut.Margin = new System.Windows.Forms.Padding(0);
             this.SettingsBut.Name = "SettingsBut";
-            this.SettingsBut.Size = new System.Drawing.Size(160, 49);
+            this.SettingsBut.Size = new System.Drawing.Size(107, 32);
             this.SettingsBut.TabIndex = 2;
             this.SettingsBut.Text = "Настройки";
             this.SettingsBut.UseVisualStyleBackColor = true;
@@ -553,9 +571,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RoomResT.AutoSize = true;
             this.RoomResT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RoomResT.Location = new System.Drawing.Point(3, 290);
+            this.RoomResT.Location = new System.Drawing.Point(2, 189);
+            this.RoomResT.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.RoomResT.Name = "RoomResT";
-            this.RoomResT.Size = new System.Drawing.Size(154, 25);
+            this.RoomResT.Size = new System.Drawing.Size(103, 17);
             this.RoomResT.TabIndex = 6;
             // 
             // CreateReportBut
@@ -563,9 +582,10 @@
             this.CreateReportBut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CreateReportBut.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CreateReportBut.Location = new System.Drawing.Point(3, 205);
+            this.CreateReportBut.Location = new System.Drawing.Point(2, 134);
+            this.CreateReportBut.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CreateReportBut.Name = "CreateReportBut";
-            this.CreateReportBut.Size = new System.Drawing.Size(154, 82);
+            this.CreateReportBut.Size = new System.Drawing.Size(103, 53);
             this.CreateReportBut.TabIndex = 3;
             this.CreateReportBut.Text = "Создать отчет";
             this.CreateReportBut.UseVisualStyleBackColor = true;
@@ -576,12 +596,14 @@
             this.RefreshTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RefreshTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RefreshTable.Location = new System.Drawing.Point(3, 150);
+            this.RefreshTable.Location = new System.Drawing.Point(2, 98);
+            this.RefreshTable.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RefreshTable.Name = "RefreshTable";
-            this.RefreshTable.Size = new System.Drawing.Size(154, 49);
+            this.RefreshTable.Size = new System.Drawing.Size(103, 32);
             this.RefreshTable.TabIndex = 5;
             this.RefreshTable.Text = "Обновить";
             this.RefreshTable.UseVisualStyleBackColor = true;
+            this.RefreshTable.Click += new System.EventHandler(this.RefreshTable_Click_1);
             // 
             // SummT
             // 
@@ -589,9 +611,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SummT.AutoSize = true;
             this.SummT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SummT.Location = new System.Drawing.Point(3, 558);
+            this.SummT.Location = new System.Drawing.Point(2, 362);
+            this.SummT.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SummT.Name = "SummT";
-            this.SummT.Size = new System.Drawing.Size(154, 25);
+            this.SummT.Size = new System.Drawing.Size(103, 17);
             this.SummT.TabIndex = 7;
             // 
             // ExcelDownloadDialog
@@ -602,11 +625,12 @@
             // 
             // NewForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1077, 583);
+            this.ClientSize = new System.Drawing.Size(718, 379);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "NewForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Калькулятор";

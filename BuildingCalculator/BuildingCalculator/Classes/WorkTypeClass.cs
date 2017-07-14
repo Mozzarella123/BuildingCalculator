@@ -146,6 +146,9 @@ namespace BuildingCalculator
             copywork.category = category;
             copywork.delegateName = delegateName;
             copywork.formula = formula;
+            copywork.description = description;
+            copywork.isFixedPrice = isFixedPrice;
+            copywork.quantity = quantity;            
             double[] copyparams = new double[ParametersValue.Length];
             ParametersValue.CopyTo(copyparams, 0);
             copywork.ParametersValue = copyparams;

@@ -36,7 +36,7 @@ namespace BuildingCalculator.Classes.Static
             }
         }
         static List<Tip> _Tips = new List<Tip>();
-        static bool tutorial = bool.Parse(ConfigWorksService.getValue("tutorial"));
+        static bool tutorial = Convert.ToBoolean(ConfigWorksService.getValue("tutorial"));
         public static void AddTip(Control control,string text)
         {
             if (tutorial)

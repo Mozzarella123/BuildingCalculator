@@ -16,19 +16,19 @@ namespace BuildingCalculator
         static void Main()
         {
             Logger logger = LogManager.GetCurrentClassLogger();
-            try
-            {
+            //try
+            //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 mainForm = new FormComponents.NewForm();
                 Application.Run(mainForm);
-            }
-            catch (Exception e)
-            {
-                //logger.Fatal("\n Метод, вызвавший исключение:" + e.TargetSite + "\n Объект, вызвавший исключение:" + e.InnerException + "\n Сообщение:" + e.Message);
-                MessageBox.Show("Произошла непредвиденная ошибка");
-                Application.Restart();
-            }
+            //}
+            //catch (Exception e)
+            //{
+            //    //logger.Fatal("\n Метод, вызвавший исключение:" + e.TargetSite + "\n Объект, вызвавший исключение:" + e.InnerException + "\n Сообщение:" + e.Message);
+            //    MessageBox.Show("Произошла непредвиденная ошибка");
+            //    Application.Restart();
+            //}
         }
         public static FormComponents.NewForm mainForm;
     }
