@@ -16,7 +16,6 @@ namespace BuildingCalculator
 {
     public partial class CreateWorkTypeForm : Form
     {
-        public static Button Button;
         public CreateWorkTypeForm()
         {
             InitializeComponent();
@@ -36,10 +35,8 @@ namespace BuildingCalculator
             Classes.Static.TipsService.AddTip(parameters.TextBox,"Здесь нужно ввести параметры, которые используются в формуле, чтобы добавить параметр нажмите +,первый параметр относится к площади категории");
             Classes.Static.TipsService.AddTip(formula.TextBox,"Здесь нужно ввести формулу для расчёта, с параметрами занесенными в лист справа, по шаблону Цена*Параметр1*Параметр2, пример 100*кв_м*слои");
             Classes.Static.TipsService.AddTip( Listofparams, "Чтобы добавить параметр в формулу нажмите enter или перенесите его на поле формулы");
-            Button = AddType;
             parameters.Button.Click += Add_Param;
             formula.TextBox.AllowDrop = true;
-            //formula.TextBox.ReadOnly = true;
             formula.TextBox.Cursor = Cursors.Default;
             formula.TextBox.DragDrop += formula_DragDrop;
             formula.TextBox.DragEnter += formula_DragEnter;
@@ -80,6 +77,8 @@ namespace BuildingCalculator
             
             if (obj != null)
             {
+                cwf.AddType.Text = "Редактировать работу";
+                cwf.Text = "Редактировать работу";
                 RedactedItemIndex = JSONSerializeService.OutputItems.IndexOf(obj);
                 cwf.WorkTypeNameInp.Text = obj.article;
                 cwf.formula.TextBox.Text = obj.formula;
@@ -90,6 +89,8 @@ namespace BuildingCalculator
             }
             else
             {
+                cwf.AddType.Text = "Создать работу";
+                cwf.Text = "Создать работу";
                 cwf.Category.SelectedIndex = 3;
                 cwf.WorkTypeNameInp.Text = "";
                 cwf.formula.Text = "";

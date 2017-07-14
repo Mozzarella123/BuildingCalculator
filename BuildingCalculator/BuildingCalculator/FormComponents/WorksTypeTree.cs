@@ -40,7 +40,7 @@ namespace BuildingCalculator.FormComponents
         }
         private void WorksList_BeforeSelect(object sender, TreeViewCancelEventArgs e)
         {
-            if (e.Node!=null&&e.Node.Nodes.Count != 0)
+            if (e.Node != null && e.Node.Nodes.Count != 0)
             {
                 e.Cancel = true;
                 WorksList.SelectedNode = e.Node.FirstNode;
@@ -114,7 +114,7 @@ namespace BuildingCalculator.FormComponents
             else
             {
                 foreColor = (e.Node.ForeColor == Color.Empty) ? ((TreeView)sender).ForeColor : e.Node.ForeColor;
-                e.Graphics.FillRectangle(SystemBrushes.Window, e.Bounds.X+5,e.Bounds.Y,e.Bounds.Width,e.Bounds.Height);
+                e.Graphics.FillRectangle(SystemBrushes.Window, e.Bounds.X + 5, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height);
             }
 
             TextRenderer.DrawText(
@@ -125,7 +125,7 @@ namespace BuildingCalculator.FormComponents
                 foreColor,
                 TextFormatFlags.GlyphOverhangPadding);
         }
-        public  void BuildList(bool allcats = true, bool sorted = true, List<WorkTypeClass> checkedworks = null)
+        public void BuildList(bool allcats = true, bool sorted = true)
         {
             if (JSONSerializeService.InputItems != null)
             {
@@ -159,14 +159,25 @@ namespace BuildingCalculator.FormComponents
                     tree[WorkTypeClass.CategoryNames[ob.category]].Nodes.Add(newnode);
                 }
                 if (WorksList.CheckBoxes)
-                    for (int i=0;i<CheckedWorks.Count;i++)
+                    for (int i = 0; i < CheckedWorks.Count; i++)
                     {
                         if (workslist.Find(w => w.Equals(CheckedWorks[i])) == null)
                         {
                             CheckedWorks.Remove(CheckedWorks[i]);
-                            break;
+                            i--;
+                        }
+                        List<WorkTypeClass> works = workslist.FindAll(w => w.category == CheckedWorks[i].category && w.article == CheckedWorks[i].article && (w.formula != CheckedWorks[i].formula) || w.parametrs.Count != CheckedWorks[i].parametrs.Count);
+                        if (works!=null)
+                        {
+                            foreach (WorkTypeClass work in works)
+                                if (CheckedWorks.Find(w => w.Equals(work)) != null)
+                                {
+                                    CheckedWorks.Remove(CheckedWorks[i]);
+                                    CheckedWorks.Insert(i, (WorkTypeClass)work.Clone());
+                                }
                         }
                     }
+
                 if (sorted)
                     WorksList.Sort();
             }
@@ -175,8 +186,14 @@ namespace BuildingCalculator.FormComponents
         {
             WorksList.Nodes.Clear();
             WorksList.Nodes.Add("Все категории");
-            BuildList(true,true);
+            BuildList(true, true);
         }
-        
+        public void AddtoList(WorkTypeClass work)
+        {
+            foreach (WorksTypeTree tree in treelist)
+            {
+                tree.WorksList.Nodes
+            }
+        }
     }
 }

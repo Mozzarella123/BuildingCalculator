@@ -200,7 +200,7 @@ namespace BuildingCalculator.FormComponents
                         }
                         if (work.ParametersValue.Length == 0)
                             work.ParametersValue = new double[work.parametrs.Count];
-                        for (int k = 0; k < Rooms[i].CheckedWorks[j].parametrs.Count; k++)
+                        for (int k = 0; k <Rooms[i].CheckedWorks[j].parametrs.Count; k++)                           
                             paramssumm.First(x => x.Key.article == work.article && x.Key.category == work.category).Value[k] += work.ParametersValue[k];
                         everyworksumm[everyworksumm.First(x => x.Key.article == work.article && x.Key.category == work.category).Key] += work.GetPrice();
                         commonsum += work.GetPrice();
@@ -211,6 +211,7 @@ namespace BuildingCalculator.FormComponents
                     string quantity = "";
                     for (int i = 0; i < paramssumm[pair.Key].Length; i++)
                         quantity += paramssumm[pair.Key][i] + " " + pair.Key.parametrs[i] + "\n";
+
                     finaltable.Rows.Add(new string[] { pair.Key.article, quantity, reg.Match(pair.Key.formula, 0).Value, pair.Value.ToString("#.##") });
                     finaltable.Rows[finaltable.RowCount - 2].ReadOnly = true;
 
@@ -226,6 +227,8 @@ namespace BuildingCalculator.FormComponents
             if (index != 0)
             {
                 Rooms.RemoveAt(index);
+                foreach (var tabcont in RoomTabs.TabPages[index].Controls.OfType<RoomTabContent>())
+                    WorksTypeTree.treelist.Remove(tabcont.worksTypeTree1);
                 RoomTabs.TabPages[index].Dispose();
                 RoomTabs.SelectedIndex = --index;
             }
@@ -295,17 +298,16 @@ namespace BuildingCalculator.FormComponents
         private void Add(object sender, EventArgs e)
         {
             CreateWorkTypeForm.CreateWorkType();
-            CreateWorkTypeForm.Button.Text = "Добавить тип работ";
         }
         private void Edit(object sender, EventArgs e)
         {
 
             if (AdminWorks.WorksList.SelectedNode != null)
             {
+                bool check = Rooms[RoomTabs.SelectedIndex].CheckedWorks.Find(w => w.Equals((WorkTypeClass)AdminWorks.WorksList.SelectedNode.Tag)) != null ? true : false;
 
-                CreateWorkTypeForm.CreateWorkType((WorkTypeClass)AdminWorks.WorksList.SelectedNode.Tag);
-                CreateWorkTypeForm.Button.Text = "Редактировать тип работ";
-                CreateWorkTypeForm.ActiveForm.Text = "Редактировать тип работ";
+                    CreateWorkTypeForm.CreateWorkType((WorkTypeClass)AdminWorks.WorksList.SelectedNode.Tag);
+                    if (check) MessageBox.Show("Вы изменили работу, которая находится в списке выбранных, нажмите кнопку обновить");
             }
 
         }
@@ -385,6 +387,12 @@ namespace BuildingCalculator.FormComponents
             Refresh(sender,e);
         }
 
-        
+        private void RefreshTable_Click_1(object sender, EventArgs e)
+        {
+            foreach (TabPage tab in RoomTabs.TabPages)
+                foreach (var tabcont in tab.Controls.OfType<RoomTabContent>())
+                    tabcont.RefrehTable(sender,e);
+            Refresh(sender, e);
+        }
     }
 }
