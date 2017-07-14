@@ -153,6 +153,7 @@ namespace BuildingCalculator
             work.category = (WorkTypeClass.Category)(Category.SelectedIndex);
             if (DelegateAssemblyService.isCreatedCorrect(work))
             {
+
                 JSONSerializeService.AddToOutput(work);
                 if (RedactedItemIndex != null)
                 {
@@ -165,6 +166,7 @@ namespace BuildingCalculator
             }
             else
                 MessageBox.Show("Параметры обьекта заданны некоректно.");
+            
 
             
         }
