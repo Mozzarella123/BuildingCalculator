@@ -42,7 +42,8 @@ namespace BuildingCalculator
                 DelegateAssemblyService.WriteCompileStringToFile();
                 
                     DelegateAssemblyService.AssemblyDelegate();//сборка делегатов(проверка корректности входных данных)
-                    if (isLoadingCorrect)
+                if (isLoadingCorrect)
+                    if (File.Exists("works.json"))
                         File.Copy("works.json", "lastCompleteBuild.json", true);//если начальные данные не поврежденны, то сохраняем их как последний рабочий билд
                 //}
                 //catch//если начальные данные повреждены
@@ -71,14 +72,20 @@ namespace BuildingCalculator
         }
         public static List<WorkTypeClass> InputItems;
         public static List<WorkTypeClass> OutputItems = new List<WorkTypeClass>();
+
         /// <summary>
         /// добавляем элемент в выходные данные, что бы в будущем их сохранить
         /// </summary>
         /// <param name="item"> добавляемый объект</param>
-        public static void AddToOutput(WorkTypeClass item)
+        public static bool AddToOutput(WorkTypeClass item)
         {
-            item.ParametersValue = new double[item.parametrs.Count];
-            OutputItems.Add(item);
+            if (!JSONSerializeService.Contains(item))
+            {
+                item.ParametersValue = new double[item.parametrs.Count];
+                OutputItems.Add(item);
+                return true;
+            }
+            return false;
         }
         /// <summary>
         /// записываем выходные данные в файл

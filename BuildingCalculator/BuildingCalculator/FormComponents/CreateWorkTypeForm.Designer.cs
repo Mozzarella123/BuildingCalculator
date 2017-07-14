@@ -172,7 +172,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label1, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.76404F));
@@ -189,7 +189,7 @@
             this.formula.Dock = System.Windows.Forms.DockStyle.Fill;
             this.formula.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.formula.Location = new System.Drawing.Point(1, 109);
-            this.formula.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.formula.Margin = new System.Windows.Forms.Padding(1);
             this.formula.Name = "formula";
             this.formula.Size = new System.Drawing.Size(225, 129);
             this.formula.TabIndex = 14;
