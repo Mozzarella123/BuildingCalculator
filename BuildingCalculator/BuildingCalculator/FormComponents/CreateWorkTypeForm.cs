@@ -70,7 +70,8 @@ namespace BuildingCalculator
                 Listofparams.Items.RemoveAt(Listofparams.SelectedIndex);
         }
         static CreateWorkTypeForm cwf = new CreateWorkTypeForm();
-        static int? RedactedItemIndex = null;      
+        static int? RedactedItemIndex = null;
+        static WorkTypeClass RedactedWork = null;
         public static void CreateWorkType(WorkTypeClass obj=null)
         {
             Functions.CenterForm(cwf, NewForm.MainForm);
@@ -80,6 +81,7 @@ namespace BuildingCalculator
                 cwf.AddType.Text = "Редактировать работу";
                 cwf.Text = "Редактировать работу";
                 RedactedItemIndex = JSONSerializeService.OutputItems.IndexOf(obj);
+                RedactedWork = obj;
                 cwf.WorkTypeNameInp.Text = obj.Article;
                 cwf.formula.TextBox.Text = obj.Formula;
                 cwf.Listofparams.Items.Clear();
@@ -146,6 +148,7 @@ namespace BuildingCalculator
             var numer = Listofparams.Items.GetEnumerator();
             while (numer.MoveNext())
                 work.parametrs.Add(numer.Current.ToString());
+            work.ParametersValue = new double[work.parametrs.Count];
             if (Category.SelectedIndex==-1)
             {
                 MessageBox.Show("Выберите категорию!");
@@ -158,14 +161,13 @@ namespace BuildingCalculator
                 
                 if (RedactedItemIndex != null)
                 {
-                    WorkTypeClass redactedwork = JSONSerializeService.OutputItems[(int)RedactedItemIndex];
-                    redactedwork = work;
-                    RedactedItemIndex = null;
+                    WorksTypeTree.Edit(RedactedWork, work);
+                    JSONSerializeService.OutputItems.Remove(JSONSerializeService.OutputItems.Find(w => w.FullEquals(RedactedWork)));
+                    RedactedWork = null;
                 }
                 else
-                {
-                    JSONSerializeService.AddToOutput(work);
-                }
+                    WorksTypeTree.AddtoList(work);
+                JSONSerializeService.AddToOutput(work);
                 JSONSerializeService.Save();
                 this.Hide();
             }

@@ -70,12 +70,19 @@ namespace MyNamespace
         /// <returns></returns>
         public static double getPriceforWorkType(WorkTypeClass work, double[] parametr)
         {
-            var method = CompiledClass.GetMethod(work.delegateName, BindingFlags.Static | BindingFlags.Public);//получение метода соответствующего объекту            
-            object[] ObjPar = new object[parametr.Length];
-            for (int i = 0; i < parametr.Length; i++)
-                ObjPar[i] = parametr[i];//конвертация double в object КОСТЫЛЬ
-            var ret = method.Invoke(null, ObjPar);//получение значения
-            return (double)ret;
+            //try
+            //{
+                var method = CompiledClass.GetMethod(work.delegateName, BindingFlags.Static | BindingFlags.Public);//получение метода соответствующего объекту            
+                object[] ObjPar = new object[parametr.Length];
+                for (int i = 0; i < parametr.Length; i++)
+                    ObjPar[i] = parametr[i];//конвертация double в object КОСТЫЛЬ
+                var ret = method.Invoke(null, ObjPar);//получение значения
+                return (double)ret;
+            //}
+            //catch (TargetParameterCountException)
+            //{
+            //    return 0;
+            //}
             
         }
         static int fId = 0;

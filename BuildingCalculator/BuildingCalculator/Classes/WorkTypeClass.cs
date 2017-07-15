@@ -120,10 +120,11 @@ namespace BuildingCalculator
         }
         public bool FullEquals(WorkTypeClass work)
         {
-            bool ret = Article.Equals(work.Article);
-            ret &= Equals(ParametersValue, work.ParametersValue);
-            ret &= Formula.Equals(work.Formula);
+            bool ret = Article == null && work.Article == null ? true:Article.Equals(work.Article);
+            ret &= ParametersValue==null&&work.ParametersValue==null ? true: ParametersValue.Length == work.ParametersValue.Length;
+            ret &= Formula == null&&work.Formula==null ? true : Formula.Equals(work.Formula);
             ret &= category.Equals(work.category);
+            ret &= (parametrs == null && work.parametrs == null) ? true : parametrs.Count == work.parametrs.Count;
             return ret;
         }
         static bool Equals(List<string> s1, List<string> s2)

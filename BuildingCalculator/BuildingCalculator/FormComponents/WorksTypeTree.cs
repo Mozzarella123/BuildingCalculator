@@ -24,7 +24,29 @@ namespace BuildingCalculator.FormComponents
             WorksList.Nodes.Add("Все категории");
             treelist.Add(this);
             treelist.RemoveAll(t => t == null);
-            BuildList(true, true);
+            if (JSONSerializeService.InputItems != null)
+            {
+                TreeNodeCollection tree = WorksList.Nodes[0].Nodes;
+                List<WorkTypeClass> workslist = JSONSerializeService.InputItems;
+                //Добавляем категорию
+                foreach (var pair in WorkTypeClass.CategoryNames)
+                {
+                    TreeNode newnode = new TreeNode(pair.Value);
+                    newnode.Name = pair.Value;
+                    newnode.Tag = pair.Key;
+                    tree.Add(newnode);
+                }
+                //Разбиваем по категориям
+                foreach (WorkTypeClass ob in workslist)
+                {
+                    TreeNode newnode = new TreeNode(ob.Article);
+                    newnode.Text = ob.Article;
+                    newnode.Name = workslist.IndexOf(ob).ToString();
+                    newnode.Tag = ob;
+                    tree[WorkTypeClass.CategoryNames[ob.category]].Nodes.Add(newnode);
+                }
+                WorksList.Sort();
+            }
             Classes.Static.TipsService.AddTip(Search, "Чтобы найти следующую работу, нажмите enter");
         }
         private void Search_TextChanged(object sender, EventArgs e)
@@ -85,6 +107,16 @@ namespace BuildingCalculator.FormComponents
                 StartNode = StartNode.NextNode;
             };
 
+        }
+        public TreeNode FromID(WorkTypeClass work, TreeNode rootNode)
+        {
+            foreach (TreeNode node in rootNode.Nodes)
+            {
+                if (node.Tag is WorkTypeClass&&node.Tag as WorkTypeClass == work) return node;
+                TreeNode next = FromID(work, node);
+                if (next != null) return next;
+            }
+            return null;
         }
         private void WorksList_BeforeSelect(object sender, TreeViewCancelEventArgs e)
         {
@@ -175,73 +207,71 @@ namespace BuildingCalculator.FormComponents
         }
         public void BuildList(bool allcats = true, bool sorted = true)
         {
-            if (JSONSerializeService.InputItems != null)
-            {
-                TreeNodeCollection tree;
-                if (!allcats)
-                    tree = WorksList.Nodes;
-                else
-                    tree = WorksList.Nodes[0].Nodes;
-                List<WorkTypeClass> workslist = JSONSerializeService.InputItems;
-                //Добавляем категорию
-                foreach (var pair in WorkTypeClass.CategoryNames)
-                {
-                    TreeNode newnode = new TreeNode(pair.Value);
-                    if (WorksList.CheckBoxes)
-                        if (CheckedCats.Contains(pair.Key))
-                            newnode.Checked = true;
-                    newnode.Name = pair.Value;
-                    newnode.Tag = pair.Key;
-                    tree.Add(newnode);
-                }
-                //Разбиваем по категориям
-                foreach (WorkTypeClass ob in workslist)
-                {
-                    TreeNode newnode = new TreeNode(ob.Article);
-                    newnode.Text = ob.Article + " " + ob.Formula;
-                    newnode.Name = ob.Article;
-                    newnode.Tag = ob;
-                    if (WorksList.CheckBoxes)
-                        if (CheckedWorks.Find(w => w.Equals(ob)) != null)
-                            newnode.Checked = true;
-                    tree[WorkTypeClass.CategoryNames[ob.category]].Nodes.Add(newnode);
-                }
-                if (WorksList.CheckBoxes)
-                    for (int i = 0; i < CheckedWorks.Count; i++)
-                    {
-                        if (workslist.Find(w => w.Equals(CheckedWorks[i])) == null)
-                        {
-                            CheckedWorks.Remove(CheckedWorks[i]);
-                            i--;
-                        }
-                        List<WorkTypeClass> works = workslist.FindAll(w => w.category == CheckedWorks[i].category && w.Article == CheckedWorks[i].Article && (w.Formula != CheckedWorks[i].Formula) || w.parametrs.Count != CheckedWorks[i].parametrs.Count);
-                        if (works!=null)
-                        {
-                            foreach (WorkTypeClass work in works)
-                                if (CheckedWorks.Find(w => w.Equals(work)) != null)
-                                {
-                                    CheckedWorks.Remove(CheckedWorks[i]);
-                                    CheckedWorks.Insert(i, (WorkTypeClass)work.Clone());
-                                }
-                        }
-                    }
-
-                if (sorted)
-                    WorksList.Sort();
-            }
+             
+            
         }
         public void RefreshList()
         {
-            WorksList.Nodes.Clear();
-            WorksList.Nodes.Add("Все категории");
-            BuildList(true, true);
+            //WorksList.Nodes.Clear();
+            //WorksList.Nodes.Add("Все категории");
+            //BuildList(true, true);
         }
-        public void AddtoList(WorkTypeClass work)
+        public static void AddtoList(WorkTypeClass work,bool check = false)
         {
-            foreach (WorksTypeTree tree in treelist)
+            foreach (WorksTypeTree comp in treelist)
             {
-                //tree.WorksList.
+                TreeNodeCollection tree = comp.WorksList.Nodes[0].Nodes;
+                TreeNode newnode = new TreeNode();
+                newnode.Text = work.Article;
+                newnode.Name = work.ToString();
+                newnode.Tag = work;
+                if (check)
+                    newnode.Checked = check;
+                tree[WorkTypeClass.CategoryNames[work.category]].Nodes.Add(newnode);
             }
+        }
+        public static void RemovefromList(WorkTypeClass work,bool edit=false)
+        {
+            foreach (WorksTypeTree comp in treelist)
+            {
+                TreeNodeCollection tree = comp.WorksList.Nodes[0].Nodes;
+                TreeNode itemNode = null;
+                foreach (TreeNode node in tree)
+                {
+                    itemNode = comp.FromID(work, node);
+                    if (itemNode != null) { break; }
+                }
+                if (!edit)
+                {
+                    WorkTypeClass del;
+                    if ((del = comp.CheckedWorks.Find(w => w.Equals(work))) != null)
+                        comp.CheckedWorks.Remove(del);
+                }
+                tree[WorkTypeClass.CategoryNames[work.category]].Nodes.Remove(itemNode);
+            }
+
+        }
+        public static void Edit(WorkTypeClass work,WorkTypeClass newwork)
+        {
+            RemovefromList(work,true);
+            bool check = false;
+            foreach (WorksTypeTree comp in treelist)
+            {
+                if (comp.WorksList.CheckBoxes)
+                {
+                    WorkTypeClass oldwork = comp.CheckedWorks.Find(w => w.FullEquals(work));
+                    if (oldwork != null)
+                    {                       
+                        check = true;
+                        comp.CheckedWorks.Remove(oldwork);
+                        WorkTypeClass newwork1 = newwork.Clone() as WorkTypeClass;
+                        if (oldwork.parametrs.Count == newwork.parametrs.Count)
+                            oldwork.ParametersValue.CopyTo(newwork1.ParametersValue, 0);
+                        comp.CheckedWorks.Add(newwork1 as WorkTypeClass);
+                    }
+                }
+            }
+            AddtoList(newwork, check);
         }
     }
 }

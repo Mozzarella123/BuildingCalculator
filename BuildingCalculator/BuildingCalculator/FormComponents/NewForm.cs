@@ -304,10 +304,7 @@ namespace BuildingCalculator.FormComponents
 
             if (AdminWorks.WorksList.SelectedNode != null)
             {
-                bool check = Rooms[RoomTabs.SelectedIndex].CheckedWorks.Find(w => w.Equals((WorkTypeClass)AdminWorks.WorksList.SelectedNode.Tag)) != null ? true : false;
-
                     CreateWorkTypeForm.CreateWorkType((WorkTypeClass)AdminWorks.WorksList.SelectedNode.Tag);
-                    if (check) MessageBox.Show("Вы изменили работу, которая находится в списке выбранных, нажмите кнопку обновить");
             }
 
         }
@@ -315,7 +312,10 @@ namespace BuildingCalculator.FormComponents
         {
             if (AdminWorks.WorksList.SelectedNode != null&& AdminWorks.WorksList.SelectedNode.Tag is WorkTypeClass)
             {
-                JSONSerializeService.OutputItems.Remove((WorkTypeClass)AdminWorks.WorksList.SelectedNode.Tag);
+                WorkTypeClass work = AdminWorks.WorksList.SelectedNode.Tag as WorkTypeClass;
+                WorkTypeClass work1 = JSONSerializeService.OutputItems.Find(w => w.FullEquals(work));
+                WorksTypeTree.RemovefromList(work);
+                JSONSerializeService.OutputItems.Remove(work1);
                 JSONSerializeService.Save();
             }
         }

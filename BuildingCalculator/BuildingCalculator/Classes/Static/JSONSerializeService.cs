@@ -101,10 +101,7 @@ namespace BuildingCalculator
         public static void Save()
         {
             WriteOutput();
-            ReadInput(OutputFilePath);
-            Program.mainForm.RefreshTrees();
-
-            //LoginClass.af.RefreshList();
+            ReadInput(OutputFilePath);           
         }
         public static bool Contains(WorkTypeClass work)
         {
