@@ -81,7 +81,6 @@ namespace BuildingCalculator
         {
             if (!JSONSerializeService.Contains(item))
             {
-                item.ParametersValue = new double[item.parametrs.Count];
                 OutputItems.Add(item);
                 return true;
             }

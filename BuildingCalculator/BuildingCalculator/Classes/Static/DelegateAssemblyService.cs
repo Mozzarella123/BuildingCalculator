@@ -33,7 +33,7 @@ namespace MyNamespace
         
     }
 }";
-        
+
         /// <summary>
         /// функция компиляции файла(запускается при загрузке входных данных)
         /// </summary>
@@ -58,7 +58,7 @@ namespace MyNamespace
             CompilerResults results = provider.CompileAssemblyFromSource(parameters, CompileString);//компиляция
             var cls = results.CompiledAssembly.GetType("MyNamespace.PriceFunctions");//извлечение скомпилированного класса
             CompiledClass = cls;
-            
+
         }
 
         static Type CompiledClass;
@@ -72,18 +72,20 @@ namespace MyNamespace
         {
             //try
             //{
-                var method = CompiledClass.GetMethod(work.delegateName, BindingFlags.Static | BindingFlags.Public);//получение метода соответствующего объекту            
-                object[] ObjPar = new object[parametr.Length];
-                for (int i = 0; i < parametr.Length; i++)
-                    ObjPar[i] = parametr[i];//конвертация double в object КОСТЫЛЬ
-                var ret = method.Invoke(null, ObjPar);//получение значения
-                return (double)ret;
+            var method = CompiledClass.GetMethod(work.delegateName, BindingFlags.Static | BindingFlags.Public);//получение метода соответствующего объекту            
+            if (parametr.Length == 0)
+                parametr = new double[work.parametrs.Count];
+            object[] ObjPar = new object[parametr.Length];
+            for (int i = 0; i < parametr.Length; i++)
+                ObjPar[i] = parametr[i];//конвертация double в object КОСТЫЛЬ
+            var ret = method.Invoke(null, ObjPar);//получение значения
+            return (double)ret;
             //}
             //catch (TargetParameterCountException)
             //{
             //    return 0;
             //}
-            
+
         }
         static int fId = 0;
         /// <summary>
@@ -95,7 +97,7 @@ namespace MyNamespace
         {
             //if (work.isFixedPrice)
             //    return "";
-            string parametrs="";
+            string parametrs = "";
             foreach (string str in work.parametrs)
                 parametrs += "double " + str + ",";//формирование стороки параметров
             if (parametrs != "")
@@ -114,9 +116,9 @@ namespace MyNamespace
         /// </summary>
         public static void WriteCompileStringToFile()
         {
-            
+
             CompileString = begin;
-            foreach(WorkTypeClass work in JSONSerializeService.InputItems)
+            foreach (WorkTypeClass work in JSONSerializeService.InputItems)
             {
                 if (!work.IsFixedPrice)
                     CompileString += CreateFunctions(work);
@@ -124,7 +126,7 @@ namespace MyNamespace
             CompileString += end;
             fId = 0;
             File.WriteAllText("ForCompile.cs", CompileString);
-            
+
         }
         /// <summary>
         /// проверка корректности данных в объекте
@@ -162,6 +164,6 @@ namespace MyNamespace
             }
             else
                 return true;
-        } 
+        }
     }
 }
