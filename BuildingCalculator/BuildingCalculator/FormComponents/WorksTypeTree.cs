@@ -21,32 +21,9 @@ namespace BuildingCalculator.FormComponents
         public WorksTypeTree()
         {
             InitializeComponent();
-            WorksList.Nodes.Add("Все категории");
             treelist.Add(this);
             treelist.RemoveAll(t => t == null);
-            if (JSONSerializeService.InputItems != null)
-            {
-                TreeNodeCollection tree = WorksList.Nodes[0].Nodes;
-                List<WorkTypeClass> workslist = JSONSerializeService.InputItems;
-                //Добавляем категорию
-                foreach (var pair in WorkTypeClass.CategoryNames)
-                {
-                    TreeNode newnode = new TreeNode(pair.Value);
-                    newnode.Name = pair.Value;
-                    newnode.Tag = pair.Key;
-                    tree.Add(newnode);
-                }
-                //Разбиваем по категориям
-                foreach (WorkTypeClass ob in workslist)
-                {
-                    TreeNode newnode = new TreeNode(ob.Article);
-                    newnode.Text = ob.Article;
-                    newnode.Name = workslist.IndexOf(ob).ToString();
-                    newnode.Tag = ob;
-                    tree[WorkTypeClass.CategoryNames[ob.category]].Nodes.Add(newnode);
-                }
-                WorksList.Sort();
-            }
+            BuildList();
             Classes.Static.TipsService.AddTip(Search, "Чтобы найти следующую работу, нажмите enter");
         }
         private void Search_TextChanged(object sender, EventArgs e)
@@ -141,7 +118,7 @@ namespace BuildingCalculator.FormComponents
                         CheckedWorks.Add((WorkTypeClass)work.Clone());
                 }
                 else
-                    CheckedWorks.Remove(CheckedWorks.Find(x => x.category == work.category && x.Article == work.Article));
+                    CheckedWorks.Remove(CheckedWorks.Find(x => x.FullEquals(work)));
                 if (check)
                 {
                     if (!CheckedCats.Contains(work.category))
@@ -205,16 +182,39 @@ namespace BuildingCalculator.FormComponents
                 foreColor,
                 TextFormatFlags.GlyphOverhangPadding);
         }
-        public void BuildList(bool allcats = true, bool sorted = true)
+        public void BuildList()
         {
-             
-            
+            WorksList.Nodes.Clear();
+            WorksList.Nodes.Add("Все категории");
+            if (JSONSerializeService.InputItems != null)
+            {
+                TreeNodeCollection tree = WorksList.Nodes[0].Nodes;
+                List<WorkTypeClass> workslist = JSONSerializeService.InputItems;
+                //Добавляем категорию
+                foreach (var pair in WorkTypeClass.CategoryNames)
+                {
+                    TreeNode newnode = new TreeNode(pair.Value);
+                    newnode.Name = pair.Value;
+                    newnode.Tag = pair.Key;
+                    tree.Add(newnode);
+                }
+                //Разбиваем по категориям
+                foreach (WorkTypeClass ob in workslist)
+                {
+                    TreeNode newnode = new TreeNode(ob.Article);
+                    newnode.Text = ob.Article;
+                    newnode.Name = workslist.IndexOf(ob).ToString();
+                    newnode.Tag = ob;
+                    tree[WorkTypeClass.CategoryNames[ob.category]].Nodes.Add(newnode);
+                }
+                WorksList.Sort();
+            }
+
         }
-        public void RefreshList()
+        public static void RefreshLists()
         {
-            //WorksList.Nodes.Clear();
-            //WorksList.Nodes.Add("Все категории");
-            //BuildList(true, true);
+            foreach (WorksTypeTree comp in treelist)
+                comp.BuildList();
         }
         public static void AddtoList(WorkTypeClass work,bool check = false)
         {

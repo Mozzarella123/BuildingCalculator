@@ -58,7 +58,6 @@ namespace MyNamespace
             CompilerResults results = provider.CompileAssemblyFromSource(parameters, CompileString);//компиляция
             var cls = results.CompiledAssembly.GetType("MyNamespace.PriceFunctions");//извлечение скомпилированного класса
             CompiledClass = cls;
-
         }
 
         static Type CompiledClass;

@@ -340,10 +340,10 @@ namespace BuildingCalculator.FormComponents
         }
         public void RefreshTrees()
         {
-            AdminWorks.RefreshList();
-            foreach (TabPage tab in RoomTabs.TabPages)
-                foreach (var tabcont in tab.Controls.OfType<RoomTabContent>())
-                    tabcont.worksTypeTree1.RefreshList();
+            //AdminWorks.RefreshList();
+            //foreach (TabPage tab in RoomTabs.TabPages)
+            //    foreach (var tabcont in tab.Controls.OfType<RoomTabContent>())
+            //        tabcont.worksTypeTree1.RefreshList();
         }
         private void Clear_Click(object sender, EventArgs e)
         {
@@ -354,6 +354,7 @@ namespace BuildingCalculator.FormComponents
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             Classes.Static.ExcelWorkServicecs.OpenFile(ExcelDownloadDialog.FileName);
+            
             
         }
         private void SaveSetBut_Click(object sender, EventArgs e)
