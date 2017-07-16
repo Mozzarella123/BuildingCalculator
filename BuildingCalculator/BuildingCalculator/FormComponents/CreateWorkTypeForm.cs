@@ -166,9 +166,11 @@ namespace BuildingCalculator
                     RedactedWork = null;
                 }
                 else
-                    WorksTypeTree.AddtoList(work);
+                    
                 JSONSerializeService.AddToOutput(work);
                 JSONSerializeService.Save();
+                work = JSONSerializeService.OutputItems.Find(w => w.FullEquals(work));
+                WorksTypeTree.AddtoList(work);
                 this.Hide();
             }
             else

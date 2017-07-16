@@ -93,7 +93,7 @@ namespace MyNamespace
         /// </summary>
         /// <param name="work">объект для которого формируется функция</param>
         /// <returns></returns>
-        static string CreateFunctions(WorkTypeClass work)
+        static string CreateFunctions(WorkTypeClass work,bool isTest=false)
         {
             //if (work.isFixedPrice)
             //    return "";
@@ -106,8 +106,11 @@ namespace MyNamespace
             }
             string ret = @"
         public static double " + "f" + fId + "(" + parametrs + ")" + "{ return " + work.Formula + ";}";//формирование кода
-            work.delegateName = "f" + fId.ToString();//запоминание объектом имени соответствующей ему функции
-            fId++;
+            if (!isTest)
+            {
+                work.delegateName = "f" + fId.ToString();//запоминание объектом имени соответствующей ему функции
+                fId++;
+            }
             return ret;
         }
         static string CompileString = "";
@@ -137,7 +140,8 @@ namespace MyNamespace
         {
             if (!work.IsFixedPrice)
             {
-                string func = CreateFunctions(work);//генерация кода
+                string func = CreateFunctions(work,true);//генерация кода
+                
                 try
                 {
                     CSharpCodeProvider provider = new CSharpCodeProvider();
