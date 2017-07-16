@@ -45,7 +45,7 @@ namespace BuildingCalculator.Classes.Static
                 else
                 {
                     WorkTypeClass work = new WorkTypeClass();
-                    work.article = ar[i][0];
+                    work.Article = ar[i][0];
                     if (ar[i][1] != null)
                         work.parametrs = ar[i][1].Split(',').ToList();
                     work.setPriceFunc(ar[i][2]);

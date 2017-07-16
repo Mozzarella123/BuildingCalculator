@@ -70,7 +70,8 @@ namespace BuildingCalculator
                 Listofparams.Items.RemoveAt(Listofparams.SelectedIndex);
         }
         static CreateWorkTypeForm cwf = new CreateWorkTypeForm();
-        static int? RedactedItemIndex = null;      
+        static int? RedactedItemIndex = null;
+        static WorkTypeClass RedactedWork = null;
         public static void CreateWorkType(WorkTypeClass obj=null)
         {
             Functions.CenterForm(cwf, NewForm.MainForm);
@@ -80,8 +81,9 @@ namespace BuildingCalculator
                 cwf.AddType.Text = "Редактировать работу";
                 cwf.Text = "Редактировать работу";
                 RedactedItemIndex = JSONSerializeService.OutputItems.IndexOf(obj);
-                cwf.WorkTypeNameInp.Text = obj.article;
-                cwf.formula.TextBox.Text = obj.formula;
+                RedactedWork = obj;
+                cwf.WorkTypeNameInp.Text = obj.Article;
+                cwf.formula.TextBox.Text = obj.Formula;
                 cwf.Listofparams.Items.Clear();
                 foreach (string str in obj.parametrs)
                     cwf.Listofparams.Items.Add(str);
@@ -141,11 +143,12 @@ namespace BuildingCalculator
         private void AddWorkType(object sender, EventArgs e)
         {
             WorkTypeClass work = new WorkTypeClass();
-            work.article = WorkTypeNameInp.Text;
+            work.Article = WorkTypeNameInp.Text;
             work.setPriceFunc(formula.TextBox.Text);
             var numer = Listofparams.Items.GetEnumerator();
             while (numer.MoveNext())
                 work.parametrs.Add(numer.Current.ToString());
+            work.ParametersValue = new double[work.parametrs.Count];
             if (Category.SelectedIndex==-1)
             {
                 MessageBox.Show("Выберите категорию!");
@@ -155,13 +158,16 @@ namespace BuildingCalculator
             if (DelegateAssemblyService.isCreatedCorrect(work))
             {
 
-                JSONSerializeService.AddToOutput(work);
+                
                 if (RedactedItemIndex != null)
                 {
-                    JSONSerializeService.OutputItems.RemoveAt((int)RedactedItemIndex);
-                    RedactedItemIndex = null;
-
+                    WorksTypeTree.Edit(RedactedWork, work);
+                    JSONSerializeService.OutputItems.Remove(JSONSerializeService.OutputItems.Find(w => w.FullEquals(RedactedWork)));
+                    RedactedWork = null;
                 }
+                else
+                    WorksTypeTree.AddtoList(work);
+                JSONSerializeService.AddToOutput(work);
                 JSONSerializeService.Save();
                 this.Hide();
             }

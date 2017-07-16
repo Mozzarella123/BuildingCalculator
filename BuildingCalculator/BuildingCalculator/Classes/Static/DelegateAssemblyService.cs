@@ -33,7 +33,7 @@ namespace MyNamespace
         
     }
 }";
-        
+
         /// <summary>
         /// функция компиляции файла(запускается при загрузке входных данных)
         /// </summary>
@@ -42,7 +42,7 @@ namespace MyNamespace
             CompileString = begin;//формирование файла с кодом для дальнейшей компиляции
             foreach (WorkTypeClass w in JSONSerializeService.InputItems)
             {
-                if (!w.isFixedPrice)
+                if (!w.IsFixedPrice)
                     CompileString += CreateFunctions(w);
             }
             CompileString += end;//завершение формирования кода
@@ -58,7 +58,7 @@ namespace MyNamespace
             CompilerResults results = provider.CompileAssemblyFromSource(parameters, CompileString);//компиляция
             var cls = results.CompiledAssembly.GetType("MyNamespace.PriceFunctions");//извлечение скомпилированного класса
             CompiledClass = cls;
-            
+
         }
 
         static Type CompiledClass;
@@ -70,13 +70,22 @@ namespace MyNamespace
         /// <returns></returns>
         public static double getPriceforWorkType(WorkTypeClass work, double[] parametr)
         {
+            //try
+            //{
             var method = CompiledClass.GetMethod(work.delegateName, BindingFlags.Static | BindingFlags.Public);//получение метода соответствующего объекту            
+            if (parametr.Length == 0)
+                parametr = new double[work.parametrs.Count];
             object[] ObjPar = new object[parametr.Length];
             for (int i = 0; i < parametr.Length; i++)
                 ObjPar[i] = parametr[i];//конвертация double в object КОСТЫЛЬ
             var ret = method.Invoke(null, ObjPar);//получение значения
             return (double)ret;
-            
+            //}
+            //catch (TargetParameterCountException)
+            //{
+            //    return 0;
+            //}
+
         }
         static int fId = 0;
         /// <summary>
@@ -88,7 +97,7 @@ namespace MyNamespace
         {
             //if (work.isFixedPrice)
             //    return "";
-            string parametrs="";
+            string parametrs = "";
             foreach (string str in work.parametrs)
                 parametrs += "double " + str + ",";//формирование стороки параметров
             if (parametrs != "")
@@ -96,7 +105,7 @@ namespace MyNamespace
                 parametrs = parametrs.Substring(0, parametrs.Length - 1);
             }
             string ret = @"
-        public static double " + "f" + fId + "(" + parametrs + ")" + "{ return " + work.formula + ";}";//формирование кода
+        public static double " + "f" + fId + "(" + parametrs + ")" + "{ return " + work.Formula + ";}";//формирование кода
             work.delegateName = "f" + fId.ToString();//запоминание объектом имени соответствующей ему функции
             fId++;
             return ret;
@@ -107,17 +116,17 @@ namespace MyNamespace
         /// </summary>
         public static void WriteCompileStringToFile()
         {
-            
+
             CompileString = begin;
-            foreach(WorkTypeClass work in JSONSerializeService.InputItems)
+            foreach (WorkTypeClass work in JSONSerializeService.InputItems)
             {
-                if (!work.isFixedPrice)
+                if (!work.IsFixedPrice)
                     CompileString += CreateFunctions(work);
             }
             CompileString += end;
             fId = 0;
             File.WriteAllText("ForCompile.cs", CompileString);
-            
+
         }
         /// <summary>
         /// проверка корректности данных в объекте
@@ -126,7 +135,7 @@ namespace MyNamespace
         /// <returns></returns>
         public static bool isCreatedCorrect(WorkTypeClass work)
         {
-            if (!work.isFixedPrice)
+            if (!work.IsFixedPrice)
             {
                 string func = CreateFunctions(work);//генерация кода
                 try
@@ -155,6 +164,6 @@ namespace MyNamespace
             }
             else
                 return true;
-        } 
+        }
     }
 }

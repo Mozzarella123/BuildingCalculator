@@ -81,7 +81,6 @@ namespace BuildingCalculator
         {
             if (!JSONSerializeService.Contains(item))
             {
-                item.ParametersValue = new double[item.parametrs.Count];
                 OutputItems.Add(item);
                 return true;
             }
@@ -101,10 +100,7 @@ namespace BuildingCalculator
         public static void Save()
         {
             WriteOutput();
-            ReadInput(OutputFilePath);
-            Program.mainForm.RefreshTrees();
-
-            //LoginClass.af.RefreshList();
+            ReadInput(OutputFilePath);           
         }
         public static bool Contains(WorkTypeClass work)
         {
@@ -119,7 +115,7 @@ namespace BuildingCalculator
         public static WorkTypeClass GetWork(string name,WorkTypeClass.Category cat)
         {
             foreach (WorkTypeClass work in OutputItems)
-                if (work.article == name&&work.category ==cat)
+                if (work.Article == name&&work.category ==cat)
                     return work;
             return null;
         }

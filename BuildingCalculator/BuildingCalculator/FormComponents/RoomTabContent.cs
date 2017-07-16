@@ -94,10 +94,10 @@ namespace BuildingCalculator.FormComponents
                         work.ParametersValue[0] = Room.GetAreaFromCat(work.category);
                         i1++;
                     }
-                    for (int i = i1; !work.isFixedPrice&&i < work.ParametersValue.Length; i++)
+                    for (int i = i1; !work.IsFixedPrice&&i < work.ParametersValue.Length; i++)
                     {
                         inputparams param = new inputparams();
-                        param.WorkTitle.Text = work.article;
+                        param.WorkTitle.Text = work.Article;
                         param.Paramname.Text = work.parametrs[i];
                         Classes.Functions.CenterForm(param, ParentForm);
                         param.ShowDialog();
@@ -105,7 +105,7 @@ namespace BuildingCalculator.FormComponents
                             param.Paramname.Text = "1";
                         work.ParametersValue[i] = double.Parse(param.TextBox.Text);
                     }
-                    work.quantity = work.getQuantity();
+                    work.Quantity = work.getQuantity();
                 }
             }
             else
@@ -113,7 +113,7 @@ namespace BuildingCalculator.FormComponents
                 {
                     if (Room.GetAreaFromCat(work.category) != -1&& work.ParametersValue.Length!=0)
                         work.ParametersValue[0] = Room.GetAreaFromCat(work.category);
-                    work.quantity = work.getQuantity();
+                    work.Quantity = work.getQuantity();
                 }
             BindingSource source = new BindingSource();
             source.DataSource = worksTypeTree1.CheckedWorks;           
@@ -139,9 +139,9 @@ namespace BuildingCalculator.FormComponents
             worktable.Columns[names[1]].DisplayIndex = 1;
             worktable.Columns[names[2]].DisplayIndex = 2;
             worktable.Columns[names[3]].DisplayIndex = 3;
-            worktable.Columns[names[0]].DataPropertyName = "article";
-            worktable.Columns[names[1]].DataPropertyName = "quantity";
-            worktable.Columns[names[2]].DataPropertyName = "formula";
+            worktable.Columns[names[0]].DataPropertyName = "Article";
+            worktable.Columns[names[1]].DataPropertyName = "Quantity";
+            worktable.Columns[names[2]].DataPropertyName = "Formula";
             worktable.Columns[names[3]].DataPropertyName = "Price";            
             for (int i = 5; i < worktable.ColumnCount; i++)
                 worktable.Columns[i].Visible = false;
