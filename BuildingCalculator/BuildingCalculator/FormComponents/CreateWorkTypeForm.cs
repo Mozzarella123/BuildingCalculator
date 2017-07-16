@@ -158,19 +158,23 @@ namespace BuildingCalculator
             if (DelegateAssemblyService.isCreatedCorrect(work))
             {
 
-                
+
                 if (RedactedItemIndex != null)
                 {
-                    WorksTypeTree.Edit(RedactedWork, work);
                     JSONSerializeService.OutputItems.Remove(JSONSerializeService.OutputItems.Find(w => w.FullEquals(RedactedWork)));
+                    JSONSerializeService.AddToOutput(work);
+                    JSONSerializeService.Save();
+                    WorksTypeTree.Edit(RedactedWork, work);
                     RedactedWork = null;
                 }
                 else
-                    
+                {
                 JSONSerializeService.AddToOutput(work);
                 JSONSerializeService.Save();
                 work = JSONSerializeService.OutputItems.Find(w => w.FullEquals(work));
                 WorksTypeTree.AddtoList(work);
+                }
+
                 this.Hide();
             }
             else

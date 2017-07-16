@@ -48,8 +48,7 @@ namespace BuildingCalculator
         public WorkTypeClass()
         {
             parametrs = new List<string>();
-            ParametersValue = new double[parametrs.Count];
-            
+            ParametersValue = new double[parametrs.Count];            
 
         }
         public WorkTypeClass(double price)
