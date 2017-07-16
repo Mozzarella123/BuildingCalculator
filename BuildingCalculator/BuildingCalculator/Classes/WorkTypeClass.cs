@@ -119,6 +119,7 @@ namespace BuildingCalculator
         }
         public bool FullEquals(WorkTypeClass work)
         {
+            if (work == null) return false;
             bool ret = Article == null && work.Article == null ? true:Article.Equals(work.Article);
             ret &= ParametersValue==null&&work.ParametersValue==null ? true: ParametersValue.Length == work.ParametersValue.Length;
             ret &= Formula == null&&work.Formula==null ? true : Formula.Equals(work.Formula);

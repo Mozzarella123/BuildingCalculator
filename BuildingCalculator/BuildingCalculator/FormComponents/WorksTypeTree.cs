@@ -226,6 +226,7 @@ namespace BuildingCalculator.FormComponents
                 newnode.Name = work.ToString();
                 newnode.Tag = work;
                 if (check)
+                    if (comp.CheckedWorks.Find(w => w.FullEquals(work))!=null)
                     newnode.Checked = check;
                 tree[WorkTypeClass.CategoryNames[work.category]].Nodes.Add(newnode);
             }

@@ -302,7 +302,7 @@ namespace BuildingCalculator.FormComponents
         private void Edit(object sender, EventArgs e)
         {
 
-            if (AdminWorks.WorksList.SelectedNode != null)
+            if (AdminWorks.WorksList.SelectedNode != null&& AdminWorks.WorksList.SelectedNode.Tag is WorkTypeClass)
             {
                     CreateWorkTypeForm.CreateWorkType((WorkTypeClass)AdminWorks.WorksList.SelectedNode.Tag);
             }
@@ -354,7 +354,7 @@ namespace BuildingCalculator.FormComponents
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             Classes.Static.ExcelWorkServicecs.OpenFile(ExcelDownloadDialog.FileName);
-            
+            WorksTypeTree.RefreshLists();
             
         }
         private void SaveSetBut_Click(object sender, EventArgs e)

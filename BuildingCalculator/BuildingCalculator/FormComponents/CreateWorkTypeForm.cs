@@ -159,11 +159,12 @@ namespace BuildingCalculator
             {
 
 
-                if (RedactedItemIndex != null)
+                if (RedactedWork != null)
                 {
                     JSONSerializeService.OutputItems.Remove(JSONSerializeService.OutputItems.Find(w => w.FullEquals(RedactedWork)));
                     JSONSerializeService.AddToOutput(work);
                     JSONSerializeService.Save();
+                    work = JSONSerializeService.OutputItems.Find(w => w.FullEquals(work));
                     WorksTypeTree.Edit(RedactedWork, work);
                     RedactedWork = null;
                 }
